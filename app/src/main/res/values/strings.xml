@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">project2-rev2</string>
+
+    <string name="have_account">A new player?</string>
+    <string name="send_login">Click here to register</string>
+    <string name="Google_login">or continue with Google</string>
+</resources>

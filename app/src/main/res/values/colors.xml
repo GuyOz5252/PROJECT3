@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#ff9800</color>
+    <color name="primaryLightColor">#ffc947</color>
+    <color name="primaryDarkColor">#c66900</color>
+    <color name="secondaryColor">#001427</color>
+    <color name="secondaryLightColor">#002A52</color>
+    <color name="secondaryDarkColor">#000B14</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="link">#4897EC</color>
+    <color name="dialogColor">#001427</color>
+    <color name="thumbstickInnerCirclePaint">#7A555555</color>
+    <color name="thumbstickOuterCirclePaint">#7A383838</color>
+    <color name="btnFocusedColor">#7AFF9800</color>
+    <color name="btnUnfocusedColor">#7A002A52</color>
+</resources>
