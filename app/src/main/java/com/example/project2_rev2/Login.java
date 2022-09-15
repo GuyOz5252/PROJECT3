@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LogIn extends AppCompatActivity implements View.OnTouchListener {
+public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     // menu elements
     Button btnLogin, btnRegister, btnDebugGame;

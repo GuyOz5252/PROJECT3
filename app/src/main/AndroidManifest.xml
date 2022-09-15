@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project2rev2">
         <activity
-            android:name=".LogIn"
+            android:name=".Login"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
