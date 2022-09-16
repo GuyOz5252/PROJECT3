@@ -12,26 +12,34 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class GameView extends AppCompatActivity {
 
-    TextView txt1;
-    LinearLayout ln;
+    View tst1, tst2, game;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game_view);
 
-        txt1 = findViewById(R.id.text1);
-        ln = findViewById(R.id.ln);
+        tst1 = findViewById(R.id.tst1);
+        tst2 = findViewById(R.id.tst2);
+        game = findViewById(R.id.game);
 
-        txt1.setOnLongClickListener(longClickListener);
-        ln.setOnDragListener(dragListener);
+        tst1.setOnLongClickListener(longClickListener);
+        tst2.setOnLongClickListener(longClickListener);
+
+        game.setOnDragListener(dragListener);
+
     }
 
     View.OnLongClickListener longClickListener = view -> {
