@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ContentResolver;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -39,8 +40,27 @@ public class GameView extends AppCompatActivity {
         tst2.setOnLongClickListener(longClickListener);
 
         game.setOnDragListener(dragListener);
+        game.setOnTouchListener(touchListener);
 
     }
+
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                double towerX, towerY, targetX, targetY;
+                towerX = tst1.getX();
+                towerY = tst1.getY();
+                targetX = motionEvent.getX();
+                targetY = motionEvent.getY();
+                double angle = Math.tan(Math.abs(targetX-towerX)/Math.abs(targetY-towerY));
+                System.out.println(angle);
+                tst1.setRotation(-(float)angle);
+                //tst1.setRotation(45f);
+            }
+            return true;
+        }
+    };
 
     View.OnLongClickListener longClickListener = view -> {
         ClipData.Item item = new ClipData.Item("");
