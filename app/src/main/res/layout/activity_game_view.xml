@@ -103,7 +103,8 @@
         android:layout_height="400dp"
         android:layout_toEndOf="@+id/towerBar"
         android:background="@android:color/holo_green_light"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
     </LinearLayout>
 

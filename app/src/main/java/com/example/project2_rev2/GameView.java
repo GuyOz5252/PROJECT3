@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.MessageFormat;
+
 public class GameView extends AppCompatActivity {
 
     View tst1, tst2, game;
@@ -49,14 +51,19 @@ public class GameView extends AppCompatActivity {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 double towerX, towerY, targetX, targetY;
-                towerX = tst1.getX();
-                towerY = tst1.getY();
+                towerX = tst1.getPivotX();
+                towerY = tst1.getPivotY();
                 targetX = motionEvent.getX();
                 targetY = motionEvent.getY();
-                double angle = Math.tan(Math.abs(targetX-towerX)/Math.abs(targetY-towerY));
-                System.out.println(angle);
-                tst1.setRotation(-(float)angle);
-                //tst1.setRotation(45f);
+                double m = (targetY-towerY)/(targetX-towerX);
+                double angle = Math.abs(Math.toDegrees(Math.atan(m)));
+                System.out.println(MessageFormat.format("tower: ({0},{1}) | point: ({2},{3})", towerX, towerY, targetX, targetY));
+                System.out.println((float)angle);
+                if (towerX > targetX) {
+                    tst1.setRotation((float)angle);
+                } else {
+                    tst1.setRotation(180-(float)angle);
+                }
             }
             return true;
         }
