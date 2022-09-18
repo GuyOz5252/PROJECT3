@@ -7,6 +7,7 @@ import android.content.ClipDescription;
 import android.content.ContentResolver;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.DragEvent;
