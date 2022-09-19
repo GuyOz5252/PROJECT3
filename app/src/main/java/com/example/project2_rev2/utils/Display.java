@@ -12,4 +12,11 @@ public class Display {
                 displayMetrics.heightPixels
         );
     }
+
+    public Display(double width, double height) {
+        this.size = new Size(
+                width,
+                height
+        );
+    }
 }

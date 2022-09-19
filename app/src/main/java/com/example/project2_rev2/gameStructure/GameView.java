@@ -30,18 +30,23 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); // hide the action bar
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); // hide nav bar
         setContentView(R.layout.activity_game_view);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        this.display = new Display(displayMetrics);
+        //DisplayMetrics displayMetrics = new DisplayMetrics();
+        //((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
+        System.out.println(surfaceView.getWidth());
+        System.out.println(surfaceView.getHeight());
+        this.display = new Display((double)surfaceView.getWidth(), (double)surfaceView.getHeight());
+        System.out.println(display.size.width + " x " + display.size.height);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
-
+                mainThread = new MainThread(surfaceHolder, GameView.this);
+                mainThread.startThread();
             }
 
             @Override
@@ -56,7 +61,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         });
 
         Bundle bundle = getIntent().getExtras();
-        sceneManager = new SceneManager(bundle.getInt("idx", 0), display, this); // receive the index of the requested scene and init a new sceneManager with that scene
+        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), display, this); // receive the index of the requested scene and init a new sceneManager with that scene
     }
 
     public void update() {
@@ -79,5 +84,16 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
+    }
+
+    @Override
+    protected void onPause() {
+        mainThread.stopThread();
+        super.onPause();
     }
 }

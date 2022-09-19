@@ -13,8 +13,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="link">#4897EC</color>
     <color name="dialogColor">#001427</color>
-    <color name="thumbstickInnerCirclePaint">#7A555555</color>
-    <color name="thumbstickOuterCirclePaint">#7A383838</color>
-    <color name="btnFocusedColor">#7AFF9800</color>
-    <color name="btnUnfocusedColor">#7A002A52</color>
+
+    <color name="background">#8BC34A</color>
 </resources>

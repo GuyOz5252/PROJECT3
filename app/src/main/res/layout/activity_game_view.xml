@@ -10,8 +10,8 @@
 
     <SurfaceView
         android:id="@+id/gameSurface"
-        android:layout_width="410dp"
-        android:layout_height="730dp"
+        android:layout_width="730dp"
+        android:layout_height="410dp"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
