@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project2rev2">
         <activity
-            android:name=".GameView"
+            android:name=".gameStructure.GameView"
             android:exported="true"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Login"
+            android:name=".menus.Login"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".menus.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

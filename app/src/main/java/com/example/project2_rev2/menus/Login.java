@@ -1,4 +1,4 @@
-package com.example.project2_rev2;
+package com.example.project2_rev2.menus;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.project2_rev2.gameStructure.GameView;
+import com.example.project2_rev2.R;
 
 public class Login extends AppCompatActivity implements View.OnTouchListener {
 
