@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
 import com.example.project2_rev2.R;
@@ -34,14 +35,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); // hide nav bar
         setContentView(R.layout.activity_game_view);
 
-        //DisplayMetrics displayMetrics = new DisplayMetrics();
-        //((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        this.display = new Display(displayMetrics);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
-        System.out.println(surfaceView.getWidth());
-        System.out.println(surfaceView.getHeight());
-        this.display = new Display((double)surfaceView.getWidth(), (double)surfaceView.getHeight());
-        System.out.println(display.size.width + " x " + display.size.height);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {

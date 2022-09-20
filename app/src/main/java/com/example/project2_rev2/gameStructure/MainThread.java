@@ -3,6 +3,8 @@ package com.example.project2_rev2.gameStructure;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.project2_rev2.utils.Display;
+
 public class MainThread extends Thread {
 
     public static final int MAX_FPS = 60;
@@ -10,7 +12,7 @@ public class MainThread extends Thread {
     private final SurfaceHolder surfaceHolder;
     private final GameView gameView;
     private boolean isRunning;
-    public static Canvas canvas;
+    private Canvas canvas;
 
     public MainThread(SurfaceHolder surfaceHolder, GameView gameView) {
         super();
