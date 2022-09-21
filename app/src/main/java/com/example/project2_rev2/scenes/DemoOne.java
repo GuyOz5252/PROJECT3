@@ -28,7 +28,7 @@ public class DemoOne extends Scene {
     // game components
     private TowerBar towerBar;
     private EnemyPath enemyPath;
-    private EnemyUnit testEnemy;
+    private EnemyUnit enemyUnit;
 
     public DemoOne(Display display, Context context) {
         this.context = context;
@@ -42,7 +42,14 @@ public class DemoOne extends Scene {
         enemyPath.add(new Position(1250, display.size.height/2+100));
         enemyPath.add(new Position(2000, display.size.height/2+100));
 
-        testEnemy = new EnemyUnit(100, 100, 0, new Size(120, 120), context);
+        enemyUnit = new EnemyUnit(
+                345,
+                display.size.height/2,
+                R.drawable.ic_launcher_background,
+                new Size(100, 100),
+                enemyPath,
+                context
+        );
     }
 
     @Override
@@ -51,12 +58,14 @@ public class DemoOne extends Scene {
 
         enemyPath.draw(canvas);
         towerBar.draw(canvas);
-        testEnemy.draw(canvas);
+
+        enemyUnit.draw(canvas);
     }
 
     @Override
     public void update() {
         towerBar.update();
+        enemyUnit.update();
     }
 
     @Override
