@@ -14,6 +14,7 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.EnemyUnit;
 import com.example.project2_rev2.gameComponents.TowerBar;
+import com.example.project2_rev2.gameComponents.WaveController;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Position;
@@ -28,6 +29,7 @@ public class DemoOne extends Scene {
     // game components
     private TowerBar towerBar;
     private EnemyPath enemyPath;
+    private WaveController waveController;
     private EnemyUnit enemyUnit;
 
     public DemoOne(Display display, Context context) {
@@ -42,9 +44,12 @@ public class DemoOne extends Scene {
         enemyPath.add(new Position(1250, display.size.height/2+100));
         enemyPath.add(new Position(2000, display.size.height/2+100));
 
+        waveController = new WaveController();
+        waveController.addWave(new WaveController.Wave(
+
+        ));
+
         enemyUnit = new EnemyUnit(
-                345,
-                display.size.height/2,
                 R.drawable.ic_launcher_background,
                 new Size(100, 100),
                 enemyPath,
@@ -57,14 +62,14 @@ public class DemoOne extends Scene {
         canvas.drawColor(ContextCompat.getColor(context, R.color.background));
 
         enemyPath.draw(canvas);
-        towerBar.draw(canvas);
-
         enemyUnit.draw(canvas);
+        towerBar.draw(canvas);
     }
 
     @Override
     public void update() {
         towerBar.update();
+        enemyUnit.update();
         enemyUnit.update();
     }
 

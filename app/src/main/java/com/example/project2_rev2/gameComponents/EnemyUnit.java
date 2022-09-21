@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 public class EnemyUnit extends BitmapObject {
 
-    private EnemyPath enemyPath;
+    private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
     private Position nextPathDestination;
 
@@ -20,11 +20,14 @@ public class EnemyUnit extends BitmapObject {
     private int velocityX;
     private int velocityY;
 
-    public EnemyUnit(double posX, double posY, int resourceId, Size size, EnemyPath enemyPath, Context context) {
+    private boolean isAlive;
+
+    public EnemyUnit(int resourceId, Size size, EnemyPath enemyPath, Context context) {
         super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
         this.enemyPath = enemyPath;
         this.nextPathDestinationIndex = 1;
         this.nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
+        this.isAlive = true;
     }
 
     public boolean moveToPosition(Position position) {
@@ -41,11 +44,10 @@ public class EnemyUnit extends BitmapObject {
             if (pivotPosition.y < position.y) {
                 velocityX = 0;
                 velocityY = MAX_SPEED;
+                return Math.abs(position.y - pivotPosition.y) < 3;
             }
             return false;
         }
-        velocityX = 0;
-        velocityY = 0;
         return true;
     }
 
@@ -57,6 +59,8 @@ public class EnemyUnit extends BitmapObject {
                 nextPathDestinationIndex++;
                 if (nextPathDestinationIndex < enemyPath.getPositionArrayList().size()) {
                     nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
+                } else {
+                    isAlive = false;
                 }
             }
         }
@@ -70,7 +74,9 @@ public class EnemyUnit extends BitmapObject {
     @Override
     public void update() {
         super.update();
-        followPath();
-        movement();
+        if (isAlive) {
+            followPath();
+            movement();
+        }
     }
 }

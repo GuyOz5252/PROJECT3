@@ -6,12 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 
 public class HelperMethods {
 
     // https://www.geeksforgeeks.org/how-to-convert-a-vector-to-bitmap-in-android/
-    public static Bitmap getBitmapFromVectorDrawable(Context context, int resourceId) {
+    public static Bitmap getBitmapFromVectorDrawable(Context context,@DrawableRes int resourceId) {
         Drawable drawable = ContextCompat.getDrawable(context, resourceId);
         Bitmap bitmap = Bitmap.createBitmap(
                 drawable.getIntrinsicWidth(),
@@ -24,7 +25,7 @@ public class HelperMethods {
         return bitmap;
     }
 
-    public static Bitmap getBitmapFromPicture(Context context, int resourceId) {
+    public static Bitmap getBitmapFromPicture(Context context,@DrawableRes int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
         return bitmap;
     }
