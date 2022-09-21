@@ -29,8 +29,8 @@ public class DemoOne extends Scene {
     // game components
     private TowerBar towerBar;
     private EnemyPath enemyPath;
-    private WaveController waveController;
     private EnemyUnit enemyUnit;
+    private WaveController waveController;
 
     public DemoOne(Display display, Context context) {
         this.context = context;
@@ -42,19 +42,18 @@ public class DemoOne extends Scene {
         enemyPath.add(new Position(900, 300));
         enemyPath.add(new Position(1250, 300));
         enemyPath.add(new Position(1250, display.size.height/2+100));
-        enemyPath.add(new Position(2000, display.size.height/2+100));
+        //enemyPath.add(new Position(2000, display.size.height/2+100));
 
         waveController = new WaveController();
-        waveController.addWave(new WaveController.Wave(
+        waveController.addWave(new WaveController.Wave(new EnemyUnit[] {
+                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context)
+        }));
+        //waveController.spawnEnemies();
 
-        ));
-
-        enemyUnit = new EnemyUnit(
-                R.drawable.ic_launcher_background,
-                new Size(100, 100),
-                enemyPath,
-                context
-        );
+        this.enemyUnit = new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context);
     }
 
     @Override
@@ -62,15 +61,16 @@ public class DemoOne extends Scene {
         canvas.drawColor(ContextCompat.getColor(context, R.color.background));
 
         enemyPath.draw(canvas);
+        //waveController.draw(canvas);
         enemyUnit.draw(canvas);
         towerBar.draw(canvas);
     }
 
     @Override
     public void update() {
+        //waveController.update();
+        enemyUnit.update();
         towerBar.update();
-        enemyUnit.update();
-        enemyUnit.update();
     }
 
     @Override

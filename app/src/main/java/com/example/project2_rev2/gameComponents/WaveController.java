@@ -2,15 +2,11 @@ package com.example.project2_rev2.gameComponents;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class WaveController {
 
-    private int waveCount;
     private int currentWaveIndex;
 
     private ArrayList<Wave> waveArrayList;
@@ -20,23 +16,20 @@ public class WaveController {
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.currentWaveIndex = 0;
-        this.waveCount = 0;
-    }
-
-    public int getWaveCount() {
-        return waveCount;
     }
 
     public void addWave(Wave wave) {
         waveArrayList.add(wave);
-        waveCount++;
     }
 
     public void spawnEnemies() {
         EnemyUnit[] enemyUnitArray = waveArrayList.get(currentWaveIndex).enemyUnitArray;
         int enemyIndexInWave = 0;
-        aliveList.add(enemyUnitArray[enemyIndexInWave]);
-        enemyIndexInWave++;
+        while (enemyIndexInWave < enemyUnitArray.length) {
+            aliveList.add(enemyUnitArray[enemyIndexInWave]);
+            System.out.println(enemyIndexInWave);
+            enemyIndexInWave++;
+        }
     }
 
     public void draw(Canvas canvas) {
@@ -48,6 +41,9 @@ public class WaveController {
     public void update() {
         for (EnemyUnit enemyUnit : aliveList) {
             enemyUnit.update();
+            if (!enemyUnit.getIsAlive()) {
+                aliveList.remove(enemyUnit);
+            }
         }
     }
 
@@ -61,8 +57,8 @@ public class WaveController {
 
         private EnemyUnit[] enemyUnitArray;
 
-        public Wave() {
-
+        public Wave(EnemyUnit[] enemyUnitArray) {
+            this.enemyUnitArray = enemyUnitArray;
         }
     }
 }

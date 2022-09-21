@@ -30,6 +30,10 @@ public class EnemyUnit extends BitmapObject {
         this.isAlive = true;
     }
 
+    public boolean getIsAlive() {
+        return isAlive;
+    }
+
     public boolean moveToPosition(Position position) {
         if (pivotPosition.x < position.x) {
             velocityX = MAX_SPEED;
