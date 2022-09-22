@@ -12,7 +12,7 @@ import com.example.project2_rev2.utils.Size;
 
 public abstract class BitmapObject extends GameObject {
 
-    private Bitmap bitmap;
+    protected Bitmap bitmap;
     protected Position pivotPosition;
 
     public BitmapObject(double x, double y, int resourceId, Size size, Context context) {

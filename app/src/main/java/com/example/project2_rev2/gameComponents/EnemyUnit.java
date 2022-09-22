@@ -1,6 +1,8 @@
 package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
@@ -78,11 +80,31 @@ public class EnemyUnit extends BitmapObject {
         position.y += velocityY;
     }
 
+    public void handleEnemyRotation() {
+        if (velocityX > 0) {
+            rotateEnemy(0);
+        }
+        if (velocityY > 1) {
+            rotateEnemy(90);
+        }
+        if (velocityY < -1) {
+            rotateEnemy(-90);
+        }
+    }
+
+    public void rotateEnemy(int angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+        bitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+    }
+
     @Override
     public void update() {
         super.update();
         if (isAlive) {
             followPath();
+            handleEnemyRotation();
             movement();
         }
     }
