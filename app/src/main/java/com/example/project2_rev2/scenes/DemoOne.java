@@ -42,7 +42,7 @@ public class DemoOne extends Scene {
         enemyPath.add(new Position(900, 300));
         enemyPath.add(new Position(1250, 300));
         enemyPath.add(new Position(1250, display.size.height/2+100));
-        //enemyPath.add(new Position(2000, display.size.height/2+100));
+        enemyPath.add(new Position(2000, display.size.height/2+100));
 
         waveController = new WaveController();
         waveController.addWave(new WaveController.Wave(new EnemyUnit[] {

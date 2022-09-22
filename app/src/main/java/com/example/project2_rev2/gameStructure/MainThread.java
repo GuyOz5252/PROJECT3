@@ -7,7 +7,7 @@ import com.example.project2_rev2.utils.Display;
 
 public class MainThread extends Thread {
 
-    public static final int MAX_FPS = 60;
+    public static final int MAX_FPS = 30;
     private double AVG_FPS;
     private final SurfaceHolder surfaceHolder;
     private final GameView gameView;

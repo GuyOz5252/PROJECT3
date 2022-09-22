@@ -60,11 +60,14 @@ public class EnemyUnit extends BitmapObject {
         while (advancePath) {
             advancePath = moveToPosition(nextPathDestination);
             if (advancePath) {
+                velocityX = 0;
+                velocityY = 0;
                 nextPathDestinationIndex++;
                 if (nextPathDestinationIndex < enemyPath.getPositionArrayList().size()) {
                     nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
                 } else {
                     isAlive = false;
+                    advancePath = false;
                 }
             }
         }

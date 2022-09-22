@@ -14,7 +14,7 @@ public class EnemyPath {
     private ArrayList<Position> positionArrayList;
 
     public EnemyPath() {
-        positionArrayList = new ArrayList<>();
+        this.positionArrayList = new ArrayList<>();
     }
 
     public ArrayList<Position> getPositionArrayList() {
@@ -23,6 +23,7 @@ public class EnemyPath {
 
     public void add(Position position) {
         positionArrayList.add(position);
+
     }
 
     public void update() {
