@@ -46,14 +46,14 @@ public class DemoOne extends Scene {
 
         waveController = new WaveController();
         waveController.addWave(new WaveController.Wave(new EnemyUnit[] {
-                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context)
+                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
+                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context)
         }));
         //waveController.spawnEnemies();
 
-        this.enemyUnit = new EnemyUnit(R.drawable.ic_launcher_background, new Size(100, 100), enemyPath, context);
+        this.enemyUnit = new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context);
     }
 
     @Override

@@ -4,13 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
-import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class EnemyUnit extends BitmapObject {
 
@@ -18,18 +14,26 @@ public class EnemyUnit extends BitmapObject {
     private int nextPathDestinationIndex;
     private Position nextPathDestination;
 
-    private final int MAX_SPEED = 3;
+    private int SPEED;
     private int velocityX;
     private int velocityY;
 
     private boolean isAlive;
+    private boolean needRotation;
 
-    public EnemyUnit(int resourceId, Size size, EnemyPath enemyPath, Context context) {
+    private Bitmap originalBitmap;
+    //private Bitmap rotatedBitmap;
+
+    public EnemyUnit(int resourceId, int speed, Size size, EnemyPath enemyPath, Context context) {
         super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
+        this.SPEED = speed;
         this.enemyPath = enemyPath;
         this.nextPathDestinationIndex = 1;
         this.nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
         this.isAlive = true;
+        this.needRotation = false;
+        this.originalBitmap = bitmap;
+        //this.rotatedBitmap = bitmap;
     }
 
     public boolean getIsAlive() {
@@ -38,20 +42,23 @@ public class EnemyUnit extends BitmapObject {
 
     public boolean moveToPosition(Position position) {
         if (pivotPosition.x < position.x) {
-            velocityX = MAX_SPEED;
+            velocityX = SPEED;
             velocityY = 0;
+            handleEnemyRotation();
             return false;
         }
         if (pivotPosition.y != position.y) {
             if (pivotPosition.y > position.y) {
                 velocityX = 0;
-                velocityY = -MAX_SPEED;
+                velocityY = -SPEED;
             }
             if (pivotPosition.y < position.y) {
                 velocityX = 0;
-                velocityY = MAX_SPEED;
-                return Math.abs(position.y - pivotPosition.y) < 3;
+                velocityY = SPEED;
+                handleEnemyRotation();
+                return Math.abs(position.y - pivotPosition.y) < SPEED;
             }
+            handleEnemyRotation();
             return false;
         }
         return true;
@@ -67,6 +74,7 @@ public class EnemyUnit extends BitmapObject {
                 nextPathDestinationIndex++;
                 if (nextPathDestinationIndex < enemyPath.getPositionArrayList().size()) {
                     nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
+                    needRotation = true;
                 } else {
                     isAlive = false;
                     advancePath = false;
@@ -81,21 +89,24 @@ public class EnemyUnit extends BitmapObject {
     }
 
     public void handleEnemyRotation() {
-        if (velocityX > 0) {
-            rotateEnemy(0);
-        }
-        if (velocityY > 1) {
-            rotateEnemy(90);
-        }
-        if (velocityY < -1) {
-            rotateEnemy(-90);
+        if (needRotation) {
+            if (velocityX > 0) {
+                rotateEnemy(0);
+            }
+            if (velocityY > 1) {
+                rotateEnemy(90);
+            }
+            if (velocityY < -1) {
+                rotateEnemy(-90);
+            }
+            needRotation = false;
         }
     }
 
     public void rotateEnemy(int angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, bitmap.getWidth(), bitmap.getHeight(), true);
         bitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
     }
 
@@ -104,7 +115,6 @@ public class EnemyUnit extends BitmapObject {
         super.update();
         if (isAlive) {
             followPath();
-            handleEnemyRotation();
             movement();
         }
     }
