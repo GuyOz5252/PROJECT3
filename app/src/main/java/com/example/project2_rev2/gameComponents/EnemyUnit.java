@@ -14,15 +14,14 @@ public class EnemyUnit extends BitmapObject {
     private int nextPathDestinationIndex;
     private Position nextPathDestination;
 
-    private int SPEED;
+    private final int SPEED;
     private int velocityX;
     private int velocityY;
 
     private boolean isAlive;
     private boolean needRotation;
 
-    private Bitmap originalBitmap;
-    //private Bitmap rotatedBitmap;
+    private final Bitmap originalBitmap;
 
     public EnemyUnit(int resourceId, int speed, Size size, EnemyPath enemyPath, Context context) {
         super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
@@ -33,7 +32,6 @@ public class EnemyUnit extends BitmapObject {
         this.isAlive = true;
         this.needRotation = false;
         this.originalBitmap = bitmap;
-        //this.rotatedBitmap = bitmap;
     }
 
     public boolean getIsAlive() {

@@ -8,14 +8,22 @@ import java.util.ArrayList;
 public class WaveController {
 
     private int currentWaveIndex;
+    private EnemyUnit[] enemyUnitArray;
+    private int enemyIndexInWave;
 
     private ArrayList<Wave> waveArrayList;
     private ArrayList<EnemyUnit> aliveList;
+
+    private int updatesToNextSpawn;
+    private final int UPDATES_BETWEEN_SPAWNS = 30;
+    private boolean isWaveSpawning;
 
     public WaveController() {
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.currentWaveIndex = 0;
+        this.updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+        this.isWaveSpawning = false;
     }
 
     public void addWave(Wave wave) {
@@ -23,13 +31,8 @@ public class WaveController {
     }
 
     public void spawnEnemies() {
-        EnemyUnit[] enemyUnitArray = waveArrayList.get(currentWaveIndex).enemyUnitArray;
-        int enemyIndexInWave = 0;
-        while (enemyIndexInWave < enemyUnitArray.length) {
-            aliveList.add(enemyUnitArray[enemyIndexInWave]);
-            System.out.println(enemyIndexInWave);
-            enemyIndexInWave++;
-        }
+        isWaveSpawning = true;
+        enemyUnitArray = waveArrayList.get(currentWaveIndex).enemyUnitArray;
     }
 
     public void draw(Canvas canvas) {
@@ -39,6 +42,20 @@ public class WaveController {
     }
 
     public void update() {
+        updatesToNextSpawn--;
+
+        if (updatesToNextSpawn <= 0 && isWaveSpawning) {
+            if (enemyIndexInWave < enemyUnitArray.length) {
+                aliveList.add(enemyUnitArray[enemyIndexInWave]);
+                System.out.println(enemyIndexInWave);
+                enemyIndexInWave++;
+                updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+            } else {
+                isWaveSpawning = false;
+                currentWaveIndex++;
+            }
+        }
+
         for (EnemyUnit enemyUnit : aliveList) {
             enemyUnit.update();
             if (!enemyUnit.getIsAlive()) {
