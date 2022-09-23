@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dialogColor">
+
+    <TextView
+        android:id="@+id/txtLevelName_pauseMenuDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+
+        android:text="level name"
+        android:textAllCaps="true"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:layout_margin="20dp">
+
+        <Button
+            android:id="@+id/btnResume_pauseMenuDialog"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_margin="5dp"
+            android:text="resume"
+            android:textSize="20dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btnSettings_pauseMenuDialog"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btnResume_pauseMenuDialog"
+            android:layout_centerHorizontal="true"
+
+            android:layout_margin="5dp"
+            android:text="settings"
+            android:textSize="20dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btnExit_pauseMenuDialog"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btnSettings_pauseMenuDialog"
+            android:layout_centerHorizontal="true"
+
+            android:layout_margin="5dp"
+            android:text="exit to main menu"
+            android:textSize="20dp"
+            app:cornerRadius="20dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

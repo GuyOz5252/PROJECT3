@@ -13,11 +13,13 @@ public class MainThread extends Thread {
     private final GameView gameView;
     private boolean isRunning;
     private Canvas canvas;
+    public static boolean isPaused;
 
     public MainThread(SurfaceHolder surfaceHolder, GameView gameView) {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
+        MainThread.isPaused = false;
     }
 
     public void startThread() {
@@ -44,41 +46,43 @@ public class MainThread extends Thread {
         long targetTime = 1000 / MAX_FPS;
 
         while (isRunning) {
-            startTime = System.nanoTime();
-            canvas = null;
-            try {
-                canvas = this.surfaceHolder.lockCanvas();
-                synchronized (surfaceHolder) {
-                    this.gameView.update();
-                    this.gameView.draw(canvas);
-                }
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            } finally {
-                if (canvas != null) {
-                    try {
-                        surfaceHolder.unlockCanvasAndPost(canvas);
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
+            if (!isPaused) {
+                startTime = System.nanoTime();
+                canvas = null;
+                try {
+                    canvas = this.surfaceHolder.lockCanvas();
+                    synchronized (surfaceHolder) {
+                        this.gameView.update();
+                        this.gameView.draw(canvas);
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                } finally {
+                    if (canvas != null) {
+                        try {
+                            surfaceHolder.unlockCanvasAndPost(canvas);
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
                     }
                 }
-            }
-            timeMillis = (System.nanoTime() - startTime) / 1000000;
-            waitTime = targetTime - timeMillis;
-            try {
-                if (waitTime > 0) {
-                    sleep(waitTime);
+                timeMillis = (System.nanoTime() - startTime) / 1000000;
+                waitTime = targetTime - timeMillis;
+                try {
+                    if (waitTime > 0) {
+                        sleep(waitTime);
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            totalTime += System.nanoTime() - startTime;
-            frameCount++;
-            if (frameCount == MAX_FPS) {
-                AVG_FPS = 1000 / ((totalTime / frameCount) / 1000000);
-                frameCount = 0;
-                totalTime = 0;
-                System.out.println("FPS: " + AVG_FPS);
+                totalTime += System.nanoTime() - startTime;
+                frameCount++;
+                if (frameCount == MAX_FPS) {
+                    AVG_FPS = 1000 / ((totalTime / frameCount) / 1000000);
+                    frameCount = 0;
+                    totalTime = 0;
+                    System.out.println("FPS: " + AVG_FPS);
+                }
             }
         }
     }
