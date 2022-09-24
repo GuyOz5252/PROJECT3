@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
+import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.utils.Display;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
@@ -135,6 +136,48 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             view.setAlpha((float)0.5);
         }
     }
+
+    public void clickResume() {
+        pauseMenu.dismiss();
+    }
+
+    public void clickResume(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickResume();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
+
+    public void clickSettings() {
+        // TODO start activity Settings
+    }
+
+    public void clickSettings(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickSettings();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
+
+    public void clickExit() {
+        pauseMenu.dismiss();
+        //startActivity(new Intent(this, MainMenuActivity.class));
+        startActivity(new Intent(this, Login.class));
+        this.finish();
+    }
+
+    public void clickExit(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickExit();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
     //=======================================//
 
     @Override
@@ -142,6 +185,16 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         switch (view.getId()) {
             case R.id.btnPause:
                 createPauseMenuDialog(view, motionEvent);
+                break;
+            //=pause menu dialog=//
+            case R.id.btnResume_pauseMenuDialog:
+                clickResume(view, motionEvent);
+                break;
+            case R.id.btnSettings_pauseMenuDialog:
+                clickSettings(view, motionEvent);
+                break;
+            case R.id.btnExit_pauseMenuDialog:
+                clickExit(view, motionEvent);
                 break;
         }
         return true;
