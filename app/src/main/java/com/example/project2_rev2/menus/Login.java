@@ -51,6 +51,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             intent.putExtra("sceneIndex", 0);
             startActivity(intent);
             view.setAlpha(1);
+            this.finish();
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha((float)0.5);
         }

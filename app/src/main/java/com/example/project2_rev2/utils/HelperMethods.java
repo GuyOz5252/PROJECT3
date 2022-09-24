@@ -29,4 +29,8 @@ public class HelperMethods {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
         return bitmap;
     }
+
+    public static double getHypoDistance(double towerX, double towerY, double enemyX, double enemyY) {
+        return Math.hypot(Math.abs(towerX-enemyX), Math.abs(towerY-enemyY));
+    }
 }

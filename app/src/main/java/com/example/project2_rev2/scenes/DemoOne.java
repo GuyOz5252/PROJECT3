@@ -29,6 +29,7 @@ public class DemoOne extends Scene {
         this.context = context;
 
         towerBar = new TowerBar(display, context);
+
         enemyPath = new EnemyPath();
         enemyPath.add(new Position(330, display.size.height/2));
         enemyPath.add(new Position(900, display.size.height/2));
@@ -38,12 +39,7 @@ public class DemoOne extends Scene {
         enemyPath.add(new Position(2000, display.size.height/2+100));
 
         waveController = new WaveController();
-        waveController.addWave(new WaveController.Wave(new EnemyUnit[] {
-                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context),
-                new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context)
-        }));
+        waveController.addWave(new WaveController.Wave(new int[] {0, 0, 0, 0, 0}, enemyPath, context));
         waveController.spawnEnemies();
     }
 

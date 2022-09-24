@@ -39,22 +39,22 @@ public class EnemyUnit extends BitmapObject {
     }
 
     public boolean moveToPosition(Position position) {
-        if (pivotPosition.x < position.x) {
+        if (centerPosition.x < position.x) {
             velocityX = SPEED;
             velocityY = 0;
             handleEnemyRotation();
             return false;
         }
-        if (pivotPosition.y != position.y) {
-            if (pivotPosition.y > position.y) {
+        if (centerPosition.y != position.y) {
+            if (centerPosition.y > position.y) {
                 velocityX = 0;
                 velocityY = -SPEED;
             }
-            if (pivotPosition.y < position.y) {
+            if (centerPosition.y < position.y) {
                 velocityX = 0;
                 velocityY = SPEED;
                 handleEnemyRotation();
-                return Math.abs(position.y - pivotPosition.y) < SPEED;
+                return Math.abs(position.y - centerPosition.y) < SPEED;
             }
             handleEnemyRotation();
             return false;

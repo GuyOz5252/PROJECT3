@@ -3,7 +3,6 @@ package com.example.project2_rev2.gameComponents.abstractComponents;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.speech.SpeechRecognizer;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
@@ -13,7 +12,7 @@ import com.example.project2_rev2.utils.Size;
 public abstract class BitmapObject extends GameObject {
 
     protected Bitmap bitmap;
-    protected Position pivotPosition;
+    protected Position centerPosition;
 
     public BitmapObject(double x, double y, int resourceId, Size size, Context context) {
         super(x, y);
@@ -21,7 +20,11 @@ public abstract class BitmapObject extends GameObject {
         if (size != null) {
             bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);
         }
-        this.pivotPosition = new Position(position.x+bitmap.getWidth()/2, position.y+bitmap.getHeight()/2);
+        this.centerPosition = new Position(position.x+bitmap.getWidth()/2, position.y+bitmap.getHeight()/2);
+    }
+
+    public Position getCenterPosition() {
+        return centerPosition;
     }
 
     @Override
@@ -35,7 +38,7 @@ public abstract class BitmapObject extends GameObject {
 
     @Override
     public void update() {
-        pivotPosition.x = position.x+bitmap.getWidth()/2;
-        pivotPosition.y = position.y+bitmap.getHeight()/2;
+        centerPosition.x = position.x+bitmap.getWidth()/2;
+        centerPosition.y = position.y+bitmap.getHeight()/2;
     }
 }
