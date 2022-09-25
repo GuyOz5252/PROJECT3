@@ -15,4 +15,6 @@
     <color name="dialogColor">#001427</color>
 
     <color name="background">#8BC34A</color>
+    <color name="rangeCircle">#68292929</color>
+    <color name="projectileBullet">#CD7F32</color>
 </resources>

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveController;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
@@ -24,23 +25,26 @@ public class DemoOne extends Scene {
     private TowerBar towerBar;
     private EnemyPath enemyPath;
     private WaveController waveController;
+    private Tower tower;
 
     public DemoOne(Display display, Context context) {
         this.context = context;
 
-        towerBar = new TowerBar(display, context);
+        this.towerBar = new TowerBar(display, context);
 
-        enemyPath = new EnemyPath();
-        enemyPath.add(new Position(330, display.size.height/2));
-        enemyPath.add(new Position(900, display.size.height/2));
-        enemyPath.add(new Position(900, 300));
-        enemyPath.add(new Position(1250, 300));
-        enemyPath.add(new Position(1250, display.size.height/2+100));
-        enemyPath.add(new Position(2000, display.size.height/2+100));
+        this.enemyPath = new EnemyPath();
+        this.enemyPath.add(new Position(330, display.size.height/2));
+        this.enemyPath.add(new Position(900, display.size.height/2));
+        this.enemyPath.add(new Position(900, 300));
+        this.enemyPath.add(new Position(1250, 300));
+        this.enemyPath.add(new Position(1250, display.size.height/2+100));
+        this.enemyPath.add(new Position(2000, display.size.height/2+100));
 
-        waveController = new WaveController();
-        waveController.addWave(new WaveController.Wave(new int[] {0, 0, 0, 0, 0}, enemyPath, context));
-        waveController.spawnEnemies();
+        this.waveController = new WaveController();
+        this.waveController.addWave(new WaveController.Wave(new int[] {0, 0}, enemyPath, context));
+        this.waveController.spawnEnemies();
+
+        this.tower = new Tower(850, (display.size.height/2)+100, R.drawable.ic_launcher_background, 200, 90, waveController, new Size(120, 120), context);
     }
 
     @Override
@@ -49,12 +53,14 @@ public class DemoOne extends Scene {
 
         enemyPath.draw(canvas);
         waveController.draw(canvas);
+        tower.draw(canvas);
         towerBar.draw(canvas);
     }
 
     @Override
     public void update() {
         waveController.update();
+        tower.update();
     }
 
     @Override

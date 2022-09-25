@@ -30,6 +30,10 @@ public class WaveController {
         this.isWaveSpawning = false;
     }
 
+    public ArrayList<EnemyUnit> getAliveList() {
+        return aliveList;
+    }
+
     public void addWave(Wave wave) {
         waveArrayList.add(wave);
     }
