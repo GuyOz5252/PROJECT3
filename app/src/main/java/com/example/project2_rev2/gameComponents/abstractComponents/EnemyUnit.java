@@ -1,14 +1,15 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.abstractComponents;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
+import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
-public class EnemyUnit extends BitmapObject {
+public abstract class EnemyUnit extends BitmapObject {
 
     private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
@@ -23,7 +24,9 @@ public class EnemyUnit extends BitmapObject {
 
     private final Bitmap originalBitmap;
 
-    public EnemyUnit(int resourceId, int speed, Size size, EnemyPath enemyPath, Context context) {
+    private int health;
+
+    public EnemyUnit(int resourceId, int speed, Size size, EnemyPath enemyPath, int health, Context context) {
         super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
         this.SPEED = speed;
         this.enemyPath = enemyPath;
@@ -32,6 +35,7 @@ public class EnemyUnit extends BitmapObject {
         this.isAlive = true;
         this.needRotation = false;
         this.originalBitmap = bitmap;
+        this.health = health;
     }
 
     public boolean getIsAlive() {
@@ -108,6 +112,13 @@ public class EnemyUnit extends BitmapObject {
         bitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
     }
 
+    public void receiveDamage(int damage) {
+        health -= damage;
+        if (health <= 0) {
+            isAlive = false;
+        }
+    }
+
     @Override
     public void update() {
         super.update();
@@ -115,5 +126,9 @@ public class EnemyUnit extends BitmapObject {
             followPath();
             movement();
         }
+    }
+
+    public enum EnemyTypes {
+        DEMO_ENEMY
     }
 }

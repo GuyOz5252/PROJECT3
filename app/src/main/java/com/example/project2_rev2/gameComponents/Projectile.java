@@ -45,4 +45,14 @@ public class Projectile extends GameObject {
     public void draw(Canvas canvas) {
         canvas.drawCircle((float)position.x, (float)position.y, (float)radius, paint);
     }
+
+    public enum ProjectileType {
+        DEMO_BULLET(100);
+
+        public int speed;
+
+        ProjectileType(int speed) {
+            this.speed = speed;
+        }
+    }
 }

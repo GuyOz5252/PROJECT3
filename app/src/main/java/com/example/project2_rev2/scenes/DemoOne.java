@@ -8,15 +8,15 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
-import com.example.project2_rev2.gameComponents.EnemyUnit;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
-import com.example.project2_rev2.gameComponents.Tower;
+import com.example.project2_rev2.gameComponents.abstractComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
-import com.example.project2_rev2.gameComponents.WaveController;
+import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Position;
-import com.example.project2_rev2.utils.Size;
 
 public class DemoOne extends Scene {
 
@@ -25,7 +25,7 @@ public class DemoOne extends Scene {
     // game components
     private TowerBar towerBar;
     private EnemyPath enemyPath;
-    private WaveController waveController;
+    private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private Tower tower;
 
@@ -42,13 +42,21 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(1250, display.size.height/2+100));
         this.enemyPath.add(new Position(2000, display.size.height/2+100));
 
-        this.waveController = new WaveController();
-        this.waveController.addWave(new WaveController.Wave(new int[] {0, 0, 0, 0}, enemyPath, context));
-        this.waveController.spawnEnemies();
+        this.waveManager = new WaveManager();
+        this.waveManager.addWave(new WaveManager.Wave(new EnemyUnit.EnemyTypes[] {
+                EnemyUnit.EnemyTypes.DEMO_ENEMY,
+                EnemyUnit.EnemyTypes.DEMO_ENEMY,
+                EnemyUnit.EnemyTypes.DEMO_ENEMY,
+                EnemyUnit.EnemyTypes.DEMO_ENEMY
+        },
+                enemyPath,
+                context
+        ));
+        this.waveManager.spawnEnemies();
 
-        this.projectileManager = new ProjectileManager(context);
+        this.projectileManager = new ProjectileManager(waveManager, context);
 
-        this.tower = new Tower(1350, 200, R.drawable.ic_launcher_background, 200, 60, waveController, projectileManager, new Size(120, 120), context);
+        this.tower = new DemoTower(1350, 200, waveManager, projectileManager, context);
     }
 
     @Override
@@ -56,7 +64,7 @@ public class DemoOne extends Scene {
         canvas.drawColor(ContextCompat.getColor(context, R.color.background));
 
         enemyPath.draw(canvas);
-        waveController.draw(canvas);
+        waveManager.draw(canvas);
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
@@ -64,7 +72,7 @@ public class DemoOne extends Scene {
 
     @Override
     public void update() {
-        waveController.update();
+        waveManager.update();
         projectileManager.update();
         tower.update();
     }

@@ -2,14 +2,13 @@ package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
 
-import com.example.project2_rev2.R;
-import com.example.project2_rev2.utils.Size;
+import com.example.project2_rev2.gameComponents.abstractComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.enemyTypes.DemoEnemy;
 
 import java.util.ArrayList;
 
-public class WaveController {
+public class WaveManager {
 
     private int currentWaveIndex;
     private ArrayList<EnemyUnit> enemyUnitArrayList;
@@ -22,7 +21,7 @@ public class WaveController {
     private final int UPDATES_BETWEEN_SPAWNS = 30;
     private boolean isWaveSpawning;
 
-    public WaveController() {
+    public WaveManager() {
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.currentWaveIndex = 0;
@@ -78,16 +77,16 @@ public class WaveController {
 
         private ArrayList<EnemyUnit> enemyUnitArrayList;
 
-        public Wave(int[] enemyCodeArray, EnemyPath enemyPath, Context context) {
+        public Wave(EnemyUnit.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
             this.enemyUnitArrayList = new ArrayList<>();
             convertCodeToUnit(enemyCodeArray, enemyPath, context);
         }
 
-        private void convertCodeToUnit(int[] enemyCodeArray, EnemyPath enemyPath, Context context) {
+        private void convertCodeToUnit(EnemyUnit.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
             for (int i = 0; i < enemyCodeArray.length; i++) {
                 switch (enemyCodeArray[i]) {
-                    case 0:
-                        enemyUnitArrayList.add(new EnemyUnit(R.drawable.ic_launcher_background, 6, new Size(100, 100), enemyPath, context));
+                    case DEMO_ENEMY:
+                        enemyUnitArrayList.add(new DemoEnemy(enemyPath, context));
                         break;
                 }
             }
