@@ -18,13 +18,13 @@ public class Projectile extends GameObject {
     private int velocityY;
     private boolean isActive;
 
-    public Projectile(double x, double y, double radius, Context context) {
+    public Projectile(double x, double y, int velocityX, int velocityY, Context context) {
         super(x, y);
-        this.velocityX = 0;
-        this.velocityY = 0;
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
         this.isActive = true;
 
-        this.radius = radius;
+        this.radius = 10;
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(context, R.color.projectileBullet));
     }

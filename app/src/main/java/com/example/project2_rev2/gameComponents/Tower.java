@@ -15,15 +15,17 @@ import com.example.project2_rev2.utils.Size;
 public class Tower extends BitmapObject {
 
     private WaveController waveController;
+    private ProjectileManager projectileManager;
 
     private int range;
     private Paint rangeCirclePaint;
     private int cooldown;
     private int currentTick;
 
-    public Tower(double x, double y, int resourceId, int range, int cooldown, WaveController waveController, Size size, Context context) {
+    public Tower(double x, double y, int resourceId, int range, int cooldown, WaveController waveController, ProjectileManager projectileManager, Size size, Context context) {
         super(x, y, resourceId, size, context);
         this.waveController = waveController;
+        this.projectileManager = projectileManager;
         this.range = range;
         this.rangeCirclePaint = new Paint();
         this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
@@ -35,6 +37,7 @@ public class Tower extends BitmapObject {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemyUnit.getCenterPosition().x, enemyUnit.getCenterPosition().y) < range) {
                 System.out.println("shoot");
+                projectileManager.createNewProjectile(this, enemyUnit);
                 currentTick = 0;
             }
         }

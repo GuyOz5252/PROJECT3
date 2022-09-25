@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveController;
@@ -25,6 +26,7 @@ public class DemoOne extends Scene {
     private TowerBar towerBar;
     private EnemyPath enemyPath;
     private WaveController waveController;
+    private ProjectileManager projectileManager;
     private Tower tower;
 
     public DemoOne(Display display, Context context) {
@@ -41,10 +43,12 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(2000, display.size.height/2+100));
 
         this.waveController = new WaveController();
-        this.waveController.addWave(new WaveController.Wave(new int[] {0, 0}, enemyPath, context));
+        this.waveController.addWave(new WaveController.Wave(new int[] {0, 0, 0, 0}, enemyPath, context));
         this.waveController.spawnEnemies();
 
-        this.tower = new Tower(850, (display.size.height/2)+100, R.drawable.ic_launcher_background, 200, 90, waveController, new Size(120, 120), context);
+        this.projectileManager = new ProjectileManager(context);
+
+        this.tower = new Tower(1350, 200, R.drawable.ic_launcher_background, 200, 60, waveController, projectileManager, new Size(120, 120), context);
     }
 
     @Override
@@ -54,12 +58,14 @@ public class DemoOne extends Scene {
         enemyPath.draw(canvas);
         waveController.draw(canvas);
         tower.draw(canvas);
+        projectileManager.draw(canvas);
         towerBar.draw(canvas);
     }
 
     @Override
     public void update() {
         waveController.update();
+        projectileManager.update();
         tower.update();
     }
 

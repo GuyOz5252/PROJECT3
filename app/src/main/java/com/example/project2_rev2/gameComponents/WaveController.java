@@ -26,7 +26,7 @@ public class WaveController {
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.currentWaveIndex = 0;
-        this.updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+        this.updatesToNextSpawn = 0;
         this.isWaveSpawning = false;
     }
 
@@ -50,14 +50,14 @@ public class WaveController {
     }
 
     public void update() {
-        updatesToNextSpawn--;
+        updatesToNextSpawn++;
 
-        if (updatesToNextSpawn <= 0 && isWaveSpawning) {
+        if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS && isWaveSpawning) {
             if (enemyIndexInWave < enemyUnitArrayList.size()) {
                 aliveList.add(enemyUnitArrayList.get(enemyIndexInWave));
                 System.out.println(enemyIndexInWave);
                 enemyIndexInWave++;
-                updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+                updatesToNextSpawn = 0;
             } else {
                 isWaveSpawning = false;
                 currentWaveIndex++;
