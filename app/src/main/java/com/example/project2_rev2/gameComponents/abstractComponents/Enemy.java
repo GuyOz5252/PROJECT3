@@ -9,6 +9,8 @@ import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
+import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
+
 public abstract class Enemy extends BitmapObject {
 
     private final EnemyPath enemyPath;
@@ -93,23 +95,16 @@ public abstract class Enemy extends BitmapObject {
     public void handleEnemyRotation() {
         if (needRotation) {
             if (velocityX > 0) {
-                rotateEnemy(0);
+                bitmap = rotateBitmap(originalBitmap, 0);
             }
             if (velocityY > 1) {
-                rotateEnemy(90);
+                bitmap = rotateBitmap(originalBitmap, 90);
             }
             if (velocityY < -1) {
-                rotateEnemy(-90);
+                bitmap = rotateBitmap(originalBitmap, -90);
             }
             needRotation = false;
         }
-    }
-
-    public void rotateEnemy(int angle) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, bitmap.getWidth(), bitmap.getHeight(), true);
-        bitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
     }
 
     public void receiveDamage(int damage) {

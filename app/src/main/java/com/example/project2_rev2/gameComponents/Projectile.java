@@ -19,15 +19,13 @@ public class Projectile extends GameObject {
 
     private int velocityX;
     private int velocityY;
-    private Enemy target;
     private boolean isActive;
     private ProjectileType projectileType;
 
-    public Projectile(double x, double y, int velocityX, int velocityY, Enemy target, ProjectileType projectileType, Context context) {
+    public Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Context context) {
         super(x, y);
         this.velocityX = velocityX;
         this.velocityY = velocityY;
-        this.target = target;
         this.isActive = true;
         this.projectileType = projectileType;
 
@@ -80,7 +78,7 @@ public class Projectile extends GameObject {
         ProjectileType(int speed, int damage, float range) {
             this.speed = speed;
             this.damage = damage;
-            this.range =range;
+            this.range = range;
         }
     }
 }

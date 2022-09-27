@@ -1,8 +1,10 @@
 package com.example.project2_rev2.gameComponents.abstractComponents;
 
 import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
+import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -12,6 +14,7 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
 import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public abstract class Tower extends BitmapObject {
@@ -25,8 +28,11 @@ public abstract class Tower extends BitmapObject {
     private int cooldown;
     private int currentTick;
 
+    private final Bitmap originalBitmap;
+    private final Position centerPosition;
+
     public Tower(double x, double y, int resourceId, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
-        super(x, y, resourceId, size, context);
+        super(x+size.width/2, y+size.height/2, resourceId, size, context);
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
         this.range = range;
@@ -35,6 +41,8 @@ public abstract class Tower extends BitmapObject {
         this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
         this.cooldown = cooldown;
         this.currentTick = 0;
+        this.originalBitmap = bitmap;
+        this.centerPosition = new Position(x, y);
     }
 
     public Projectile.ProjectileType getProjectileType() {
@@ -44,11 +52,15 @@ public abstract class Tower extends BitmapObject {
     public void attack(Enemy enemy) {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
-                System.out.println("shoot");
-                projectileManager.createNewProjectile(this, enemy);
+                float angle = projectileManager.createNewProjectile(this, enemy);
+                handleTowerRotation(angle);
                 currentTick = 0;
             }
         }
+    }
+
+    public void handleTowerRotation(float angle) {
+        bitmap = rotateBitmap(originalBitmap, angle);
     }
 
     @Override
@@ -64,12 +76,17 @@ public abstract class Tower extends BitmapObject {
 
     @Override
     public void update() {
+        position.x = centerPosition.x-(double)bitmap.getWidth()/2;
+        position.y = centerPosition.y-(double)bitmap.getHeight()/2;
+
         currentTick++;
 
         super.update();
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
+
+        System.out.println(centerPosition.x + " x " + centerPosition.y + "=====================================================================");
     }
 
     public enum TowerTypes {

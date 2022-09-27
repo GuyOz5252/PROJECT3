@@ -2,6 +2,8 @@ package com.example.project2_rev2.scenes;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;

@@ -23,7 +23,7 @@ public class ProjectileManager {
     }
 
     // https://www.youtube.com/watch?v=_HhIvNIlEqM
-    public void createNewProjectile(Tower tower, Enemy enemy) {
+    public float createNewProjectile(Tower tower, Enemy enemy) {
         projectileType = tower.getProjectileType();
 
         float xDistance = (float) (tower.getCenterPosition().x - enemy.getCenterPosition().x);
@@ -42,8 +42,17 @@ public class ProjectileManager {
             velocityY *= -1;
         }
 
-        Projectile projectile = new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, enemy, projectileType, context);
-        projectileArrayList.add(projectile);
+        float rotate;
+
+        float arcValue = (float) Math.atan(yDistance / xDistance);
+        rotate = (float) Math.toDegrees(arcValue);
+
+        if (xDistance < 0)
+            rotate += 180;
+
+        projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, context));
+
+        return rotate;
     }
 
     public void draw(Canvas canvas) {
