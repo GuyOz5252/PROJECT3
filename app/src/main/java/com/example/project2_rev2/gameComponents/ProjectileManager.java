@@ -42,21 +42,24 @@ public class ProjectileManager {
             velocityY *= -1;
         }
 
-        projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, context));
+        Projectile projectile = new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, enemy, projectileType, context);
+        projectileArrayList.add(projectile);
     }
 
     public void draw(Canvas canvas) {
         for (Projectile projectile : projectileArrayList) {
-            projectile.draw(canvas);
+            if (projectile.getIsActive()) {
+                projectile.draw(canvas);
+            }
         }
     }
 
     public void update() {
         for (Projectile projectile : projectileArrayList) {
-            projectile.update();
-        }
-        for (Enemy enemy : waveManager.getAliveList()) {
-            // TODO loop over projectiles and if contact damage enemy
+            if (projectile.getIsActive()) {
+                projectile.update();
+                projectile.hitEnemy(waveManager.getAliveList());
+            }
         }
     }
 }
