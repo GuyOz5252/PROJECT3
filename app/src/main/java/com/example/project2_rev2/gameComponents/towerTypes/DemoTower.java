@@ -17,7 +17,7 @@ public class DemoTower extends Tower {
                 y,
                 R.drawable.ic_launcher_background,
                 200,
-                60,
+                90,
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
                 waveManager,

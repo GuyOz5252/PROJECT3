@@ -9,7 +9,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
-public abstract class EnemyUnit extends BitmapObject {
+public abstract class Enemy extends BitmapObject {
 
     private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
@@ -26,7 +26,7 @@ public abstract class EnemyUnit extends BitmapObject {
 
     private int health;
 
-    public EnemyUnit(int resourceId, int speed, Size size, EnemyPath enemyPath, int health, Context context) {
+    public Enemy(int resourceId, int speed, Size size, EnemyPath enemyPath, int health, Context context) {
         super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
         this.SPEED = speed;
         this.enemyPath = enemyPath;

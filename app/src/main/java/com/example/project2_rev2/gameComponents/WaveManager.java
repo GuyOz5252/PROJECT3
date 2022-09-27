@@ -3,7 +3,7 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.gameComponents.abstractComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.enemyTypes.DemoEnemy;
 
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class WaveManager {
 
     private int currentWaveIndex;
-    private ArrayList<EnemyUnit> enemyUnitArrayList;
+    private ArrayList<Enemy> enemyArrayList;
     private int enemyIndexInWave;
 
     private ArrayList<Wave> waveArrayList;
-    private ArrayList<EnemyUnit> aliveList;
+    private ArrayList<Enemy> aliveList;
 
     private int updatesToNextSpawn;
-    private final int UPDATES_BETWEEN_SPAWNS = 30;
+    private final int UPDATES_BETWEEN_SPAWNS = 60;
     private boolean isWaveSpawning;
 
     public WaveManager() {
@@ -29,7 +29,7 @@ public class WaveManager {
         this.isWaveSpawning = false;
     }
 
-    public ArrayList<EnemyUnit> getAliveList() {
+    public ArrayList<Enemy> getAliveList() {
         return aliveList;
     }
 
@@ -39,12 +39,12 @@ public class WaveManager {
 
     public void spawnEnemies() {
         isWaveSpawning = true;
-        enemyUnitArrayList = waveArrayList.get(currentWaveIndex).enemyUnitArrayList;
+        enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
     }
 
     public void draw(Canvas canvas) {
-        for (EnemyUnit enemyUnit : aliveList) {
-            enemyUnit.draw(canvas);
+        for (Enemy enemy : aliveList) {
+            enemy.draw(canvas);
         }
     }
 
@@ -52,8 +52,8 @@ public class WaveManager {
         updatesToNextSpawn++;
 
         if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS && isWaveSpawning) {
-            if (enemyIndexInWave < enemyUnitArrayList.size()) {
-                aliveList.add(enemyUnitArrayList.get(enemyIndexInWave));
+            if (enemyIndexInWave < enemyArrayList.size()) {
+                aliveList.add(enemyArrayList.get(enemyIndexInWave));
                 System.out.println(enemyIndexInWave);
                 enemyIndexInWave++;
                 updatesToNextSpawn = 0;
@@ -63,10 +63,10 @@ public class WaveManager {
             }
         }
 
-        for (EnemyUnit enemyUnit : aliveList) {
-            enemyUnit.update();
-            if (!enemyUnit.getIsAlive()) {
-                aliveList.remove(enemyUnit);
+        for (Enemy enemy : aliveList) {
+            enemy.update();
+            if (!enemy.getIsAlive()) {
+                aliveList.remove(enemy);
             }
         }
     }
@@ -75,18 +75,18 @@ public class WaveManager {
 
     public static class Wave {
 
-        private ArrayList<EnemyUnit> enemyUnitArrayList;
+        private ArrayList<Enemy> enemyArrayList;
 
-        public Wave(EnemyUnit.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
-            this.enemyUnitArrayList = new ArrayList<>();
+        public Wave(Enemy.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
+            this.enemyArrayList = new ArrayList<>();
             convertCodeToUnit(enemyCodeArray, enemyPath, context);
         }
 
-        private void convertCodeToUnit(EnemyUnit.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
+        private void convertCodeToUnit(Enemy.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
             for (int i = 0; i < enemyCodeArray.length; i++) {
                 switch (enemyCodeArray[i]) {
                     case DEMO_ENEMY:
-                        enemyUnitArrayList.add(new DemoEnemy(enemyPath, context));
+                        enemyArrayList.add(new DemoEnemy(enemyPath, context));
                         break;
                 }
             }

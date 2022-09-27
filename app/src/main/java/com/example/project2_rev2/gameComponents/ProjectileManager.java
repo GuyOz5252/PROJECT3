@@ -3,7 +3,7 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.gameComponents.abstractComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
@@ -23,11 +23,11 @@ public class ProjectileManager {
     }
 
     // https://www.youtube.com/watch?v=_HhIvNIlEqM
-    public void createNewProjectile(Tower tower, EnemyUnit enemyUnit) {
+    public void createNewProjectile(Tower tower, Enemy enemy) {
         projectileType = tower.getProjectileType();
 
-        float xDistance = (float) (tower.getCenterPosition().x - enemyUnit.getCenterPosition().x);
-        float yDistance = (float) (tower.getCenterPosition().y - enemyUnit.getCenterPosition().y);
+        float xDistance = (float) (tower.getCenterPosition().x - enemy.getCenterPosition().x);
+        float yDistance = (float) (tower.getCenterPosition().y - enemy.getCenterPosition().y);
         float distance = Math.abs(xDistance) + Math.abs(yDistance);
 
         float xPercent = Math.abs(xDistance) / distance;
@@ -35,10 +35,10 @@ public class ProjectileManager {
         float velocityX = xPercent * projectileType.speed;
         float velocityY = projectileType.speed - velocityX;
 
-        if (tower.getCenterPosition().x > enemyUnit.getCenterPosition().x) {
+        if (tower.getCenterPosition().x > enemy.getCenterPosition().x) {
             velocityX *= -1;
         }
-        if (tower.getCenterPosition().y > enemyUnit.getCenterPosition().y) {
+        if (tower.getCenterPosition().y > enemy.getCenterPosition().y) {
             velocityY *= -1;
         }
 
@@ -55,7 +55,7 @@ public class ProjectileManager {
         for (Projectile projectile : projectileArrayList) {
             projectile.update();
         }
-        for (EnemyUnit enemyUnit : waveManager.getAliveList()) {
+        for (Enemy enemy : waveManager.getAliveList()) {
             // TODO loop over projectiles and if contact damage enemy
         }
     }

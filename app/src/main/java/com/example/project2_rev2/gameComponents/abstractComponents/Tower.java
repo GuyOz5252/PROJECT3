@@ -41,11 +41,11 @@ public abstract class Tower extends BitmapObject {
         return projectileType;
     }
 
-    public void attack(EnemyUnit enemyUnit) {
+    public void attack(Enemy enemy) {
         if (currentTick >= cooldown) {
-            if (getHypoDistance(centerPosition.x, centerPosition.y, enemyUnit.getCenterPosition().x, enemyUnit.getCenterPosition().y) < range) {
+            if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
                 System.out.println("shoot");
-                projectileManager.createNewProjectile(this, enemyUnit);
+                projectileManager.createNewProjectile(this, enemy);
                 currentTick = 0;
             }
         }
@@ -67,8 +67,8 @@ public abstract class Tower extends BitmapObject {
         currentTick++;
 
         super.update();
-        for (EnemyUnit enemyUnit : waveManager.getAliveList()) {
-            attack(enemyUnit);
+        for (Enemy enemy : waveManager.getAliveList()) {
+            attack(enemy);
         }
     }
 

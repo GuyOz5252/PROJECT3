@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
-import com.example.project2_rev2.gameComponents.abstractComponents.EnemyUnit;
+import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveManager;
@@ -43,11 +43,11 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(2000, display.size.height/2+100));
 
         this.waveManager = new WaveManager();
-        this.waveManager.addWave(new WaveManager.Wave(new EnemyUnit.EnemyTypes[] {
-                EnemyUnit.EnemyTypes.DEMO_ENEMY,
-                EnemyUnit.EnemyTypes.DEMO_ENEMY,
-                EnemyUnit.EnemyTypes.DEMO_ENEMY,
-                EnemyUnit.EnemyTypes.DEMO_ENEMY
+        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
+                Enemy.EnemyTypes.DEMO_ENEMY,
+                Enemy.EnemyTypes.DEMO_ENEMY,
+                Enemy.EnemyTypes.DEMO_ENEMY,
+                Enemy.EnemyTypes.DEMO_ENEMY
         },
                 enemyPath,
                 context
