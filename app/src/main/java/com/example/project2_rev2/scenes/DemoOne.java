@@ -61,7 +61,6 @@ public class DemoOne extends Scene {
                 enemyPath,
                 context
         ));
-        this.waveManager.spawnEnemies();
 
         this.projectileManager = new ProjectileManager(waveManager, context);
 
