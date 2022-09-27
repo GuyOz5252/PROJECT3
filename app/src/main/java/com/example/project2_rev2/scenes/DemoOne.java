@@ -54,6 +54,13 @@ public class DemoOne extends Scene {
                 enemyPath,
                 context
         ));
+        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
+                Enemy.EnemyTypes.DEMO_ENEMY,
+                Enemy.EnemyTypes.DEMO_ENEMY
+        },
+                enemyPath,
+                context
+        ));
         this.waveManager.spawnEnemies();
 
         this.projectileManager = new ProjectileManager(waveManager, context);

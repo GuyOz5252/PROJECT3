@@ -7,6 +7,8 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.enemyTypes.DemoEnemy;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WaveManager {
 
@@ -17,16 +19,19 @@ public class WaveManager {
     private ArrayList<Wave> waveArrayList;
     private ArrayList<Enemy> aliveList;
 
+    private boolean isSpawning;
     private int updatesToNextSpawn;
     private final int UPDATES_BETWEEN_SPAWNS = 60;
-    private boolean isWaveSpawning;
+    private int updatesToNextWave;
+    private final int UPDATES_BETWEEN_WAVES = 800;
 
     public WaveManager() {
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
+        this.isSpawning = false;
         this.currentWaveIndex = 0;
         this.updatesToNextSpawn = 0;
-        this.isWaveSpawning = false;
+        this.updatesToNextWave = 0;
     }
 
     public ArrayList<Enemy> getAliveList() {
@@ -38,8 +43,8 @@ public class WaveManager {
     }
 
     public void spawnEnemies() {
-        isWaveSpawning = true;
         enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
+        isSpawning = true;
     }
 
     public void draw(Canvas canvas) {
@@ -49,18 +54,30 @@ public class WaveManager {
     }
 
     public void update() {
-        updatesToNextSpawn++;
+        if (updatesToNextSpawn < UPDATES_BETWEEN_SPAWNS) {
+            updatesToNextSpawn++;
+        }
 
-        if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS && isWaveSpawning) {
+        if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS && isSpawning) {
             if (enemyIndexInWave < enemyArrayList.size()) {
                 aliveList.add(enemyArrayList.get(enemyIndexInWave));
                 System.out.println(enemyIndexInWave);
                 enemyIndexInWave++;
                 updatesToNextSpawn = 0;
             } else {
-                isWaveSpawning = false;
+                isSpawning = false;
                 currentWaveIndex++;
+                enemyIndexInWave = 0;
             }
+        }
+
+        if (updatesToNextWave < UPDATES_BETWEEN_WAVES && !isSpawning) {
+            updatesToNextWave++;
+        }
+
+        if (updatesToNextWave >= UPDATES_BETWEEN_WAVES) {
+            updatesToNextWave = 0;
+            spawnEnemies();
         }
 
         for (Enemy enemy : aliveList) {

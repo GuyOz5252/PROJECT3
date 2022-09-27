@@ -85,8 +85,6 @@ public abstract class Tower extends BitmapObject {
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
-
-        System.out.println(centerPosition.x + " x " + centerPosition.y + "=====================================================================");
     }
 
     public enum TowerTypes {

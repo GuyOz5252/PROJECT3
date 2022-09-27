@@ -50,7 +50,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         DisplayMetrics displayMetrics = new DisplayMetrics(); // TODO fix display obj
         ((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        this.display = new Display(displayMetrics);
+        display = new Display(displayMetrics);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -151,7 +151,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickSettings() {
-        // TODO start activity Settings
+
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {
@@ -165,7 +165,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickExit() {
         pauseMenu.dismiss();
-        //startActivity(new Intent(this, MainMenuActivity.class));
+        //startActivity(new Intent(this, MainMenu.class));
         startActivity(new Intent(this, Login.class));
         this.finish();
     }
