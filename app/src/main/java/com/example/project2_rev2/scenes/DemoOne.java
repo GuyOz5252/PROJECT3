@@ -58,7 +58,7 @@ public class DemoOne extends Scene {
 
         this.projectileManager = new ProjectileManager(waveManager, context);
 
-        this.tower = new DemoTower(1350, 200, waveManager, projectileManager, context);
+        this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
     }
 
     @Override
