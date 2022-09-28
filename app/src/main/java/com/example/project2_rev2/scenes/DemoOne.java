@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.WaveCounter;
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -29,6 +30,7 @@ public class DemoOne extends Scene {
     private EnemyPath enemyPath;
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
+    private WaveCounter waveCounter;
     private Tower tower;
 
     public DemoOne(Display display, Context context) {
@@ -44,7 +46,7 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(1250, display.size.height/2+100));
         this.enemyPath.add(new Position(2000, display.size.height/2+100));
 
-        this.waveManager = new WaveManager();
+        this.waveManager = new WaveManager(waveCounter);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
                 Enemy.EnemyTypes.DEMO_ENEMY,
                 Enemy.EnemyTypes.DEMO_ENEMY,
@@ -62,8 +64,9 @@ public class DemoOne extends Scene {
                 context
         ));
 
+        this.waveCounter = new WaveCounter(waveManager, context);
+        this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
-
         this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
     }
 
@@ -72,6 +75,7 @@ public class DemoOne extends Scene {
         canvas.drawColor(ContextCompat.getColor(context, R.color.background));
 
         enemyPath.draw(canvas);
+        waveCounter.draw(canvas);
         waveManager.draw(canvas);
         tower.draw(canvas);
         projectileManager.draw(canvas);
@@ -80,6 +84,7 @@ public class DemoOne extends Scene {
 
     @Override
     public void update() {
+        waveCounter.update();
         waveManager.update();
         projectileManager.update();
         tower.update();

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class WaveManager {
 
+    private WaveCounter waveCounter;
+
     private int currentWaveIndex;
     private ArrayList<Enemy> enemyArrayList;
     private int enemyIndexInWave;
@@ -23,7 +25,8 @@ public class WaveManager {
     private int updatesToNextWave;
     private final int UPDATES_BETWEEN_WAVES = 800;
 
-    public WaveManager() {
+    public WaveManager(WaveCounter waveCounter) {
+        this.waveCounter = waveCounter;
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.isSpawning = false;
@@ -34,6 +37,14 @@ public class WaveManager {
 
     public ArrayList<Enemy> getAliveList() {
         return aliveList;
+    }
+
+    public int getWaveCount() {
+        return waveArrayList.size();
+    }
+
+    public void setWaveCounter(WaveCounter waveCounter) {
+        this.waveCounter = waveCounter;
     }
 
     public void addWave(Wave wave) {
@@ -48,6 +59,7 @@ public class WaveManager {
     public void spawnEnemy() {
         aliveList.add(enemyArrayList.get(enemyIndexInWave));
         enemyIndexInWave++;
+        waveCounter.changeText("WAVE: " + (currentWaveIndex+1) + "/" + waveArrayList.size());
     }
 
     public void draw(Canvas canvas) {
@@ -64,8 +76,8 @@ public class WaveManager {
                     updatesToNextSpawn = 0;
                 } else {
                     isSpawning = false;
-                    currentWaveIndex++;
                     enemyIndexInWave = 0;
+                    currentWaveIndex++;
                 }
             } else {
                 updatesToNextSpawn++;
