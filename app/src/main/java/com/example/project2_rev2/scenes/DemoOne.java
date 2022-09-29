@@ -3,7 +3,6 @@ package com.example.project2_rev2.scenes;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
@@ -11,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.StartWaveButton;
 import com.example.project2_rev2.gameComponents.WaveCounter;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
@@ -32,7 +32,7 @@ public class DemoOne extends Scene {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private WaveCounter waveCounter;
-    private Button startWaveButton;
+    private StartWaveButton startWaveButton;
     private Tower tower;
 
     public DemoOne(Display display, Context context) {
@@ -70,7 +70,7 @@ public class DemoOne extends Scene {
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
-        this.startWaveButton = new Button(70, display.size.height-200, 200, 100, R.color.cardview_dark_background);
+        this.startWaveButton = new StartWaveButton(display, context);
 
         waveManager.startWave();
     }
@@ -98,6 +98,6 @@ public class DemoOne extends Scene {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-
+        startWaveButton.onTouchEvent(motionEvent);
     }
 }
