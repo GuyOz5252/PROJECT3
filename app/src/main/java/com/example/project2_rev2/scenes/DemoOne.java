@@ -21,6 +21,7 @@ import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Position;
+import com.example.project2_rev2.utils.Size;
 
 public class DemoOne extends Scene {
 
@@ -70,7 +71,14 @@ public class DemoOne extends Scene {
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
-        this.startWaveButton = new StartWaveButton(display, context);
+        this.startWaveButton = new StartWaveButton(
+                30,
+                display.size.height-170,
+                R.drawable.ic_launcher_background,
+                new Size(130, 130),
+                waveManager,
+                context
+        );
 
         waveManager.startWave();
     }

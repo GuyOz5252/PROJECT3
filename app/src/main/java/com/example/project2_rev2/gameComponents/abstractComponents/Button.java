@@ -1,42 +1,29 @@
 package com.example.project2_rev2.gameComponents.abstractComponents;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
-public abstract class Button extends RectObject {
+import com.example.project2_rev2.utils.Size;
 
-    public Button(double posX, double posY, double width, double height, int color) {
-        super(posX, posY, width, height, color);
+public abstract class Button extends BitmapObject {
+
+    private Rect buttonRect;
+
+    public Button(double x, double y, int resourceId, Size size, Context context) {
+        super(x, y, resourceId, size, context);
+        this.buttonRect = new Rect(
+                (int)x,
+                (int)y,
+                (int)(x+size.width),
+                (int)(y+size.height)
+        );
     }
 
     public boolean isPressed(MotionEvent motionEvent) {
-        double leftCircleToTouchDistance = Math.sqrt(
-                Math.pow(position.x - motionEvent.getX(), 2) +
-                        Math.pow((position.y+size.height/2) - motionEvent.getY(), 2)
-        );
-        double rightCircleToTouchDistance = Math.sqrt(
-                Math.pow((position.x+size.width/2) - motionEvent.getX(), 2) +
-                        Math.pow((position.y+size.height/2) - motionEvent.getY(), 2)
-        );
-        boolean isRectContainingTouch = rect.contains((int)motionEvent.getX(), (int)motionEvent.getY());
-        return isRectContainingTouch && leftCircleToTouchDistance < size.height/2 && rightCircleToTouchDistance < size.height/2;
+        return buttonRect.contains((int)motionEvent.getX(), (int)motionEvent.getY());
     }
 
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        canvas.drawCircle((float)position.x, (float)(position.y+size.height/2), (float)size.height/2, paint);
-        canvas.drawCircle((float)(position.x+size.width), (float)(position.y+size.height/2), (float)size.height/2, paint);
-    }
-
-    public void onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent)) {
-            System.out.println("pressed");
-        }
-    }
+    public abstract void onTouchEvent(MotionEvent motionEvent);
 }
