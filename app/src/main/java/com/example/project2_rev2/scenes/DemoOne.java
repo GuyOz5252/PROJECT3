@@ -12,6 +12,7 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
 import com.example.project2_rev2.gameComponents.WaveCounter;
+import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -31,6 +32,7 @@ public class DemoOne extends Scene {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private WaveCounter waveCounter;
+    private Button startWaveButton;
     private Tower tower;
 
     public DemoOne(Display display, Context context) {
@@ -68,6 +70,9 @@ public class DemoOne extends Scene {
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
+        this.startWaveButton = new Button(70, display.size.height-200, 200, 100, R.color.cardview_dark_background);
+
+        waveManager.startWave();
     }
 
     @Override
@@ -80,6 +85,7 @@ public class DemoOne extends Scene {
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
+        startWaveButton.draw(canvas);
     }
 
     @Override

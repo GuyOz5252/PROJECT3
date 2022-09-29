@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import androidx.core.content.ContextCompat;
+
+import com.example.project2_rev2.R;
 import com.example.project2_rev2.utils.Size;
 
 public abstract class RectObject extends GameObject {

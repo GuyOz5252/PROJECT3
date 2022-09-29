@@ -69,6 +69,28 @@ public class WaveManager {
     }
 
     public void update() {
+//        if (isSpawning) {
+//            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
+//                if (enemyIndexInWave < enemyArrayList.size()) {
+//                    spawnEnemy();
+//                    updatesToNextSpawn = 0;
+//                } else {
+//                    isSpawning = false;
+//                    enemyIndexInWave = 0;
+//                    currentWaveIndex++;
+//                }
+//            } else {
+//                updatesToNextSpawn++;
+//            }
+//        } else {
+//            if (updatesToNextWave >= UPDATES_BETWEEN_WAVES) {
+//                startWave();
+//                updatesToNextWave = 0;
+//            } else {
+//                updatesToNextWave++;
+//            }
+//        }
+
         if (isSpawning) {
             if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
                 if (enemyIndexInWave < enemyArrayList.size()) {
@@ -81,13 +103,6 @@ public class WaveManager {
                 }
             } else {
                 updatesToNextSpawn++;
-            }
-        } else {
-            if (updatesToNextWave >= UPDATES_BETWEEN_WAVES) {
-                startWave();
-                updatesToNextWave = 0;
-            } else {
-                updatesToNextWave++;
             }
         }
 
