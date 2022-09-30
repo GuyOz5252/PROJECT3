@@ -9,7 +9,8 @@ import com.example.project2_rev2.utils.Size;
 
 public abstract class Button extends BitmapObject {
 
-    private Rect buttonRect;
+    protected Rect buttonRect;
+    protected boolean isActive;
 
     public Button(double x, double y, int resourceId, Size size, Context context) {
         super(x, y, resourceId, size, context);
@@ -19,6 +20,11 @@ public abstract class Button extends BitmapObject {
                 (int)(x+size.width),
                 (int)(y+size.height)
         );
+        this.isActive = true;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public boolean isPressed(MotionEvent motionEvent) {

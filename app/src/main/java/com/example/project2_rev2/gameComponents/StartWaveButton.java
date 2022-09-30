@@ -16,13 +16,21 @@ public class StartWaveButton extends Button {
 
     private WaveManager waveManager;
 
-    public StartWaveButton(double x, double y, int resourceId, Size size, WaveManager waveManager, Context context) {
-        super(x, y, resourceId, size, context);
+    public StartWaveButton(WaveManager waveManager, Display display, Context context) {
+        super(183, display.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
         this.waveManager = waveManager;
     }
 
     @Override
+    public void setIsActive(boolean isActive) {
+        super.setIsActive(isActive);
+        // change button bitmap
+    }
+
+    @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        waveManager.startWave();
+        if (isActive) {
+            waveManager.startWave();
+        }
     }
 }

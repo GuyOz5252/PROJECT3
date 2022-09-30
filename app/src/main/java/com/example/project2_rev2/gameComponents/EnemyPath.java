@@ -32,7 +32,7 @@ public class EnemyPath {
 
     public void draw(Canvas canvas) {
         Paint testPaint = new Paint();
-        testPaint.setColor(Color.RED);
+        testPaint.setColor(Color.GRAY);
         testPaint.setStrokeWidth(120);
 
         for (int i = 0; i < positionArrayList.size()-1; i++) {

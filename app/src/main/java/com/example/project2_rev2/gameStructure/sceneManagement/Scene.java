@@ -5,6 +5,8 @@ import android.view.MotionEvent;
 
 public abstract class Scene {
 
+    protected int speedMultiplier;
+
     public abstract void draw(Canvas canvas);
     public abstract void update();
     public abstract void onTouchEvent(MotionEvent motionEvent);
@@ -12,4 +14,12 @@ public abstract class Scene {
     public static final String[] sceneTitles = new String[] {
             "DEMO 1",
     };
+
+    public void setSpeedMultiplier(int speedMultiplier) {
+        this.speedMultiplier = speedMultiplier;
+    }
+
+    public int getSpeedMultiplier() {
+        return speedMultiplier;
+    }
 }

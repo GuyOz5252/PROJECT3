@@ -33,13 +33,12 @@ public class DemoOne extends Scene {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private WaveCounter waveCounter;
-    private StartWaveButton startWaveButton;
     private Tower tower;
 
     public DemoOne(Display display, Context context) {
         this.context = context;
 
-        this.towerBar = new TowerBar(display, context);
+        this.speedMultiplier = 1;
 
         this.enemyPath = new EnemyPath();
         this.enemyPath.add(new Position(330, display.size.height/2));
@@ -71,16 +70,8 @@ public class DemoOne extends Scene {
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
-        this.startWaveButton = new StartWaveButton(
-                30,
-                display.size.height-170,
-                R.drawable.ic_launcher_background,
-                new Size(130, 130),
-                waveManager,
-                context
-        );
 
-        waveManager.startWave();
+        this.towerBar = new TowerBar(this, display, waveManager, context);
     }
 
     @Override
@@ -93,7 +84,6 @@ public class DemoOne extends Scene {
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
-        startWaveButton.draw(canvas);
     }
 
     @Override
@@ -106,6 +96,6 @@ public class DemoOne extends Scene {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        startWaveButton.onTouchEvent(motionEvent);
+        towerBar.onTouchEvent(motionEvent);
     }
 }

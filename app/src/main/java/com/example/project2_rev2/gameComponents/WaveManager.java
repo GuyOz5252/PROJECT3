@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class WaveManager {
 
     private WaveCounter waveCounter;
+    private StartWaveButton startWaveButton;
 
     private int currentWaveIndex;
     private ArrayList<Enemy> enemyArrayList;
@@ -22,8 +23,6 @@ public class WaveManager {
     private boolean isSpawning;
     private int updatesToNextSpawn;
     private final int UPDATES_BETWEEN_SPAWNS = 60;
-    private int updatesToNextWave;
-    private final int UPDATES_BETWEEN_WAVES = 800;
 
     public WaveManager(WaveCounter waveCounter) {
         this.waveCounter = waveCounter;
@@ -32,7 +31,6 @@ public class WaveManager {
         this.isSpawning = false;
         this.currentWaveIndex = 0;
         this.updatesToNextSpawn = 0;
-        this.updatesToNextWave = 0;
     }
 
     public ArrayList<Enemy> getAliveList() {
@@ -47,6 +45,10 @@ public class WaveManager {
         this.waveCounter = waveCounter;
     }
 
+    public void setStartWaveButton(StartWaveButton startWaveButton) {
+        this.startWaveButton = startWaveButton;
+    }
+
     public void addWave(Wave wave) {
         waveArrayList.add(wave);
     }
@@ -54,6 +56,7 @@ public class WaveManager {
     public void startWave() {
         enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
         isSpawning = true;
+        startWaveButton.setIsActive(false);
     }
 
     public void spawnEnemy() {
@@ -69,28 +72,6 @@ public class WaveManager {
     }
 
     public void update() {
-//        if (isSpawning) {
-//            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
-//                if (enemyIndexInWave < enemyArrayList.size()) {
-//                    spawnEnemy();
-//                    updatesToNextSpawn = 0;
-//                } else {
-//                    isSpawning = false;
-//                    enemyIndexInWave = 0;
-//                    currentWaveIndex++;
-//                }
-//            } else {
-//                updatesToNextSpawn++;
-//            }
-//        } else {
-//            if (updatesToNextWave >= UPDATES_BETWEEN_WAVES) {
-//                startWave();
-//                updatesToNextWave = 0;
-//            } else {
-//                updatesToNextWave++;
-//            }
-//        }
-
         if (isSpawning) {
             if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
                 if (enemyIndexInWave < enemyArrayList.size()) {
@@ -103,6 +84,10 @@ public class WaveManager {
                 }
             } else {
                 updatesToNextSpawn++;
+            }
+        } else {
+            if (aliveList.isEmpty()) {
+                startWaveButton.setIsActive(true);
             }
         }
 

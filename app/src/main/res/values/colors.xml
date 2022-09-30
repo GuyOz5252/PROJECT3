@@ -14,7 +14,9 @@
     <color name="link">#4897EC</color>
     <color name="dialogColor">#001427</color>
 
+    <color name="black">#000000</color>
     <color name="background">#8BC34A</color>
+    <color name="towerBarBackground">#6E4527</color>
     <color name="rangeCircle">#68292929</color>
     <color name="projectileBullet">#CD7F32</color>
 </resources>
