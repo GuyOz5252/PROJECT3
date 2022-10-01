@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.GameObject;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 
 import java.util.ArrayList;
 
@@ -39,8 +40,8 @@ public class Projectile extends GameObject {
     }
 
     public void movement() {
-        position.x += velocityX;
-        position.y += velocityY;
+        position.x += velocityX * Scene.speedMultiplier;
+        position.y += velocityY * Scene.speedMultiplier;
     }
 
     public void hitEnemy(ArrayList<Enemy> enemyArrayList) {

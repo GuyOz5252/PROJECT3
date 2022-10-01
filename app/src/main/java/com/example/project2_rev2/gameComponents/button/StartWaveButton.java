@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.button;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Size;
@@ -29,8 +30,10 @@ public class StartWaveButton extends Button {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (isActive) {
-            waveManager.startWave();
+        if (isPressed(motionEvent)) {
+            if (isActive) {
+                waveManager.startWave();
+            }
         }
     }
 }

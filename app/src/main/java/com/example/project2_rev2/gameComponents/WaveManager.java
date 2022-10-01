@@ -4,7 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
-import com.example.project2_rev2.gameComponents.enemyTypes.DemoEnemy;
+import com.example.project2_rev2.gameComponents.button.StartWaveButton;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,7 @@ public class WaveManager {
 
     public void update() {
         if (isSpawning) {
-            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
+            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS / Scene.speedMultiplier) {
                 if (enemyIndexInWave < enemyArrayList.size()) {
                     spawnEnemy();
                     updatesToNextSpawn = 0;
@@ -105,18 +106,14 @@ public class WaveManager {
 
         private ArrayList<Enemy> enemyArrayList;
 
-        public Wave(Enemy.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
+        public Wave(Enemy.EnemyTypes[] enemyArray, EnemyPath enemyPath, Context context) {
             this.enemyArrayList = new ArrayList<>();
-            convertCodeToUnit(enemyCodeArray, enemyPath, context);
+            convertCodeToUnit(enemyArray, enemyPath, context);
         }
 
-        private void convertCodeToUnit(Enemy.EnemyTypes[] enemyCodeArray, EnemyPath enemyPath, Context context) {
-            for (int i = 0; i < enemyCodeArray.length; i++) {
-                switch (enemyCodeArray[i]) {
-                    case DEMO_ENEMY:
-                        enemyArrayList.add(new DemoEnemy(enemyPath, context));
-                        break;
-                }
+        private void convertCodeToUnit(Enemy.EnemyTypes[] enemyArray, EnemyPath enemyPath, Context context) {
+            for (Enemy.EnemyTypes enemyType : enemyArray) {
+                enemyArrayList.add(new Enemy(enemyType, enemyPath, context));
             }
         }
     }

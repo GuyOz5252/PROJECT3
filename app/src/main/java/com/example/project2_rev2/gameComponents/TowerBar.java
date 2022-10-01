@@ -2,15 +2,15 @@ package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.RectObject;
+import com.example.project2_rev2.gameComponents.button.FastForwardButton;
+import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Display;
 
@@ -52,5 +52,6 @@ public class TowerBar extends RectObject {
 
     public void onTouchEvent(MotionEvent motionEvent) {
         startWaveButton.onTouchEvent(motionEvent);
+        fastForwardButton.onTouchEvent(motionEvent);
     }
 }

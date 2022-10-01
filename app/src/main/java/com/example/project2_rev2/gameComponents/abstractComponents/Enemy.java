@@ -4,14 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
+import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
-public abstract class Enemy extends BitmapObject {
+public class Enemy extends BitmapObject {
 
     private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
@@ -28,16 +30,22 @@ public abstract class Enemy extends BitmapObject {
 
     private int health;
 
-    public Enemy(int resourceId, int speed, Size size, EnemyPath enemyPath, int health, Context context) {
-        super(enemyPath.getPositionArrayList().get(0).x-size.width/2, enemyPath.getPositionArrayList().get(0).y-size.height/2, resourceId, size, context);
-        this.SPEED = speed;
+    public Enemy(EnemyTypes enemyType, EnemyPath enemyPath, Context context) {
+        super(
+                enemyPath.getPositionArrayList().get(0).x-enemyType.size.width/2,
+                enemyPath.getPositionArrayList().get(0).y-enemyType.size.height/2,
+                enemyType.resourceId,
+                enemyType.size,
+                context
+        );
+        this.SPEED = enemyType.speed;
         this.enemyPath = enemyPath;
         this.nextPathDestinationIndex = 1;
         this.nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
         this.isAlive = true;
         this.needRotation = false;
         this.originalBitmap = bitmap;
-        this.health = health;
+        this.health = enemyType.health;
     }
 
     public boolean getIsAlive() {
@@ -60,7 +68,7 @@ public abstract class Enemy extends BitmapObject {
                 velocityX = 0;
                 velocityY = SPEED;
                 handleEnemyRotation();
-                return Math.abs(position.y - centerPosition.y) < SPEED;
+                return Math.abs(position.y - centerPosition.y) < SPEED * Scene.speedMultiplier;
             }
             handleEnemyRotation();
             return false;
@@ -88,14 +96,14 @@ public abstract class Enemy extends BitmapObject {
     }
 
     public void movement() {
-        position.x += velocityX;
-        position.y += velocityY;
+        position.x += velocityX * Scene.speedMultiplier;
+        position.y += velocityY * Scene.speedMultiplier;
     }
 
     public void handleEnemyRotation() {
         if (needRotation) {
             if (velocityX > 0) {
-                bitmap = rotateBitmap(originalBitmap, 0);
+                bitmap = originalBitmap;
             }
             if (velocityY > 1) {
                 bitmap = rotateBitmap(originalBitmap, 90);
@@ -124,6 +132,20 @@ public abstract class Enemy extends BitmapObject {
     }
 
     public enum EnemyTypes {
-        DEMO_ENEMY
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 1, 1);
+
+        public int resourceId;
+        public int speed;
+        public Size size;
+        public int health;
+        public int damage;
+
+        EnemyTypes(int resourceId, int speed, Size size, int health, int damage) {
+            this.resourceId = resourceId;
+            this.speed = speed;
+            this.size = size;
+            this.health = health;
+            this.damage = damage;
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.example.project2_rev2.scenes;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
@@ -10,9 +9,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
-import com.example.project2_rev2.gameComponents.StartWaveButton;
 import com.example.project2_rev2.gameComponents.WaveCounter;
-import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -21,7 +18,6 @@ import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Position;
-import com.example.project2_rev2.utils.Size;
 
 public class DemoOne extends Scene {
 

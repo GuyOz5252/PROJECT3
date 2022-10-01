@@ -14,6 +14,7 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
 import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
@@ -50,7 +51,7 @@ public abstract class Tower extends BitmapObject {
     }
 
     public void attack(Enemy enemy) {
-        if (currentTick >= cooldown) {
+        if (currentTick >= cooldown / Scene.speedMultiplier) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
                 float angle = projectileManager.createNewProjectile(this, enemy);
                 handleTowerRotation(angle);
