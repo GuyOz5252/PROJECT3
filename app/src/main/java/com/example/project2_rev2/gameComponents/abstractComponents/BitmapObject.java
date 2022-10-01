@@ -3,12 +3,16 @@ package com.example.project2_rev2.gameComponents.abstractComponents;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
+
+import java.net.CookieHandler;
 
 public abstract class BitmapObject extends GameObject {
 
@@ -28,11 +32,15 @@ public abstract class BitmapObject extends GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap,
-                (int)this.position.x,
-                (int)this.position.y,
+        canvas.drawBitmap(
+                bitmap,
+                (int)position.x,
+                (int)position.y,
                 null
         );
+        Paint paint = new Paint(); // TODO debug
+        paint.setColor(Color.BLUE); // TODO debug
+        canvas.drawCircle((int)position.x, (int)position.y, 10, paint); // TODO debug
     }
 
     @Override

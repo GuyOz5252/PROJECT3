@@ -6,6 +6,7 @@ import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -50,10 +51,10 @@ public abstract class Tower extends BitmapObject {
         this.originalBitmap = bitmap;
         this.centerPosition = new Position(x, y);
         this.towerRect = new Rect(
-                (int)position.x,
-                (int)position.y,
-                (int)(position.x+size.width),
-                (int)(position.y+size.height)
+                (int)x,
+                (int)y,
+                (int)(x+size.width),
+                (int)(y+size.height)
         );
         this.isSelected = false;
     }
@@ -79,6 +80,10 @@ public abstract class Tower extends BitmapObject {
                 range,
                 rangeCirclePaint
         );
+
+        Paint paint = new Paint(); // TODO debug
+        paint.setColor(Color.RED); // TODO debug
+        canvas.drawRect(towerRect, paint); // TODO debug
     }
 
     public void handleTowerRotation(float angle) {
@@ -111,17 +116,16 @@ public abstract class Tower extends BitmapObject {
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent)) {
-            System.out.println("touch tower");
-        }
-        if (!isSelected) {
-            if (isPressed(motionEvent)) {
-                System.out.println("selecttttttttttttttttttttt");
-                isSelected = true;
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            if (!isSelected ) {
+                if (isPressed(motionEvent)) {
+                    System.out.println("selecttttttttttttttttttttt");
+                    isSelected = true;
+                }
+            } else {
+                System.out.println("deeeeeeeeeeeeeeeeeeselecttttttttttttttttt");
+                isSelected = false;
             }
-        } else {
-            System.out.println("deeeeeeeeeeeeeeeeeeselecttttttttttttttttt");
-            isSelected = false;
         }
     }
 

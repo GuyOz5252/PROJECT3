@@ -30,7 +30,7 @@ public class StartWaveButton extends Button {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent)) {
+        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             if (isActive) {
                 waveManager.startWave();
             }

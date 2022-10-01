@@ -2,6 +2,8 @@ package com.example.project2_rev2.scenes;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
@@ -80,6 +82,10 @@ public class DemoOne extends Scene {
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
+
+        Paint paint = new Paint(); // TODO debug
+        paint.setColor(Color.RED); // TODO debug
+        canvas.drawCircle(1400+60, 250+60, 10, paint); // TODO debug
     }
 
     @Override
