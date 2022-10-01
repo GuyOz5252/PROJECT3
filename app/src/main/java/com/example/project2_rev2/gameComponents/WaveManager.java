@@ -30,7 +30,7 @@ public class WaveManager {
         this.aliveList = new ArrayList<>();
         this.isSpawning = false;
         this.currentWaveIndex = 0;
-        this.updatesToNextSpawn = 0;
+        this.updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
     }
 
     public ArrayList<Enemy> getAliveList() {

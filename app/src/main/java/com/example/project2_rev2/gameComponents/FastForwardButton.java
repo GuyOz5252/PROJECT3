@@ -11,19 +11,16 @@ import com.example.project2_rev2.utils.Size;
 
 public class FastForwardButton extends Button {
 
-    private Scene scene;
-
-    public FastForwardButton(Scene scene, Display display, Context context) {
+    public FastForwardButton(Display display, Context context) {
         super(18, display.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
-        this.scene = scene;
     }
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (scene.getSpeedMultiplier() == 1) {
-            scene.setSpeedMultiplier(2);
+        if (Scene.speedMultiplier == 1) {
+            Scene.speedMultiplier = 2;
         } else {
-            scene.setSpeedMultiplier(1);
+            Scene.speedMultiplier = 1;
         }
     }
 }

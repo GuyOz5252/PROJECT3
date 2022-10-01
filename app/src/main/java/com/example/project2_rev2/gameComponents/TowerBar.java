@@ -33,7 +33,7 @@ public class TowerBar extends RectObject {
         this.startWaveButton = new StartWaveButton(waveManager, display, context);
         waveManager.setStartWaveButton(startWaveButton);
 
-        this.fastForwardButton = new FastForwardButton(scene, display, context);
+        this.fastForwardButton = new FastForwardButton(display, context);
     }
 
     @Override
