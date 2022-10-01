@@ -93,5 +93,6 @@ public class DemoOne extends Scene {
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
         towerBar.onTouchEvent(motionEvent);
+        tower.onTouchEvent(motionEvent);
     }
 }

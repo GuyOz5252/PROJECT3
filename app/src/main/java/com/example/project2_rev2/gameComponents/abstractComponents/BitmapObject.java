@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameComponents.abstractComponents;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
@@ -17,9 +18,7 @@ public abstract class BitmapObject extends GameObject {
     public BitmapObject(double x, double y, int resourceId, Size size, Context context) {
         super(x, y);
         bitmap = getBitmapFromVectorDrawable(context, resourceId);
-        if (size != null) {
-            bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);
-        }
+        bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);
         this.centerPosition = new Position(position.x+bitmap.getWidth()/2, position.y+bitmap.getHeight()/2);
     }
 

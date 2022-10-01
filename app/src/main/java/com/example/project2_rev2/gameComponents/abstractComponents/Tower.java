@@ -7,6 +7,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
 
@@ -32,6 +34,9 @@ public abstract class Tower extends BitmapObject {
     private final Bitmap originalBitmap;
     private final Position centerPosition;
 
+    private Rect towerRect;
+    private boolean isSelected;
+
     public Tower(double x, double y, int resourceId, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x+size.width/2, y+size.height/2, resourceId, size, context);
         this.waveManager = waveManager;
@@ -44,6 +49,13 @@ public abstract class Tower extends BitmapObject {
         this.currentTick = 0;
         this.originalBitmap = bitmap;
         this.centerPosition = new Position(x, y);
+        this.towerRect = new Rect(
+                (int)position.x,
+                (int)position.y,
+                (int)(position.x+size.width),
+                (int)(position.y+size.height)
+        );
+        this.isSelected = false;
     }
 
     public Projectile.ProjectileType getProjectileType() {
@@ -60,18 +72,28 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
-    public void handleTowerRotation(float angle) {
-        bitmap = rotateBitmap(originalBitmap, angle);
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
+    public void drawRange(Canvas canvas) {
         canvas.drawCircle(
                 (float)centerPosition.x,
                 (float)centerPosition.y,
                 range,
                 rangeCirclePaint
         );
+    }
+
+    public void handleTowerRotation(float angle) {
+        bitmap = rotateBitmap(originalBitmap, angle);
+    }
+
+    public boolean isPressed(MotionEvent motionEvent) {
+        return towerRect.contains((int)motionEvent.getX(), (int)motionEvent.getY());
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        if (isSelected) {
+            drawRange(canvas);
+        }
         super.draw(canvas);
     }
 
@@ -85,6 +107,21 @@ public abstract class Tower extends BitmapObject {
         super.update();
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
+        }
+    }
+
+    public void onTouchEvent(MotionEvent motionEvent) {
+        if (isPressed(motionEvent)) {
+            System.out.println("touch tower");
+        }
+        if (!isSelected) {
+            if (isPressed(motionEvent)) {
+                System.out.println("selecttttttttttttttttttttt");
+                isSelected = true;
+            }
+        } else {
+            System.out.println("deeeeeeeeeeeeeeeeeeselecttttttttttttttttt");
+            isSelected = false;
         }
     }
 

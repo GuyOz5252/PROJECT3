@@ -132,20 +132,22 @@ public class Enemy extends BitmapObject {
     }
 
     public enum EnemyTypes {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 1, 1);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 1, 1, 100);
 
         public int resourceId;
         public int speed;
         public Size size;
         public int health;
         public int damage;
+        public int value;
 
-        EnemyTypes(int resourceId, int speed, Size size, int health, int damage) {
+        EnemyTypes(int resourceId, int speed, Size size, int health, int damage, int value) {
             this.resourceId = resourceId;
             this.speed = speed;
             this.size = size;
             this.health = health;
             this.damage = damage;
+            this.value = value;
         }
     }
 }
