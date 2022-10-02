@@ -1,11 +1,16 @@
 package com.example.project2_rev2.scenes;
 
-import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+import static com.example.project2_rev2.utils.GaveValues.display;
+import static com.example.project2_rev2.utils.GaveValues.gameDisplay;
+import static com.example.project2_rev2.utils.GaveValues.xCoordinate;
+import static com.example.project2_rev2.utils.GaveValues.xOffset;
+import static com.example.project2_rev2.utils.GaveValues.yCoordinate;
+import static com.example.project2_rev2.utils.GaveValues.yOffset;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
@@ -20,14 +25,15 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveManager;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
-import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.Position;
 
 public class DemoOne extends Scene {
 
-    private Context context;
-
     // game components
+    private Rect backgroundRect;
+    private Paint backgroundPaint;
+    private Rect coverRect;
+    private Paint coverPaint;
     private TowerBar towerBar;
     private EnemyPath enemyPath;
     private WaveManager waveManager;
@@ -36,15 +42,31 @@ public class DemoOne extends Scene {
     private Tower tower;
 
     public DemoOne(Context context) {
-        this.context = context;
+
+        this.backgroundRect = new Rect(
+                (int)xCoordinate(0),
+                (int)yCoordinate(0),
+                (int)xCoordinate(gameDisplay.size.width),
+                (int)yCoordinate(gameDisplay.size.height)
+        );
+        this.backgroundPaint = new Paint();
+        this.backgroundPaint.setColor(ContextCompat.getColor(context, R.color.background));
+        this.coverRect = new Rect(
+                (int)xCoordinate(gameDisplay.size.width),
+                (int)yCoordinate(0),
+                (int)xCoordinate(display.size.width),
+                (int)yCoordinate(display.size.height)
+        );
+        this.coverPaint = new Paint();
+        this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
         this.enemyPath = new EnemyPath();
-        this.enemyPath.add(new Position(330, canvasDisplay.size.height/2));
-        this.enemyPath.add(new Position(900, canvasDisplay.size.height/2));
-        this.enemyPath.add(new Position(900, 300));
-        this.enemyPath.add(new Position(1250, 300));
-        this.enemyPath.add(new Position(1250, canvasDisplay.size.height/2+100));
-        this.enemyPath.add(new Position(2000, canvasDisplay.size.height/2+100));
+        this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
+        this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(gameDisplay.size.height/2)));
+        this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(300)));
+        this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(300)));
+        this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
+        this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
 
         this.waveManager = new WaveManager(waveCounter);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
@@ -67,15 +89,16 @@ public class DemoOne extends Scene {
         this.waveCounter = new WaveCounter(waveManager, context);
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
-
         this.towerBar = new TowerBar(this, waveManager, context);
 
-        this.tower = new DemoTower(1400, 250, towerBar, waveManager, projectileManager, context);
+        this.tower = new DemoTower(xCoordinate(1400), yCoordinate(250), towerBar, waveManager, projectileManager, context); // TODO temp
+
+
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawColor(ContextCompat.getColor(context, R.color.background));
+        canvas.drawRect(backgroundRect, backgroundPaint);
 
         enemyPath.draw(canvas);
         waveCounter.draw(canvas);
@@ -83,6 +106,8 @@ public class DemoOne extends Scene {
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
+
+        canvas.drawRect(coverRect, coverPaint);
     }
 
     @Override

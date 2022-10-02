@@ -5,17 +5,13 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.scenes.DemoOne;
-import com.example.project2_rev2.utils.Display;
-import com.example.project2_rev2.utils.GaveValues;
 
 public class SceneManager {
 
     private Scene currentScene;
     private String levelName;
 
-    public SceneManager(int currentSceneIdx, Display display, Context context) { // receive index of requested scene and init that scene
-        GaveValues.display.size.width = display.size.width;
-        GaveValues.display.size.height = display.size.height;
+    public SceneManager(int currentSceneIdx, Context context) { // receive index of requested scene and init that scene
         switch (currentSceneIdx) {
             case 0:
                 this.currentScene = new DemoOne(context);

@@ -1,6 +1,9 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+import static com.example.project2_rev2.utils.GaveValues.gameDisplay;
+import static com.example.project2_rev2.utils.GaveValues.xCoordinate;
+import static com.example.project2_rev2.utils.GaveValues.yCoordinate;
+import static com.example.project2_rev2.utils.GaveValues.yOffset;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,7 +18,6 @@ import com.example.project2_rev2.gameComponents.abstractComponents.RectObject;
 import com.example.project2_rev2.gameComponents.button.FastForwardButton;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
-import com.example.project2_rev2.utils.Display;
 
 public class TowerBar extends RectObject {
 
@@ -25,7 +27,7 @@ public class TowerBar extends RectObject {
     private FastForwardButton fastForwardButton;
 
     public TowerBar(Scene scene, WaveManager waveManager, Context context) {
-        super(0, 0, 350, canvasDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
+        super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);
         this.borderPaint.setStrokeWidth(10);
@@ -45,7 +47,13 @@ public class TowerBar extends RectObject {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         canvas.drawRect(rect, borderPaint);
-        canvas.drawLine(0, (float)canvasDisplay.size.height-210, 350, (float)canvasDisplay.size.height-210, borderPaint);
+        canvas.drawLine(
+                (float)xCoordinate(0),
+                (float)yCoordinate(gameDisplay.size.height-210),
+                (float)xCoordinate(350),
+                (float)yCoordinate(gameDisplay.size.height-210),
+                borderPaint
+        );
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);
     }

@@ -25,6 +25,7 @@ import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.utils.Display;
+import com.example.project2_rev2.utils.GaveValues;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
 
@@ -72,8 +73,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             }
         });
 
+        GaveValues.display.size.width = display.size.width;
+        GaveValues.display.size.height = display.size.height;
+        GaveValues.xOffset = (display.size.width-GaveValues.gameDisplay.size.width)/2;
+        GaveValues.yOffset = (display.size.height-GaveValues.gameDisplay.size.height)/2;
+
         Bundle bundle = getIntent().getExtras();
-        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), display, this); // receive the index of the requested scene and init a new sceneManager with that scene
+        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), this); // receive the index of the requested scene and init a new sceneManager with that scene
 
         btnPause = findViewById(R.id.btnPause);
         btnPause.setOnTouchListener(this);
