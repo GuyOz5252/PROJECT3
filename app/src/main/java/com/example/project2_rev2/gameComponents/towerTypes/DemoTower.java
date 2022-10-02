@@ -5,13 +5,14 @@ import android.content.Context;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.WaveManager;
 import com.example.project2_rev2.utils.Size;
 
 public class DemoTower extends Tower {
 
-    public DemoTower(double x, double y, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+    public DemoTower(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(
                 x,
                 y,
@@ -20,6 +21,7 @@ public class DemoTower extends Tower {
                 90,
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
+                towerBar,
                 waveManager,
                 projectileManager,
                 context);

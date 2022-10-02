@@ -67,9 +67,10 @@ public class DemoOne extends Scene {
         this.waveCounter = new WaveCounter(waveManager, context);
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
-        this.tower = new DemoTower(1400, 250, waveManager, projectileManager, context);
 
         this.towerBar = new TowerBar(this, display, waveManager, context);
+
+        this.tower = new DemoTower(1400, 250, towerBar, waveManager, projectileManager, context);
     }
 
     @Override
@@ -82,10 +83,6 @@ public class DemoOne extends Scene {
         tower.draw(canvas);
         projectileManager.draw(canvas);
         towerBar.draw(canvas);
-
-        Paint paint = new Paint(); // TODO debug
-        paint.setColor(Color.RED); // TODO debug
-        canvas.drawCircle(1400+60, 250+60, 10, paint); // TODO debug
     }
 
     @Override

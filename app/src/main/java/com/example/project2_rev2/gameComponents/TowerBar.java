@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
@@ -36,10 +37,14 @@ public class TowerBar extends RectObject {
         this.fastForwardButton = new FastForwardButton(display, context);
     }
 
+    public Rect getTowerBarRect() {
+        return rect;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawRect(this.rect, borderPaint);
+        canvas.drawRect(rect, borderPaint);
         canvas.drawLine(0, (float)display.size.height-210, 350, (float)display.size.height-210, borderPaint);
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);

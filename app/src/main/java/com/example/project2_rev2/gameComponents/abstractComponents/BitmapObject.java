@@ -38,9 +38,6 @@ public abstract class BitmapObject extends GameObject {
                 (int)position.y,
                 null
         );
-        Paint paint = new Paint(); // TODO debug
-        paint.setColor(Color.BLUE); // TODO debug
-        canvas.drawCircle((int)position.x, (int)position.y, 10, paint); // TODO debug
     }
 
     @Override
