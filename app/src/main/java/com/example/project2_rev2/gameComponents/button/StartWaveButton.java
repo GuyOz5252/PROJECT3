@@ -1,5 +1,7 @@
 package com.example.project2_rev2.gameComponents.button;
 
+import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -17,8 +19,8 @@ public class StartWaveButton extends Button {
 
     private WaveManager waveManager;
 
-    public StartWaveButton(WaveManager waveManager, Display display, Context context) {
-        super(183, display.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
+    public StartWaveButton(WaveManager waveManager, Context context) {
+        super(183, canvasDisplay.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
         this.waveManager = waveManager;
     }
 
@@ -34,6 +36,7 @@ public class StartWaveButton extends Button {
             if (isActive) {
                 waveManager.startWave();
             }
+            System.out.println("press");
         }
     }
 }

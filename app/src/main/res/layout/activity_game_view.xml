@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".gameStructure.GameView"
-    android:orientation="horizontal"
     android:background="@android:color/black">
 
     <SurfaceView
@@ -18,7 +17,7 @@
         android:id="@+id/btnPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
 
         android:backgroundTint="@color/transparent"
         android:src="@drawable/ic_pause" />

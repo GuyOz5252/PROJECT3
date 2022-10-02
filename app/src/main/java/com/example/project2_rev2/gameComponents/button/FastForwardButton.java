@@ -1,5 +1,7 @@
 package com.example.project2_rev2.gameComponents.button;
 
+import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+
 import android.content.Context;
 import android.view.MotionEvent;
 
@@ -11,8 +13,8 @@ import com.example.project2_rev2.utils.Size;
 
 public class FastForwardButton extends Button {
 
-    public FastForwardButton(Display display, Context context) {
-        super(18, display.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
+    public FastForwardButton(Context context) {
+        super(18, canvasDisplay.size.height-180, R.drawable.ic_launcher_background, new Size(150, 150), context);
     }
 
     @Override

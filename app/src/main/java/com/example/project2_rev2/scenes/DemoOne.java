@@ -1,5 +1,7 @@
 package com.example.project2_rev2.scenes;
 
+import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -33,16 +35,16 @@ public class DemoOne extends Scene {
     private WaveCounter waveCounter;
     private Tower tower;
 
-    public DemoOne(Display display, Context context) {
+    public DemoOne(Context context) {
         this.context = context;
 
         this.enemyPath = new EnemyPath();
-        this.enemyPath.add(new Position(330, display.size.height/2));
-        this.enemyPath.add(new Position(900, display.size.height/2));
+        this.enemyPath.add(new Position(330, canvasDisplay.size.height/2));
+        this.enemyPath.add(new Position(900, canvasDisplay.size.height/2));
         this.enemyPath.add(new Position(900, 300));
         this.enemyPath.add(new Position(1250, 300));
-        this.enemyPath.add(new Position(1250, display.size.height/2+100));
-        this.enemyPath.add(new Position(2000, display.size.height/2+100));
+        this.enemyPath.add(new Position(1250, canvasDisplay.size.height/2+100));
+        this.enemyPath.add(new Position(2000, canvasDisplay.size.height/2+100));
 
         this.waveManager = new WaveManager(waveCounter);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
@@ -66,7 +68,7 @@ public class DemoOne extends Scene {
         this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
 
-        this.towerBar = new TowerBar(this, display, waveManager, context);
+        this.towerBar = new TowerBar(this, waveManager, context);
 
         this.tower = new DemoTower(1400, 250, towerBar, waveManager, projectileManager, context);
     }

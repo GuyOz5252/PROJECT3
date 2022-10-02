@@ -1,11 +1,12 @@
 package com.example.project2_rev2.gameComponents.abstractComponents;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.utils.Size;
+import static com.example.project2_rev2.utils.GaveValues.canvasDisplay;
+import static com.example.project2_rev2.utils.GaveValues.display;
 
 public abstract class Button extends BitmapObject {
 
@@ -28,7 +29,8 @@ public abstract class Button extends BitmapObject {
     }
 
     public boolean isPressed(MotionEvent motionEvent) {
-        return buttonRect.contains((int)motionEvent.getX(), (int)motionEvent.getY());
+        return buttonRect.contains((int)(motionEvent.getX()), //- (display.size.width/2-canvasDisplay.size.width/2)),
+                (int)(motionEvent.getY())); //- (display.size.height/2-canvasDisplay.size.height/2)));
     }
 
     public abstract void onTouchEvent(MotionEvent motionEvent);

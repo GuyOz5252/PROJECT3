@@ -106,7 +106,6 @@ public abstract class Tower extends BitmapObject {
 
         currentTick++;
 
-        super.update();
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
