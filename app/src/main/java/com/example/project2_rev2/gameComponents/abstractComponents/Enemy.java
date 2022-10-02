@@ -68,7 +68,7 @@ public class Enemy extends BitmapObject {
                 velocityX = 0;
                 velocityY = SPEED;
                 handleEnemyRotation();
-                return Math.abs(position.y - centerPosition.y) < SPEED * Scene.speedMultiplier;
+                return Math.abs(position.y - centerPosition.y) < SPEED;
             }
             handleEnemyRotation();
             return false;
@@ -96,8 +96,8 @@ public class Enemy extends BitmapObject {
     }
 
     public void movement() {
-        position.x += velocityX * Scene.speedMultiplier;
-        position.y += velocityY * Scene.speedMultiplier;
+        position.x += velocityX;
+        position.y += velocityY;
     }
 
     public void handleEnemyRotation() {

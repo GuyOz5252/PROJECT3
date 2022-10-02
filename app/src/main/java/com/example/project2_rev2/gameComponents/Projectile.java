@@ -40,8 +40,8 @@ public class Projectile extends GameObject {
     }
 
     public void movement() {
-        position.x += velocityX * Scene.speedMultiplier;
-        position.y += velocityY * Scene.speedMultiplier;
+        position.x += velocityX;
+        position.y += velocityY;
     }
 
     public void hitEnemy(ArrayList<Enemy> enemyArrayList) {

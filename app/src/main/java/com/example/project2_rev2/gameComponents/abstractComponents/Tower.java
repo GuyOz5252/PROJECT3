@@ -65,7 +65,7 @@ public abstract class Tower extends BitmapObject {
     }
 
     public void attack(Enemy enemy) {
-        if (currentTick >= cooldown / Scene.speedMultiplier) {
+        if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
                 float angle = projectileManager.createNewProjectile(this, enemy);
                 handleTowerRotation(angle);

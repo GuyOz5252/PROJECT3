@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.utils.Display;
@@ -80,6 +81,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void update() {
         sceneManager.update();
+        if (Scene.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
+            sceneManager.update();
+        }
     }
 
     public void draw(Canvas canvas) {

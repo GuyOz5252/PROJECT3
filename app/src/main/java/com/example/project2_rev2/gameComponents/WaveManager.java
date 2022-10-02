@@ -74,7 +74,7 @@ public class WaveManager {
 
     public void update() {
         if (isSpawning) {
-            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS / Scene.speedMultiplier) {
+            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
                 if (enemyIndexInWave < enemyArrayList.size()) {
                     spawnEnemy();
                     updatesToNextSpawn = 0;

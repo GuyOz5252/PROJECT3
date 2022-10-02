@@ -19,11 +19,7 @@ public class FastForwardButton extends Button {
     public void onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             System.out.println("clicked");
-            if (Scene.speedMultiplier == 1) {
-                Scene.speedMultiplier = 2;
-            } else {
-                Scene.speedMultiplier = 1;
-            }
+            Scene.isFastForwarded = !Scene.isFastForwarded;
         }
     }
 }

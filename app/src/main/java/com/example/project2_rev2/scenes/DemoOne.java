@@ -36,8 +36,6 @@ public class DemoOne extends Scene {
     public DemoOne(Display display, Context context) {
         this.context = context;
 
-        this.speedMultiplier = 1;
-
         this.enemyPath = new EnemyPath();
         this.enemyPath.add(new Position(330, display.size.height/2));
         this.enemyPath.add(new Position(900, display.size.height/2));
