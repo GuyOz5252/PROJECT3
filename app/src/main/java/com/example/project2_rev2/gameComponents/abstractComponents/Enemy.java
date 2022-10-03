@@ -132,7 +132,7 @@ public class Enemy extends BitmapObject {
     }
 
     public enum EnemyTypes {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 1, 1, 100);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 3, 100);
 
         public int resourceId;
         public int speed;

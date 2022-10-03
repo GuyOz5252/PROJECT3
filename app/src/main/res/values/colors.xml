@@ -17,6 +17,7 @@
     <color name="black">#000000</color>
     <color name="background">#8BC34A</color>
     <color name="towerBarBackground">#6E4527</color>
-    <color name="rangeCircle">#68292929</color>
-    <color name="projectileBullet">#CD7F32</color>
+    <color name="rangeCircle">#40292929</color>
+    <color name="bulletProjectile">#CD7F32</color>
+    <color name="laserBeamProjectile">#FF0032</color>
 </resources>

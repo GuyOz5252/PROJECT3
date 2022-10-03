@@ -24,6 +24,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveManager;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
+import com.example.project2_rev2.gameComponents.towerTypes.LaserCanon;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 
@@ -38,7 +39,6 @@ public class DemoOne extends Scene {
     private EnemyPath enemyPath;
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
-    private WaveCounter waveCounter;
     private Tower tower;
 
     public DemoOne(Context context) {
@@ -68,7 +68,7 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
         this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
 
-        this.waveManager = new WaveManager(waveCounter);
+        this.waveManager = new WaveManager(context);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
                 Enemy.EnemyTypes.DEMO_ENEMY,
                 Enemy.EnemyTypes.DEMO_ENEMY,
@@ -86,14 +86,10 @@ public class DemoOne extends Scene {
                 context
         ));
 
-        this.waveCounter = new WaveCounter(waveManager, context);
-        this.waveManager.setWaveCounter(waveCounter);
         this.projectileManager = new ProjectileManager(waveManager, context);
-        this.towerBar = new TowerBar(this, waveManager, context);
+        this.towerBar = new TowerBar(waveManager, context);
 
         this.tower = new DemoTower(xCoordinate(1400), yCoordinate(250), towerBar, waveManager, projectileManager, context); // TODO temp
-
-
     }
 
     @Override
@@ -101,7 +97,6 @@ public class DemoOne extends Scene {
         canvas.drawRect(backgroundRect, backgroundPaint);
 
         enemyPath.draw(canvas);
-        waveCounter.draw(canvas);
         waveManager.draw(canvas);
         tower.draw(canvas);
         projectileManager.draw(canvas);
@@ -112,7 +107,6 @@ public class DemoOne extends Scene {
 
     @Override
     public void update() {
-        waveCounter.update();
         waveManager.update();
         projectileManager.update();
         tower.update();

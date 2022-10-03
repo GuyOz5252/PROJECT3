@@ -52,6 +52,15 @@ public class ProjectileManager {
 
         projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, context));
 
+        //switch (projectileType) {
+        //    case DEMO_BULLET:
+        //        projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, context));
+        //        break;
+        //    case LASER_BEAM:
+        //        projectileArrayList.add(new LaserBeam(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, context));
+        //        break;
+        //}
+
         return rotate;
     }
 

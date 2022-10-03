@@ -32,7 +32,7 @@ public class Projectile extends GameObject {
 
         this.radius = 10;
         this.paint = new Paint();
-        this.paint.setColor(ContextCompat.getColor(context, R.color.projectileBullet));
+        this.paint.setColor(ContextCompat.getColor(context, projectileType.color));
     }
 
     public boolean getIsActive() {
@@ -70,13 +70,16 @@ public class Projectile extends GameObject {
     }
 
     public enum ProjectileType {
-        DEMO_BULLET(100, 1, 40f);
+        DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f),
+        LASER_BEAM(R.color.laserBeamProjectile, 50, 3, 40f);
 
+        public int color;
         public int speed;
         public int damage;
         public float range;
 
-        ProjectileType(int speed, int damage, float range) {
+        ProjectileType(int color, int speed, int damage, float range) {
+            this.color = color;
             this.speed = speed;
             this.damage = damage;
             this.range = range;

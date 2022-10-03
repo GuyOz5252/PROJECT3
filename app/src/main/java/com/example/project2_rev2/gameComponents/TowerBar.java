@@ -26,7 +26,7 @@ public class TowerBar extends RectObject {
     private StartWaveButton startWaveButton;
     private FastForwardButton fastForwardButton;
 
-    public TowerBar(Scene scene, WaveManager waveManager, Context context) {
+    public TowerBar(WaveManager waveManager, Context context) {
         super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);

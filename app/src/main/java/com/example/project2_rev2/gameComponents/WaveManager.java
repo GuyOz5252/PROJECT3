@@ -25,8 +25,8 @@ public class WaveManager {
     private int updatesToNextSpawn;
     private final int UPDATES_BETWEEN_SPAWNS = 60;
 
-    public WaveManager(WaveCounter waveCounter) {
-        this.waveCounter = waveCounter;
+    public WaveManager(Context context) {
+        this.waveCounter = new WaveCounter(context);
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.isSpawning = false;
@@ -38,20 +38,13 @@ public class WaveManager {
         return aliveList;
     }
 
-    public int getWaveCount() {
-        return waveArrayList.size();
-    }
-
-    public void setWaveCounter(WaveCounter waveCounter) {
-        this.waveCounter = waveCounter;
-    }
-
     public void setStartWaveButton(StartWaveButton startWaveButton) {
         this.startWaveButton = startWaveButton;
     }
 
     public void addWave(Wave wave) {
         waveArrayList.add(wave);
+        waveCounter.changeText("WAVE: 0/" + waveArrayList.size());
     }
 
     public void startWave() {
@@ -70,6 +63,8 @@ public class WaveManager {
         for (Enemy enemy : aliveList) {
             enemy.draw(canvas);
         }
+
+        waveCounter.draw(canvas);
     }
 
     public void update() {

@@ -31,6 +31,7 @@ public abstract class Tower extends BitmapObject {
     private int range;
     private Projectile.ProjectileType projectileType;
     private Paint rangeCirclePaint;
+    private Paint rangeBorderPaint;
     private int cooldown;
     private int currentTick;
 
@@ -44,10 +45,14 @@ public abstract class Tower extends BitmapObject {
         this.towerBar = towerBar;
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
-        this.range = range;
         this.projectileType = projectileType;
+        this.range = range;
         this.rangeCirclePaint = new Paint();
         this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
+        this.rangeBorderPaint = new Paint();
+        this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
+        this.rangeBorderPaint.setStyle(Paint.Style.STROKE);
+        this.rangeBorderPaint.setStrokeWidth(2);
         this.cooldown = cooldown;
         this.currentTick = 0;
         this.originalBitmap = bitmap;
@@ -80,6 +85,12 @@ public abstract class Tower extends BitmapObject {
                 (float)centerPosition.y,
                 range,
                 rangeCirclePaint
+        );
+        canvas.drawCircle(
+                (float)centerPosition.x,
+                (float)centerPosition.y,
+                range,
+                rangeBorderPaint
         );
     }
 
