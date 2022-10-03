@@ -94,8 +94,8 @@ public class DemoOne extends Scene {
 
         enemyPath.draw(canvas);
         waveManager.draw(canvas);
-        tower.draw(canvas);
         projectileManager.draw(canvas);
+        tower.draw(canvas);
         towerBar.draw(canvas);
 
         canvas.drawRect(coverRect, coverPaint);
