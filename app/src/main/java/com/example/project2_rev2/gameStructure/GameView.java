@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -33,6 +34,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     private SceneManager sceneManager;
 
     private Display display;
+    private Rect gameCanvasRect;
 
     // ui xml elements
     ImageButton btnPause;
@@ -78,6 +80,16 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         GaveValues.xOffset = (display.size.width-GaveValues.gameDisplay.size.width)/2;
         GaveValues.yOffset = (display.size.height-GaveValues.gameDisplay.size.height)/2;
 
+        int resourceId = getResources().getIdentifier("navigation_bar_width", "dimen", "android");
+        GaveValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;
+
+        this.gameCanvasRect = new Rect(
+                (int)GaveValues.xCoordinate(0),
+                (int)GaveValues.yCoordinate(0),
+                (int)GaveValues.xCoordinate(GaveValues.gameDisplay.size.width),
+                (int)GaveValues.yCoordinate(GaveValues.gameDisplay.size.height)
+        );
+
         Bundle bundle = getIntent().getExtras();
         sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), this); // receive the index of the requested scene and init a new sceneManager with that scene
 
@@ -101,7 +113,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        sceneManager.onTouchEvent(motionEvent);
+        if (gameCanvasRect.contains((int)motionEvent.getX(), (int)motionEvent.getY())) {
+            sceneManager.onTouchEvent(motionEvent);
+        }
         return true;
     }
 
