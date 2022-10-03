@@ -3,9 +3,7 @@ package com.example.project2_rev2.scenes;
 import static com.example.project2_rev2.utils.GaveValues.display;
 import static com.example.project2_rev2.utils.GaveValues.gameDisplay;
 import static com.example.project2_rev2.utils.GaveValues.xCoordinate;
-import static com.example.project2_rev2.utils.GaveValues.xOffset;
 import static com.example.project2_rev2.utils.GaveValues.yCoordinate;
-import static com.example.project2_rev2.utils.GaveValues.yOffset;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -18,13 +16,11 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
-import com.example.project2_rev2.gameComponents.WaveCounter;
-import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
+import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveManager;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
-import com.example.project2_rev2.gameComponents.towerTypes.LaserCanon;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 

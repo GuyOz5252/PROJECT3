@@ -3,7 +3,6 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;

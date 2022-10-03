@@ -3,9 +3,7 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 
 import java.util.ArrayList;
 

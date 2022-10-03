@@ -7,9 +7,7 @@ import android.graphics.Paint;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.abstractComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.GameObject;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 
 import java.util.ArrayList;
 

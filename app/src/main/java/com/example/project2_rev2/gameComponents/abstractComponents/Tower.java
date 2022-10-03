@@ -6,7 +6,6 @@ import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -14,12 +13,11 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.WaveManager;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public abstract class Tower extends BitmapObject {
