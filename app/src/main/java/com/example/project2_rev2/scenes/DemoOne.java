@@ -95,8 +95,9 @@ public class DemoOne extends Scene {
         enemyPath.draw(canvas);
         waveManager.draw(canvas);
         projectileManager.draw(canvas);
-        tower.draw(canvas);
         towerBar.draw(canvas);
+
+        tower.draw(canvas); // TODO temp
 
         canvas.drawRect(coverRect, coverPaint);
     }
@@ -105,7 +106,8 @@ public class DemoOne extends Scene {
     public void update() {
         waveManager.update();
         projectileManager.update();
-        tower.update();
+
+        tower.update(); // TODO temp
     }
 
     @Override

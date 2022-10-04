@@ -67,6 +67,10 @@ public abstract class Tower extends BitmapObject {
         return projectileType;
     }
 
+    public Bitmap getOriginalBitmap() {
+        return originalBitmap;
+    }
+
     public void attack(Enemy enemy) {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
@@ -126,11 +130,13 @@ public abstract class Tower extends BitmapObject {
                 if (isPressed(motionEvent)) {
                     System.out.println("select");
                     isSelected = true;
+                    towerBar.showTowerUpgradeUI(this);
                 }
             } else {
                 if (!towerBar.getTowerBarRect().contains((int)motionEvent.getX(), (int)motionEvent.getY())) {
                     System.out.println("deselect");
                     isSelected = false;
+                    towerBar.showTowerUpgradeUI(null);
                 }
             }
         }
