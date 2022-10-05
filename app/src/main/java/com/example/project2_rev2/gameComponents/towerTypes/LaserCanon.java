@@ -21,6 +21,7 @@ public class LaserCanon extends Tower {
                 10,
                 new Size(120, 120),
                 Projectile.ProjectileType.LASER_BEAM,
+                TowerTypes.LASER_CANON,
                 towerBar,
                 waveManager,
                 projectileManager,

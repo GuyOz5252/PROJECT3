@@ -15,12 +15,13 @@ public abstract class TextUI extends GameObject {
     private String string;
     private Paint paint;
 
-    public TextUI(double x, double y, String string, int color, Context context) {
+    public TextUI(double x, double y, String string, int color, float size, Paint.Align align, Context context) {
         super(x, y);
         this.string = string;
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(context, color));
-        this.paint.setTextSize(50f);
+        this.paint.setTextSize(size);
+        this.paint.setTextAlign(align);
         //Typeface typeface = Typeface.createFromAsset(context.getAssets(), R.font.font_name);
         //paint.setTypeface(typeface);
     }

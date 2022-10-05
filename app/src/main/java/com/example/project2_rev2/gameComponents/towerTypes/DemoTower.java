@@ -21,6 +21,7 @@ public class DemoTower extends Tower {
                 30,
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
+                TowerTypes.DEMO_TOWER,
                 towerBar,
                 waveManager,
                 projectileManager,

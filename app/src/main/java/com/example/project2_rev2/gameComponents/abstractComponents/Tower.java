@@ -25,6 +25,7 @@ public abstract class Tower extends BitmapObject {
     private TowerBar towerBar;
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
+    private TowerTypes towerType;
 
     private int range;
     private Projectile.ProjectileType projectileType;
@@ -38,12 +39,13 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
-    public Tower(double x, double y, int resourceId, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+    public Tower(double x, double y, int resourceId, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerTypes towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-size.width/2, y-size.height/2, resourceId, size, context);
         this.towerBar = towerBar;
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
         this.projectileType = projectileType;
+        this.towerType = towerType;
         this.range = range;
         this.rangeCirclePaint = new Paint();
         this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
@@ -69,6 +71,10 @@ public abstract class Tower extends BitmapObject {
 
     public Bitmap getOriginalBitmap() {
         return originalBitmap;
+    }
+
+    public String getName() {
+        return towerType.towerName;
     }
 
     public void attack(Enemy enemy) {
@@ -126,7 +132,7 @@ public abstract class Tower extends BitmapObject {
 
     public void onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            if (!isSelected ) {
+            if (!isSelected) {
                 if (isPressed(motionEvent)) {
                     System.out.println("select");
                     isSelected = true;
@@ -143,6 +149,13 @@ public abstract class Tower extends BitmapObject {
     }
 
     public enum TowerTypes {
-        DEMO_TOWER
+        DEMO_TOWER("Demo Tower"),
+        LASER_CANON("Laser Canon");
+
+        public String towerName;
+
+        TowerTypes(String towerName) {
+            this.towerName = towerName;
+        }
     }
 }

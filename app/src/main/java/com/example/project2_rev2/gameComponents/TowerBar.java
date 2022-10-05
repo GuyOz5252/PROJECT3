@@ -50,7 +50,12 @@ public class TowerBar extends RectObject {
     }
 
     public void showTowerUpgradeUI(Tower tower) {
-        towerUpgradeUI.setTower(tower);
+        if (tower != null) {
+            towerUpgradeUI.setTower(tower);
+            towerUpgradeUI.setShow(true);
+        } else {
+            towerUpgradeUI.setShow(false);
+        }
     }
 
     @Override
@@ -67,7 +72,7 @@ public class TowerBar extends RectObject {
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);
 
-        if (towerUpgradeUI.getTower() != null) {
+        if (towerUpgradeUI.getShow()) {
             towerUpgradeUI.draw(canvas);
         } else {
             // draw drag n drop ui
@@ -83,7 +88,7 @@ public class TowerBar extends RectObject {
         startWaveButton.onTouchEvent(motionEvent);
         fastForwardButton.onTouchEvent(motionEvent);
 
-        if (towerUpgradeUI.getTower() != null) {
+        if (towerUpgradeUI.getShow()) {
             towerUpgradeUI.onTouchEvent(motionEvent);
         } else {
             // listen to drag n drop ui

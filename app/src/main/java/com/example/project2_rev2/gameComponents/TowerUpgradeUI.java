@@ -10,31 +10,61 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
+import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 
 public class TowerUpgradeUI {
 
+    private boolean show;
+
     private Tower tower;
     private UpgradeButton[] upgradeButtons;
     private SellTowerButton sellTowerButton;
+    private TextUI towerNameText;
 
     public TowerUpgradeUI(Context context) {
+        this.show = false;
+
         this.upgradeButtons = new UpgradeButton[] {
-                new UpgradeButton(250, context),
-                new UpgradeButton(430, context),
-                new UpgradeButton(610, context),
+                new UpgradeButton(yCoordinate(250), context),
+                new UpgradeButton(yCoordinate(430), context),
+                new UpgradeButton(yCoordinate(610), context),
         };
         this.sellTowerButton = new SellTowerButton(context);
+        this.towerNameText = new TextUI(
+                xCoordinate(175),
+                yCoordinate(225),
+                "name",
+                R.color.black,
+                50f,
+                Paint.Align.CENTER,
+                context
+        ) {
+            @Override
+            public void update() {
+
+            }
+        };
     }
 
     public Tower getTower() {
         return tower;
     }
 
+    public boolean getShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+    }
+
     public void setTower(Tower tower) {
         this.tower = tower;
+        this.towerNameText.changeText(tower.getName());
     }
 
     public void draw(Canvas canvas) {
@@ -44,6 +74,7 @@ public class TowerUpgradeUI {
             upgradeButton.draw(canvas);
         }
         sellTowerButton.draw(canvas);
+        towerNameText.draw(canvas);
     }
 
     public void update() {
