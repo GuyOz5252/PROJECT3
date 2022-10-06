@@ -29,9 +29,30 @@ public class TowerUpgradeUI {
         this.show = false;
 
         this.upgradeButtons = new UpgradeButton[] {
-                new UpgradeButton(yCoordinate(250), context),
-                new UpgradeButton(yCoordinate(430), context),
-                new UpgradeButton(yCoordinate(610), context),
+                new UpgradeButton(yCoordinate(250), context) {
+                    @Override
+                    public void onTouchEvent(MotionEvent motionEvent) {
+                        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                            tower.upgradeOne();
+                        }
+                    }
+                },
+                new UpgradeButton(yCoordinate(430), context) {
+                    @Override
+                    public void onTouchEvent(MotionEvent motionEvent) {
+                        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                            tower.upgradeTwo();
+                        }
+                    }
+                },
+                new UpgradeButton(yCoordinate(610), context) {
+                    @Override
+                    public void onTouchEvent(MotionEvent motionEvent) {
+                        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                            tower.upgradeThree();
+                        }
+                    }
+                },
         };
         this.sellTowerButton = new SellTowerButton(context);
         this.towerNameText = new TextUI(

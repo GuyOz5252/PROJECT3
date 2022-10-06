@@ -17,8 +17,6 @@ public class UpgradeButton extends Button {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
 
-        }
     }
 }

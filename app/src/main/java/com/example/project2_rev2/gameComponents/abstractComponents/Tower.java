@@ -27,11 +27,11 @@ public abstract class Tower extends BitmapObject {
     private ProjectileManager projectileManager;
     private TowerType towerType;
 
-    private int range;
-    private Projectile.ProjectileType projectileType;
+    protected int range;
+    protected Projectile.ProjectileType projectileType;
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
-    private int cooldown;
+    protected int cooldown;
     private int currentTick;
 
     private final Bitmap originalBitmap;

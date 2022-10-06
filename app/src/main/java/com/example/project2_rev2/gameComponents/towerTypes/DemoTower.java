@@ -26,7 +26,7 @@ public class DemoTower extends Tower {
 
     @Override
     public void upgradeOne() {
-        System.out.println("upgrade 1 from demo tower");
+
     }
 
     @Override
