@@ -39,6 +39,9 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
+    protected TowerUpgrade[] towerUpgrades;
+    protected int upgradeCount;
+
     public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
@@ -63,11 +66,11 @@ public abstract class Tower extends BitmapObject {
                 (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
+        this.towerUpgrades = towerType.towerUpgrades;
+        this.upgradeCount = 0;
     }
 
-    public abstract void upgradeOne();
-    public abstract void upgradeTwo();
-    public abstract void upgradeThree();
+    public abstract int upgrade(int upgradeIndex);
 
     public Projectile.ProjectileType getProjectileType() {
         return projectileType;
@@ -152,6 +155,26 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
+    public static class TowerUpgrade {
+
+        public TowerUpgradeType towerUpgradeType;
+        public int indexLevel;
+        public int[] value;
+        public int[] cost;
+
+        public TowerUpgrade(TowerUpgradeType towerUpgradeType, int[] value, int[] cost) {
+            this.towerUpgradeType = towerUpgradeType;
+            this.value = value;
+            this.cost = cost;
+            this.indexLevel = 0;
+        }
+    }
+
+    public enum TowerUpgradeType {
+        RANGE,
+        COOLDOWN
+    }
+
     public enum TowerType {
         DEMO_TOWER(
                 "Demo Tower",
@@ -159,16 +182,28 @@ public abstract class Tower extends BitmapObject {
                 300,
                 30,
                 new Size(120, 120),
-                Projectile.ProjectileType.DEMO_BULLET
-        ),
-        LASER_CANON(
-                "Laser Canon",
-                R.drawable.ic_launcher_background,
-                200,
-                10,
-                new Size(120, 120),
-                Projectile.ProjectileType.LASER_BEAM
+                Projectile.ProjectileType.DEMO_BULLET,
+                new TowerUpgrade[] {
+                        new TowerUpgrade(
+                                TowerUpgradeType.RANGE,
+                                new int[] {350, 400, 480},
+                                new int[] {100, 150, 200}
+                        ),
+                        new TowerUpgrade(
+                                TowerUpgradeType.COOLDOWN,
+                                new int[] {27, 24, 20},
+                                new int[] {100, 150, 200}
+                        )
+                }
         );
+        //LASER_CANON(
+        //        "Laser Canon",
+        //        R.drawable.ic_launcher_background,
+        //        200,
+        //        10,
+        //        new Size(120, 120),
+        //        Projectile.ProjectileType.LASER_BEAM
+        //);
 
         public String towerName;
         public int bitmap;
@@ -176,14 +211,16 @@ public abstract class Tower extends BitmapObject {
         public int cooldown;
         public Size size;
         public Projectile.ProjectileType projectileType;
+        public TowerUpgrade[] towerUpgrades;
 
-        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType) {
+        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerUpgrade[] towerUpgrades) {
             this.towerName = towerName;
             this.bitmap = bitmap;
             this.range = range;
             this.cooldown = cooldown;
             this.size = size;
             this.projectileType = projectileType;
+            this.towerUpgrades = towerUpgrades;
         }
     }
 }

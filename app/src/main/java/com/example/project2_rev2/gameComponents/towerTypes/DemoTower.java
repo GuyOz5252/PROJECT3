@@ -25,17 +25,19 @@ public class DemoTower extends Tower {
     }
 
     @Override
-    public void upgradeOne() {
-
-    }
-
-    @Override
-    public void upgradeTwo() {
-
-    }
-
-    @Override
-    public void upgradeThree() {
-
+    public int upgrade(int upgradeIndex) {
+        if (upgradeCount < 5 && towerUpgrades[upgradeIndex].indexLevel < 3) { //GameValue.money >= towerUpgrades[0].cost[towerUpgrades[0].indexLevel] &&
+            switch (towerUpgrades[upgradeIndex].towerUpgradeType) {
+                case RANGE:
+                    range = towerUpgrades[upgradeIndex].value[towerUpgrades[upgradeIndex].indexLevel];
+                    break;
+                case COOLDOWN:
+                    cooldown = towerUpgrades[upgradeIndex].value[towerUpgrades[upgradeIndex].indexLevel];
+                    break;
+            }
+            towerUpgrades[upgradeIndex].indexLevel++;
+            upgradeCount++;
+        }
+        return towerUpgrades[upgradeIndex].indexLevel;
     }
 }

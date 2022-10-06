@@ -16,7 +16,7 @@ public class LaserCanon extends Tower {
         super(
                 x,
                 y,
-                TowerType.LASER_CANON,
+                TowerType.DEMO_TOWER,
                 towerBar,
                 waveManager,
                 projectileManager,
@@ -25,17 +25,7 @@ public class LaserCanon extends Tower {
     }
 
     @Override
-    public void upgradeOne() {
-
-    }
-
-    @Override
-    public void upgradeTwo() {
-
-    }
-
-    @Override
-    public void upgradeThree() {
-
+    public int upgrade(int upgradeIndex) {
+        return 0;
     }
 }

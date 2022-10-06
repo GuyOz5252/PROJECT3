@@ -9,6 +9,8 @@ import android.graphics.Rect;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
+import androidx.annotation.DrawableRes;
+
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
@@ -16,11 +18,15 @@ import java.net.CookieHandler;
 
 public abstract class BitmapObject extends GameObject {
 
+    private Context context;
+    private Size size;
     protected Bitmap bitmap;
     protected Position centerPosition;
 
-    public BitmapObject(double x, double y, int resourceId, Size size, Context context) {
+    public BitmapObject(double x, double y, @DrawableRes int resourceId, Size size, Context context) {
         super(x, y);
+        this.context = context;
+        this.size = size;
         bitmap = getBitmapFromVectorDrawable(context, resourceId);
         bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);
         this.centerPosition = new Position(position.x+bitmap.getWidth()/2, position.y+bitmap.getHeight()/2);
@@ -28,6 +34,11 @@ public abstract class BitmapObject extends GameObject {
 
     public Position getCenterPosition() {
         return centerPosition;
+    }
+
+    public void changeBitmap(@DrawableRes int resourceId) {
+        bitmap = getBitmapFromVectorDrawable(context, resourceId);
+        bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);
     }
 
     @Override

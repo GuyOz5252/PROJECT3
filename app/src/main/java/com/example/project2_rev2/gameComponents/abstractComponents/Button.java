@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import androidx.annotation.DrawableRes;
+
 import com.example.project2_rev2.utils.Size;
 
 public abstract class Button extends BitmapObject {
@@ -11,7 +13,7 @@ public abstract class Button extends BitmapObject {
     protected Rect buttonRect;
     protected boolean isActive;
 
-    public Button(double x, double y, int resourceId, Size size, Context context) {
+    public Button(double x, double y, @DrawableRes int resourceId, Size size, Context context) {
         super(x, y, resourceId, size, context);
         this.buttonRect = new Rect(
                 (int)x,
