@@ -16,4 +16,9 @@ public class GaveValues {
     public static double yCoordinate(double value) {
         return value + yOffset;
     }
+
+    public static boolean isPaused = false;
+
+    public static boolean isFastForwarded = false;
+
 }

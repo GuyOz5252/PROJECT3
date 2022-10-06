@@ -79,6 +79,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         GaveValues.display.size.height = display.size.height;
         GaveValues.xOffset = (display.size.width-GaveValues.gameDisplay.size.width)/2;
         GaveValues.yOffset = (display.size.height-GaveValues.gameDisplay.size.height)/2;
+        GaveValues.isPaused = false;
+        GaveValues.isFastForwarded = false;
 
         int resourceId = getResources().getIdentifier("navigation_bar_width", "dimen", "android");
         GaveValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;
@@ -99,7 +101,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void update() {
         sceneManager.update();
-        if (Scene.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
+        if (GaveValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
         }
     }
@@ -120,11 +122,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void pause() {
-        MainThread.isPaused = true;
+        GaveValues.isPaused = true;
     }
 
     public void resume() {
-        MainThread.isPaused = false;
+        GaveValues.isPaused = false;
     }
 
     //==========pause menu dialog============//

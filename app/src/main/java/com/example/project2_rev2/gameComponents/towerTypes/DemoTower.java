@@ -16,15 +16,26 @@ public class DemoTower extends Tower {
         super(
                 x,
                 y,
-                R.drawable.ic_launcher_background,
-                300,
-                30,
-                new Size(120, 120),
-                Projectile.ProjectileType.DEMO_BULLET,
-                TowerTypes.DEMO_TOWER,
+                TowerType.DEMO_TOWER,
                 towerBar,
                 waveManager,
                 projectileManager,
-                context);
+                context
+        );
+    }
+
+    @Override
+    public void upgradeOne() {
+        System.out.println("upgrade 1 from demo tower");
+    }
+
+    @Override
+    public void upgradeTwo() {
+
+    }
+
+    @Override
+    public void upgradeThree() {
+
     }
 }

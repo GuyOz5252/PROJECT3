@@ -99,13 +99,13 @@ public class WaveManager {
 
         private ArrayList<Enemy> enemyArrayList;
 
-        public Wave(Enemy.EnemyTypes[] enemyArray, EnemyPath enemyPath, Context context) {
+        public Wave(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, Context context) {
             this.enemyArrayList = new ArrayList<>();
             convertCodeToUnit(enemyArray, enemyPath, context);
         }
 
-        private void convertCodeToUnit(Enemy.EnemyTypes[] enemyArray, EnemyPath enemyPath, Context context) {
-            for (Enemy.EnemyTypes enemyType : enemyArray) {
+        private void convertCodeToUnit(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, Context context) {
+            for (Enemy.EnemyType enemyType : enemyArray) {
                 enemyArrayList.add(new Enemy(enemyType, enemyPath, context));
             }
         }

@@ -65,18 +65,18 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
 
         this.waveManager = new WaveManager(context);
-        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
-                Enemy.EnemyTypes.DEMO_ENEMY,
-                Enemy.EnemyTypes.DEMO_ENEMY,
-                Enemy.EnemyTypes.DEMO_ENEMY,
-                Enemy.EnemyTypes.DEMO_ENEMY
+        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY
         },
                 enemyPath,
                 context
         ));
-        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyTypes[] {
-                Enemy.EnemyTypes.DEMO_ENEMY,
-                Enemy.EnemyTypes.DEMO_ENEMY
+        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY
         },
                 enemyPath,
                 context

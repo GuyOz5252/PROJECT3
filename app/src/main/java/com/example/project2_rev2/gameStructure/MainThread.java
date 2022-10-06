@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 import com.example.project2_rev2.utils.Display;
+import com.example.project2_rev2.utils.GaveValues;
 
 public class MainThread extends Thread {
 
@@ -13,13 +14,11 @@ public class MainThread extends Thread {
     private final GameView gameView;
     private boolean isRunning;
     private Canvas canvas;
-    public static boolean isPaused;
 
     public MainThread(SurfaceHolder surfaceHolder, GameView gameView) {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
-        MainThread.isPaused = false;
     }
 
     public void startThread() {
@@ -46,7 +45,7 @@ public class MainThread extends Thread {
         long targetTime = 1000 / MAX_FPS;
 
         while (isRunning) {
-            if (!isPaused) {
+            if (!GaveValues.isPaused) {
                 startTime = System.nanoTime();
                 canvas = null;
                 try {

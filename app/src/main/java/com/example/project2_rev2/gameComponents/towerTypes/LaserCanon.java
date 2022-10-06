@@ -16,16 +16,26 @@ public class LaserCanon extends Tower {
         super(
                 x,
                 y,
-                R.drawable.ic_launcher_background,
-                200,
-                10,
-                new Size(120, 120),
-                Projectile.ProjectileType.LASER_BEAM,
-                TowerTypes.LASER_CANON,
+                TowerType.LASER_CANON,
                 towerBar,
                 waveManager,
                 projectileManager,
                 context
         );
+    }
+
+    @Override
+    public void upgradeOne() {
+
+    }
+
+    @Override
+    public void upgradeTwo() {
+
+    }
+
+    @Override
+    public void upgradeThree() {
+
     }
 }

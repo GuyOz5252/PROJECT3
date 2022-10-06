@@ -2,12 +2,9 @@ package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
@@ -30,7 +27,7 @@ public class Enemy extends BitmapObject {
 
     private int health;
 
-    public Enemy(EnemyTypes enemyType, EnemyPath enemyPath, Context context) {
+    public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(
                 enemyPath.getPositionArrayList().get(0).x-enemyType.size.width/2,
                 enemyPath.getPositionArrayList().get(0).y-enemyType.size.height/2,
@@ -131,7 +128,7 @@ public class Enemy extends BitmapObject {
         }
     }
 
-    public enum EnemyTypes {
+    public enum EnemyType {
         DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 3, 100);
 
         public int resourceId;
@@ -141,7 +138,7 @@ public class Enemy extends BitmapObject {
         public int damage;
         public int value;
 
-        EnemyTypes(int resourceId, int speed, Size size, int health, int damage, int value) {
+        EnemyType(int resourceId, int speed, Size size, int health, int damage, int value) {
             this.resourceId = resourceId;
             this.speed = speed;
             this.size = size;

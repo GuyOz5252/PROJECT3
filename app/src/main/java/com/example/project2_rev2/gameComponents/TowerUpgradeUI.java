@@ -50,10 +50,6 @@ public class TowerUpgradeUI {
         };
     }
 
-    public Tower getTower() {
-        return tower;
-    }
-
     public boolean getShow() {
         return show;
     }

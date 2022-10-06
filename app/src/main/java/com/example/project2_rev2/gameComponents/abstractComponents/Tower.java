@@ -25,7 +25,7 @@ public abstract class Tower extends BitmapObject {
     private TowerBar towerBar;
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
-    private TowerTypes towerType;
+    private TowerType towerType;
 
     private int range;
     private Projectile.ProjectileType projectileType;
@@ -39,31 +39,35 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
-    public Tower(double x, double y, int resourceId, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerTypes towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
-        super(x-size.width/2, y-size.height/2, resourceId, size, context);
+    public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+        super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
-        this.projectileType = projectileType;
         this.towerType = towerType;
-        this.range = range;
+        this.projectileType = towerType.projectileType;
+        this.range = towerType.range;
+        this.cooldown = towerType.cooldown;
         this.rangeCirclePaint = new Paint();
         this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
         this.rangeBorderPaint = new Paint();
         this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
         this.rangeBorderPaint.setStyle(Paint.Style.STROKE);
         this.rangeBorderPaint.setStrokeWidth(2);
-        this.cooldown = cooldown;
         this.currentTick = 0;
         this.originalBitmap = bitmap;
         this.towerRect = new Rect(
-                (int)(x-size.width/2),
-                (int)(y-size.height/2),
-                (int)(x+size.width/2),
-                (int)(y+size.height/2)
+                (int)(x-towerType.size.width/2),
+                (int)(y-towerType.size.height/2),
+                (int)(x+towerType.size.width/2),
+                (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
     }
+
+    public abstract void upgradeOne();
+    public abstract void upgradeTwo();
+    public abstract void upgradeThree();
 
     public Projectile.ProjectileType getProjectileType() {
         return projectileType;
@@ -148,14 +152,38 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
-    public enum TowerTypes {
-        DEMO_TOWER("Demo Tower"),
-        LASER_CANON("Laser Canon");
+    public enum TowerType {
+        DEMO_TOWER(
+                "Demo Tower",
+                R.drawable.ic_launcher_background,
+                300,
+                30,
+                new Size(120, 120),
+                Projectile.ProjectileType.DEMO_BULLET
+        ),
+        LASER_CANON(
+                "Laser Canon",
+                R.drawable.ic_launcher_background,
+                200,
+                10,
+                new Size(120, 120),
+                Projectile.ProjectileType.LASER_BEAM
+        );
 
         public String towerName;
+        public int bitmap;
+        public int range;
+        public int cooldown;
+        public Size size;
+        public Projectile.ProjectileType projectileType;
 
-        TowerTypes(String towerName) {
+        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType) {
             this.towerName = towerName;
+            this.bitmap = bitmap;
+            this.range = range;
+            this.cooldown = cooldown;
+            this.size = size;
+            this.projectileType = projectileType;
         }
     }
 }

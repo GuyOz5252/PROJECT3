@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
+import com.example.project2_rev2.utils.GaveValues;
 import com.example.project2_rev2.utils.Size;
 
 public class FastForwardButton extends Button {
@@ -22,7 +23,7 @@ public class FastForwardButton extends Button {
     public void onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             System.out.println("clicked");
-            Scene.isFastForwarded = !Scene.isFastForwarded;
+            GaveValues.isFastForwarded = !GaveValues.isFastForwarded;
         }
     }
 }
