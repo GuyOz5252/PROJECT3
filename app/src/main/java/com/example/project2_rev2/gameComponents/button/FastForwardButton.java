@@ -1,16 +1,15 @@
 package com.example.project2_rev2.gameComponents.button;
 
-import static com.example.project2_rev2.utils.GaveValues.gameDisplay;
-import static com.example.project2_rev2.utils.GaveValues.xCoordinate;
-import static com.example.project2_rev2.utils.GaveValues.yCoordinate;
+import static com.example.project2_rev2.utils.GameValues.gameDisplay;
+import static com.example.project2_rev2.utils.GameValues.xCoordinate;
+import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
-import com.example.project2_rev2.utils.GaveValues;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
 public class FastForwardButton extends Button {
@@ -23,7 +22,7 @@ public class FastForwardButton extends Button {
     public void onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             System.out.println("clicked");
-            GaveValues.isFastForwarded = !GaveValues.isFastForwarded;
+            GameValues.isFastForwarded = !GameValues.isFastForwarded;
         }
     }
 }

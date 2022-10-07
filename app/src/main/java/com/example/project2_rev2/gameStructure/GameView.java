@@ -15,18 +15,16 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.utils.Display;
-import com.example.project2_rev2.utils.GaveValues;
+import com.example.project2_rev2.utils.GameValues;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
 
@@ -75,21 +73,22 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             }
         });
 
-        GaveValues.display.size.width = display.size.width;
-        GaveValues.display.size.height = display.size.height;
-        GaveValues.xOffset = (display.size.width-GaveValues.gameDisplay.size.width)/2;
-        GaveValues.yOffset = (display.size.height-GaveValues.gameDisplay.size.height)/2;
-        GaveValues.isPaused = false;
-        GaveValues.isFastForwarded = false;
+        GameValues.display.size.width = display.size.width;
+        GameValues.display.size.height = display.size.height;
+        GameValues.xOffset = (display.size.width- GameValues.gameDisplay.size.width)/2;
+        GameValues.yOffset = (display.size.height- GameValues.gameDisplay.size.height)/2;
+        GameValues.isPaused = false;
+        GameValues.isFastForwarded = false;
+        GameValues.playerCoins = GameValues.START_COINS;
 
         int resourceId = getResources().getIdentifier("navigation_bar_width", "dimen", "android");
-        GaveValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;
+        GameValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;
 
         this.gameCanvasRect = new Rect(
-                (int)GaveValues.xCoordinate(0),
-                (int)GaveValues.yCoordinate(0),
-                (int)GaveValues.xCoordinate(GaveValues.gameDisplay.size.width),
-                (int)GaveValues.yCoordinate(GaveValues.gameDisplay.size.height)
+                (int) GameValues.xCoordinate(0),
+                (int) GameValues.yCoordinate(0),
+                (int) GameValues.xCoordinate(GameValues.gameDisplay.size.width),
+                (int) GameValues.yCoordinate(GameValues.gameDisplay.size.height)
         );
 
         Bundle bundle = getIntent().getExtras();
@@ -101,9 +100,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void update() {
         sceneManager.update();
-        if (GaveValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
+        if (GameValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
         }
+        System.out.println(GameValues.playerCoins);
     }
 
     public void draw(Canvas canvas) {
@@ -122,11 +122,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void pause() {
-        GaveValues.isPaused = true;
+        GameValues.isPaused = true;
     }
 
     public void resume() {
-        GaveValues.isPaused = false;
+        GameValues.isPaused = false;
     }
 
     //==========pause menu dialog============//

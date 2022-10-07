@@ -1,6 +1,6 @@
 package com.example.project2_rev2.utils;
 
-public class GaveValues {
+public class GameValues {
 
     public final static Display gameDisplay = new Display(1916, 1076);
 
@@ -20,5 +20,9 @@ public class GaveValues {
     public static boolean isPaused = false;
 
     public static boolean isFastForwarded = false;
+
+    public final static int START_COINS = 800;
+
+    public static int playerCoins = START_COINS;
 
 }

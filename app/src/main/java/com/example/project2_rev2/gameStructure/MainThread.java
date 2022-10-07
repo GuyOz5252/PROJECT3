@@ -3,8 +3,7 @@ package com.example.project2_rev2.gameStructure;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.project2_rev2.utils.Display;
-import com.example.project2_rev2.utils.GaveValues;
+import com.example.project2_rev2.utils.GameValues;
 
 public class MainThread extends Thread {
 
@@ -45,7 +44,7 @@ public class MainThread extends Thread {
         long targetTime = 1000 / MAX_FPS;
 
         while (isRunning) {
-            if (!GaveValues.isPaused) {
+            if (!GameValues.isPaused) {
                 startTime = System.nanoTime();
                 canvas = null;
                 try {

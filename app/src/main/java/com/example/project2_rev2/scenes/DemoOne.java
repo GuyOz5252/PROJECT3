@@ -1,9 +1,9 @@
 package com.example.project2_rev2.scenes;
 
-import static com.example.project2_rev2.utils.GaveValues.display;
-import static com.example.project2_rev2.utils.GaveValues.gameDisplay;
-import static com.example.project2_rev2.utils.GaveValues.xCoordinate;
-import static com.example.project2_rev2.utils.GaveValues.yCoordinate;
+import static com.example.project2_rev2.utils.GameValues.display;
+import static com.example.project2_rev2.utils.GameValues.gameDisplay;
+import static com.example.project2_rev2.utils.GameValues.xCoordinate;
+import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
