@@ -25,7 +25,7 @@ public class LaserCanon extends Tower {
     }
 
     @Override
-    public int upgrade(int upgradeIndex) {
-        return 0;
+    public boolean upgrade(int upgradeIndex) {
+        return false;
     }
 }

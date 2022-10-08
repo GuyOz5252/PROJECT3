@@ -39,8 +39,11 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
-    protected TowerUpgrade[] towerUpgrades;
+    protected TowerUpgradePath towerUpgradePathOne;
+    protected TowerUpgradePath towerUpgradePathTwo;
     protected int upgradeCount;
+
+    protected int xp;
 
     public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
@@ -66,11 +69,13 @@ public abstract class Tower extends BitmapObject {
                 (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
-        this.towerUpgrades = towerType.towerUpgrades;
+        this.towerUpgradePathOne = towerType.towerUpgradePathOne;
+        this.towerUpgradePathTwo = towerType.towerUpgradePathTwo;
         this.upgradeCount = 0;
+        this.xp = 0;
     }
 
-    public abstract int upgrade(int upgradeIndex);
+    public abstract boolean upgrade(int upgradeIndex);
 
     public Projectile.ProjectileType getProjectileType() {
         return projectileType;
@@ -82,6 +87,14 @@ public abstract class Tower extends BitmapObject {
 
     public String getName() {
         return towerType.towerName;
+    }
+
+    public TowerUpgradePath getTowerUpgradePathOne() {
+        return towerUpgradePathOne;
+    }
+
+    public TowerUpgradePath getTowerUpgradePathTwo() {
+        return towerUpgradePathTwo;
     }
 
     public void attack(Enemy enemy) {
@@ -155,24 +168,19 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
-    public static class TowerUpgrade {
+    public static class TowerUpgradePath {
 
-        public TowerUpgradeType towerUpgradeType;
-        public int indexLevel;
+        public int pathLevel;
         public int[] value;
         public int[] cost;
+        public int[] xpReq;
 
-        public TowerUpgrade(TowerUpgradeType towerUpgradeType, int[] value, int[] cost) {
-            this.towerUpgradeType = towerUpgradeType;
+        public TowerUpgradePath(int[] value, int[] cost, int[] xpReq) {
             this.value = value;
             this.cost = cost;
-            this.indexLevel = 0;
+            this.xpReq = xpReq;
+            this.pathLevel = 0;
         }
-    }
-
-    public enum TowerUpgradeType {
-        RANGE,
-        COOLDOWN
     }
 
     public enum TowerType {
@@ -183,18 +191,17 @@ public abstract class Tower extends BitmapObject {
                 30,
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
-                new TowerUpgrade[] {
-                        new TowerUpgrade(
-                                TowerUpgradeType.RANGE,
-                                new int[] {350, 400, 480},
-                                new int[] {100, 150, 200}
-                        ),
-                        new TowerUpgrade(
-                                TowerUpgradeType.COOLDOWN,
-                                new int[] {27, 24, 20},
-                                new int[] {100, 150, 200}
-                        )
-                }
+                new TowerUpgradePath(
+                        new int[] {350, 400, 500},
+                        new int[] {100, 200, 350},
+                        new int[] {0, 0, 0}
+                ),
+                new TowerUpgradePath(
+                        new int[] {25, 23, 18},
+                        new int[] {100, 200, 300},
+                        new int[] {0, 0, 0}
+                )
+
         );
         //LASER_CANON(
         //        "Laser Canon",
@@ -211,16 +218,18 @@ public abstract class Tower extends BitmapObject {
         public int cooldown;
         public Size size;
         public Projectile.ProjectileType projectileType;
-        public TowerUpgrade[] towerUpgrades;
+        public TowerUpgradePath towerUpgradePathOne;
+        public TowerUpgradePath towerUpgradePathTwo;
 
-        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerUpgrade[] towerUpgrades) {
+        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
             this.towerName = towerName;
             this.bitmap = bitmap;
             this.range = range;
             this.cooldown = cooldown;
             this.size = size;
             this.projectileType = projectileType;
-            this.towerUpgrades = towerUpgrades;
+            this.towerUpgradePathOne = towerUpgradePathOne;
+            this.towerUpgradePathTwo = towerUpgradePathTwo;
         }
     }
 }

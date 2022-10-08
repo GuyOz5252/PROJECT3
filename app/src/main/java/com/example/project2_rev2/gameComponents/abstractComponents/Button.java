@@ -32,5 +32,5 @@ public abstract class Button extends BitmapObject {
         return buttonRect.contains((int)(motionEvent.getX()), (int)(motionEvent.getY()));
     }
 
-    public abstract void onTouchEvent(MotionEvent motionEvent);
+    public abstract boolean onTouchEvent(MotionEvent motionEvent);
 }

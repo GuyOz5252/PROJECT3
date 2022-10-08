@@ -19,10 +19,11 @@ public class FastForwardButton extends Button {
     }
 
     @Override
-    public void onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             System.out.println("clicked");
             GameValues.isFastForwarded = !GameValues.isFastForwarded;
         }
+        return true;
     }
 }

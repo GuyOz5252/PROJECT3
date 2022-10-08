@@ -26,23 +26,22 @@ public class DemoTower extends Tower {
     }
 
     @Override
-    public int upgrade(int upgradeIndex) { // TODO fix
-        //if (upgradeCount < 5 && towerUpgrades[upgradeIndex].indexLevel < 3) {
-        //    if (GameValues.playerCoins >= towerUpgrades[upgradeIndex].cost[towerUpgrades[upgradeIndex].indexLevel]) {
-        //        switch (towerUpgrades[upgradeIndex].towerUpgradeType) {
-        //            case RANGE:
-        //                range = towerUpgrades[upgradeIndex].value[towerUpgrades[upgradeIndex].indexLevel];
-        //                break;
-        //            case COOLDOWN:
-        //                cooldown = towerUpgrades[upgradeIndex].value[towerUpgrades[upgradeIndex].indexLevel];
-        //                break;
-        //        }
-        //        GameValues.playerCoins -= towerUpgrades[upgradeIndex].cost[towerUpgrades[upgradeIndex].indexLevel];
-        //        towerUpgrades[upgradeIndex].indexLevel++;
-        //        upgradeCount++;
-        //    }
-        //}
-        //return towerUpgrades[upgradeIndex].indexLevel;
-        return 0;
+    public boolean upgrade(int upgradePathIndex) {
+        if (upgradePathIndex == 0) {
+            if (towerUpgradePathOne.pathLevel < towerUpgradePathOne.value.length && xp >= towerUpgradePathOne.xpReq[towerUpgradePathOne.pathLevel]) {
+                range = towerUpgradePathOne.value[towerUpgradePathOne.pathLevel];
+                towerUpgradePathOne.pathLevel++;
+                upgradeCount++;
+                return true;
+            }
+        } else {
+            if (towerUpgradePathTwo.pathLevel < towerUpgradePathTwo.value.length && xp >= towerUpgradePathOne.xpReq[towerUpgradePathOne.pathLevel]) {
+                cooldown = towerUpgradePathTwo.value[towerUpgradePathTwo.pathLevel];
+                towerUpgradePathTwo.pathLevel++;
+                upgradeCount++;
+                return true;
+            }
+        }
+        return false;
     }
 }

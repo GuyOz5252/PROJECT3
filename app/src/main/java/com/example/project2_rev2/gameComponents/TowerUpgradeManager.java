@@ -15,7 +15,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 
-public class TowerUpgradeUI {
+public class TowerUpgradeManager {
 
     private Context context;
     private boolean show;
@@ -26,7 +26,7 @@ public class TowerUpgradeUI {
     private SellTowerButton sellTowerButton;
     private TextUI towerNameText;
 
-    public TowerUpgradeUI(Tower tower, Context context) {
+    public TowerUpgradeManager(Tower tower, Context context) {
         this.context = context;
         this.show = false;
 

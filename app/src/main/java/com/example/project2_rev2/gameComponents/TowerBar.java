@@ -25,7 +25,7 @@ public class TowerBar extends RectObject {
     private StartWaveButton startWaveButton;
     private FastForwardButton fastForwardButton;
 
-    private TowerUpgradeUI towerUpgradeUI;
+    private TowerUpgradeManager towerUpgradeManager;
 
     public TowerBar(WaveManager waveManager, Context context) {
         super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
@@ -38,8 +38,6 @@ public class TowerBar extends RectObject {
         waveManager.setStartWaveButton(startWaveButton);
 
         this.fastForwardButton = new FastForwardButton(context);
-
-        this.towerUpgradeUI = new TowerUpgradeUI(context);
     }
 
     public Rect getTowerBarRect() {
@@ -48,10 +46,9 @@ public class TowerBar extends RectObject {
 
     public void showTowerUpgradeUI(Tower tower) {
         if (tower != null) {
-            towerUpgradeUI.setTower(tower);
-            towerUpgradeUI.setShow(true);
+            towerUpgradeManager.setShow(true);
         } else {
-            towerUpgradeUI.setShow(false);
+            towerUpgradeManager.setShow(false);
         }
     }
 
@@ -69,8 +66,8 @@ public class TowerBar extends RectObject {
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);
 
-        if (towerUpgradeUI.getShow()) {
-            towerUpgradeUI.draw(canvas);
+        if (towerUpgradeManager.getShow()) {
+            towerUpgradeManager.draw(canvas);
         } else {
             // draw drag n drop ui
         }
@@ -85,8 +82,8 @@ public class TowerBar extends RectObject {
         startWaveButton.onTouchEvent(motionEvent);
         fastForwardButton.onTouchEvent(motionEvent);
 
-        if (towerUpgradeUI.getShow()) {
-            towerUpgradeUI.onTouchEvent(motionEvent);
+        if (towerUpgradeManager.getShow()) {
+            towerUpgradeManager.onTouchEvent(motionEvent);
         } else {
             // listen to drag n drop ui
         }
