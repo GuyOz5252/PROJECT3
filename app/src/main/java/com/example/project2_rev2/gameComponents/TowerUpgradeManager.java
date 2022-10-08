@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.TowerUpgradeManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
@@ -21,21 +20,26 @@ public class TowerUpgradeUI {
     private Context context;
     private boolean show;
 
-    private TowerUpgradeManager towerUpgradeManager;
+    private UpgradeButton upgradeButtonPathOne;
+    private UpgradeButton upgradeButtonPathTwo;
     private Tower tower;
     private SellTowerButton sellTowerButton;
     private TextUI towerNameText;
 
-    public TowerUpgradeUI(Context context) {
+    public TowerUpgradeUI(Tower tower, Context context) {
         this.context = context;
         this.show = false;
+
+        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);
+        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(430), 1, tower, context);
+        this.tower = tower;
 
         this.sellTowerButton = new SellTowerButton(context);
 
         this.towerNameText = new TextUI(
                 xCoordinate(175),
                 yCoordinate(225),
-                "name",
+                tower.getName(),
                 R.color.black,
                 50f,
                 Paint.Align.CENTER,
@@ -56,16 +60,16 @@ public class TowerUpgradeUI {
         this.show = show;
     }
 
-    public void setTower(Tower tower) {
-        this.tower = tower;
-        this.towerUpgradeManager = new TowerUpgradeManager(tower, context);
-        this.towerNameText.changeText(tower.getName());
+    public void updateUI() {
+
     }
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(20), null);
 
-        towerUpgradeManager.draw(canvas);
+        upgradeButtonPathOne.draw(canvas);
+        upgradeButtonPathTwo.draw(canvas);
+
         sellTowerButton.draw(canvas);
         towerNameText.draw(canvas);
     }
@@ -75,7 +79,13 @@ public class TowerUpgradeUI {
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
-        towerUpgradeManager.onTouchEvent(motionEvent);
+        if (upgradeButtonPathOne.onTouchEvent(motionEvent)) {
+            updateUI();
+        }
+        if (upgradeButtonPathTwo.onTouchEvent(motionEvent)) {
+            updateUI();
+        }
+
         sellTowerButton.onTouchEvent(motionEvent);
     }
 }
