@@ -207,15 +207,25 @@ public abstract class Tower extends BitmapObject {
                         new int[] {0, 0, 0}
                 )
 
+        ),
+        LASER_CANON(
+                "Laser Canon",
+                R.drawable.ic_launcher_background,
+                200,
+                10,
+                new Size(120, 120),
+                Projectile.ProjectileType.LASER_BEAM,
+                new TowerUpgradePath(
+                        new int[] {},
+                        new int[] {},
+                        new int[] {}
+                ),
+                new TowerUpgradePath(
+                        new int[] {},
+                        new int[] {},
+                        new int[] {}
+                )
         );
-        //LASER_CANON(
-        //        "Laser Canon",
-        //        R.drawable.ic_launcher_background,
-        //        200,
-        //        10,
-        //        new Size(120, 120),
-        //        Projectile.ProjectileType.LASER_BEAM
-        //);
 
         public String towerName;
         public int bitmap;

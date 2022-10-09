@@ -15,6 +15,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
+import com.example.project2_rev2.utils.GameValues;
 
 public class TowerUpgradeManager implements OnCoinsChangeListener {
 
@@ -27,6 +28,8 @@ public class TowerUpgradeManager implements OnCoinsChangeListener {
     private TextUI towerNameText;
 
     public TowerUpgradeManager(Tower tower, Context context) {
+        GameValues.coinsChangeListenerArrayList.add(this);
+
         this.context = context;
 
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);

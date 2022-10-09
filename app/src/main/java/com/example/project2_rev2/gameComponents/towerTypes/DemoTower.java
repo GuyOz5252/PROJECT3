@@ -28,15 +28,17 @@ public class DemoTower extends Tower {
             if (pathOneLevel < towerUpgradePathOne.value.length) {
                 if (xp >= towerUpgradePathOne.xpReq[pathOneLevel] && GameValues.getPlayerCoins() >= towerUpgradePathOne.cost[pathOneLevel]) {
                     range = towerUpgradePathOne.value[pathOneLevel];
+                    GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePathOne.cost[pathOneLevel]);
                     pathOneLevel++;
                     upgradeCount++;
                     return true;
                 }
             }
         } else {
-            if (pathOneLevel < towerUpgradePathTwo.value.length) {
-                if (xp >= towerUpgradePathOne.xpReq[pathTwoLevel] && GameValues.getPlayerCoins() >= towerUpgradePathTwo.cost[pathTwoLevel]) {
+            if (pathTwoLevel < towerUpgradePathTwo.value.length) {
+                if (xp >= towerUpgradePathTwo.xpReq[pathTwoLevel] && GameValues.getPlayerCoins() >= towerUpgradePathTwo.cost[pathTwoLevel]) {
                     cooldown = towerUpgradePathTwo.value[pathTwoLevel];
+                    GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePathTwo.cost[pathTwoLevel]);
                     pathTwoLevel++;
                     upgradeCount++;
                     return true;

@@ -13,7 +13,7 @@ public class LaserCanon extends Tower {
         super(
                 x,
                 y,
-                TowerType.DEMO_TOWER,
+                TowerType.LASER_CANON,
                 towerBar,
                 waveManager,
                 projectileManager,
