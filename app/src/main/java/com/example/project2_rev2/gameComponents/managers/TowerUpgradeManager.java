@@ -14,8 +14,9 @@ import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
+import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 
-public class TowerUpgradeManager {
+public class TowerUpgradeManager implements OnCoinsChangeListener {
 
     private Context context;
 
@@ -52,6 +53,11 @@ public class TowerUpgradeManager {
 
     public void updateUI() {
 
+    }
+
+    @Override
+    public void onCoinsChange() {
+        updateUI();
     }
 
     public void draw(Canvas canvas) {

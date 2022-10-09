@@ -79,7 +79,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         GameValues.yOffset = (display.size.height- GameValues.gameDisplay.size.height)/2;
         GameValues.isPaused = false;
         GameValues.isFastForwarded = false;
-        GameValues.playerCoins = GameValues.START_COINS;
+        GameValues.setPlayerCoins(GameValues.START_COINS);
 
         int resourceId = getResources().getIdentifier("navigation_bar_width", "dimen", "android");
         GameValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;

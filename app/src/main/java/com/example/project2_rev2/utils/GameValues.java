@@ -1,5 +1,9 @@
 package com.example.project2_rev2.utils;
 
+import com.example.project2_rev2.listeners.OnCoinsChangeListener;
+
+import java.util.ArrayList;
+
 public class GameValues {
 
     public final static Display gameDisplay = new Display(1916, 1076);
@@ -23,6 +27,17 @@ public class GameValues {
 
     public final static int START_COINS = 800;
 
-    public static int playerCoins = START_COINS;
+    private static int playerCoins = START_COINS;
 
+    /**player coins**/
+    public static ArrayList<OnCoinsChangeListener> coinsChangeListenerArrayList = new ArrayList<>();
+
+    public static int getPlayerCoins() {
+        return playerCoins;
+    }
+
+    public static void setPlayerCoins(int playerCoins) {
+        GameValues.playerCoins = playerCoins;
+        coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
+    }
 }
