@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.Size;
 
@@ -28,12 +28,13 @@ public class StartWaveButton extends Button {
     }
 
     @Override
-    public void onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             if (isActive) {
                 waveManager.startWave();
             }
             System.out.println("press");
         }
+        return true;
     }
 }

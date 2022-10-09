@@ -1,8 +1,10 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.managers;
 
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.example.project2_rev2.gameComponents.Enemy;
+import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
@@ -64,15 +66,15 @@ public class ProjectileManager {
     }
 
     public void draw(Canvas canvas) {
-        for (Projectile projectile : projectileArrayList) {
+        projectileArrayList.forEach(projectile -> {
             if (projectile.getIsActive()) {
                 projectile.draw(canvas);
             }
-        }
+        });
     }
 
     public void update() {
-        for (Projectile projectile : projectileArrayList) {
+        projectileArrayList.forEach(projectile -> {
             if (projectile.getIsActive()) {
                 projectile.update();
                 projectile.hitEnemy(waveManager.getAliveList());
@@ -80,6 +82,6 @@ public class ProjectileManager {
             if (!projectile.getIsActive()) {
                 projectileArrayList.remove(projectile);
             }
-        }
+        });
     }
 }

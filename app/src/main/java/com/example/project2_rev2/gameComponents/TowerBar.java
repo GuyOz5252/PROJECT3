@@ -14,18 +14,19 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.RectObject;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.FastForwardButton;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
+import com.example.project2_rev2.gameComponents.managers.TowerManager;
+import com.example.project2_rev2.gameComponents.managers.WaveManager;
 
 public class TowerBar extends RectObject {
 
     private Paint borderPaint;
 
+    private TowerManager towerManager;
+
     private StartWaveButton startWaveButton;
     private FastForwardButton fastForwardButton;
-
-    private TowerUpgradeManager towerUpgradeManager;
 
     public TowerBar(WaveManager waveManager, Context context) {
         super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
@@ -44,18 +45,25 @@ public class TowerBar extends RectObject {
         return rect;
     }
 
-    public void showTowerUpgradeUI(Tower tower) {
-        if (tower != null) {
-            towerUpgradeManager.setShow(true);
-        } else {
-            towerUpgradeManager.setShow(false);
-        }
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public Paint getBorderPaint() {
+        return borderPaint;
+    }
+
+    public void setTowerManager(TowerManager towerManager) {
+        this.towerManager = towerManager;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        super.draw(canvas);
-        canvas.drawRect(rect, borderPaint);
+        if (!towerManager.getIsAnyTowerSelected()) {
+            super.draw(canvas);
+            canvas.drawRect(rect, borderPaint);
+        }
+
         canvas.drawLine(
                 (float)xCoordinate(0),
                 (float)yCoordinate(gameDisplay.size.height-210),
@@ -63,14 +71,9 @@ public class TowerBar extends RectObject {
                 (float)yCoordinate(gameDisplay.size.height-210),
                 borderPaint
         );
+
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);
-
-        if (towerUpgradeManager.getShow()) {
-            towerUpgradeManager.draw(canvas);
-        } else {
-            // draw drag n drop ui
-        }
     }
 
     @Override
@@ -82,9 +85,7 @@ public class TowerBar extends RectObject {
         startWaveButton.onTouchEvent(motionEvent);
         fastForwardButton.onTouchEvent(motionEvent);
 
-        if (towerUpgradeManager.getShow()) {
-            towerUpgradeManager.onTouchEvent(motionEvent);
-        } else {
+        if (!towerManager.getIsAnyTowerSelected()) {
             // listen to drag n drop ui
         }
     }

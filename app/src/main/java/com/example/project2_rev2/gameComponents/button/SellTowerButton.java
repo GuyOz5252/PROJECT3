@@ -17,9 +17,10 @@ public class SellTowerButton extends Button {
     }
 
     @Override
-    public void onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
 
         }
+        return false;
     }
 }

@@ -2,14 +2,11 @@ package com.example.project2_rev2.gameComponents.towerTypes;
 
 import android.content.Context;
 
-import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.Projectile;
-import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Size;
 
 public class DemoTower extends Tower {
 
@@ -28,18 +25,22 @@ public class DemoTower extends Tower {
     @Override
     public boolean upgrade(int upgradePathIndex) {
         if (upgradePathIndex == 0) {
-            if (towerUpgradePathOne.pathLevel < towerUpgradePathOne.value.length && xp >= towerUpgradePathOne.xpReq[towerUpgradePathOne.pathLevel]) {
-                range = towerUpgradePathOne.value[towerUpgradePathOne.pathLevel];
-                towerUpgradePathOne.pathLevel++;
-                upgradeCount++;
-                return true;
+            if (pathOneLevel < towerUpgradePathOne.value.length) {
+                if (xp >= towerUpgradePathOne.xpReq[pathOneLevel] && GameValues.playerCoins >= towerUpgradePathOne.cost[pathOneLevel]) {
+                    range = towerUpgradePathOne.value[pathOneLevel];
+                    pathOneLevel++;
+                    upgradeCount++;
+                    return true;
+                }
             }
         } else {
-            if (towerUpgradePathTwo.pathLevel < towerUpgradePathTwo.value.length && xp >= towerUpgradePathOne.xpReq[towerUpgradePathOne.pathLevel]) {
-                cooldown = towerUpgradePathTwo.value[towerUpgradePathTwo.pathLevel];
-                towerUpgradePathTwo.pathLevel++;
-                upgradeCount++;
-                return true;
+            if (pathOneLevel < towerUpgradePathTwo.value.length) {
+                if (xp >= towerUpgradePathOne.xpReq[pathTwoLevel] && GameValues.playerCoins >= towerUpgradePathTwo.cost[pathTwoLevel]) {
+                    cooldown = towerUpgradePathTwo.value[pathTwoLevel];
+                    pathTwoLevel++;
+                    upgradeCount++;
+                    return true;
+                }
             }
         }
         return false;

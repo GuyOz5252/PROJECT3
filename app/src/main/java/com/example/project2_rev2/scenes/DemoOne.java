@@ -15,27 +15,30 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
-import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
-import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameComponents.managers.TowerManager;
+import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 
 public class DemoOne extends Scene {
 
-    // game components
+    // scene components
     private Rect backgroundRect;
     private Paint backgroundPaint;
     private Rect coverRect;
     private Paint coverPaint;
+
+    // game components
     private TowerBar towerBar;
     private EnemyPath enemyPath;
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
-    private Tower tower;
+    private TowerManager towerManager;
 
     public DemoOne(Context context) {
 
@@ -84,8 +87,8 @@ public class DemoOne extends Scene {
 
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.towerBar = new TowerBar(waveManager, context);
-
-        this.tower = new DemoTower(xCoordinate(1400), yCoordinate(250), towerBar, waveManager, projectileManager, context); // TODO temp
+        this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
+        this.towerBar.setTowerManager(towerManager);
     }
 
     @Override
@@ -95,9 +98,8 @@ public class DemoOne extends Scene {
         enemyPath.draw(canvas);
         waveManager.draw(canvas);
         projectileManager.draw(canvas);
+        towerManager.draw(canvas);
         towerBar.draw(canvas);
-
-        tower.draw(canvas); // TODO temp
 
         canvas.drawRect(coverRect, coverPaint);
     }
@@ -106,13 +108,12 @@ public class DemoOne extends Scene {
     public void update() {
         waveManager.update();
         projectileManager.update();
-
-        tower.update(); // TODO temp
+        towerManager.update();
     }
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
         towerBar.onTouchEvent(motionEvent);
-        tower.onTouchEvent(motionEvent);
+        towerManager.onTouchEvent(motionEvent);
     }
 }

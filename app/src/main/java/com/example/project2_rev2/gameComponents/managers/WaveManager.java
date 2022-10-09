@@ -1,8 +1,11 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.managers;
 
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.example.project2_rev2.gameComponents.Enemy;
+import com.example.project2_rev2.gameComponents.EnemyPath;
+import com.example.project2_rev2.gameComponents.WaveCounter;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 
 import java.util.ArrayList;
@@ -85,12 +88,12 @@ public class WaveManager {
             }
         }
 
-        for (Enemy enemy : aliveList) {
+        aliveList.forEach(enemy -> {
             enemy.update();
             if (!enemy.getIsAlive()) {
                 aliveList.remove(enemy);
             }
-        }
+        });
     }
 
     /**********************************************************************************************/

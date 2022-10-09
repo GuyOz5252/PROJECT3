@@ -15,9 +15,10 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
-import com.example.project2_rev2.gameComponents.ProjectileManager;
+import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
-import com.example.project2_rev2.gameComponents.WaveManager;
+import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
+import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.Size;
 
 public abstract class Tower extends BitmapObject {
@@ -39,8 +40,11 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
+    private TowerUpgradeManager towerUpgradeManager;
     protected TowerUpgradePath towerUpgradePathOne;
     protected TowerUpgradePath towerUpgradePathTwo;
+    protected int pathOneLevel;
+    protected int pathTwoLevel;
     protected int upgradeCount;
 
     protected int xp;
@@ -69,8 +73,11 @@ public abstract class Tower extends BitmapObject {
                 (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
+        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
         this.towerUpgradePathOne = towerType.towerUpgradePathOne;
         this.towerUpgradePathTwo = towerType.towerUpgradePathTwo;
+        this.pathOneLevel = 0;
+        this.pathTwoLevel = 0;
         this.upgradeCount = 0;
         this.xp = 0;
     }
@@ -89,12 +96,8 @@ public abstract class Tower extends BitmapObject {
         return towerType.towerName;
     }
 
-    public TowerUpgradePath getTowerUpgradePathOne() {
-        return towerUpgradePathOne;
-    }
-
-    public TowerUpgradePath getTowerUpgradePathTwo() {
-        return towerUpgradePathTwo;
+    public boolean getIsSelected() {
+        return isSelected;
     }
 
     public void attack(Enemy enemy) {
@@ -122,6 +125,10 @@ public abstract class Tower extends BitmapObject {
         );
     }
 
+    public void drawUpgradeUI(Canvas canvas) {
+        towerUpgradeManager.draw(canvas);
+    }
+
     public void handleTowerRotation(float angle) {
         bitmap = rotateBitmap(originalBitmap, angle);
     }
@@ -134,6 +141,9 @@ public abstract class Tower extends BitmapObject {
     public void draw(Canvas canvas) {
         if (isSelected) {
             drawRange(canvas);
+            canvas.drawRect(towerBar.getTowerBarRect(), towerBar.getPaint());
+            canvas.drawRect(towerBar.getTowerBarRect(), towerBar.getBorderPaint());
+            drawUpgradeUI(canvas);
         }
         super.draw(canvas);
     }
@@ -156,13 +166,13 @@ public abstract class Tower extends BitmapObject {
                 if (isPressed(motionEvent)) {
                     System.out.println("select");
                     isSelected = true;
-                    towerBar.showTowerUpgradeUI(this);
                 }
             } else {
-                if (!towerBar.getTowerBarRect().contains((int)motionEvent.getX(), (int)motionEvent.getY())) {
+                if (!towerBar.getTowerBarRect().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                     System.out.println("deselect");
                     isSelected = false;
-                    towerBar.showTowerUpgradeUI(null);
+                } else {
+                    towerUpgradeManager.onTouchEvent(motionEvent);
                 }
             }
         }
@@ -170,7 +180,6 @@ public abstract class Tower extends BitmapObject {
 
     public static class TowerUpgradePath {
 
-        public int pathLevel;
         public int[] value;
         public int[] cost;
         public int[] xpReq;
@@ -179,7 +188,6 @@ public abstract class Tower extends BitmapObject {
             this.value = value;
             this.cost = cost;
             this.xpReq = xpReq;
-            this.pathLevel = 0;
         }
     }
 

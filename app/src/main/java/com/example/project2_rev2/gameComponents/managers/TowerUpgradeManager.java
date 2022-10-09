@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.managers;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
@@ -18,7 +18,6 @@ import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 public class TowerUpgradeManager {
 
     private Context context;
-    private boolean show;
 
     private UpgradeButton upgradeButtonPathOne;
     private UpgradeButton upgradeButtonPathTwo;
@@ -28,7 +27,6 @@ public class TowerUpgradeManager {
 
     public TowerUpgradeManager(Tower tower, Context context) {
         this.context = context;
-        this.show = false;
 
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);
         this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(430), 1, tower, context);
@@ -50,14 +48,6 @@ public class TowerUpgradeManager {
 
             }
         };
-    }
-
-    public boolean getShow() {
-        return show;
-    }
-
-    public void setShow(boolean show) {
-        this.show = show;
     }
 
     public void updateUI() {
