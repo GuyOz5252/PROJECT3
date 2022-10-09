@@ -75,7 +75,6 @@ public class TowerUpgradeManager {
         if (upgradeButtonPathTwo.onTouchEvent(motionEvent)) {
             updateUI();
         }
-
         sellTowerButton.onTouchEvent(motionEvent);
     }
 }

@@ -45,24 +45,14 @@ public class TowerBar extends RectObject {
         return rect;
     }
 
-    public Paint getPaint() {
-        return paint;
-    }
-
-    public Paint getBorderPaint() {
-        return borderPaint;
-    }
-
     public void setTowerManager(TowerManager towerManager) {
         this.towerManager = towerManager;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        if (!towerManager.getIsAnyTowerSelected()) {
-            super.draw(canvas);
-            canvas.drawRect(rect, borderPaint);
-        }
+        super.draw(canvas);
+        canvas.drawRect(rect, borderPaint);
 
         canvas.drawLine(
                 (float)xCoordinate(0),

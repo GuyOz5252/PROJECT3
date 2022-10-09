@@ -30,6 +30,18 @@ public class TowerManager {
         return isAnyTowerSelected;
     }
 
+    public void drawTowerUpgradeUI(Canvas canvas) {
+        if (selectedTower != null) {
+            selectedTower.drawTowerUpgradeUI(canvas);
+        }
+    }
+
+    public void onTowerUpgradeTouchEvent(MotionEvent motionEvent) {
+        if (selectedTower != null) {
+            selectedTower.onTowerUpgradeTouchEvent(motionEvent);
+        }
+    }
+
     public void draw(Canvas canvas) {
         towerArrayList.forEach(tower -> tower.draw(canvas));
     }

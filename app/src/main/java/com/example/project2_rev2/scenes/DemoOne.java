@@ -17,11 +17,9 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
-import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
 
@@ -100,6 +98,7 @@ public class DemoOne extends Scene {
         projectileManager.draw(canvas);
         towerManager.draw(canvas);
         towerBar.draw(canvas);
+        towerManager.drawTowerUpgradeUI(canvas);
 
         canvas.drawRect(coverRect, coverPaint);
     }
@@ -113,7 +112,8 @@ public class DemoOne extends Scene {
 
     @Override
     public void onTouchEvent(MotionEvent motionEvent) {
-        towerBar.onTouchEvent(motionEvent);
         towerManager.onTouchEvent(motionEvent);
+        towerBar.onTouchEvent(motionEvent);
+        towerManager.onTowerUpgradeTouchEvent(motionEvent);
     }
 }

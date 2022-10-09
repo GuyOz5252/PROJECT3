@@ -125,8 +125,12 @@ public abstract class Tower extends BitmapObject {
         );
     }
 
-    public void drawUpgradeUI(Canvas canvas) {
+    public void drawTowerUpgradeUI(Canvas canvas) {
         towerUpgradeManager.draw(canvas);
+    }
+
+    public void onTowerUpgradeTouchEvent(MotionEvent motionEvent) {
+        towerUpgradeManager.onTouchEvent(motionEvent);
     }
 
     public void handleTowerRotation(float angle) {
@@ -141,9 +145,6 @@ public abstract class Tower extends BitmapObject {
     public void draw(Canvas canvas) {
         if (isSelected) {
             drawRange(canvas);
-            canvas.drawRect(towerBar.getTowerBarRect(), towerBar.getPaint());
-            canvas.drawRect(towerBar.getTowerBarRect(), towerBar.getBorderPaint());
-            drawUpgradeUI(canvas);
         }
         super.draw(canvas);
     }
@@ -164,15 +165,11 @@ public abstract class Tower extends BitmapObject {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             if (!isSelected) {
                 if (isPressed(motionEvent)) {
-                    System.out.println("select");
                     isSelected = true;
                 }
             } else {
                 if (!towerBar.getTowerBarRect().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                    System.out.println("deselect");
                     isSelected = false;
-                } else {
-                    towerUpgradeManager.onTouchEvent(motionEvent);
                 }
             }
         }
