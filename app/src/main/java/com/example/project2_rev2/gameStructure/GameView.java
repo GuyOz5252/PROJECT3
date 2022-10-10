@@ -73,13 +73,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             }
         });
 
-        GameValues.display.size.width = display.size.width;
-        GameValues.display.size.height = display.size.height;
-        GameValues.xOffset = (display.size.width- GameValues.gameDisplay.size.width)/2;
-        GameValues.yOffset = (display.size.height- GameValues.gameDisplay.size.height)/2;
-        GameValues.isPaused = false;
-        GameValues.isFastForwarded = false;
-        GameValues.setPlayerCoins(GameValues.START_COINS);
+        GameValues.init(display);
 
         int resourceId = getResources().getIdentifier("navigation_bar_width", "dimen", "android");
         GameValues.xOffset += getResources().getDimensionPixelSize(resourceId)/2;

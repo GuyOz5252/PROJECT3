@@ -49,6 +49,9 @@ public abstract class Tower extends BitmapObject {
 
     protected int xp;
 
+    protected boolean upgradeOneReady;
+    protected boolean upgradeTwoReady;
+
     public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
@@ -73,13 +76,13 @@ public abstract class Tower extends BitmapObject {
                 (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
-        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
         this.towerUpgradePathOne = towerType.towerUpgradePathOne;
         this.towerUpgradePathTwo = towerType.towerUpgradePathTwo;
-        this.pathOneLevel = 0;
-        this.pathTwoLevel = 0;
+        pathOneLevel = 0;
+        pathTwoLevel = 0;
         this.upgradeCount = 0;
-        this.xp = 0;
+        setXP(0);
+        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
     }
 
     public abstract boolean upgrade(int upgradeIndex);
@@ -98,6 +101,40 @@ public abstract class Tower extends BitmapObject {
 
     public boolean getIsSelected() {
         return isSelected;
+    }
+
+    public TowerUpgradePath getTowerUpgradePathOne() {
+        return towerUpgradePathOne;
+    }
+
+    public TowerUpgradePath getTowerUpgradePathTwo() {
+        return towerUpgradePathTwo;
+    }
+
+    public int getPathOneLevel() {
+        return pathOneLevel;
+    }
+
+    public int getPathTwoLevel() {
+        return pathTwoLevel;
+    }
+
+    public boolean getUpgradeOneReady() {
+        return upgradeOneReady;
+    }
+
+    public boolean getUpgradeTwoReady() {
+        return upgradeTwoReady;
+    }
+
+    public void setXP(int xp) {
+        this.xp = xp;
+        checkIfUpgradeReady();
+    }
+
+    public void checkIfUpgradeReady() {
+        upgradeOneReady = xp >= towerUpgradePathOne.xpReq[pathOneLevel];
+        upgradeTwoReady = xp >= towerUpgradePathTwo.xpReq[pathTwoLevel];
     }
 
     public void attack(Enemy enemy) {
@@ -177,11 +214,13 @@ public abstract class Tower extends BitmapObject {
 
     public static class TowerUpgradePath {
 
+        public String name;
         public int[] value;
         public int[] cost;
         public int[] xpReq;
 
-        public TowerUpgradePath(int[] value, int[] cost, int[] xpReq) {
+        public TowerUpgradePath(String name, int[] value, int[] cost, int[] xpReq) {
+            this.name = name;
             this.value = value;
             this.cost = cost;
             this.xpReq = xpReq;
@@ -197,11 +236,13 @@ public abstract class Tower extends BitmapObject {
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
                 new TowerUpgradePath(
+                        "Range",
                         new int[] {350, 400, 500},
                         new int[] {100, 200, 350},
-                        new int[] {0, 0, 0}
+                        new int[] {0, 100, 0}
                 ),
                 new TowerUpgradePath(
+                        "ATK Speed",
                         new int[] {25, 23, 18},
                         new int[] {100, 200, 300},
                         new int[] {0, 0, 0}
@@ -216,14 +257,16 @@ public abstract class Tower extends BitmapObject {
                 new Size(120, 120),
                 Projectile.ProjectileType.LASER_BEAM,
                 new TowerUpgradePath(
-                        new int[] {},
-                        new int[] {},
-                        new int[] {}
+                        "None",
+                        new int[] {0},
+                        new int[] {0},
+                        new int[] {0}
                 ),
                 new TowerUpgradePath(
-                        new int[] {},
-                        new int[] {},
-                        new int[] {}
+                        "None",
+                        new int[] {0},
+                        new int[] {0},
+                        new int[] {0}
                 )
         );
 

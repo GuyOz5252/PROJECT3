@@ -8,10 +8,10 @@ public class GameValues {
 
     public final static Display gameDisplay = new Display(1916, 1076);
 
-    public static Display display = new Display(0, 0); // value given in GameView
+    public static Display display = new Display(0, 0);
 
-    public static double xOffset = 0; // value given in GameView
-    public static double yOffset = 0; // value given in GameView
+    public static double xOffset = 0;
+    public static double yOffset = 0;
 
     public static double xCoordinate(double value) {
         return value + xOffset;
@@ -25,7 +25,7 @@ public class GameValues {
 
     public static boolean isFastForwarded = false;
 
-    public final static int START_COINS = 800;
+    public final static int START_COINS = 300;
 
     private static int playerCoins = START_COINS;
 
@@ -39,5 +39,15 @@ public class GameValues {
     public static void setPlayerCoins(int playerCoins) {
         GameValues.playerCoins = playerCoins;
         coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
+    }
+
+    public static void init(Display display) {
+        GameValues.display.size.width = display.size.width;
+        GameValues.display.size.height = display.size.height;
+        xOffset = (display.size.width- GameValues.gameDisplay.size.width)/2;
+        yOffset = (display.size.height- GameValues.gameDisplay.size.height)/2;
+        isPaused = false;
+        isFastForwarded = false;
+        playerCoins = START_COINS;
     }
 }

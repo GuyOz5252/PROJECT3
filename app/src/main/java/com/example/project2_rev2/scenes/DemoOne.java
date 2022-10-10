@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
@@ -37,6 +38,7 @@ public class DemoOne extends Scene {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private TowerManager towerManager;
+    private CoinCounter coinCounter;
 
     public DemoOne(Context context) {
 
@@ -87,6 +89,7 @@ public class DemoOne extends Scene {
         this.towerBar = new TowerBar(waveManager, context);
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
         this.towerBar.setTowerManager(towerManager);
+        this.coinCounter = new CoinCounter(context);
     }
 
     @Override
@@ -99,6 +102,7 @@ public class DemoOne extends Scene {
         towerManager.draw(canvas);
         towerBar.draw(canvas);
         towerManager.drawTowerUpgradeUI(canvas);
+        coinCounter.draw(canvas);
 
         canvas.drawRect(coverRect, coverPaint);
     }

@@ -10,7 +10,7 @@ import com.example.project2_rev2.utils.Size;
 
 public abstract class Button extends BitmapObject {
 
-    protected Rect buttonRect;
+    private Rect buttonRect;
     protected boolean isActive;
 
     public Button(double x, double y, @DrawableRes int resourceId, Size size, Context context) {

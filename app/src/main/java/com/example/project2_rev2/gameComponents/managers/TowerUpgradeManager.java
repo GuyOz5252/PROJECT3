@@ -14,10 +14,8 @@ import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
-import com.example.project2_rev2.listeners.OnCoinsChangeListener;
-import com.example.project2_rev2.utils.GameValues;
 
-public class TowerUpgradeManager implements OnCoinsChangeListener {
+public class TowerUpgradeManager {
 
     private Context context;
 
@@ -28,8 +26,6 @@ public class TowerUpgradeManager implements OnCoinsChangeListener {
     private TextUI towerNameText;
 
     public TowerUpgradeManager(Tower tower, Context context) {
-        GameValues.coinsChangeListenerArrayList.add(this);
-
         this.context = context;
 
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);
@@ -54,15 +50,6 @@ public class TowerUpgradeManager implements OnCoinsChangeListener {
         };
     }
 
-    public void updateUI() {
-
-    }
-
-    @Override
-    public void onCoinsChange() {
-        updateUI();
-    }
-
     public void draw(Canvas canvas) {
         canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(20), null);
 
@@ -73,17 +60,9 @@ public class TowerUpgradeManager implements OnCoinsChangeListener {
         towerNameText.draw(canvas);
     }
 
-    public void update() {
-
-    }
-
     public void onTouchEvent(MotionEvent motionEvent) {
-        if (upgradeButtonPathOne.onTouchEvent(motionEvent)) {
-            updateUI();
-        }
-        if (upgradeButtonPathTwo.onTouchEvent(motionEvent)) {
-            updateUI();
-        }
+        upgradeButtonPathOne.onTouchEvent(motionEvent);
+        upgradeButtonPathTwo.onTouchEvent(motionEvent);
         sellTowerButton.onTouchEvent(motionEvent);
     }
 }
