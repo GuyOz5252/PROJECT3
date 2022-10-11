@@ -4,6 +4,7 @@ import static com.example.project2_rev2.utils.GameValues.getPlayerCoins;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
@@ -21,6 +22,8 @@ import com.example.project2_rev2.utils.Size;
 
 public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
+    private Bitmap greenArrowUpgradeButton;
+    private Bitmap redArrowUpgradeButton;
     private UpgradeButtonState upgradeButtonState;
     private Tower.TowerUpgradePath upgradePath;
     private int upgradePathIndex;
@@ -79,72 +82,80 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         );
     }
 
-    public void handleState() { // TODO debug
-        tower.checkIfUpgradeReady();
+    public void handleState() {
         if (upgradePathIndex == 0) {
-            if (tower.getUpgradeOneReady()) {
-                upgradeButtonState = UpgradeButtonState.UPGRADE_READY;
-            } else {
-                upgradeButtonState = UpgradeButtonState.XP_REQ;
+
+            if (tower.getPathOneLevel() >= tower.getTowerUpgradePathOne().value.length) {
+                upgradeButtonState = UpgradeButtonState.MAX_LEVEL;
             }
         } else {
-            if (tower.getUpgradeTwoReady()) {
-                upgradeButtonState = UpgradeButtonState.UPGRADE_READY;
-            } else {
-                upgradeButtonState = UpgradeButtonState.XP_REQ;
+
+            if (tower.getPathTwoLevel() >= tower.getTowerUpgradePathTwo().value.length) {
+                upgradeButtonState = UpgradeButtonState.MAX_LEVEL;
             }
         }
-        // TODO check for MAX_LEVEL
     }
 
     public void handlePriceColor() {
         if (upgradePathIndex == 0) {
-            if (GameValues.getPlayerCoins() >= upgradePath.cost[tower.getPathOneLevel()]) {
-                coinTextUI.changeColor(R.color.white);
-            } else {
-                coinTextUI.changeColor(R.color.red);
+            if (tower.getPathOneLevel() < tower.getTowerUpgradePathOne().value.length) {
+                if (GameValues.getPlayerCoins() >= upgradePath.cost[tower.getPathOneLevel()]) {
+                    coinTextUI.changeColor(R.color.white);
+                    bitmap = greenArrowUpgradeButton;
+                } else {
+                    coinTextUI.changeColor(R.color.red);
+                    bitmap = redArrowUpgradeButton;
+                }
             }
         } else {
-            if (GameValues.getPlayerCoins() >= upgradePath.cost[tower.getPathTwoLevel()]) {
-                coinTextUI.changeColor(R.color.white);
-            } else {
-                coinTextUI.changeColor(R.color.red);
+            if (tower.getPathTwoLevel() < tower.getTowerUpgradePathTwo().value.length) {
+                if (GameValues.getPlayerCoins() >= upgradePath.cost[tower.getPathTwoLevel()]) {
+                    coinTextUI.changeColor(R.color.white);
+                    bitmap = greenArrowUpgradeButton;
+                } else {
+                    coinTextUI.changeColor(R.color.red);
+                    bitmap = redArrowUpgradeButton;
+                }
             }
         }
     }
 
     public void handlePriceChange() {
         if (upgradePathIndex == 0) {
-            coinTextUI.changeText(String.valueOf(tower.getTowerUpgradePathOne().cost[tower.getPathOneLevel()]));
+            if (tower.getPathOneLevel() < tower.getTowerUpgradePathOne().value.length) {
+                coinTextUI.changeText(String.valueOf(tower.getTowerUpgradePathOne().cost[tower.getPathOneLevel()]));
+            }
         } else {
-            coinTextUI.changeText(String.valueOf(tower.getTowerUpgradePathTwo().cost[tower.getPathTwoLevel()]));
+            if (tower.getPathTwoLevel() < tower.getTowerUpgradePathTwo().value.length) {
+                coinTextUI.changeText(String.valueOf(tower.getTowerUpgradePathTwo().cost[tower.getPathTwoLevel()]));
+            }
         }
     }
 
+    /**Upgrade Ready**/
     public void drawUpgradeReady(Canvas canvas) {
         upgradeName.draw(canvas);
         coinTextUI.draw(canvas);
     }
 
-    public void drawRequireXP(Canvas canvas) {
-
-    }
-
-    private void drawMaxLevel(Canvas canvas) {
-
-    }
-
     private void postUpgrade() {
         handleState();
         handlePriceChange();
-        handlePriceColor();
     }
 
     @Override
     public void onCoinsChange() {
-        if (upgradeButtonState != UpgradeButtonState.MAX_LEVEL) {
-            handlePriceColor();
-        }
+        handlePriceColor();
+    }
+
+    /**XP REQ**/
+    public void drawRequireXP(Canvas canvas) {
+
+    }
+
+    /**Max Level**/
+    private void drawMaxLevel(Canvas canvas) {
+
     }
 
     @Override

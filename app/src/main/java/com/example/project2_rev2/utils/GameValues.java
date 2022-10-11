@@ -25,7 +25,7 @@ public class GameValues {
 
     public static boolean isFastForwarded = false;
 
-    public final static int START_COINS = 300;
+    public final static int START_COINS = 800;
 
     private static int playerCoins = START_COINS;
 

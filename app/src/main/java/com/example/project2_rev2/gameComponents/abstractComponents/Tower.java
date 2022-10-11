@@ -129,12 +129,7 @@ public abstract class Tower extends BitmapObject {
 
     public void setXP(int xp) {
         this.xp = xp;
-        checkIfUpgradeReady();
-    }
 
-    public void checkIfUpgradeReady() {
-        upgradeOneReady = xp >= towerUpgradePathOne.xpReq[pathOneLevel];
-        upgradeTwoReady = xp >= towerUpgradePathTwo.xpReq[pathTwoLevel];
     }
 
     public void attack(Enemy enemy) {
@@ -239,7 +234,7 @@ public abstract class Tower extends BitmapObject {
                         "Range",
                         new int[] {350, 400, 500},
                         new int[] {100, 200, 350},
-                        new int[] {0, 100, 0}
+                        new int[] {0, 0, 0}
                 ),
                 new TowerUpgradePath(
                         "ATK Speed",
