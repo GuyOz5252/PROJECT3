@@ -41,16 +41,10 @@ public abstract class Tower extends BitmapObject {
     private boolean isSelected;
 
     private TowerUpgradeManager towerUpgradeManager;
-    protected TowerUpgradePath towerUpgradePathOne;
-    protected TowerUpgradePath towerUpgradePathTwo;
-    protected int pathOneLevel;
-    protected int pathTwoLevel;
+    protected TowerUpgradePath[] towerUpgradePaths;
+    protected int[] pathLevels;
     protected int upgradeCount;
-
     protected int xp;
-
-    protected boolean upgradeOneReady;
-    protected boolean upgradeTwoReady;
 
     public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
@@ -76,10 +70,11 @@ public abstract class Tower extends BitmapObject {
                 (int)(y+towerType.size.height/2)
         );
         this.isSelected = false;
-        this.towerUpgradePathOne = towerType.towerUpgradePathOne;
-        this.towerUpgradePathTwo = towerType.towerUpgradePathTwo;
-        pathOneLevel = 0;
-        pathTwoLevel = 0;
+        this.towerUpgradePaths = new TowerUpgradePath[] {
+                towerType.towerUpgradePathOne,
+                towerType.towerUpgradePathTwo
+        };
+        this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
         setXP(0);
         this.towerUpgradeManager = new TowerUpgradeManager(this, context);
@@ -103,28 +98,25 @@ public abstract class Tower extends BitmapObject {
         return isSelected;
     }
 
-    public TowerUpgradePath getTowerUpgradePathOne() {
-        return towerUpgradePathOne;
+    public TowerUpgradePath[] getTowerUpgradePaths() {
+        return towerUpgradePaths;
     }
 
-    public TowerUpgradePath getTowerUpgradePathTwo() {
-        return towerUpgradePathTwo;
+    public int[] getPathLevels() {
+        return pathLevels;
     }
 
-    public int getPathOneLevel() {
-        return pathOneLevel;
-    }
+    //public boolean getUpgradeOneReady() {
+    //    return upgradeOneReady;
+    //}
 
-    public int getPathTwoLevel() {
-        return pathTwoLevel;
-    }
+    //public boolean getUpgradeTwoReady() {
+    //    return upgradeTwoReady;
+    //}
 
-    public boolean getUpgradeOneReady() {
-        return upgradeOneReady;
-    }
 
-    public boolean getUpgradeTwoReady() {
-        return upgradeTwoReady;
+    public int getXP() {
+        return xp;
     }
 
     public void setXP(int xp) {
@@ -239,7 +231,7 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         "ATK Speed",
                         new int[] {25, 23, 18},
-                        new int[] {100, 200, 300},
+                        new int[] {10000, 200, 300},
                         new int[] {0, 0, 0}
                 )
 

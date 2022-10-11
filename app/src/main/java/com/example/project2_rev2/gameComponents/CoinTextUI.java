@@ -25,10 +25,10 @@ public class CoinTextUI extends TextUI {
         super(x, y, coins, color, size, Paint.Align.LEFT, context);
         this.context = context;
         this.coinBitmap = new BitmapObject(
-                position.x+70,
-                position.y-30,
-                R.drawable.ic_lock_focused,
-                new Size(40, 40),
+                position.x+65,
+                position.y-size+8,
+                R.drawable.ic_coin,
+                new Size(size, size),
                 context
         ) {};
         this.size = size;

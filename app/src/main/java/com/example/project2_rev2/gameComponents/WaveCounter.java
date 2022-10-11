@@ -14,9 +14,4 @@ public class WaveCounter extends TextUI {
     public WaveCounter(Context context) {
         super(xCoordinate(360), yCoordinate(50), "", R.color.white, 50, Paint.Align.LEFT, context);
     }
-
-    @Override
-    public void update() {
-
-    }
 }

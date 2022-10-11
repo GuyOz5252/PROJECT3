@@ -24,25 +24,20 @@ public class DemoTower extends Tower {
 
     @Override
     public boolean upgrade(int upgradePathIndex) {
-        if (upgradePathIndex == 0) {
-            if (pathOneLevel < towerUpgradePathOne.value.length) {
-                if (xp >= towerUpgradePathOne.xpReq[pathOneLevel] && GameValues.getPlayerCoins() >= towerUpgradePathOne.cost[pathOneLevel]) {
-                    range = towerUpgradePathOne.value[pathOneLevel];
-                    pathOneLevel++;
-                    upgradeCount++;
-                    GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePathOne.cost[pathOneLevel-1]);
-                    return true;
+        if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].value.length) {
+            if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
+                    GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
+
+                if (upgradePathIndex == 0) {
+                    range = towerUpgradePaths[upgradePathIndex].value[pathLevels[upgradePathIndex]];
+                } else {
+                    cooldown = towerUpgradePaths[upgradePathIndex].value[pathLevels[upgradePathIndex]];
                 }
-            }
-        } else {
-            if (pathTwoLevel < towerUpgradePathTwo.value.length) {
-                if (xp >= towerUpgradePathTwo.xpReq[pathTwoLevel] && GameValues.getPlayerCoins() >= towerUpgradePathTwo.cost[pathTwoLevel]) {
-                    cooldown = towerUpgradePathTwo.value[pathTwoLevel];
-                    pathTwoLevel++;
-                    upgradeCount++;
-                    GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePathTwo.cost[pathTwoLevel-1]);
-                    return true;
-                }
+
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
+                return true;
             }
         }
         return false;

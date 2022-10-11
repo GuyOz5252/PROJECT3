@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.GameObject;
 
-public abstract class TextUI extends GameObject {
+public class TextUI extends GameObject {
 
     protected String string;
     protected Paint paint;
@@ -34,5 +34,10 @@ public abstract class TextUI extends GameObject {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawText(string, (float)position.x, (float)position.y, paint);
+    }
+
+    @Override
+    public void update() {
+
     }
 }
