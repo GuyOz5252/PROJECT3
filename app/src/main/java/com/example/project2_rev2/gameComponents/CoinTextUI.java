@@ -27,7 +27,7 @@ public class CoinTextUI extends TextUI {
         this.coinBitmap = new BitmapObject(
                 position.x+paint.measureText(coins)+5,
                 position.y-size+8,
-                R.drawable.ic_coin,
+                R.drawable.coin_icon,
                 new Size(size, size),
                 context
         ) {};

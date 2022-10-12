@@ -29,7 +29,7 @@ public class TowerUpgradeManager {
         this.context = context;
 
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);
-        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(430), 1, tower, context);
+        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(440), 1, tower, context);
         this.tower = tower;
 
         this.sellTowerButton = new SellTowerButton(context);

@@ -19,7 +19,7 @@ import java.net.CookieHandler;
 public abstract class BitmapObject extends GameObject {
 
     private Context context;
-    private Size size;
+    protected Size size;
     protected Bitmap bitmap;
     protected Position centerPosition;
 

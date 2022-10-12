@@ -22,4 +22,6 @@
     <color name="bulletProjectile">#CD7F32</color>
     <color name="laserBeamProjectile">#FF0032</color>
     <color name="coin">#FFC107</color>
+    <color name="upgradeReady">#47FD4E</color>
+    <color name="upgradeNotReady">#FD4747</color>
 </resources>
