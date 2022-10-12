@@ -24,4 +24,6 @@
     <color name="coin">#FFC107</color>
     <color name="upgradeReady">#47FD4E</color>
     <color name="upgradeNotReady">#FD4747</color>
+    <color name="upgradeUnlocked">#47FD4E</color>
+    <color name="upgradeLocked">#3A3A3A</color>
 </resources>
