@@ -25,7 +25,7 @@ public class CoinTextUI extends TextUI {
         super(x, y, coins, color, size, Paint.Align.LEFT, context);
         this.context = context;
         this.coinBitmap = new BitmapObject(
-                position.x+65,
+                position.x+paint.measureText(coins)+5,
                 position.y-size+8,
                 R.drawable.ic_coin,
                 new Size(size, size),
@@ -36,6 +36,12 @@ public class CoinTextUI extends TextUI {
 
     public void changeColor(@ColorRes int color) {
         paint.setColor(ContextCompat.getColor(context, color));
+    }
+
+    @Override
+    public void changeText(String string) {
+        super.changeText(string);
+        coinBitmap.setPosition(position.x+paint.measureText(string)+5, position.y-size+8);
     }
 
     @Override
