@@ -6,6 +6,7 @@ import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -53,6 +54,10 @@ public class TowerBar extends RectObject {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         canvas.drawRect(rect, borderPaint);
+
+        if (!towerManager.getIsAnyTowerSelected()) {
+            // draw drag n drop ui
+        }
 
         canvas.drawLine(
                 (float)xCoordinate(0),

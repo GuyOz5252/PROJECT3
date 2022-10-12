@@ -1,9 +1,6 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
