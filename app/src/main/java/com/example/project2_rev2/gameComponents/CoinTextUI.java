@@ -9,14 +9,13 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
-import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.utils.Size;
 
 public class CoinTextUI extends TextUI {
 
     private Context context;
-    private BitmapObject coinBitmap;
-    private float size;
+    protected BitmapObject coinBitmap;
+    protected float size;
 
     public CoinTextUI(double x, double y, String coins, @ColorRes int color, float size, Context context) {
         super(x, y, coins, color, size, Paint.Align.LEFT, context);

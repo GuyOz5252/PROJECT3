@@ -14,10 +14,9 @@
     <color name="link">#4897EC</color>
     <color name="dialogColor">#001427</color>
 
-    <color name="red">#FF4234</color>
     <color name="black">#000000</color>
     <color name="background">#8BC34A</color>
-    <color name="towerBarBackground">#6E4527</color>
+    <color name="towerBarBackground">#33251B</color>
     <color name="rangeCircle">#40292929</color>
     <color name="bulletProjectile">#CD7F32</color>
     <color name="laserBeamProjectile">#FF0032</color>

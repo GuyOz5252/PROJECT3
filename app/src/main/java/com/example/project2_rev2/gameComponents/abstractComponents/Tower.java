@@ -17,6 +17,7 @@ import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
+import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.Size;
@@ -29,6 +30,7 @@ public abstract class Tower extends BitmapObject {
     private TowerType towerType;
 
     protected int range;
+    protected int value;
     protected Projectile.ProjectileType projectileType;
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
@@ -46,13 +48,14 @@ public abstract class Tower extends BitmapObject {
     protected int upgradeCount;
     protected int xp;
 
-    public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+    public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
         this.towerType = towerType;
         this.projectileType = towerType.projectileType;
+        this.value = towerType.value;
         this.range = towerType.range;
         this.cooldown = towerType.cooldown;
         this.rangeCirclePaint = new Paint();
@@ -77,7 +80,7 @@ public abstract class Tower extends BitmapObject {
         this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
         setXP(0);
-        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
+        this.towerUpgradeManager = new TowerUpgradeManager(this, towerManager, context);
     }
 
     public abstract boolean upgrade(int upgradeIndex);
@@ -106,14 +109,13 @@ public abstract class Tower extends BitmapObject {
         return pathLevels;
     }
 
-    //public boolean getUpgradeOneReady() {
-    //    return upgradeOneReady;
-    //}
+    public int getValue() {
+        return value;
+    }
 
-    //public boolean getUpgradeTwoReady() {
-    //    return upgradeTwoReady;
-    //}
-
+    public int getUpgradeCount() {
+        return upgradeCount;
+    }
 
     public int getXP() {
         return xp;
@@ -132,6 +134,10 @@ public abstract class Tower extends BitmapObject {
                 currentTick = 0;
             }
         }
+    }
+
+    public void deselect() {
+        isSelected = false;
     }
 
     public void drawRange(Canvas canvas) {
@@ -220,6 +226,7 @@ public abstract class Tower extends BitmapObject {
                 R.drawable.ic_launcher_background,
                 300,
                 30,
+                70,
                 new Size(120, 120),
                 Projectile.ProjectileType.DEMO_BULLET,
                 new TowerUpgradePath(
@@ -241,6 +248,7 @@ public abstract class Tower extends BitmapObject {
                 R.drawable.ic_launcher_background,
                 200,
                 10,
+                200,
                 new Size(120, 120),
                 Projectile.ProjectileType.LASER_BEAM,
                 new TowerUpgradePath(
@@ -261,16 +269,18 @@ public abstract class Tower extends BitmapObject {
         public int bitmap;
         public int range;
         public int cooldown;
+        public int value;
         public Size size;
         public Projectile.ProjectileType projectileType;
         public TowerUpgradePath towerUpgradePathOne;
         public TowerUpgradePath towerUpgradePathTwo;
 
-        TowerType(String towerName, int bitmap, int range, int cooldown, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
+        TowerType(String towerName, int bitmap, int range, int cooldown, int value, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
             this.towerName = towerName;
             this.bitmap = bitmap;
             this.range = range;
             this.cooldown = cooldown;
+            this.value = value;
             this.size = size;
             this.projectileType = projectileType;
             this.towerUpgradePathOne = towerUpgradePathOne;

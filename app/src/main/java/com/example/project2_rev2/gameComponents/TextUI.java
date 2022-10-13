@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents.abstractComponents;
+package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;

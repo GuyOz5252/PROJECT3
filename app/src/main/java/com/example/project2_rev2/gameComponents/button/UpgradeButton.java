@@ -1,10 +1,8 @@
 package com.example.project2_rev2.gameComponents.button;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
@@ -13,14 +11,17 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
+import com.example.project2_rev2.gameComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.gameComponents.managers.TowerManager;
+import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class UpgradeButton extends Button implements OnCoinsChangeListener {
+
+    private TowerUpgradeManager towerUpgradeManager;
 
     private int upgradePathIndex;
     private UpgradeButtonState upgradeButtonState;
@@ -40,9 +41,10 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     private BitmapObject[] levelIndicator;
 
-    public UpgradeButton(double y, int upgradePathIndex, Tower tower, Context context) {
+    public UpgradeButton(double y, int upgradePathIndex, Tower tower, TowerUpgradeManager towerUpgradeManager, Context context) {
         super(xCoordinate(20), y, R.drawable.upgrade_button_bckground, new Size(310, 160), context);
         GameValues.coinsChangeListenerArrayList.add(this);
+        this.towerUpgradeManager = towerUpgradeManager;
         this.upgradePathIndex = upgradePathIndex;
         this.tower = tower;
         this.upgradePath = tower.getTowerUpgradePaths()[upgradePathIndex];
@@ -109,7 +111,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 coinTextUI.changeColor(R.color.white);
                 upgradeArrows.changeBitmap(R.drawable.ic_upgrade_arrows_green);
             } else {
-                coinTextUI.changeColor(R.color.red);
+                coinTextUI.changeColor(R.color.upgradeNotReady);
                 upgradeArrows.changeBitmap(R.drawable.ic_upgrade_arrows_red);
             }
         }
@@ -155,6 +157,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void postUpgrade() {
+        towerUpgradeManager.postUpgrade();
         pathLevel = tower.getPathLevels()[upgradePathIndex];
 
         handleState();

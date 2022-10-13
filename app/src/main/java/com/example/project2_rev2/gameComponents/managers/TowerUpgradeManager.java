@@ -10,14 +10,12 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
+import com.example.project2_rev2.gameComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 
 public class TowerUpgradeManager {
-
-    private Context context;
 
     private UpgradeButton upgradeButtonPathOne;
     private UpgradeButton upgradeButtonPathTwo;
@@ -25,29 +23,26 @@ public class TowerUpgradeManager {
     private SellTowerButton sellTowerButton;
     private TextUI towerNameText;
 
-    public TowerUpgradeManager(Tower tower, Context context) {
-        this.context = context;
-
-        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, context);
-        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(440), 1, tower, context);
+    public TowerUpgradeManager(Tower tower, TowerManager towerManager, Context context) {
+        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, this, context);
+        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(440), 1, tower, this, context);
         this.tower = tower;
 
-        this.sellTowerButton = new SellTowerButton(context);
+        this.sellTowerButton = new SellTowerButton(tower, towerManager, context);
 
         this.towerNameText = new TextUI(
                 xCoordinate(175),
                 yCoordinate(225),
                 tower.getName(),
-                R.color.black,
+                R.color.white,
                 50f,
                 Paint.Align.CENTER,
                 context
-        ) {
-            @Override
-            public void update() {
+        );
+    }
 
-            }
-        };
+    public void postUpgrade() {
+        sellTowerButton.updateSellPrice(tower.getValue() + 100*tower.getUpgradeCount());
     }
 
     public void draw(Canvas canvas) {

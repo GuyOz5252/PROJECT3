@@ -25,7 +25,7 @@ public class StartWaveButton extends Button {
         this.startWaveIconIcon = new BitmapObject(
                 centerPosition.x-60,
                 centerPosition.y-60,
-                R.drawable.ic_start_wave,
+                R.drawable.ic_start_wave_active,
                 new Size(120, 120),
                 context
         ) {};
@@ -34,7 +34,11 @@ public class StartWaveButton extends Button {
     @Override
     public void setIsActive(boolean isActive) {
         super.setIsActive(isActive);
-        // change button bitmap
+        if (isActive) {
+            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_active);
+        } else {
+            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
+        }
     }
 
     @Override

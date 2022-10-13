@@ -5,10 +5,8 @@ import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
-import android.graphics.Paint;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.abstractComponents.TextUI;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 

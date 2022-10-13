@@ -22,9 +22,13 @@ public class TowerManager {
 
     public TowerManager(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         this.towerArrayList = new ArrayList<>();
-        this.towerArrayList.add(new LaserCanon(xCoordinate(1400), yCoordinate(250), towerBar, waveManager, projectileManager, context));
-        this.towerArrayList.add(new DemoTower(xCoordinate(600), yCoordinate(750), towerBar, waveManager, projectileManager, context));
+        this.towerArrayList.add(new LaserCanon(xCoordinate(1400), yCoordinate(250), towerBar, waveManager, projectileManager, this, context));
+        this.towerArrayList.add(new DemoTower(xCoordinate(600), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
         this.isAnyTowerSelected = false;
+    }
+
+    public void removeTower(Tower tower) {
+        towerArrayList.remove(tower);
     }
 
     public boolean getIsAnyTowerSelected() {
