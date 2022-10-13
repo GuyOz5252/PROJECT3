@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.GameObject;
+import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,9 @@ public class Projectile extends GameObject {
     private boolean isActive;
     private ProjectileType projectileType;
 
-    public Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Context context) {
+    private Tower originTower;
+
+    public Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
         super(x, y);
         this.velocityX = velocityX;
         this.velocityY = velocityY;
@@ -31,6 +34,8 @@ public class Projectile extends GameObject {
         this.radius = projectileType.radius;
         this.paint = new Paint();
         this.paint.setColor(ContextCompat.getColor(context, projectileType.color));
+
+        this.originTower = originTower;
     }
 
     public boolean getIsActive() {
@@ -49,7 +54,7 @@ public class Projectile extends GameObject {
             float yDistance = (float) (position.y - enemy.getCenterPosition().y);
             float distance = (float) Math.hypot(xDistance, yDistance);
             if (distance <= range) {
-                enemy.receiveDamage(projectileType.damage);
+                enemy.receiveDamage(projectileType.damage, originTower);
                 isActive = false;
             }
         }

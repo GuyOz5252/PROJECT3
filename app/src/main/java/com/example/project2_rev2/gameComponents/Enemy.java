@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
+import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
@@ -26,6 +28,7 @@ public class Enemy extends BitmapObject {
     private final Bitmap originalBitmap;
 
     private int health;
+    private int value;
 
     public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(
@@ -43,6 +46,7 @@ public class Enemy extends BitmapObject {
         this.needRotation = false;
         this.originalBitmap = bitmap;
         this.health = enemyType.health;
+        this.value = enemyType.value;
     }
 
     public boolean getIsAlive() {
@@ -112,10 +116,16 @@ public class Enemy extends BitmapObject {
         }
     }
 
-    public void receiveDamage(int damage) {
+    public void die(Tower tower) {
+        isAlive = false;
+        //tower.setXP(tower.getXP() + );
+        GameValues.setPlayerCoins(GameValues.getPlayerCoins() + value);
+    }
+
+    public void receiveDamage(int damage, Tower originTower) {
         health -= damage;
         if (health <= 0) {
-            isAlive = false;
+            die(originTower);
         }
     }
 
@@ -129,7 +139,7 @@ public class Enemy extends BitmapObject {
     }
 
     public enum EnemyType {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 3, 100);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 3, 5);
 
         public int resourceId;
         public int speed;
