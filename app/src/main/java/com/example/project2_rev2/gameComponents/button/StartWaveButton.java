@@ -5,9 +5,11 @@ import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.Size;
@@ -15,16 +17,30 @@ import com.example.project2_rev2.utils.Size;
 public class StartWaveButton extends Button {
 
     private WaveManager waveManager;
+    private BitmapObject startWaveIconIcon;
 
     public StartWaveButton(WaveManager waveManager, Context context) {
         super(xCoordinate(183), yCoordinate(gameDisplay.size.height-180), R.drawable.ic_launcher_background, new Size(150, 150), context);
         this.waveManager = waveManager;
+        this.startWaveIconIcon = new BitmapObject(
+                centerPosition.x-60,
+                centerPosition.y-60,
+                R.drawable.ic_start_wave,
+                new Size(120, 120),
+                context
+        ) {};
     }
 
     @Override
     public void setIsActive(boolean isActive) {
         super.setIsActive(isActive);
         // change button bitmap
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        startWaveIconIcon.draw(canvas);
     }
 
     @Override
