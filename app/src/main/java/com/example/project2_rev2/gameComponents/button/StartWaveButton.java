@@ -20,7 +20,7 @@ public class StartWaveButton extends Button {
     private BitmapObject startWaveIconIcon;
 
     public StartWaveButton(WaveManager waveManager, Context context) {
-        super(xCoordinate(183), yCoordinate(gameDisplay.size.height-180), R.drawable.ic_launcher_background, new Size(150, 150), context);
+        super(xCoordinate(183), yCoordinate(gameDisplay.size.height-180), R.drawable.start_wave_button_background_active, new Size(150, 150), context);
         this.waveManager = waveManager;
         this.startWaveIconIcon = new BitmapObject(
                 centerPosition.x-60,
@@ -36,8 +36,10 @@ public class StartWaveButton extends Button {
         super.setIsActive(isActive);
         if (isActive) {
             startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_active);
+            changeBitmap(R.drawable.start_wave_button_background_active);
         } else {
             startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
+            changeBitmap(R.drawable.start_wave_button_background_inactive);
         }
     }
 

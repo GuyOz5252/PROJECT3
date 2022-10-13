@@ -24,7 +24,7 @@ public class SellTowerButton extends Button {
     private CoinTextUI sellPriceTextUI;
 
     public SellTowerButton(Tower tower, TowerManager towerManager, Context context) {
-        super(xCoordinate(60), yCoordinate(790), R.drawable.ic_launcher_background, new Size(230, 60), context);
+        super(xCoordinate(60), yCoordinate(790), R.drawable.sell_button_background, new Size(230, 60), context);
         this.tower = tower;
         this.towerManager = towerManager;
         this.currentPrice = tower.getValue() + 100*tower.getUpgradeCount();

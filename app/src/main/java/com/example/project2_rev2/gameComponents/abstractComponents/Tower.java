@@ -238,7 +238,7 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         "ATK Speed",
                         new int[] {25, 23, 18},
-                        new int[] {10, 200, 300},
+                        new int[] {100, 200, 300},
                         new int[] {0, 0, 0}
                 )
 
