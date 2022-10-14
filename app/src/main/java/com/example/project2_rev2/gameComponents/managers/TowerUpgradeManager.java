@@ -42,7 +42,7 @@ public class TowerUpgradeManager {
     }
 
     public void postUpgrade() {
-        sellTowerButton.updateSellPrice(tower.getValue() + 100*tower.getUpgradeCount());
+        sellTowerButton.updateSellPrice((int)(tower.getValue()*0.75 + 100*tower.getUpgradeCount()));
     }
 
     public void draw(Canvas canvas) {
