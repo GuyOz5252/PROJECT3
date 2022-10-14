@@ -22,6 +22,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
 public class DemoOne extends Scene {
@@ -41,6 +42,7 @@ public class DemoOne extends Scene {
     private CoinCounter coinCounter;
 
     public DemoOne(Context context) {
+        GameValues.healthChangeListenerArrayList.add(this);
 
         this.backgroundRect = new Rect(
                 (int)xCoordinate(0),
@@ -90,6 +92,14 @@ public class DemoOne extends Scene {
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
         this.towerBar.setTowerManager(towerManager);
         this.coinCounter = new CoinCounter(context);
+    }
+
+    @Override
+    public void onHealthChange() {
+        if (GameValues.getPlayerHealth() <= 0) {
+            GameValues.isPaused = true;
+            // TODO finish game with dialog
+        }
     }
 
     @Override

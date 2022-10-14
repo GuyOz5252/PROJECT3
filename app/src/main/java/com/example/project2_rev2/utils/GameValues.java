@@ -1,6 +1,7 @@
 package com.example.project2_rev2.utils;
 
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
+import com.example.project2_rev2.listeners.OnHealthChangeListener;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,10 @@ public class GameValues {
 
     private static int playerCoins = START_COINS;
 
+    public final static int START_HEALTH = 150;
+
+    private static int playerHealth = START_HEALTH;
+
     /**player coins**/
     public static ArrayList<OnCoinsChangeListener> coinsChangeListenerArrayList = new ArrayList<>();
 
@@ -41,6 +46,18 @@ public class GameValues {
         coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
     }
 
+    /**player health**/
+    public static ArrayList<OnHealthChangeListener> healthChangeListenerArrayList = new ArrayList<>();
+
+    public static int getPlayerHealth() {
+        return playerHealth;
+    }
+
+    public static void setPlayerHealth(int playerHealth) {
+        GameValues.playerHealth = playerHealth;
+        healthChangeListenerArrayList.forEach(OnHealthChangeListener::onHealthChange);
+    }
+
     public static void init(Display display) {
         GameValues.display.size.width = display.size.width;
         GameValues.display.size.height = display.size.height;
@@ -49,5 +66,6 @@ public class GameValues {
         isPaused = false;
         isFastForwarded = false;
         playerCoins = START_COINS;
+        playerHealth = START_HEALTH;
     }
 }

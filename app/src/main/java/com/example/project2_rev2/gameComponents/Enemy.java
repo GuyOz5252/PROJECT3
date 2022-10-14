@@ -6,13 +6,14 @@ import android.graphics.Bitmap;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.listeners.OnHealthChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
-public class Enemy extends BitmapObject {
+public class Enemy extends BitmapObject implements OnHealthChangeListener {
 
     private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
@@ -91,6 +92,7 @@ public class Enemy extends BitmapObject {
                 } else {
                     isAlive = false;
                     advancePath = false;
+                    GameValues.setPlayerHealth((int)(GameValues.getPlayerHealth() - this.value*0.3));
                 }
             }
         }
@@ -127,6 +129,11 @@ public class Enemy extends BitmapObject {
         if (health <= 0) {
             die(originTower);
         }
+    }
+
+    @Override
+    public void onHealthChange() {
+
     }
 
     @Override

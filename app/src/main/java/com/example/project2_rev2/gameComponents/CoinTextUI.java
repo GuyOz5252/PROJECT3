@@ -45,9 +45,4 @@ public class CoinTextUI extends TextUI {
         super.draw(canvas);
         coinBitmap.draw(canvas);
     }
-
-    @Override
-    public void update() {
-
-    }
 }
