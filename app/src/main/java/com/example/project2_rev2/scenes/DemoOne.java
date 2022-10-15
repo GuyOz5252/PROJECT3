@@ -4,9 +4,11 @@ import static com.example.project2_rev2.utils.GameValues.display;
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+import static com.example.project2_rev2.utils.GameValues.yOffset;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -16,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
+import com.example.project2_rev2.gameComponents.HealthCounter;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -40,6 +43,7 @@ public class DemoOne extends Scene {
     private ProjectileManager projectileManager;
     private TowerManager towerManager;
     private CoinCounter coinCounter;
+    private HealthCounter healthCounter;
 
     public DemoOne(Context context) {
         GameValues.healthChangeListenerArrayList.add(this);
@@ -52,10 +56,11 @@ public class DemoOne extends Scene {
         );
         this.backgroundPaint = new Paint();
         this.backgroundPaint.setColor(ContextCompat.getColor(context, R.color.background));
+
         this.coverRect = new Rect(
                 (int)xCoordinate(gameDisplay.size.width),
                 (int)yCoordinate(0),
-                (int)xCoordinate(display.size.width),
+                (int)xCoordinate(gameDisplay.size.width+100),
                 (int)yCoordinate(display.size.height)
         );
         this.coverPaint = new Paint();
@@ -92,6 +97,7 @@ public class DemoOne extends Scene {
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
         this.towerBar.setTowerManager(towerManager);
         this.coinCounter = new CoinCounter(context);
+        this.healthCounter = new HealthCounter(context);
     }
 
     @Override
@@ -113,6 +119,7 @@ public class DemoOne extends Scene {
         towerBar.draw(canvas);
         towerManager.drawTowerUpgradeUI(canvas);
         coinCounter.draw(canvas);
+        healthCounter.draw(canvas);
 
         canvas.drawRect(coverRect, coverPaint);
     }

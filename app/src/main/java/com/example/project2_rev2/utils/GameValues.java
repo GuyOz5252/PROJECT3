@@ -61,8 +61,10 @@ public class GameValues {
     public static void init(Display display) {
         GameValues.display.size.width = display.size.width;
         GameValues.display.size.height = display.size.height;
-        xOffset = (display.size.width- GameValues.gameDisplay.size.width)/2;
-        yOffset = (display.size.height- GameValues.gameDisplay.size.height)/2;
+        if (display.size.width > gameDisplay.size.width) {
+            xOffset = (display.size.width - gameDisplay.size.width)/2;
+            yOffset = (display.size.height - gameDisplay.size.height)/2;
+        }
         isPaused = false;
         isFastForwarded = false;
         playerCoins = START_COINS;

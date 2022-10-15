@@ -13,7 +13,7 @@ import com.example.project2_rev2.utils.GameValues;
 public class CoinCounter extends CoinTextUI implements OnCoinsChangeListener {
 
     public CoinCounter(Context context) {
-        super(xCoordinate(gameDisplay.size.width-400), yCoordinate(50), String.valueOf(GameValues.getPlayerCoins()), R.color.coin, 55, context);
+        super(xCoordinate(gameDisplay.size.width-400), yCoordinate(55), String.valueOf(GameValues.getPlayerCoins()), R.color.coin, 55, context);
         GameValues.coinsChangeListenerArrayList.add(this);
     }
 
