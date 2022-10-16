@@ -13,14 +13,4 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
-    <ImageButton
-        android:id="@+id/btnPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-
-        android:backgroundTint="@color/transparent"
-        android:src="@drawable/ic_pause" />
-
 </RelativeLayout>

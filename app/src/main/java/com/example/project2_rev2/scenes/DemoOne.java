@@ -15,10 +15,12 @@ import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.project2_rev2.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.HealthCounter;
+import com.example.project2_rev2.gameComponents.button.PauseButton;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -42,10 +44,11 @@ public class DemoOne extends Scene {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private TowerManager towerManager;
+    private PauseButton pauseButton;
     private CoinCounter coinCounter;
     private HealthCounter healthCounter;
 
-    public DemoOne(Context context) {
+    public DemoOne(Action pause, Context context) {
         GameValues.healthChangeListenerArrayList.add(this);
 
         this.backgroundRect = new Rect(
@@ -96,6 +99,7 @@ public class DemoOne extends Scene {
         this.towerBar = new TowerBar(waveManager, context);
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
         this.towerBar.setTowerManager(towerManager);
+        this.pauseButton = new PauseButton(pause, context);
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
     }
@@ -118,6 +122,7 @@ public class DemoOne extends Scene {
         towerManager.draw(canvas);
         towerBar.draw(canvas);
         towerManager.drawTowerUpgradeUI(canvas);
+        pauseButton.draw(canvas);
         coinCounter.draw(canvas);
         healthCounter.draw(canvas);
 
@@ -136,5 +141,6 @@ public class DemoOne extends Scene {
         towerManager.onTouchEvent(motionEvent);
         towerBar.onTouchEvent(motionEvent);
         towerManager.onTowerUpgradeTouchEvent(motionEvent);
+        pauseButton.onTouchEvent(motionEvent);
     }
 }

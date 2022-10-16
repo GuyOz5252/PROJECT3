@@ -23,7 +23,7 @@ public class CoinCounter extends CoinTextUI implements OnCoinsChangeListener {
                 context
         );
         this.paint.setTextAlign(Paint.Align.RIGHT);
-        this.position.x = gameDisplay.size.width-90;
+        setPosition(xCoordinate(gameDisplay.size.width-paint.measureText("xxx")-150), position.y);
         changeText(String.valueOf(GameValues.getPlayerCoins()));
         GameValues.coinsChangeListenerArrayList.add(this);
     }

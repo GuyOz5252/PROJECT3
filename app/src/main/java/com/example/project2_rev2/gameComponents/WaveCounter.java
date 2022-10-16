@@ -11,6 +11,6 @@ import com.example.project2_rev2.R;
 public class WaveCounter extends TextUI {
 
     public WaveCounter(Context context) {
-        super(xCoordinate(360), yCoordinate(50), "", R.color.white, 50, Paint.Align.LEFT, context);
+        super(xCoordinate(460), yCoordinate(50), "", R.color.white, 50, Paint.Align.LEFT, context);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.example.project2_rev2.Action;
 import com.example.project2_rev2.scenes.DemoOne;
 
 public class SceneManager {
@@ -11,10 +12,10 @@ public class SceneManager {
     private Scene currentScene;
     private String levelName;
 
-    public SceneManager(int currentSceneIdx, Context context) { // receive index of requested scene and init that scene
+    public SceneManager(int currentSceneIdx, Action pause, Context context) { // receive index of requested scene and init that scene
         switch (currentSceneIdx) {
             case 0:
-                this.currentScene = new DemoOne(context);
+                this.currentScene = new DemoOne(pause, context);
                 this.levelName = Scene.sceneTitles[currentSceneIdx];
         }
     }

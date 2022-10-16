@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.project2_rev2.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.Login;
@@ -36,9 +37,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     private Display display;
     private Rect gameCanvasRect;
-
-    // ui xml elements
-    ImageButton btnPause;
 
     // pause menu dialog elements
     Dialog pauseMenu;
@@ -92,10 +90,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         );
 
         Bundle bundle = getIntent().getExtras();
-        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), this); // receive the index of the requested scene and init a new sceneManager with that scene
-
-        btnPause = findViewById(R.id.btnPause);
-        btnPause.setOnTouchListener(this);
+        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), pause, this); // receive the index of the requested scene and init a new sceneManager with that scene
     }
 
     public void update() {
@@ -160,6 +155,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         pauseMenu.setOnDismissListener(dialogInterface -> resume());
     }
 
+    public Action pause = () -> {
+        createPauseMenuDialog();
+    };
+
     public void createPauseMenuDialog(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             createPauseMenuDialog();
@@ -215,9 +214,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
-            case R.id.btnPause:
-                createPauseMenuDialog(view, motionEvent);
-                break;
             //=pause menu dialog=//
             case R.id.btnResume_pauseMenuDialog:
                 clickResume(view, motionEvent);
