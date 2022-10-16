@@ -33,6 +33,7 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
                 Paint.Align.RIGHT,
                 context
         );
+        GameValues.healthChangeListenerArrayList.add(this);
         this.size = 55;
         this.heartBitmap = new BitmapObject(
                 position.x+10,

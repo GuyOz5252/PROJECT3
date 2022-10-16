@@ -93,6 +93,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
                     isAlive = false;
                     advancePath = false;
                     GameValues.setPlayerHealth((int)(GameValues.getPlayerHealth() - this.value*0.3));
+                    System.out.println(GameValues.getPlayerHealth());
                 }
             }
         }

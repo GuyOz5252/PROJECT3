@@ -60,7 +60,7 @@ public class DemoOne extends Scene {
         this.coverRect = new Rect(
                 (int)xCoordinate(gameDisplay.size.width),
                 (int)yCoordinate(0),
-                (int)xCoordinate(gameDisplay.size.width+100),
+                (int)display.size.width,
                 (int)yCoordinate(display.size.height)
         );
         this.coverPaint = new Paint();
