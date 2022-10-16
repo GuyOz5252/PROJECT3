@@ -82,7 +82,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             }
         });
 
-        GameValues.init(display);
+        GameValues.init(this, display);
 
         this.gameCanvasRect = new Rect(
                 (int) GameValues.xCoordinate(0),

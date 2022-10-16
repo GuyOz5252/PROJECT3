@@ -1,5 +1,7 @@
 package com.example.project2_rev2.utils;
 
+import android.app.Activity;
+
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 
 public class GameValues {
 
-    public final static Display gameDisplay = new Display(1916, 1076);
+    public final static Display gameDisplay = new Display(1916, 1080);
 
     public static Display display = new Display(0, 0);
 
@@ -58,13 +60,12 @@ public class GameValues {
         healthChangeListenerArrayList.forEach(OnHealthChangeListener::onHealthChange);
     }
 
-    public static void init(Display display) {
+    public static void init(Activity activity, Display display) {
         GameValues.display.size.width = display.size.width;
+        GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         GameValues.display.size.height = display.size.height;
-        if (display.size.width > gameDisplay.size.width) {
-            xOffset = (display.size.width - gameDisplay.size.width)/2;
-            yOffset = (display.size.height - gameDisplay.size.height)/2;
-        }
+        xOffset = (GameValues.display.size.width - gameDisplay.size.width)/2;
+        yOffset = (GameValues.display.size.height - gameDisplay.size.height)/2;
         isPaused = false;
         isFastForwarded = false;
         playerCoins = START_COINS;

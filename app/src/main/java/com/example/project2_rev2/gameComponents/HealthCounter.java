@@ -20,13 +20,12 @@ import com.example.project2_rev2.utils.Size;
 
 public class HealthCounter extends TextUI implements OnHealthChangeListener {
 
-    private Context context;
     private BitmapObject heartBitmap;
     private float size;
 
     public HealthCounter(Context context) {
         super(
-                xCoordinate(GameValues.gameDisplay.size.width),
+                xCoordinate(GameValues.gameDisplay.size.width-70),
                 yCoordinate(55),
                 String.valueOf(GameValues.getPlayerHealth()),
                 R.color.upgradeNotReady,
@@ -34,15 +33,14 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
                 Paint.Align.RIGHT,
                 context
         );
-        this.context = context;
+        this.size = 55;
         this.heartBitmap = new BitmapObject(
-                position.x+5,
-                position.y,
-                R.drawable.coin_icon,
+                position.x+10,
+                position.y-size+8,
+                R.drawable.ic_heart,
                 new Size(55, 55),
                 context
         ) {};
-        this.size = 55;
     }
 
     @Override
@@ -53,16 +51,12 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
     @Override
     public void changeText(String string) {
         super.changeText(string);
-        //heartBitmap.setPosition(position.x+5, position.y-size+8);
+        heartBitmap.setPosition(position.x+5, position.y-size+8);
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        //heartBitmap.draw(canvas);
-
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        canvas.drawCircle((float) position.x, (float) position.y, 5, paint);
+        heartBitmap.draw(canvas);
     }
 }
