@@ -93,7 +93,7 @@
             android:backgroundTint="@color/white"
             android:text="Login With Google"
             android:textAllCaps="false"
-            android:drawableLeft="@drawable/google"
+
             android:textSize="20dp"
             app:cornerRadius="20dp" />
 

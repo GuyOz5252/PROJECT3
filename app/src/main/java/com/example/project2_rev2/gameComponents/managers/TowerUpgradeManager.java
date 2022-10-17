@@ -24,15 +24,15 @@ public class TowerUpgradeManager {
     private TextUI towerNameText;
 
     public TowerUpgradeManager(Tower tower, TowerManager towerManager, Context context) {
-        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(250), 0, tower, this, context);
-        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(440), 1, tower, this, context);
+        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
+        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(450), 1, tower, this, context);
         this.tower = tower;
 
         this.sellTowerButton = new SellTowerButton(tower, towerManager, context);
 
         this.towerNameText = new TextUI(
                 xCoordinate(175),
-                yCoordinate(225),
+                yCoordinate(235),
                 tower.getName(),
                 R.color.white,
                 50f,
@@ -46,7 +46,7 @@ public class TowerUpgradeManager {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(20), null);
+        canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(30), null);
 
         upgradeButtonPathOne.draw(canvas);
         upgradeButtonPathTwo.draw(canvas);
