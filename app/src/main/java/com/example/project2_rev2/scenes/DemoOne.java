@@ -48,7 +48,7 @@ public class DemoOne extends Scene {
     private CoinCounter coinCounter;
     private HealthCounter healthCounter;
 
-    public DemoOne(Action pause, Context context) {
+    public DemoOne(Action[] actionsArray, Context context) {
         GameValues.healthChangeListenerArrayList.add(this);
 
         this.backgroundRect = new Rect(
@@ -77,7 +77,7 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
         this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
 
-        this.waveManager = new WaveManager(context);
+        this.waveManager = new WaveManager(actionsArray[1], context);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
                 Enemy.EnemyType.DEMO_ENEMY,
                 Enemy.EnemyType.DEMO_ENEMY,
@@ -99,7 +99,7 @@ public class DemoOne extends Scene {
         this.towerBar = new TowerBar(waveManager, context);
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);
         this.towerBar.setTowerManager(towerManager);
-        this.pauseButton = new PauseButton(pause, context);
+        this.pauseButton = new PauseButton(actionsArray[0], context);
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
     }

@@ -1,19 +1,26 @@
 package com.example.project2_rev2.gameComponents.managers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.example.project2_rev2.Action;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.WaveCounter;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
+import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 
 public class WaveManager {
 
+    private Context context;
+
     private WaveCounter waveCounter;
     private StartWaveButton startWaveButton;
+
+    private Action victory;
 
     private int currentWaveIndex;
     private ArrayList<Enemy> enemyArrayList;
@@ -26,13 +33,15 @@ public class WaveManager {
     private int updatesToNextSpawn;
     private final int UPDATES_BETWEEN_SPAWNS = 60;
 
-    public WaveManager(Context context) {
+    public WaveManager(Action victory, Context context) {
         this.waveCounter = new WaveCounter(context);
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
         this.isSpawning = false;
         this.currentWaveIndex = 0;
         this.updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+        this.victory = victory;
+        this.context = context;
     }
 
     public ArrayList<Enemy> getAliveList() {
@@ -52,12 +61,12 @@ public class WaveManager {
         enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
         isSpawning = true;
         startWaveButton.setIsActive(false);
+        waveCounter.changeText("WAVE: " + (currentWaveIndex+1) + "/" + waveArrayList.size());
     }
 
     public void spawnEnemy() {
         aliveList.add(enemyArrayList.get(enemyIndexInWave));
         enemyIndexInWave++;
-        waveCounter.changeText("WAVE: " + (currentWaveIndex+1) + "/" + waveArrayList.size());
     }
 
     public void draw(Canvas canvas) {
@@ -78,6 +87,9 @@ public class WaveManager {
                     isSpawning = false;
                     enemyIndexInWave = 0;
                     currentWaveIndex++;
+                    if (currentWaveIndex == waveArrayList.size()) {
+                        ((Activity)context).runOnUiThread(() -> victory.action());
+                    }
                 }
             } else {
                 updatesToNextSpawn++;

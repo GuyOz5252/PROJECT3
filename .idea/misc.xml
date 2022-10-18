@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_fast_forward_off.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_fast_forward_on.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_heart.xml" value="0.4161458333333333" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_home.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_pause.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/drawable/ic_square_gray.xml" value="0.4161458333333333" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_login.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_pause_menu.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_register.xml" value="0.35144927536231885" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_victory.xml" value="0.4" />
         <entry key="..\:/Users/guyoz/AndroidStudioProjects/project2rev2/app/src/main/res/drawable/dialog_custom.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/guyoz/AndroidStudioProjects/project2rev2/app/src/main/res/drawable/edit_text_custom.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/guyoz/AndroidStudioProjects/project2rev2/app/src/main/res/drawable/email_icon_custom.xml" value="0.26614583333333336" />
