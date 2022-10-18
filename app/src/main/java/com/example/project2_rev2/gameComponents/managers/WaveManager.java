@@ -87,9 +87,6 @@ public class WaveManager {
                     isSpawning = false;
                     enemyIndexInWave = 0;
                     currentWaveIndex++;
-                    if (currentWaveIndex == waveArrayList.size()) {
-                        ((Activity)context).runOnUiThread(() -> victory.action());
-                    }
                 }
             } else {
                 updatesToNextSpawn++;
@@ -97,6 +94,11 @@ public class WaveManager {
         } else {
             if (aliveList.isEmpty()) {
                 startWaveButton.setIsActive(true);
+
+                if (currentWaveIndex == waveArrayList.size() && !GameValues.isFinished) {
+                    GameValues.isFinished = true;
+                    ((Activity)context).runOnUiThread(() -> victory.action());
+                }
             }
         }
 

@@ -29,6 +29,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     private final Bitmap originalBitmap;
 
     private int health;
+    private int damage;
     private int value;
 
     public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
@@ -47,6 +48,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         this.needRotation = false;
         this.originalBitmap = bitmap;
         this.health = enemyType.health;
+        this.damage = enemyType.damage;
         this.value = enemyType.value;
     }
 
@@ -92,8 +94,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
                 } else {
                     isAlive = false;
                     advancePath = false;
-                    GameValues.setPlayerHealth((int)(GameValues.getPlayerHealth() - this.value*0.3));
-                    System.out.println(GameValues.getPlayerHealth());
+                    GameValues.setPlayerHealth(GameValues.getPlayerHealth() - this.damage);
                 }
             }
         }
@@ -147,7 +148,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     public enum EnemyType {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 3, 5);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 60, 5);
 
         public int resourceId;
         public int speed;

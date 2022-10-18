@@ -28,6 +28,8 @@ public class GameValues {
 
     public static boolean isFastForwarded = false;
 
+    public static boolean isFinished = false;
+
     public final static int START_COINS = 800;
 
     private static int playerCoins = START_COINS;
@@ -68,6 +70,7 @@ public class GameValues {
         yOffset = (GameValues.display.size.height - gameDisplay.size.height)/2;
         isPaused = false;
         isFastForwarded = false;
+        isFinished = false;
         playerCoins = START_COINS;
         playerHealth = START_HEALTH;
     }

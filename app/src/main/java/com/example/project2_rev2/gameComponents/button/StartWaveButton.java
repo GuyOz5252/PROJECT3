@@ -35,11 +35,11 @@ public class StartWaveButton extends Button {
     public void setIsActive(boolean isActive) {
         super.setIsActive(isActive);
         if (isActive) {
-            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_active);
             changeBitmap(R.drawable.start_wave_button_background_active);
+            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_active);
         } else {
-            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
             changeBitmap(R.drawable.start_wave_button_background_inactive);
+            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
         }
     }
 

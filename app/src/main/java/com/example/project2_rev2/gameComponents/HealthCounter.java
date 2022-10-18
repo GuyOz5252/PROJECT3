@@ -39,7 +39,7 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
                 position.x+10,
                 position.y-size+8,
                 R.drawable.ic_heart,
-                new Size(55, 55),
+                new Size(size, size),
                 context
         ) {};
     }

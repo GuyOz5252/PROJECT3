@@ -40,7 +40,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     // victory dialog elements
     Dialog victoryDialog;
-    Button btnExitVictory, btnContinue;
+    RelativeLayout btnExitVictory, btnContinue;
+
+    // death dialog elements
+    Dialog deathDialog;
+    RelativeLayout btnExitDeath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
         setContentView(R.layout.activity_game_view);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics(); // TODO fix display obj
+        DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         display = new Display(displayMetrics);
 
@@ -89,7 +93,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         );
 
         Bundle bundle = getIntent().getExtras();
-        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), new Action[]{pause, victory}, this); // receive the index of the requested scene and init a new sceneManager with that scene
+        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), new Action[] {pause, victory, death}, this); // receive the index of the requested scene and init a new sceneManager with that scene
     }
 
     public void update() {
@@ -225,16 +229,16 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public Action victory = this::createVictoryDialog;
 
-    public void clickHome() {
+    public void clickHomeVictory() {
         // pass earnings
         victoryDialog.dismiss();
         startActivity(new Intent(this, Login.class));
         this.finish();
     }
 
-    public void clickHome(View view, MotionEvent motionEvent) {
+    public void clickHomeVictory(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickHome();
+            clickHomeVictory();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha((float)0.5);
@@ -249,6 +253,48 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickContinue(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickContinue();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
+    /*****/
+
+    /***death dialog***/
+    public void createDeathDialog() {
+        pause();
+        deathDialog = new Dialog(this);
+        deathDialog.setContentView(R.layout.dialog_death);
+        View decorView = deathDialog.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        deathDialog.setTitle("Death Dialog");
+
+        btnExitDeath = deathDialog.findViewById(R.id.btnHome_deathDialog);
+
+        btnExitDeath.setOnTouchListener(this);
+
+        deathDialog.setCancelable(false);
+        deathDialog.show();
+    }
+
+    public Action death = this::createDeathDialog;
+
+    public void clickHomeDeath() {
+        deathDialog.dismiss();
+        startActivity(new Intent(this, Login.class));
+        this.finish();
+    }
+
+    public void clickHomeDeath(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickHomeDeath();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha((float)0.5);
@@ -271,10 +317,14 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 break;
             //=victory dialog=//
             case R.id.btnHome_victoryDialog:
-                clickHome(view, motionEvent);
+                clickHomeVictory(view, motionEvent);
                 break;
             case R.id.btnContinue_victoryDialog:
                 clickContinue(view, motionEvent);
+                break;
+            //=death dialog=//
+            case R.id.btnHome_deathDialog:
+                clickHomeDeath(view, motionEvent);
                 break;
         }
         return true;

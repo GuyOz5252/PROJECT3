@@ -6,6 +6,7 @@ import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yOffset;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -32,11 +33,16 @@ import com.example.project2_rev2.utils.Position;
 
 public class DemoOne extends Scene {
 
+    private Context context;
+
     // scene components
     private Rect backgroundRect;
     private Paint backgroundPaint;
     private Rect coverRect;
     private Paint coverPaint;
+
+    // actions array
+    private Action[] actionsArray;
 
     // game components
     private TowerBar towerBar;
@@ -49,7 +55,7 @@ public class DemoOne extends Scene {
     private HealthCounter healthCounter;
 
     public DemoOne(Action[] actionsArray, Context context) {
-        GameValues.healthChangeListenerArrayList.add(this);
+        this.context = context;
 
         this.backgroundRect = new Rect(
                 (int)xCoordinate(0),
@@ -68,6 +74,8 @@ public class DemoOne extends Scene {
         );
         this.coverPaint = new Paint();
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
+
+        this.actionsArray = actionsArray;
 
         this.enemyPath = new EnemyPath();
         this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
@@ -102,14 +110,16 @@ public class DemoOne extends Scene {
         this.pauseButton = new PauseButton(actionsArray[0], context);
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
+
+        GameValues.healthChangeListenerArrayList.add(this);
     }
 
     @Override
     public void onHealthChange() {
-        if (GameValues.getPlayerHealth() <= 0) {
-            GameValues.isPaused = true;
-            // TODO finish game with dialog
-        }
+        //if (GameValues.getPlayerHealth() <= 0) {
+        //    ((Activity)context).runOnUiThread(() -> actionsArray[2].action());
+        //}
+        // TODO start death dialog
     }
 
     @Override
