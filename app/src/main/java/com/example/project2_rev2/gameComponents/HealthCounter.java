@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import androidx.annotation.ColorRes;
 
@@ -34,6 +35,8 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
                 context
         );
         GameValues.healthChangeListenerArrayList.add(this);
+        setBold();
+        setShadow();
         this.size = 55;
         this.heartBitmap = new BitmapObject(
                 position.x+10,
@@ -51,8 +54,11 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
 
     @Override
     public void changeText(String string) {
-        super.changeText(string);
-        heartBitmap.setPosition(position.x+5, position.y-size+8);
+        if (Integer.parseInt(string) >= 0) {
+            super.changeText(string);
+        } else {
+            super.changeText("0");
+        }
     }
 
     @Override

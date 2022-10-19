@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
@@ -9,6 +10,7 @@ import androidx.annotation.ColorRes;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.GameObject;
 
 public class TextUI extends GameObject {
@@ -29,6 +31,14 @@ public class TextUI extends GameObject {
 
     public void changeText(String string) {
         this.string = string;
+    }
+
+    public void setBold() {
+        paint.setTypeface(Typeface.DEFAULT_BOLD);
+    }
+
+    public void setShadow() {
+        paint.setShadowLayer(1f, 3f, 3f, Color.BLACK);
     }
 
     @Override

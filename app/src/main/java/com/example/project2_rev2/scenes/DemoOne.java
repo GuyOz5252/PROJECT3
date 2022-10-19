@@ -12,8 +12,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.view.MotionEvent;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.Action;
@@ -22,6 +24,7 @@ import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.HealthCounter;
 import com.example.project2_rev2.gameComponents.button.PauseButton;
+import com.example.project2_rev2.gameComponents.managers.DeathManager;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -33,16 +36,11 @@ import com.example.project2_rev2.utils.Position;
 
 public class DemoOne extends Scene {
 
-    private Context context;
-
     // scene components
     private Rect backgroundRect;
     private Paint backgroundPaint;
     private Rect coverRect;
     private Paint coverPaint;
-
-    // actions array
-    private Action[] actionsArray;
 
     // game components
     private TowerBar towerBar;
@@ -53,9 +51,9 @@ public class DemoOne extends Scene {
     private PauseButton pauseButton;
     private CoinCounter coinCounter;
     private HealthCounter healthCounter;
+    private DeathManager deathManager;
 
     public DemoOne(Action[] actionsArray, Context context) {
-        this.context = context;
 
         this.backgroundRect = new Rect(
                 (int)xCoordinate(0),
@@ -74,8 +72,6 @@ public class DemoOne extends Scene {
         );
         this.coverPaint = new Paint();
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
-
-        this.actionsArray = actionsArray;
 
         this.enemyPath = new EnemyPath();
         this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
@@ -110,16 +106,7 @@ public class DemoOne extends Scene {
         this.pauseButton = new PauseButton(actionsArray[0], context);
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
-
-        GameValues.healthChangeListenerArrayList.add(this);
-    }
-
-    @Override
-    public void onHealthChange() {
-        //if (GameValues.getPlayerHealth() <= 0) {
-        //    ((Activity)context).runOnUiThread(() -> actionsArray[2].action());
-        //}
-        // TODO start death dialog
+        this.deathManager = new DeathManager(actionsArray[2], context);
     }
 
     @Override
@@ -144,6 +131,7 @@ public class DemoOne extends Scene {
         waveManager.update();
         projectileManager.update();
         towerManager.update();
+        deathManager.update();
     }
 
     @Override

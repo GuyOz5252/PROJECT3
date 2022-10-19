@@ -61,6 +61,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 Paint.Align.LEFT,
                 context
         );
+        this.upgradeNameText.setBold();
         this.coinTextUI = new CoinTextUI(
                 position.x+10,
                 position.y+100,

@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 
-public abstract class Scene implements OnHealthChangeListener {
+public abstract class Scene {
 
     public abstract void draw(Canvas canvas);
     public abstract void update();

@@ -6,6 +6,7 @@ import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
@@ -22,16 +23,18 @@ public class CoinCounter extends CoinTextUI implements OnCoinsChangeListener {
                 55,
                 context
         );
-        this.paint.setTextAlign(Paint.Align.RIGHT);
-        setPosition(xCoordinate(gameDisplay.size.width-paint.measureText("xxx")-150), position.y);
-        changeText(String.valueOf(GameValues.getPlayerCoins()));
         GameValues.coinsChangeListenerArrayList.add(this);
+        this.paint.setTextAlign(Paint.Align.RIGHT);
+        setBold();
+        setShadow();
+        setPosition(xCoordinate(gameDisplay.size.width-paint.measureText("xxx")-170), position.y);
+        changeText(String.valueOf(GameValues.getPlayerCoins()));
+        coinBitmap.setPosition(position.x+10, position.y-size+8);
     }
 
     @Override
     public void changeText(String string) {
         this.string = string;
-        coinBitmap.setPosition(position.x+10, position.y-size+8);
     }
 
     @Override
