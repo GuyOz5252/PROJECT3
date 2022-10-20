@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.menus.Login;
 
 public class MainActivity extends AppCompatActivity {
 

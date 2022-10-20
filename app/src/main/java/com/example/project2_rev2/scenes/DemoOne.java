@@ -34,6 +34,11 @@ import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
+/**
+ * a class that includes all the components of a scene
+ * a draw method and an update method to draw and updates all the components
+ */
+
 public class DemoOne extends Scene {
 
     // scene components

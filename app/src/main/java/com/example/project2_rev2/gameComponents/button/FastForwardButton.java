@@ -39,12 +39,19 @@ public class FastForwardButton extends Button {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            GameValues.isFastForwarded = !GameValues.isFastForwarded;
-            if (GameValues.isFastForwarded) {
-                fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
-            } else {
-                fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_off);
+        if (isPressed(motionEvent)) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                GameValues.isFastForwarded = !GameValues.isFastForwarded;
+                if (GameValues.isFastForwarded) {
+                    fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
+                } else {
+                    fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_off);
+                }
+                paint.setAlpha(255);
+                fastForwardIcon.getPaint().setAlpha(255);
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                paint.setAlpha(100);
+                fastForwardIcon.getPaint().setAlpha(100);
             }
         }
         return true;

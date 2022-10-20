@@ -13,6 +13,8 @@ import com.example.project2_rev2.utils.Size;
 
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
+
+
 public class Enemy extends BitmapObject implements OnHealthChangeListener {
 
     private final EnemyPath enemyPath;

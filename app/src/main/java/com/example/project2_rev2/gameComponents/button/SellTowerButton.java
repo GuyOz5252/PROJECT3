@@ -51,10 +51,19 @@ public class SellTowerButton extends Button {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            towerManager.removeTower(tower);
-            GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
-            tower.deselect();
+        if (isPressed(motionEvent)) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                paint.setAlpha(255);
+                sellPriceTextUI.getPaint().setAlpha(255);
+                sellPriceTextUI.getCoinPaint().setAlpha(255);
+                towerManager.removeTower(tower);
+                GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
+                tower.deselect();
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                paint.setAlpha(100);
+                sellPriceTextUI.getPaint().setAlpha(100);
+                sellPriceTextUI.getCoinPaint().setAlpha(100);
+            }
         }
         return false;
     }

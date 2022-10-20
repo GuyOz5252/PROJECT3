@@ -51,11 +51,17 @@ public class StartWaveButton extends Button {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            if (isActive) {
-                waveManager.startWave();
+        if (isPressed(motionEvent)) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                paint.setAlpha(255);
+                startWaveIconIcon.getPaint().setAlpha(255);
+                if (isActive) {
+                    waveManager.startWave();
+                }
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                paint.setAlpha(100);
+                startWaveIconIcon.getPaint().setAlpha(100);
             }
-            System.out.println("press");
         }
         return true;
     }

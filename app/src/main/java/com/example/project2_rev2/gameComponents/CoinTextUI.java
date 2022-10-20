@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Outline;
 import android.graphics.Paint;
 
 import androidx.annotation.ColorRes;
@@ -28,6 +29,10 @@ public class CoinTextUI extends TextUI {
                 context
         ) {};
         this.size = size;
+    }
+
+    public Paint getCoinPaint() {
+        return coinBitmap.getPaint();
     }
 
     public void changeColor(@ColorRes int color) {

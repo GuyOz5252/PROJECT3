@@ -39,9 +39,16 @@ public class PauseButton extends Button {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isPressed(motionEvent) && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            pause.action();
-            return true;
+        if (isPressed(motionEvent)) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                paint.setAlpha(255);
+                pauseBitmap.getPaint().setAlpha(255);
+                pause.action();
+                return true;
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                paint.setAlpha(100);
+                pauseBitmap.getPaint().setAlpha(100);
+            }
         }
         return false;
     }

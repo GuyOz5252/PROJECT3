@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameComponents;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
@@ -27,6 +28,10 @@ public class TextUI extends GameObject {
         this.paint.setTextAlign(align);
         //Typeface typeface = Typeface.createFromAsset(context.getAssets(), R.font.font_name);
         //paint.setTypeface(typeface);
+    }
+
+    public Paint getPaint() {
+        return paint;
     }
 
     public void changeText(String string) {
