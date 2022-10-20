@@ -48,6 +48,9 @@ public class PauseButton extends Button {
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 paint.setAlpha(100);
                 pauseBitmap.getPaint().setAlpha(100);
+            } else {
+                paint.setAlpha(255);
+                pauseBitmap.getPaint().setAlpha(255);
             }
         }
         return false;

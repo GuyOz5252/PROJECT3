@@ -53,14 +53,17 @@ public class StartWaveButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                paint.setAlpha(255);
-                startWaveIconIcon.getPaint().setAlpha(255);
                 if (isActive) {
                     waveManager.startWave();
                 }
+                paint.setAlpha(255);
+                startWaveIconIcon.getPaint().setAlpha(255);
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 paint.setAlpha(100);
                 startWaveIconIcon.getPaint().setAlpha(100);
+            } else {
+                paint.setAlpha(255);
+                startWaveIconIcon.getPaint().setAlpha(255);
             }
         }
         return true;

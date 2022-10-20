@@ -63,6 +63,10 @@ public class SellTowerButton extends Button {
                 paint.setAlpha(100);
                 sellPriceTextUI.getPaint().setAlpha(100);
                 sellPriceTextUI.getCoinPaint().setAlpha(100);
+            } else {
+                paint.setAlpha(255);
+                sellPriceTextUI.getPaint().setAlpha(255);
+                sellPriceTextUI.getCoinPaint().setAlpha(255);
             }
         }
         return false;

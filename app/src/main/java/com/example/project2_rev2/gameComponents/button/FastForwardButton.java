@@ -52,6 +52,9 @@ public class FastForwardButton extends Button {
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 paint.setAlpha(100);
                 fastForwardIcon.getPaint().setAlpha(100);
+            } else {
+                paint.setAlpha(255);
+                fastForwardIcon.getPaint().setAlpha(255);
             }
         }
         return true;
