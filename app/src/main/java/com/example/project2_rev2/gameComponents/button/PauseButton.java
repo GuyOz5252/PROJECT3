@@ -31,6 +31,11 @@ public class PauseButton extends Button {
         this.pause = pause;
     }
 
+    public void setAlpha(int alpha) {
+        paint.setAlpha(alpha);
+        pauseBitmap.getPaint().setAlpha(alpha);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -41,17 +46,14 @@ public class PauseButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                paint.setAlpha(255);
-                pauseBitmap.getPaint().setAlpha(255);
+                setAlpha(255);
                 pause.action();
                 return true;
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                paint.setAlpha(100);
-                pauseBitmap.getPaint().setAlpha(100);
-            } else {
-                paint.setAlpha(255);
-                pauseBitmap.getPaint().setAlpha(255);
+                setAlpha(100);
             }
+        } else {
+            setAlpha(255);
         }
         return false;
     }

@@ -1,6 +1,7 @@
 package com.example.project2_rev2.gameComponents.button;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
+import static com.example.project2_rev2.utils.GameValues.isFastForwarded;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
@@ -31,6 +32,11 @@ public class FastForwardButton extends Button {
         ) {};
     }
 
+    public void setAlpha(int alpha) {
+        paint.setAlpha(alpha);
+        fastForwardIcon.getPaint().setAlpha(alpha);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -47,15 +53,12 @@ public class FastForwardButton extends Button {
                 } else {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_off);
                 }
-                paint.setAlpha(255);
-                fastForwardIcon.getPaint().setAlpha(255);
+                setAlpha(255);
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                paint.setAlpha(100);
-                fastForwardIcon.getPaint().setAlpha(100);
-            } else {
-                paint.setAlpha(255);
-                fastForwardIcon.getPaint().setAlpha(255);
+                setAlpha(100);
             }
+        } else {
+            setAlpha(255);
         }
         return true;
     }

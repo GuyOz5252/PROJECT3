@@ -184,6 +184,28 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
+    public void setAlpha(boolean b) {
+        if (b) {
+            paint.setAlpha(200);
+            upgradeNameText.getPaint().setAlpha(220);
+            coinTextUI.getPaint().setAlpha(220);
+            coinTextUI.getCoinPaint().setAlpha(220);
+            upgradeArrows.getPaint().setAlpha(220);
+            for (BitmapObject bitmapObject : levelIndicator) {
+                bitmapObject.getPaint().setAlpha(240);
+            }
+        } else {
+            paint.setAlpha(255);
+            upgradeNameText.getPaint().setAlpha(255);
+            coinTextUI.getPaint().setAlpha(255);
+            coinTextUI.getCoinPaint().setAlpha(255);
+            upgradeArrows.getPaint().setAlpha(255);
+            for (BitmapObject bitmapObject : levelIndicator) {
+                bitmapObject.getPaint().setAlpha(255);
+            }
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -205,37 +227,16 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                paint.setAlpha(255);
-                upgradeNameText.getPaint().setAlpha(255);
-                coinTextUI.getPaint().setAlpha(255);
-                coinTextUI.getCoinPaint().setAlpha(255);
-                upgradeArrows.getPaint().setAlpha(255);
-                for (BitmapObject bitmapObject : levelIndicator) {
-                    bitmapObject.getPaint().setAlpha(255);
-                }
+                setAlpha(false);
                 if (tower.upgrade(upgradePathIndex)) {
                     postUpgrade();
                     return true;
                 }
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY) {
-                paint.setAlpha(200);
-                upgradeNameText.getPaint().setAlpha(220);
-                coinTextUI.getPaint().setAlpha(220);
-                coinTextUI.getCoinPaint().setAlpha(220);
-                upgradeArrows.getPaint().setAlpha(220);
-                for (BitmapObject bitmapObject : levelIndicator) {
-                    bitmapObject.getPaint().setAlpha(240);
-                }
-            } else {
-                paint.setAlpha(255);
-                upgradeNameText.getPaint().setAlpha(255);
-                coinTextUI.getPaint().setAlpha(255);
-                coinTextUI.getCoinPaint().setAlpha(255);
-                upgradeArrows.getPaint().setAlpha(255);
-                for (BitmapObject bitmapObject : levelIndicator) {
-                    bitmapObject.getPaint().setAlpha(255);
-                }
+                setAlpha(true);
             }
+        } else {
+            setAlpha(false);
         }
         return false;
     }

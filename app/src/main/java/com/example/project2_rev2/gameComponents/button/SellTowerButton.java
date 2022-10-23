@@ -43,6 +43,12 @@ public class SellTowerButton extends Button {
         sellPriceTextUI.changeText(String.valueOf(newPrice));
     }
 
+    public void setAlpha(int alpha) {
+        paint.setAlpha(alpha);
+        sellPriceTextUI.getPaint().setAlpha(alpha);
+        sellPriceTextUI.getCoinPaint().setAlpha(alpha);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -53,21 +59,15 @@ public class SellTowerButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                paint.setAlpha(255);
-                sellPriceTextUI.getPaint().setAlpha(255);
-                sellPriceTextUI.getCoinPaint().setAlpha(255);
+                setAlpha(255);
                 towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
                 tower.deselect();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                paint.setAlpha(100);
-                sellPriceTextUI.getPaint().setAlpha(100);
-                sellPriceTextUI.getCoinPaint().setAlpha(100);
-            } else {
-                paint.setAlpha(255);
-                sellPriceTextUI.getPaint().setAlpha(255);
-                sellPriceTextUI.getCoinPaint().setAlpha(255);
+                setAlpha(100);
             }
+        } else {
+            setAlpha(255);
         }
         return false;
     }

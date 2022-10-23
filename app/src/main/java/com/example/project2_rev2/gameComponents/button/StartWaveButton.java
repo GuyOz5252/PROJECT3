@@ -43,6 +43,11 @@ public class StartWaveButton extends Button {
         }
     }
 
+    public void setAlpha(int alpha) {
+        paint.setAlpha(alpha);
+        startWaveIconIcon.getPaint().setAlpha(alpha);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -56,15 +61,12 @@ public class StartWaveButton extends Button {
                 if (isActive) {
                     waveManager.startWave();
                 }
-                paint.setAlpha(255);
-                startWaveIconIcon.getPaint().setAlpha(255);
+                setAlpha(255);
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                paint.setAlpha(100);
-                startWaveIconIcon.getPaint().setAlpha(100);
-            } else {
-                paint.setAlpha(255);
-                startWaveIconIcon.getPaint().setAlpha(255);
+                setAlpha(100);
             }
+        } else {
+            setAlpha(255);
         }
         return true;
     }
