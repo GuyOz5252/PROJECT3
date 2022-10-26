@@ -33,7 +33,7 @@ public class EnemyPath {
     public void draw(Canvas canvas) {
         Paint testPaint = new Paint();
         testPaint.setColor(Color.GRAY);
-        testPaint.setStrokeWidth(120);
+        testPaint.setStrokeWidth(96);
 
         for (int i = 0; i < positionArrayList.size()-1; i++) {
             canvas.drawLine(
@@ -44,10 +44,10 @@ public class EnemyPath {
                     testPaint
             );
             canvas.drawRect(new Rect(
-                    (int)positionArrayList.get(i).x-60,
-                    (int)positionArrayList.get(i).y-60,
-                    (int)positionArrayList.get(i).x+60,
-                    (int)positionArrayList.get(i).y+60
+                    (int)positionArrayList.get(i).x-48,
+                    (int)positionArrayList.get(i).y-48,
+                    (int)positionArrayList.get(i).x+48,
+                    (int)positionArrayList.get(i).y+48
             ), testPaint);
         }
     }

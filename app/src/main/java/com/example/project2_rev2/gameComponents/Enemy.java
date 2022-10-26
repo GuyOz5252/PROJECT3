@@ -150,7 +150,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     public enum EnemyType {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(100, 100), 8, 60, 5);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(85, 85), 8, 60, 5);
 
         public int resourceId;
         public int speed;

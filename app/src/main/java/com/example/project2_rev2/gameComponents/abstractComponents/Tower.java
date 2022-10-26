@@ -227,7 +227,7 @@ public abstract class Tower extends BitmapObject {
                 300,
                 30,
                 70,
-                new Size(120, 120),
+                new Size(85, 85),
                 Projectile.ProjectileType.DEMO_BULLET,
                 new TowerUpgradePath(
                         "Range",
@@ -249,7 +249,7 @@ public abstract class Tower extends BitmapObject {
                 200,
                 10,
                 200,
-                new Size(120, 120),
+                new Size(85, 85),
                 Projectile.ProjectileType.LASER_BEAM,
                 new TowerUpgradePath(
                         "None",
