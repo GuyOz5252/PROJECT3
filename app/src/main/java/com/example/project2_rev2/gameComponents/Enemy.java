@@ -13,8 +13,6 @@ import com.example.project2_rev2.utils.Size;
 
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
-
-
 public class Enemy extends BitmapObject implements OnHealthChangeListener {
 
     private final EnemyPath enemyPath;
@@ -65,26 +63,32 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
             handleEnemyRotation();
             return false;
         }
-        if (centerPosition.y != position.y) {
-            if (centerPosition.y > position.y) {
-                velocityX = 0;
-                velocityY = -SPEED;
-            }
-            if (centerPosition.y < position.y) {
-                velocityX = 0;
-                velocityY = SPEED;
-                handleEnemyRotation();
-                return Math.abs(position.y - centerPosition.y) < SPEED;
-            }
+        if (centerPosition.x > position.x) {
+            velocityX = -SPEED;
+            velocityY = 0;
+            handleEnemyRotation();
+            boolean b = Math.abs(position.x - centerPosition.x) < SPEED;
+            return b;
+        }
+        if (centerPosition.y > position.y) {
+            velocityX = 0;
+            velocityY = -SPEED;
             handleEnemyRotation();
             return false;
+        }
+        if (centerPosition.y < position.y) {
+            velocityX = 0;
+            velocityY = SPEED;
+            handleEnemyRotation();
+            boolean b = Math.abs(position.y - centerPosition.y) < SPEED;
+            return b;
         }
         return true;
     }
 
     public void followPath() {
         boolean advancePath = true;
-        while (advancePath) {
+        if (advancePath) {
             advancePath = moveToPosition(nextPathDestination);
             if (advancePath) {
                 velocityX = 0;
@@ -95,7 +99,6 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
                     needRotation = true;
                 } else {
                     isAlive = false;
-                    advancePath = false;
                     GameValues.setPlayerHealth(GameValues.getPlayerHealth() - this.damage);
                 }
             }
@@ -112,6 +115,9 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
             if (velocityX > 0) {
                 bitmap = originalBitmap;
             }
+            //if (velocityX < 0) {
+            //    bitmap = rotateBitmap(originalBitmap, 180);
+            //}
             if (velocityY > 1) {
                 bitmap = rotateBitmap(originalBitmap, 90);
             }
