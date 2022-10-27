@@ -7,6 +7,7 @@ import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yOffset;
 
 import android.app.Activity;
+import android.content.ContentProvider;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -79,12 +80,24 @@ public class DemoOne extends Scene {
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
         this.enemyPath = new EnemyPath();
-        this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
-        this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(gameDisplay.size.height/2)));
-        this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(300)));
-        this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(300)));
-        this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
-        this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
+        //this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
+        //this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(gameDisplay.size.height/2)));
+        //this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(300)));
+        //this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(300)));
+        //this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
+        //this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
+        this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(200)));
+        this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(200)));
+        this.enemyPath.add(
+                new Position(
+                        xCoordinate(gameDisplay.size.width-300),
+                        yCoordinate(gameDisplay.size.height-300)
+                )
+        );
+        this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(gameDisplay.size.height-300)));
+        this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(500)));
+        this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(500)));
+        this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(gameDisplay.size.height+50)));
 
         this.waveManager = new WaveManager(actionsArray[1], context);
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {

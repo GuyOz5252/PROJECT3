@@ -19,9 +19,10 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     private int nextPathDestinationIndex;
     private Position nextPathDestination;
 
+    private boolean isMoving;
+    private MovementDirection movementDirection;
+
     private final int SPEED;
-    private int velocityX;
-    private int velocityY;
 
     private boolean isAlive;
     private boolean needRotation;
@@ -40,9 +41,10 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
                 enemyType.size,
                 context
         );
+        this.isMoving = false;
         this.SPEED = enemyType.speed;
         this.enemyPath = enemyPath;
-        this.nextPathDestinationIndex = 1;
+        this.nextPathDestinationIndex = 0;
         this.nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
         this.isAlive = true;
         this.needRotation = false;
@@ -56,73 +58,75 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         return isAlive;
     }
 
-    public boolean moveToPosition(Position position) {
-        if (centerPosition.x < position.x) {
-            velocityX = SPEED;
-            velocityY = 0;
+    public void handlePathMovement() {
+        isMoving = checkPosition();
+        if (isMoving) {
+            moveInDirection();
             handleEnemyRotation();
-            return false;
-        }
-        if (centerPosition.x > position.x) {
-            velocityX = -SPEED;
-            velocityY = 0;
-            handleEnemyRotation();
-            boolean b = Math.abs(position.x - centerPosition.x) < SPEED;
-            return b;
-        }
-        if (centerPosition.y > position.y) {
-            velocityX = 0;
-            velocityY = -SPEED;
-            handleEnemyRotation();
-            return false;
-        }
-        if (centerPosition.y < position.y) {
-            velocityX = 0;
-            velocityY = SPEED;
-            handleEnemyRotation();
-            boolean b = Math.abs(position.y - centerPosition.y) < SPEED;
-            return b;
-        }
-        return true;
-    }
-
-    public void followPath() {
-        boolean advancePath = true;
-        if (advancePath) {
-            advancePath = moveToPosition(nextPathDestination);
-            if (advancePath) {
-                velocityX = 0;
-                velocityY = 0;
-                nextPathDestinationIndex++;
-                if (nextPathDestinationIndex < enemyPath.getPositionArrayList().size()) {
-                    nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
-                    needRotation = true;
-                } else {
-                    isAlive = false;
-                    GameValues.setPlayerHealth(GameValues.getPlayerHealth() - this.damage);
-                }
+        } else {
+            nextPathDestinationIndex++;
+            if (nextPathDestinationIndex < enemyPath.getPositionArrayList().size()) {
+                nextPathDestination = enemyPath.getPositionArrayList().get(nextPathDestinationIndex);
+                needRotation = true;
+            } else {
+                isAlive = false;
+                GameValues.setPlayerHealth(GameValues.getPlayerHealth() - this.damage);
             }
         }
     }
 
-    public void movement() {
-        position.x += velocityX;
-        position.y += velocityY;
+    private boolean checkPosition() {
+        if (centerPosition.x > nextPathDestination.x+SPEED) {
+            movementDirection = MovementDirection.LEFT;
+            return true;
+        }
+        if (centerPosition.x < nextPathDestination.x-SPEED) {
+            movementDirection = MovementDirection.RIGHT;
+            return true;
+        }
+        if (centerPosition.y > nextPathDestination.y+SPEED) {
+            movementDirection = MovementDirection.UP;
+            return true;
+        }
+        if (centerPosition.y < nextPathDestination.y-SPEED) {
+            movementDirection = MovementDirection.DOWN;
+            return true;
+        }
+        return false;
+    }
+
+    public void moveInDirection() {
+        switch (movementDirection) {
+            case RIGHT:
+                position.x += SPEED;
+                break;
+            case LEFT:
+                position.x -= SPEED;
+                break;
+            case UP:
+                position.y -= SPEED;
+                break;
+            case DOWN:
+                position.y += SPEED;
+                break;
+        }
     }
 
     public void handleEnemyRotation() {
         if (needRotation) {
-            if (velocityX > 0) {
-                bitmap = originalBitmap;
-            }
-            //if (velocityX < 0) {
-            //    bitmap = rotateBitmap(originalBitmap, 180);
-            //}
-            if (velocityY > 1) {
-                bitmap = rotateBitmap(originalBitmap, 90);
-            }
-            if (velocityY < -1) {
-                bitmap = rotateBitmap(originalBitmap, -90);
+            switch (movementDirection) {
+                case RIGHT:
+                    bitmap = originalBitmap;
+                    break;
+                case LEFT:
+                    bitmap = rotateBitmap(originalBitmap, 180);
+                    break;
+                case DOWN:
+                    bitmap = rotateBitmap(originalBitmap, 90);
+                    break;
+                case UP:
+                    bitmap = rotateBitmap(originalBitmap, -90);
+                    break;
             }
             needRotation = false;
         }
@@ -150,9 +154,16 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     public void update() {
         super.update();
         if (isAlive) {
-            followPath();
-            movement();
+            handlePathMovement();
+            //movement();
         }
+    }
+
+    private enum MovementDirection {
+        RIGHT,
+        LEFT,
+        UP,
+        DOWN
     }
 
     public enum EnemyType {
