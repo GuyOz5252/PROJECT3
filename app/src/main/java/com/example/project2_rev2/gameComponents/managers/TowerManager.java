@@ -22,7 +22,7 @@ public class TowerManager {
 
     public TowerManager(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         this.towerArrayList = new ArrayList<>();
-        this.towerArrayList.add(new LaserCanon(xCoordinate(1400), yCoordinate(400), towerBar, waveManager, projectileManager, this, context));
+        this.towerArrayList.add(new LaserCanon(xCoordinate(1350), yCoordinate(450), towerBar, waveManager, projectileManager, this, context));
         this.towerArrayList.add(new DemoTower(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
         this.isAnyTowerSelected = false;
     }

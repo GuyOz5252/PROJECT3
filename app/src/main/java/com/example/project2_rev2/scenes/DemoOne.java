@@ -88,12 +88,7 @@ public class DemoOne extends Scene {
         //this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
         this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(200)));
         this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(200)));
-        this.enemyPath.add(
-                new Position(
-                        xCoordinate(gameDisplay.size.width-300),
-                        yCoordinate(gameDisplay.size.height-300)
-                )
-        );
+        this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(gameDisplay.size.height-300)));
         this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(gameDisplay.size.height-300)));
         this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(500)));
         this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(500)));
@@ -107,13 +102,23 @@ public class DemoOne extends Scene {
                 Enemy.EnemyType.DEMO_ENEMY
         },
                 enemyPath,
+                40,
                 context
         ));
         this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
                 Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
+                Enemy.EnemyType.DEMO_ENEMY,
                 Enemy.EnemyType.DEMO_ENEMY
         },
                 enemyPath,
+                30,
                 context
         ));
 

@@ -75,20 +75,20 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         }
     }
 
-    private boolean checkPosition() {
-        if (centerPosition.x > nextPathDestination.x+SPEED) {
-            movementDirection = MovementDirection.LEFT;
-            return true;
-        }
-        if (centerPosition.x < nextPathDestination.x-SPEED) {
+    private boolean checkPosition() { // after testing, decided to put the offsets in the if statements
+        if (centerPosition.x < nextPathDestination.x-1) {
             movementDirection = MovementDirection.RIGHT;
             return true;
         }
-        if (centerPosition.y > nextPathDestination.y+SPEED) {
+        if (centerPosition.x > nextPathDestination.x+1) {
+            movementDirection = MovementDirection.LEFT;
+            return true;
+        }
+        if (centerPosition.y > nextPathDestination.y+2) {
             movementDirection = MovementDirection.UP;
             return true;
         }
-        if (centerPosition.y < nextPathDestination.y-SPEED) {
+        if (centerPosition.y < nextPathDestination.y-1) {
             movementDirection = MovementDirection.DOWN;
             return true;
         }
@@ -121,11 +121,11 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
                 case LEFT:
                     bitmap = rotateBitmap(originalBitmap, 180);
                     break;
-                case DOWN:
-                    bitmap = rotateBitmap(originalBitmap, 90);
-                    break;
                 case UP:
                     bitmap = rotateBitmap(originalBitmap, -90);
+                    break;
+                case DOWN:
+                    bitmap = rotateBitmap(originalBitmap, 90);
                     break;
             }
             needRotation = false;

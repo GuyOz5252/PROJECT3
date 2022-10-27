@@ -31,7 +31,7 @@ public class WaveManager {
 
     private boolean isSpawning;
     private int updatesToNextSpawn;
-    private final int UPDATES_BETWEEN_SPAWNS = 60;
+    private int updatesBetweenSpawn;
 
     public WaveManager(Action victory, Context context) {
         this.waveCounter = new WaveCounter(context);
@@ -39,7 +39,7 @@ public class WaveManager {
         this.aliveList = new ArrayList<>();
         this.isSpawning = false;
         this.currentWaveIndex = 0;
-        this.updatesToNextSpawn = UPDATES_BETWEEN_SPAWNS;
+
         this.victory = victory;
         this.context = context;
     }
@@ -61,6 +61,7 @@ public class WaveManager {
         enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
         isSpawning = true;
         startWaveButton.setIsActive(false);
+        updatesBetweenSpawn = waveArrayList.get(currentWaveIndex).updatesBetweenSpawn;
         waveCounter.changeText("WAVE: " + (currentWaveIndex+1) + "/" + waveArrayList.size());
     }
 
@@ -79,7 +80,7 @@ public class WaveManager {
 
     public void update() {
         if (isSpawning) {
-            if (updatesToNextSpawn >= UPDATES_BETWEEN_SPAWNS) {
+            if (updatesToNextSpawn >= updatesBetweenSpawn) {
                 if (enemyIndexInWave < enemyArrayList.size()) {
                     spawnEnemy();
                     updatesToNextSpawn = 0;
@@ -115,9 +116,11 @@ public class WaveManager {
     public static class Wave {
 
         private ArrayList<Enemy> enemyArrayList;
+        private int updatesBetweenSpawn;
 
-        public Wave(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, Context context) {
+        public Wave(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
             this.enemyArrayList = new ArrayList<>();
+            this.updatesBetweenSpawn = updatesBetweenSpawn;
             convertCodeToUnit(enemyArray, enemyPath, context);
         }
 
