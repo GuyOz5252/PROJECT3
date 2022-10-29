@@ -94,7 +94,10 @@ public class WaveManager {
             }
         } else {
             if (aliveList.isEmpty()) {
-                startWaveButton.setIsActive(true);
+                if (!startWaveButton.getIsActive()) {
+                    startWaveButton.setIsActive(true);
+                }
+
 
                 if (currentWaveIndex == waveArrayList.size() && !GameValues.isFinished) {
                     GameValues.isFinished = true;

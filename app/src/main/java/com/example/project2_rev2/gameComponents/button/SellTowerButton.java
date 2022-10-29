@@ -4,6 +4,7 @@ import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -14,6 +15,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.GameValues;
+import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class SellTowerButton extends Button {
@@ -49,6 +51,16 @@ public class SellTowerButton extends Button {
         sellPriceTextUI.getCoinPaint().setAlpha(alpha);
     }
 
+    public void setPressedSize(boolean b) {
+        if (b) {
+            bitmap = pressedBitmap;
+            position = pressedPosition;
+        } else {
+            bitmap = originalBitmap;
+            position = originalPosition;
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -59,15 +71,18 @@ public class SellTowerButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                setAlpha(255);
+                //setAlpha(255);
+                setPressedSize(false);
                 towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
                 tower.deselect();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                setAlpha(100);
+                //setAlpha(200);
+                setPressedSize(true);
             }
         } else {
-            setAlpha(255);
+            //setAlpha(255);
+            setPressedSize(false);
         }
         return false;
     }

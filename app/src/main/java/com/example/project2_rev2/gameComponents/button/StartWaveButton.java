@@ -3,49 +3,74 @@ package com.example.project2_rev2.gameComponents.button;
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.HealthCounter;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
+import com.example.project2_rev2.utils.HelperMethods;
+import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class StartWaveButton extends Button {
 
     private WaveManager waveManager;
     private BitmapObject startWaveIconIcon;
+    private BitmapObject originalStartWaveIconIcon;
+    private BitmapObject pressedStartWaveIconIcon;
 
     public StartWaveButton(WaveManager waveManager, Context context) {
         super(xCoordinate(183), yCoordinate(gameDisplay.size.height-180), R.drawable.start_wave_button_background_active, new Size(150, 150), context);
         this.waveManager = waveManager;
-        this.startWaveIconIcon = new BitmapObject(
+        this.originalStartWaveIconIcon = new BitmapObject(
                 centerPosition.x-60,
                 centerPosition.y-60,
                 R.drawable.ic_start_wave_active,
                 new Size(120, 120),
                 context
         ) {};
+        this.pressedStartWaveIconIcon = new BitmapObject(
+                centerPosition.x-52.5,
+                centerPosition.y-52.5,
+                R.drawable.ic_start_wave_active,
+                new Size(105, 105),
+                context
+        ) {};
+        startWaveIconIcon = originalStartWaveIconIcon;
     }
 
     @Override
     public void setIsActive(boolean isActive) {
         super.setIsActive(isActive);
         if (isActive) {
-            changeBitmap(R.drawable.start_wave_button_background_active);
+            bitmap = originalBitmap;
             startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_active);
-        } else {
-            changeBitmap(R.drawable.start_wave_button_background_inactive);
-            startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
         }
     }
 
     public void setAlpha(int alpha) {
         paint.setAlpha(alpha);
         startWaveIconIcon.getPaint().setAlpha(alpha);
+    }
+
+    public void setPressedSize(boolean b) {
+        if (b) {
+            bitmap = pressedBitmap;
+            position = pressedPosition;
+            startWaveIconIcon = pressedStartWaveIconIcon;
+        } else {
+            bitmap = originalBitmap;
+            position = originalPosition;
+            startWaveIconIcon = originalStartWaveIconIcon;
+        }
     }
 
     @Override
@@ -60,13 +85,18 @@ public class StartWaveButton extends Button {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 if (isActive) {
                     waveManager.startWave();
+                    //setAlpha(255);
+                    setPressedSize(false);
+                    changeBitmap(R.drawable.start_wave_button_background_inactive);
+                    startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
                 }
-                setAlpha(255);
-            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                setAlpha(100);
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && isActive) {
+                //setAlpha(100);
+                setPressedSize(true);
             }
-        } else {
-            setAlpha(255);
+        } else if (isActive) {
+            //setAlpha(255);
+            setPressedSize(false);
         }
         return true;
     }

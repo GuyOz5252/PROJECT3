@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameComponents.button;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
+import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class UpgradeButton extends Button implements OnCoinsChangeListener {
@@ -86,6 +88,9 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 new Size(150, 150),
                 context
         ) {};
+
+        this.pressedBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(size.width-size.width/50), (int)(size.height-size.height/50), false);
+        this.pressedPosition = new Position(position.x+size.width/100, position.y+size.height/100);
 
         this.levelIndicator = new BitmapObject[tower.getTowerUpgradePaths()[upgradePathIndex].value.length];
 
@@ -206,6 +211,16 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
+    public void setPressedSize(boolean b) {
+        if (b) {
+            bitmap = pressedBitmap;
+            position = pressedPosition;
+        } else {
+            bitmap = originalBitmap;
+            position = originalPosition;
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -227,16 +242,20 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                setAlpha(false);
+                //setAlpha(false);
+                setPressedSize(false);
                 if (tower.upgrade(upgradePathIndex)) {
                     postUpgrade();
                     return true;
                 }
-            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY) {
-                setAlpha(true);
+            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY &&
+                    (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]])) {
+                //setAlpha(true);
+                setPressedSize(true);
             }
         } else {
-            setAlpha(false);
+            //setAlpha(false);
+            setPressedSize(false);
         }
         return false;
     }
