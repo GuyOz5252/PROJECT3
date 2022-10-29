@@ -45,7 +45,7 @@ public class DemoOne extends Scene {
     // scene components
     private Rect backgroundRect;
     private Paint backgroundPaint;
-    private Rect coverRect;
+    private Rect[] coverRect;
     private Paint coverPaint;
 
     // game components
@@ -70,12 +70,21 @@ public class DemoOne extends Scene {
         this.backgroundPaint = new Paint();
         this.backgroundPaint.setColor(ContextCompat.getColor(context, R.color.background));
 
-        this.coverRect = new Rect(
-                (int)xCoordinate(gameDisplay.size.width),
-                (int)yCoordinate(0),
-                (int)display.size.width,
-                (int)yCoordinate(display.size.height)
-        );
+        this.coverRect = new Rect[] {
+                new Rect(
+                        (int)xCoordinate(gameDisplay.size.width),
+                        (int)yCoordinate(0),
+                        (int)display.size.width,
+                        (int)yCoordinate(display.size.height)
+                ),
+                new Rect(
+                        0,
+                        0,
+                        (int)xCoordinate(0),
+                        (int)display.size.height
+                )
+
+        };
         this.coverPaint = new Paint();
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
@@ -146,7 +155,9 @@ public class DemoOne extends Scene {
         coinCounter.draw(canvas);
         healthCounter.draw(canvas);
 
-        canvas.drawRect(coverRect, coverPaint);
+        for (Rect rect : coverRect) {
+            canvas.drawRect(rect, coverPaint);
+        }
     }
 
     @Override
