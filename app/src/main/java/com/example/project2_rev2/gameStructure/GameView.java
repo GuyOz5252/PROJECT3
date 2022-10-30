@@ -22,6 +22,7 @@ import com.example.project2_rev2.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.Login;
+import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;
 
@@ -186,8 +187,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickExit() {
         pauseMenu.dismiss();
-        //startActivity(new Intent(this, MainMenu.class));
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, MainMenu.class));
+        //startActivity(new Intent(this, Login.class));
         this.finish();
     }
 
