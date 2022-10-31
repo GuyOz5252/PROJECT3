@@ -20,22 +20,22 @@ import com.example.project2_rev2.gameStructure.GameView;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
-    private View activityView;
+    private View view;
 
     ImageButton btnSettings;
     RelativeLayout btnPlay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        activityView = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
-        btnSettings = activityView.findViewById(R.id.btnSettings_mainMenuFragment);
-        btnPlay = activityView.findViewById(R.id.btnPlay_mainMenuFragment);
+        btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
+        btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
 
         btnSettings.setOnTouchListener(this);
         btnPlay.setOnTouchListener(this);
 
-        return activityView;
+        return view;
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {
@@ -50,10 +50,10 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickPlay() {
-        Intent intent = new Intent((Activity) activityView.getContext(), GameView.class);
+        Intent intent = new Intent((Activity) view.getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
         startActivity(intent);
-        ((Activity) activityView.getContext()).finish();
+        ((Activity) view.getContext()).finish();
     }
 
     public void clickPlay(View view, MotionEvent motionEvent) {

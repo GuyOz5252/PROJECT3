@@ -9,17 +9,20 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Binder;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 
 import com.example.project2_rev2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainMenu extends AppCompatActivity implements View.OnTouchListener {
+public class MainMenu extends AppCompatActivity {
 
-    Fragment mainMenuFragment;
+    MainMenuFragment mainMenuFragment;
+    TowerFragment towerFragment;
 
     BottomNavigationView navbar;
 
@@ -38,10 +41,24 @@ public class MainMenu extends AppCompatActivity implements View.OnTouchListener 
         setContentView(R.layout.activity_main_menu);
 
         mainMenuFragment = new MainMenuFragment();
+        towerFragment = new TowerFragment();
 
         navbar = findViewById(R.id.NavBar_mainMenu);
-        navbar.setOnItemSelectedListener(this::onOptionsItemSelected);
-
+        navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
+        navbar.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.profile_mainMenuNavbar:
+                    //replaceFragment();
+                    break;
+                case R.id.home_mainMenuNavbar:
+                    replaceFragment(mainMenuFragment);
+                    break;
+                case R.id.towers_mainMenuNavbar:
+                    replaceFragment(towerFragment);
+                    break;
+            }
+            return true;
+        });
         replaceFragment(mainMenuFragment);
     }
 
@@ -51,27 +68,19 @@ public class MainMenu extends AppCompatActivity implements View.OnTouchListener 
         fragmentTransaction.commit();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.profile_mainMenuNavbar:
-                //replaceFragment();
-                break;
-            case R.id.home_mainMenuNavbar:
-                replaceFragment(mainMenuFragment);
-                break;
-            case R.id.towers_mainMenuNavbar:
-                //replaceFragment();
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (view.getId()) {
-
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.profile_mainMenuNavbar:
+//                //replaceFragment();
+//                break;
+//            case R.id.home_mainMenuNavbar:
+//                replaceFragment(mainMenuFragment);
+//                break;
+//            case R.id.towers_mainMenuNavbar:
+//                replaceFragment(towerFragment);
+//                break;
+//        }
+//        return true;
+//    }
 }
