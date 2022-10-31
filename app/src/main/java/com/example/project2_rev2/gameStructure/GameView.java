@@ -233,7 +233,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickHomeVictory() {
         // pass earnings
         victoryDialog.dismiss();
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }
 
@@ -289,7 +289,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickHomeDeath() {
         deathDialog.dismiss();
-        startActivity(new Intent(this, Login.class));
+        startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }
 

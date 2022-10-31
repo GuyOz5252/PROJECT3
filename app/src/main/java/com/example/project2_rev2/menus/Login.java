@@ -47,10 +47,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     public void debugGame(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            Intent intent = new Intent(this, GameView.class);
-            intent.putExtra("sceneIndex", 0);
-            startActivity(intent);
-            view.setAlpha(1);
+            startActivity(new Intent(this, MainMenu.class));
             this.finish();
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha((float)0.5);
