@@ -17,36 +17,28 @@
             android:backgroundTint="@color/transparent"
             android:src="@drawable/ic_settings" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/btnPlay_mainMenuFragment"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
 
-            <RelativeLayout
-                android:id="@+id/btnPlay_mainMenuFragment"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_circle" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_circle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="play"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="50dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="play"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="50dp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 

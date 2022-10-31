@@ -1,20 +1,27 @@
 package com.example.project2_rev2.menus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Binder;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.project2_rev2.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenu extends AppCompatActivity implements View.OnTouchListener {
 
     Fragment mainMenuFragment;
+
+    BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,9 @@ public class MainMenu extends AppCompatActivity implements View.OnTouchListener 
 
         mainMenuFragment = new MainMenuFragment();
 
+        navbar = findViewById(R.id.NavBar_mainMenu);
+        navbar.setOnItemSelectedListener(this::onOptionsItemSelected);
+
         replaceFragment(mainMenuFragment);
     }
 
@@ -39,6 +49,22 @@ public class MainMenu extends AppCompatActivity implements View.OnTouchListener 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout_mainMenu, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile_mainMenuNavbar:
+                //replaceFragment();
+                break;
+            case R.id.home_mainMenuNavbar:
+                replaceFragment(mainMenuFragment);
+                break;
+            case R.id.towers_mainMenuNavbar:
+                //replaceFragment();
+                break;
+        }
+        return true;
     }
 
     @Override

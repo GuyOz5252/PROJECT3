@@ -9,7 +9,15 @@
     <FrameLayout
         android:id="@+id/frameLayout_mainMenu"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/NavBar_mainMenu"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/NavBar_mainMenu"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/main_menu_navbar"/>
 
 </RelativeLayout>
