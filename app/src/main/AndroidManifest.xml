@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project2rev2">
         <activity
+            android:name=".menus.TowerUpgradeInfo"
+            android:exported="false"
+            android:label="@string/title_activity_tower_upgrade_info"
+            android:theme="@style/Theme.Project2rev2.NoActionBar" />
+        <activity
             android:name=".menus.MainMenu"
             android:exported="false" />
         <activity

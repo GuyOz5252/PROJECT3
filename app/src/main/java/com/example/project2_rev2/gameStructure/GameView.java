@@ -18,10 +18,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
-import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.scenes.DemoOne;
 
 public class SceneManager {

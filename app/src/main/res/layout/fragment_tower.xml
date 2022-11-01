@@ -1,14 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".menus.TowerFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="towers"
+        android:textAllCaps="true"
         android:textSize="50dp"
-        android:text="tower fragment" />
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/black"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/towerCard_prev"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_toStartOf="@+id/lv"
+        android:alpha="0.6"
+        android:background="@drawable/dialog_custom"
+        android:gravity="center"
+        android:minWidth="290dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="15dp"
+        android:scaleX="0.6"
+        android:scaleY="0.6" />
+
+    <LinearLayout
+        android:id="@+id/lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/btnPrevTower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left_arrow"
+            android:background="@color/transparent"/>
+
+        <LinearLayout
+            android:id="@+id/towerCard_curr"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_custom"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tower Name"
+                android:textColor="@color/white"
+                android:textSize="40dp"
+                android:layout_marginBottom="5dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_green"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_green"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_green"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_gray"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_gray"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_gray"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_gray"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_square_gray"
+                    android:scaleX="2"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnNextTower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_right_arrow"
+            android:background="@color/transparent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/towerCard_next"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_toEndOf="@+id/lv"
+        android:alpha="0.6"
+        android:background="@drawable/dialog_custom"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="15dp"
+        android:scaleX="0.6"
+        android:scaleY="0.6"/>
+
+</RelativeLayout>

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.WaveCounter;
@@ -62,6 +62,7 @@ public class WaveManager {
         isSpawning = true;
         startWaveButton.setIsActive(false);
         updatesBetweenSpawn = waveArrayList.get(currentWaveIndex).updatesBetweenSpawn;
+        updatesToNextSpawn = updatesBetweenSpawn;
         waveCounter.changeText("WAVE: " + (currentWaveIndex+1) + "/" + waveArrayList.size());
     }
 

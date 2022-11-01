@@ -3,7 +3,7 @@ package com.example.project2_rev2.gameComponents.managers;
 import android.app.Activity;
 import android.content.Context;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 

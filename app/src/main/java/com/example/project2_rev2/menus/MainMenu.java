@@ -44,22 +44,8 @@ public class MainMenu extends AppCompatActivity {
         towerFragment = new TowerFragment();
 
         navbar = findViewById(R.id.NavBar_mainMenu);
+        navbar.setOnItemSelectedListener(this::onItemItemSelected);
         navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
-        navbar.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.profile_mainMenuNavbar:
-                    //replaceFragment();
-                    break;
-                case R.id.home_mainMenuNavbar:
-                    replaceFragment(mainMenuFragment);
-                    break;
-                case R.id.towers_mainMenuNavbar:
-                    replaceFragment(towerFragment);
-                    break;
-            }
-            return true;
-        });
-        replaceFragment(mainMenuFragment);
     }
 
     public void replaceFragment(Fragment fragment) {
@@ -68,19 +54,20 @@ public class MainMenu extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.profile_mainMenuNavbar:
-//                //replaceFragment();
-//                break;
-//            case R.id.home_mainMenuNavbar:
-//                replaceFragment(mainMenuFragment);
-//                break;
-//            case R.id.towers_mainMenuNavbar:
-//                replaceFragment(towerFragment);
-//                break;
-//        }
-//        return true;
-//    }
+    public boolean onItemItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile_mainMenuNavbar:
+                //replaceFragment();
+                break;
+            case R.id.home_mainMenuNavbar:
+                replaceFragment(mainMenuFragment);
+                break;
+            case R.id.towers_mainMenuNavbar:
+                replaceFragment(towerFragment);
+                break;
+        }
+        return true;
+    }
+
+
 }

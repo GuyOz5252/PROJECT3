@@ -7,12 +7,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class PauseButton extends Button {

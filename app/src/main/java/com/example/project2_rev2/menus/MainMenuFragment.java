@@ -41,16 +41,16 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     public void clickSettings(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             System.out.println("click settings");
-            ((ImageButton)view).setScaleX(1);
-            ((ImageButton)view).setScaleY(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            ((ImageButton)view).setScaleX(0.9f);
-            ((ImageButton)view).setScaleY(0.9f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
     public void clickPlay() {
-        Intent intent = new Intent((Activity) view.getContext(), GameView.class);
+        Intent intent = new Intent(view.getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
         startActivity(intent);
         ((Activity) view.getContext()).finish();
@@ -60,12 +60,12 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickPlay();
             ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(50);
-            ((ImageView)((ViewGroup)view).getChildAt(0)).setScaleX(1);
-            ((ImageView)((ViewGroup)view).getChildAt(0)).setScaleY(1);
+            ((ViewGroup)view).getChildAt(0).setScaleX(1);
+            ((ViewGroup)view).getChildAt(0).setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(47.5f);
-            ((ImageView)((ViewGroup)view).getChildAt(0)).setScaleX(0.95f);
-            ((ImageView)((ViewGroup)view).getChildAt(0)).setScaleY(0.95f);
+            ((ViewGroup)view).getChildAt(0).setScaleX(0.95f);
+            ((ViewGroup)view).getChildAt(0).setScaleY(0.95f);
         }
     }
 

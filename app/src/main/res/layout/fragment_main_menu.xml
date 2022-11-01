@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menus.MainMenuFragment">
 
+    <ImageButton
+        android:id="@+id/btnSettings_mainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_settings" />
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/btnPlay_mainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
-        <ImageButton
-            android:id="@+id/btnSettings_mainMenuFragment"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:backgroundTint="@color/transparent"
-            android:src="@drawable/ic_settings" />
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_circle" />
 
-        <RelativeLayout
-            android:id="@+id/btnPlay_mainMenuFragment"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_circle" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="play"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="50dp" />
-
-        </RelativeLayout>
+            android:layout_centerInParent="true"
+            android:text="play"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
 
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>

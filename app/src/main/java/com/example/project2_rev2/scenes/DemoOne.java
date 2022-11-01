@@ -4,22 +4,16 @@ import static com.example.project2_rev2.utils.GameValues.display;
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yOffset;
 
-import android.app.Activity;
-import android.content.ContentProvider;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Build;
 import android.view.MotionEvent;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.example.project2_rev2.Action;
+import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
@@ -32,7 +26,6 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
-import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
 /**
