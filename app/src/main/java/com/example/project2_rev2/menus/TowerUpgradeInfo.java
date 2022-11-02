@@ -15,7 +15,7 @@ public class TowerUpgradeInfo extends AppCompatActivity {
         setContentView(R.layout.activity_tower_upgrade_info);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        //fragmentTransaction.replace(R.id.frameLayout_mainMenu, fragment);
+        fragmentTransaction.replace(R.id.frameLayout_mainMenu, new TowerInfoFragment());
         fragmentTransaction.commit();
     }
 }

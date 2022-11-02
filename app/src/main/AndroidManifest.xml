@@ -13,10 +13,12 @@
             android:name=".menus.TowerUpgradeInfo"
             android:exported="false"
             android:label="@string/title_activity_tower_upgrade_info"
-            android:theme="@style/Theme.Project2rev2.NoActionBar" />
+            android:theme="@style/Theme.Project2rev2.NoActionBar"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".menus.MainMenu"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".gameStructure.GameView"
             android:exported="true"
