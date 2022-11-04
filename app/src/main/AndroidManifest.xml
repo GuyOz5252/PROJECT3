@@ -21,17 +21,17 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".gameStructure.GameView"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="landscape" />
         <activity
             android:name=".menus.Login"
-            android:exported="true" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".menus.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

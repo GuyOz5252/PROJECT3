@@ -100,7 +100,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
             pathOne.setLayoutParams(params);
             pathTwo.setLayoutParams(params);
             for (int i = 0; i < 4; i++) {
-                if (true) {
+                if (true) { // TODO set condition
                     LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT,
                             LayoutParams.WRAP_CONTENT
@@ -125,7 +125,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                 }
             }
             for (int i = 0; i < 4; i++) {
-                if (false) {
+                if (false) { // TODO set condition
                     LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
                             LayoutParams.WRAP_CONTENT,
                             LayoutParams.WRAP_CONTENT
