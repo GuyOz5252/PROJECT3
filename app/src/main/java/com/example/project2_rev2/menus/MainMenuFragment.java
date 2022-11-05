@@ -50,7 +50,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickPlay() {
-        Intent intent = new Intent(view.getContext(), GameView.class);
+        Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
         startActivity(intent);
         ((Activity) view.getContext()).finish();

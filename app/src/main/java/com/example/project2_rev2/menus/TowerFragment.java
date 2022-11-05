@@ -56,19 +56,25 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
     public void cycleTowers() {
         if (currentTowerIndex == 0) {
             prevTowerCard.setVisibility(View.INVISIBLE);
+            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.upgradeNotReady));
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.VISIBLE);
+            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
             createTowerCard(nextTowerCard, currentTowerIndex+1);
         } else if (currentTowerIndex == towerArrayList.size()-1) {
             prevTowerCard.setVisibility(View.VISIBLE);
+            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
             createTowerCard(prevTowerCard, currentTowerIndex-1);
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.INVISIBLE);
+            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.upgradeNotReady));
         } else {
             prevTowerCard.setVisibility(View.VISIBLE);
+            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
             createTowerCard(prevTowerCard, currentTowerIndex-1);
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.VISIBLE);
+            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
             createTowerCard(nextTowerCard, currentTowerIndex+1);
         }
     }
@@ -82,20 +88,20 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         );
         params.setMargins(0, 0, 0, 5);
 
-        ImageView imageView = new ImageView(view.getContext());
+        ImageView imageView = new ImageView(getContext());
         imageView.setImageResource(towerArrayList.get(towerIndex).bitmap);
         imageView.setLayoutParams(params);
 
-        TextView textView = new TextView(view.getContext());
+        TextView textView = new TextView(getContext());
         textView.setText(towerArrayList.get(towerIndex).towerName);
         textView.setTextSize(40);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         textView.setLayoutParams(params);
 
         if (linearLayout == currentTowerCard) {
-            LinearLayout pathOne = new LinearLayout(view.getContext());
-            LinearLayout pathTwo = new LinearLayout(view.getContext());
+            LinearLayout pathOne = new LinearLayout(getContext());
+            LinearLayout pathTwo = new LinearLayout(getContext());
             params.gravity = Gravity.CENTER;
             pathOne.setLayoutParams(params);
             pathTwo.setLayoutParams(params);
@@ -106,7 +112,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                             LayoutParams.WRAP_CONTENT
                     );
                     rectParams.setMargins(5, 5, 5, 5);
-                    ImageView greenRect = new ImageView(view.getContext());
+                    ImageView greenRect = new ImageView(getContext());
                     greenRect.setImageResource(R.drawable.ic_square_green);
                     greenRect.setScaleX(2);
                     greenRect.setLayoutParams(rectParams);
@@ -117,7 +123,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                             LayoutParams.WRAP_CONTENT
                     );
                     rectParams.setMargins(5, 5, 5, 5);
-                    ImageView grayRect = new ImageView(view.getContext());
+                    ImageView grayRect = new ImageView(getContext());
                     grayRect.setImageResource(R.drawable.ic_square_gray);
                     grayRect.setScaleX(2);
                     grayRect.setLayoutParams(rectParams);
@@ -131,7 +137,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                             LayoutParams.WRAP_CONTENT
                     );
                     rectParams.setMargins(5, 5, 5, 5);
-                    ImageView greenRect = new ImageView(view.getContext());
+                    ImageView greenRect = new ImageView(getContext());
                     greenRect.setImageResource(R.drawable.ic_square_green);
                     greenRect.setScaleX(2);
                     greenRect.setLayoutParams(rectParams);
@@ -142,7 +148,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                             LayoutParams.WRAP_CONTENT
                     );
                     rectParams.setMargins(5, 5, 5, 5);
-                    ImageView grayRect = new ImageView(view.getContext());
+                    ImageView grayRect = new ImageView(getContext());
                     grayRect.setImageResource(R.drawable.ic_square_gray);
                     grayRect.setScaleX(2);
                     grayRect.setLayoutParams(rectParams);
