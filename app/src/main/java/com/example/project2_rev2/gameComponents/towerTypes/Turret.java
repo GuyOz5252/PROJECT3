@@ -9,13 +9,13 @@ import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
 
-public class Tank extends Tower {
+public class Turret extends Tower {
 
-    public Tank(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public Turret(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(
                 x,
                 y,
-                TowerType.TANK,
+                TowerType.TURRET,
                 towerBar,
                 waveManager,
                 projectileManager,
@@ -34,7 +34,6 @@ public class Tank extends Tower {
                     // path one
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
-
                             break;
                         case 1:
                             break;

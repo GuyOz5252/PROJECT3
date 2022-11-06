@@ -92,7 +92,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         this.pressedBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(size.width-size.width/50), (int)(size.height-size.height/50), false);
         this.pressedPosition = new Position(position.x+size.width/100, position.y+size.height/100);
 
-        this.levelIndicator = new BitmapObject[tower.getTowerUpgradePaths()[upgradePathIndex].value.length];
+        this.levelIndicator = new BitmapObject[tower.getTowerUpgradePaths()[upgradePathIndex].name.length];
 
         handleState();
         handlePriceColor();
@@ -100,7 +100,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void handleState() {
-        if (tower.getPathLevels()[upgradePathIndex] >= tower.getTowerUpgradePaths()[upgradePathIndex].value.length) {
+        if (tower.getPathLevels()[upgradePathIndex] >= tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             upgradeButtonState = UpgradeButtonState.MAX_LEVEL;
         } else {
             if (tower.getXP() >= tower.getTowerUpgradePaths()[upgradePathIndex].xpReq[tower.getPathLevels()[upgradePathIndex]]) {
@@ -112,7 +112,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void handlePriceColor() {
-        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].value.length) {
+        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             if (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]) {
                 coinTextUI.changeColor(R.color.white);
                 upgradeArrows.changeBitmap(R.drawable.ic_upgrade_arrows_green);
@@ -124,7 +124,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void handlePriceChange() {
-        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].value.length) {
+        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             coinTextUI.changeText(String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]));
         }
     }
@@ -140,7 +140,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     public void handleLevelIndicator() {
         double xPosition = position.x;
-        for (int i = 0; i < tower.getTowerUpgradePaths()[upgradePathIndex].value.length; i++) {
+        for (int i = 0; i < tower.getTowerUpgradePaths()[upgradePathIndex].name.length; i++) {
             if (i < tower.getPathLevels()[upgradePathIndex]) {
                 levelIndicator[i] = new BitmapObject(
                         xPosition,
@@ -165,7 +165,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public void postUpgrade() {
         towerUpgradeManager.postUpgrade();
         pathLevel = tower.getPathLevels()[upgradePathIndex];
-        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].value.length) {
+        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             upgradeNameText.changeText(String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].name[tower.getPathLevels()[upgradePathIndex]]));
         }
 

@@ -74,7 +74,10 @@ public class Projectile extends GameObject {
 
     public enum ProjectileType {
         DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f, 10),
-        LASER_BEAM(R.color.laserBeamProjectile, 50, 3, 40f, 25);
+        LASER_BEAM(R.color.laserBeamProjectile, 50, 3, 40f, 25),
+
+        TURRET_BULLETS(R.color.black, 120, 2, 35f, 5),
+        TANK_PROJECTILE(R.color.tankProjectile, 90, 10, 120f, 15);
 
         public int color;
         public int speed;

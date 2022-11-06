@@ -11,6 +11,8 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameComponents.towerTypes.LaserCanon;
+import com.example.project2_rev2.gameComponents.towerTypes.Tank;
+import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 
 import java.util.ArrayList;
 
@@ -22,8 +24,8 @@ public class TowerManager {
 
     public TowerManager(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         this.towerArrayList = new ArrayList<>();
-        this.towerArrayList.add(new LaserCanon(xCoordinate(1350), yCoordinate(450), towerBar, waveManager, projectileManager, this, context));
-        this.towerArrayList.add(new DemoTower(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
+        this.towerArrayList.add(new Tank(xCoordinate(1800), yCoordinate(450), towerBar, waveManager, projectileManager, this, context));
+        this.towerArrayList.add(new Turret(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
         this.isAnyTowerSelected = false;
     }
 

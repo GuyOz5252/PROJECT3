@@ -83,7 +83,7 @@ public abstract class Tower extends BitmapObject {
         this.towerUpgradeManager = new TowerUpgradeManager(this, towerManager, context);
     }
 
-    public abstract boolean upgrade(int upgradeIndex);
+    public abstract boolean upgrade(int upgradePathIndex);
 
     public Projectile.ProjectileType getProjectileType() {
         return projectileType;
@@ -208,13 +208,11 @@ public abstract class Tower extends BitmapObject {
     public static class TowerUpgradePath {
 
         public String[] name;
-        public int[] value;
         public int[] cost;
         public int[] xpReq;
 
-        public TowerUpgradePath(String[] name, int[] value, int[] cost, int[] xpReq) {
+        public TowerUpgradePath(String[] name, int[] cost, int[] xpReq) {
             this.name = name;
-            this.value = value;
             this.cost = cost;
             this.xpReq = xpReq;
         }
@@ -231,13 +229,11 @@ public abstract class Tower extends BitmapObject {
                 Projectile.ProjectileType.DEMO_BULLET,
                 new TowerUpgradePath(
                         new String[] {"Range", "Range", "Range"},
-                        new int[] {350, 400, 500},
                         new int[] {100, 200, 350},
                         new int[] {0, 0, 0}
                 ),
                 new TowerUpgradePath(
                         new String[] {"ATK Speed", "ATK Speed", "ATK Speed"},
-                        new int[] {25, 23, 18},
                         new int[] {100, 200, 300},
                         new int[] {0, 0, 0}
                 )
@@ -254,26 +250,53 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         new String[] {"None"},
                         new int[] {0},
+                        new int[] {0}
+                ),
+                new TowerUpgradePath(
+                        new String[] {"None"},
+                        new int[] {0},
+                        new int[] {0}
+                )
+        ),
+
+        TURRET(
+                "Turret",
+                R.drawable.ic_launcher_background,
+                250,
+                8,
+                500,
+                new Size(85, 85),
+                Projectile.ProjectileType.TURRET_BULLETS,
+                new TowerUpgradePath(
+                        new String[] {"None"},
                         new int[] {0},
                         new int[] {0}
                 ),
                 new TowerUpgradePath(
                         new String[] {"None"},
                         new int[] {0},
+                        new int[] {0}
+                )
+        ),
+        TANK(
+                "Tank",
+                R.drawable.ic_launcher_background,
+                400,
+                100,
+                500,
+                new Size(85, 85),
+                Projectile.ProjectileType.TANK_PROJECTILE,
+                new TowerUpgradePath(
+                        new String[] {"None"},
+                        new int[] {0},
+                        new int[] {0}
+                ),
+                new TowerUpgradePath(
+                        new String[] {"None"},
                         new int[] {0},
                         new int[] {0}
                 )
         );
-        //TANK(
-        //        "Tank",
-        //        R.drawable.ic_launcher_background,
-        //        200,
-        //        15,
-        //        500,
-        //        new Size(85, 85),
-        //        Projectile.ProjectileType.DEMO_BULLET,
-        //        new TowerUpgradePath(),
-        //);
 
         public String towerName;
         public int bitmap;

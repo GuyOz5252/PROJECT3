@@ -26,14 +26,34 @@ public class DemoTower extends Tower {
 
     @Override
     public boolean upgrade(int upgradePathIndex) {
-        if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].value.length) {
+        if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].name.length) {
             if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
                     GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
 
                 if (upgradePathIndex == 0) {
-                    range = towerUpgradePaths[upgradePathIndex].value[pathLevels[upgradePathIndex]];
+                    switch (pathLevels[upgradePathIndex]) {
+                        case 0:
+                            range = 350;
+                            break;
+                        case 1:
+                            range = 400;
+                            break;
+                        case 2:
+                            range = 500;
+                            break;
+                    }
                 } else {
-                    cooldown = towerUpgradePaths[upgradePathIndex].value[pathLevels[upgradePathIndex]];
+                    switch (pathLevels[upgradePathIndex]) {
+                        case 0:
+                            cooldown = 25;
+                            break;
+                        case 1:
+                            cooldown = 23;
+                            break;
+                        case 2:
+                            cooldown = 18;
+                            break;
+                    }
                 }
 
                 pathLevels[upgradePathIndex]++;
