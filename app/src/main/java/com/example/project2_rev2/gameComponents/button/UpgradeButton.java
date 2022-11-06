@@ -52,7 +52,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         this.upgradePath = tower.getTowerUpgradePaths()[upgradePathIndex];
         this.pathLevel = tower.getPathLevels()[upgradePathIndex];
 
-        this.upgradeNameString = tower.getTowerUpgradePaths()[upgradePathIndex].name;
+        this.upgradeNameString = tower.getTowerUpgradePaths()[upgradePathIndex].name[tower.getPathLevels()[upgradePathIndex]];
         this.priceString = String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]);
         this.upgradeNameText = new TextUI(
                 position.x+10,
@@ -165,6 +165,9 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public void postUpgrade() {
         towerUpgradeManager.postUpgrade();
         pathLevel = tower.getPathLevels()[upgradePathIndex];
+        if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].value.length) {
+            upgradeNameText.changeText(String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].name[tower.getPathLevels()[upgradePathIndex]]));
+        }
 
         handleState();
         handlePriceChange();
