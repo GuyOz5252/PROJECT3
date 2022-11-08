@@ -64,6 +64,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 context
         );
         this.upgradeNameText.setBold();
+        this.upgradeNameText.setShadow();
         this.coinTextUI = new CoinTextUI(
                 position.x+10,
                 position.y+100,
