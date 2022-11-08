@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
@@ -27,6 +28,9 @@ import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.example.project2_rev2.utils.Position;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * a class that includes all the components of a scene
@@ -82,12 +86,6 @@ public class DemoOne extends Scene {
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
         this.enemyPath = new EnemyPath();
-        //this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(gameDisplay.size.height/2)));
-        //this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(gameDisplay.size.height/2)));
-        //this.enemyPath.add(new Position(xCoordinate(900), yCoordinate(300)));
-        //this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(300)));
-        //this.enemyPath.add(new Position(xCoordinate(1250), yCoordinate(gameDisplay.size.height/2+100)));
-        //this.enemyPath.add(new Position(xCoordinate(2000), yCoordinate(gameDisplay.size.height/2+100)));
         this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(200)));
         this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(200)));
         this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(gameDisplay.size.height-300)));
@@ -97,30 +95,36 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(gameDisplay.size.height+50)));
 
         this.waveManager = new WaveManager(actionsArray[1], context);
-        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY
-        },
+        HashMap<Enemy.EnemyType, Integer> waveMap = new HashMap<>();
+        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 4);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
                 enemyPath,
                 40,
                 context
         ));
-        this.waveManager.addWave(new WaveManager.Wave(new Enemy.EnemyType[] {
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY,
-                Enemy.EnemyType.DEMO_ENEMY
-        },
+        waveMap.clear();
+        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 15);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
                 enemyPath,
                 30,
+                context
+        ));
+        waveMap.clear();
+        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 55);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                30,
+                context
+        ));
+        waveMap.clear();
+        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 500);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                20,
                 context
         ));
 

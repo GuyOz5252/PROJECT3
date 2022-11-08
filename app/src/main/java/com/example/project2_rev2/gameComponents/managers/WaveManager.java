@@ -12,6 +12,8 @@ import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WaveManager {
 
@@ -122,16 +124,18 @@ public class WaveManager {
         private ArrayList<Enemy> enemyArrayList;
         private int updatesBetweenSpawn;
 
-        public Wave(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
+        public Wave(HashMap<Enemy.EnemyType, Integer> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
             this.enemyArrayList = new ArrayList<>();
             this.updatesBetweenSpawn = updatesBetweenSpawn;
-            convertCodeToUnit(enemyArray, enemyPath, context);
+            convertCodeToUnit(enemyMap, enemyPath, context);
         }
 
-        private void convertCodeToUnit(Enemy.EnemyType[] enemyArray, EnemyPath enemyPath, Context context) {
-            for (Enemy.EnemyType enemyType : enemyArray) {
-                enemyArrayList.add(new Enemy(enemyType, enemyPath, context));
-            }
+        public void convertCodeToUnit(HashMap<Enemy.EnemyType, Integer> enemyMap, EnemyPath enemyPath, Context context) {
+            enemyMap.forEach((enemyType, enemyTypeNumber) -> {
+                for (int i = 0; i < enemyTypeNumber; i++) {
+                    enemyArrayList.add(new Enemy(enemyType, enemyPath, context));
+                }
+            });
         }
     }
 }
