@@ -268,21 +268,21 @@ public abstract class Tower extends BitmapObject {
                 new Size(85, 85),
                 Projectile.ProjectileType.TURRET_BULLETS,
                 new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
-                        new int[] {0}
+                        new String[] {"Double DMG", "Bigger Bullets"},
+                        new int[] {120, 200},
+                        new int[] {0, 0}
                 ),
                 new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
-                        new int[] {0}
+                        new String[] {"Range", "ATK Speed"},
+                        new int[] {100, 150},
+                        new int[] {0, 0}
                 )
         ),
         TANK(
                 "Tank",
                 R.drawable.ic_launcher_background,
                 400,
-                100,
+                150,
                 500,
                 new Size(85, 85),
                 Projectile.ProjectileType.TANK_PROJECTILE,

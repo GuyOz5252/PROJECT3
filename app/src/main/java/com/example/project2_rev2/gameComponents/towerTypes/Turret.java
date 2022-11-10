@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents.towerTypes;
 
 import android.content.Context;
 
+import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
@@ -34,8 +35,12 @@ public class Turret extends Tower {
                     // path one
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // double DMG
+                            projectileType = Projectile.ProjectileType.TURRET_BULLETS_V2;
                             break;
                         case 1:
+                            // bigger bullets
+                            projectileType = Projectile.ProjectileType.TURRET_BULLETS_V3;
                             break;
                         case 2:
                             break;
@@ -46,8 +51,12 @@ public class Turret extends Tower {
                     // path two
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // range
+                            range = 350;
                             break;
                         case 1:
+                            // ATK speed
+                            cooldown = 4;
                             break;
                         case 2:
                             break;
