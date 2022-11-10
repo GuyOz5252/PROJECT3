@@ -27,9 +27,11 @@ public class Turret extends Tower {
 
     @Override
     public boolean upgrade(int upgradePathIndex) {
+        // checks that the user has enough money and xp to upgrade
         if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].name.length) {
             if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
                     GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
+                // check which path is being upgraded
 
                 if (upgradePathIndex == 0) {
                     // path one
@@ -43,6 +45,8 @@ public class Turret extends Tower {
                             projectileType = Projectile.ProjectileType.TURRET_BULLETS_V3;
                             break;
                         case 2:
+                            // double projectile
+
                             break;
                         case 3:
                             break;
