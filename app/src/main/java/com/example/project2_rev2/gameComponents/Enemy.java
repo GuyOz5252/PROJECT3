@@ -33,6 +33,13 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     private int damage;
     private int value;
 
+    private boolean isOnFire;
+    private int damageOverTimeDurationTick;
+    private int damageOverTimeTick;
+    private int damageOverTimeDamage;
+    private int damageOverTimeTime;
+    private Tower damageOverTimeOriginTower;
+
     public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(
                 enemyPath.getPositionArrayList().get(0).x-enemyType.size.width/2,
@@ -52,6 +59,12 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         this.health = enemyType.health;
         this.damage = enemyType.damage;
         this.value = enemyType.value;
+        this.isOnFire = false;
+        this.damageOverTimeDurationTick = 0;
+        this.damageOverTimeTick = 0;
+        this.damageOverTimeDamage = 0;
+        this.damageOverTimeTime = 0;
+        this.damageOverTimeOriginTower = null;
     }
 
     public boolean getIsAlive() {
@@ -145,6 +158,37 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         }
     }
 
+    public void receiveDamageOverTime(int damage, int time, int interval, Tower originTower) {
+        if (damageOverTimeDurationTick < time) {
+            if (damageOverTimeTick > time/interval) {
+                health -= damage;
+                damageOverTimeTick = 0;
+            } else {
+                damageOverTimeTick++;
+            }
+            if (health <= 0) {
+                die(originTower);
+            }
+            damageOverTimeDurationTick++;
+        } else {
+            isOnFire = false;
+            damageOverTimeDurationTick = 0;
+            damageOverTimeTick = 0;
+            damageOverTimeDamage = 0;
+            damageOverTimeTime = 0;
+            damageOverTimeOriginTower = null;
+        }
+    }
+
+    public void setOnFire(int damage, int time, Tower originTower) {
+        damageOverTimeDurationTick = 0;
+        damageOverTimeTick = 0;
+        damageOverTimeDamage = damage;
+        damageOverTimeTime = time;
+        damageOverTimeOriginTower = originTower;
+        isOnFire = true;
+    }
+
     @Override
     public void onHealthChange() {
 
@@ -156,6 +200,12 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         if (isAlive) {
             handlePathMovement();
         }
+
+        if (isOnFire) {
+            receiveDamageOverTime(damageOverTimeDamage, damageOverTimeDurationTick, damageOverTimeTick, damageOverTimeOriginTower);
+        }
+
+        System.out.println(health);
     }
 
     private enum MovementDirection {
@@ -166,7 +216,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     public enum EnemyType {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(85, 85), 15, 10, 7);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(85, 85), 30, 10, 7);
 
         public int resourceId;
         public int speed;

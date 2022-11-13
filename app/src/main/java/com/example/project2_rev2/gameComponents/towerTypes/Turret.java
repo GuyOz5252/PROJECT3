@@ -10,6 +10,11 @@ import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
 
+/**
+ * a class that inherits Tower
+ * include override for upgrade method to give specific upgrades
+ */
+
 public class Turret extends Tower {
 
     public Turret(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
@@ -46,9 +51,10 @@ public class Turret extends Tower {
                             break;
                         case 2:
                             // double projectile
-
+                            isDoubleShot = true;
                             break;
                         case 3:
+
                             break;
                     }
                 } else {

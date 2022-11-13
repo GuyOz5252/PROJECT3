@@ -51,7 +51,17 @@ public class ProjectileManager {
         if (xDistance < 0)
             rotate += 180;
 
-        projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
+        if (tower.getIsDoubleShot()) {
+            if (yDistance < 0) {
+                projectileArrayList.add(new Projectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(new Projectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+            } else {
+                projectileArrayList.add(new Projectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(new Projectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+            }
+        } else {
+            projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
+        }
 
         return rotate;
     }

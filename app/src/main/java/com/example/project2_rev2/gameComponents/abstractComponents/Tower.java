@@ -22,12 +22,17 @@ import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that includes all the fields of a tower
+ * all methods and logic a tower needs
+ */
+
 public abstract class Tower extends BitmapObject {
 
     private TowerBar towerBar;
-    private WaveManager waveManager;
+    protected WaveManager waveManager;
     private ProjectileManager projectileManager;
-    private TowerType towerType;
+    protected TowerType towerType;
 
     protected int range;
     protected int value;
@@ -35,9 +40,9 @@ public abstract class Tower extends BitmapObject {
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
     protected int cooldown;
-    private int currentTick;
+    protected int currentTick;
 
-    private final Bitmap originalBitmap;
+    protected final Bitmap originalBitmap;
 
     private Rect towerRect;
     private boolean isSelected;
@@ -47,6 +52,8 @@ public abstract class Tower extends BitmapObject {
     protected int[] pathLevels;
     protected int upgradeCount;
     protected int xp;
+
+    protected boolean isDoubleShot;
 
     public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
@@ -81,6 +88,7 @@ public abstract class Tower extends BitmapObject {
         this.upgradeCount = 0;
         setXP(0);
         this.towerUpgradeManager = new TowerUpgradeManager(this, towerManager, context);
+        this.isDoubleShot = false;
     }
 
     public abstract boolean upgrade(int upgradePathIndex);
@@ -119,6 +127,10 @@ public abstract class Tower extends BitmapObject {
 
     public int getXP() {
         return xp;
+    }
+
+    public boolean getIsDoubleShot() {
+        return isDoubleShot;
     }
 
     public void setXP(int xp) {
@@ -218,6 +230,11 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
+    /**
+     * an enum that includes all tower types
+     * all values required to create a tower
+     */
+
     public enum TowerType {
         DEMO_TOWER(
                 "Demo Tower",
@@ -239,25 +256,6 @@ public abstract class Tower extends BitmapObject {
                 )
 
         ),
-        LASER_CANON(
-                "Laser Canon",
-                R.drawable.ic_launcher_background,
-                200,
-                10,
-                200,
-                new Size(85, 85),
-                Projectile.ProjectileType.LASER_BEAM,
-                new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
-                        new int[] {0}
-                ),
-                new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
-                        new int[] {0}
-                )
-        ),
 
         TURRET(
                 "Turret",
@@ -268,9 +266,9 @@ public abstract class Tower extends BitmapObject {
                 new Size(85, 85),
                 Projectile.ProjectileType.TURRET_BULLETS,
                 new TowerUpgradePath(
-                        new String[] {"Double DMG", "Bigger Bullets"},
-                        new int[] {120, 200},
-                        new int[] {0, 0}
+                        new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
+                        new int[] {120, 200, 300},
+                        new int[] {0, 0, 0}
                 ),
                 new TowerUpgradePath(
                         new String[] {"Range", "ATK Speed"},
@@ -278,14 +276,14 @@ public abstract class Tower extends BitmapObject {
                         new int[] {0, 0}
                 )
         ),
-        TANK(
-                "Tank",
+        FIRE_SPREADER(
+                "Fire Spreader",
                 R.drawable.ic_launcher_background,
-                400,
-                150,
+                180,
+                0,
                 500,
                 new Size(85, 85),
-                Projectile.ProjectileType.TANK_PROJECTILE,
+                null,
                 new TowerUpgradePath(
                         new String[] {"None"},
                         new int[] {0},

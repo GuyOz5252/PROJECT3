@@ -3,21 +3,15 @@ package com.example.project2_rev2.gameComponents.button;
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.HealthCounter;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.utils.HelperMethods;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class StartWaveButton extends Button {
@@ -56,12 +50,7 @@ public class StartWaveButton extends Button {
         }
     }
 
-    public void setAlpha(int alpha) {
-        paint.setAlpha(alpha);
-        startWaveIconIcon.getPaint().setAlpha(alpha);
-    }
-
-    public void setPressedSize(boolean b) {
+    public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
             position = pressedPosition;
@@ -86,17 +75,17 @@ public class StartWaveButton extends Button {
                 if (isActive) {
                     waveManager.startWave();
                     //setAlpha(255);
-                    setPressedSize(false);
+                    setPressEffect(false);
                     changeBitmap(R.drawable.start_wave_button_background_inactive);
                     startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
                 }
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && isActive) {
                 //setAlpha(100);
-                setPressedSize(true);
+                setPressEffect(true);
             }
         } else if (isActive) {
             //setAlpha(255);
-            setPressedSize(false);
+            setPressEffect(false);
         }
         return true;
     }

@@ -40,12 +40,7 @@ public class PauseButton extends Button {
         this.pause = pause;
     }
 
-    public void setAlpha(int alpha) {
-        paint.setAlpha(alpha);
-        pauseBitmap.getPaint().setAlpha(alpha);
-    }
-
-    public void setPressedSize(boolean b) {
+    public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
             position = pressedPosition;
@@ -69,15 +64,15 @@ public class PauseButton extends Button {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 //setAlpha(255);
                 pause.action();
-                setPressedSize(false);
+                setPressEffect(false);
                 return true;
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 //setAlpha(100);
-                setPressedSize(true);
+                setPressEffect(true);
             }
         } else {
             //setAlpha(255);
-            setPressedSize(false);
+            setPressEffect(false);
         }
         return false;
     }

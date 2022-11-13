@@ -1,13 +1,10 @@
 package com.example.project2_rev2.gameComponents.button;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.isFastForwarded;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -15,7 +12,6 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class FastForwardButton extends Button {
@@ -43,12 +39,7 @@ public class FastForwardButton extends Button {
         fastForwardIcon = originalFastForwardIcon;
     }
 
-    public void setAlpha(int alpha) {
-        paint.setAlpha(alpha);
-        fastForwardIcon.getPaint().setAlpha(alpha);
-    }
-
-    public void setPressedSize(boolean b) {
+    public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
             position = pressedPosition;
@@ -72,7 +63,7 @@ public class FastForwardButton extends Button {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 GameValues.isFastForwarded = !GameValues.isFastForwarded;
                 //setAlpha(255);
-                setPressedSize(false);
+                setPressEffect(false);
                 if (GameValues.isFastForwarded) {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
                 } else {
@@ -80,7 +71,7 @@ public class FastForwardButton extends Button {
                 }
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 //setAlpha(100);
-                setPressedSize(true);
+                setPressEffect(true);
                 if (GameValues.isFastForwarded) {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
                 } else {
@@ -89,7 +80,7 @@ public class FastForwardButton extends Button {
             }
         } else {
             //setAlpha(255);
-            setPressedSize(false);
+            setPressEffect(false);
         }
         return true;
     }

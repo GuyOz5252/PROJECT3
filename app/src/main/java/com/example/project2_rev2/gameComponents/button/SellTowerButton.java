@@ -4,7 +4,6 @@ import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -15,7 +14,6 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class SellTowerButton extends Button {
@@ -45,13 +43,7 @@ public class SellTowerButton extends Button {
         sellPriceTextUI.changeText(String.valueOf(newPrice));
     }
 
-    public void setAlpha(int alpha) {
-        paint.setAlpha(alpha);
-        sellPriceTextUI.getPaint().setAlpha(alpha);
-        sellPriceTextUI.getCoinPaint().setAlpha(alpha);
-    }
-
-    public void setPressedSize(boolean b) {
+    public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
             position = pressedPosition;
@@ -72,17 +64,17 @@ public class SellTowerButton extends Button {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 //setAlpha(255);
-                setPressedSize(false);
+                setPressEffect(false);
                 towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
                 tower.deselect();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 //setAlpha(200);
-                setPressedSize(true);
+                setPressEffect(true);
             }
         } else {
             //setAlpha(255);
-            setPressedSize(false);
+            setPressEffect(false);
         }
         return false;
     }

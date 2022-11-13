@@ -10,12 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-black"
         android:text="towers"
         android:textAllCaps="true"
+        android:textColor="@color/black"
         android:textSize="50dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-black"
-        android:textColor="@color/black"/>
+        android:textStyle="italic" />
 
     <LinearLayout
         android:id="@+id/towerCard_prev"

@@ -14,7 +14,6 @@ import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
@@ -193,29 +192,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
-    public void setAlpha(boolean b) {
-        if (b) {
-            paint.setAlpha(200);
-            upgradeNameText.getPaint().setAlpha(220);
-            coinTextUI.getPaint().setAlpha(220);
-            coinTextUI.getCoinPaint().setAlpha(220);
-            upgradeArrows.getPaint().setAlpha(220);
-            for (BitmapObject bitmapObject : levelIndicator) {
-                bitmapObject.getPaint().setAlpha(240);
-            }
-        } else {
-            paint.setAlpha(255);
-            upgradeNameText.getPaint().setAlpha(255);
-            coinTextUI.getPaint().setAlpha(255);
-            coinTextUI.getCoinPaint().setAlpha(255);
-            upgradeArrows.getPaint().setAlpha(255);
-            for (BitmapObject bitmapObject : levelIndicator) {
-                bitmapObject.getPaint().setAlpha(255);
-            }
-        }
-    }
-
-    public void setPressedSize(boolean b) {
+    public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
             position = pressedPosition;
@@ -247,7 +224,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 //setAlpha(false);
-                setPressedSize(false);
+                setPressEffect(false);
                 if (tower.upgrade(upgradePathIndex)) {
                     postUpgrade();
                     return true;
@@ -255,11 +232,11 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY &&
                     (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]])) {
                 //setAlpha(true);
-                setPressedSize(true);
+                setPressEffect(true);
             }
         } else {
             //setAlpha(false);
-            setPressedSize(false);
+            setPressEffect(false);
         }
         return false;
     }

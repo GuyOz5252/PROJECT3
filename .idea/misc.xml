@@ -30,6 +30,8 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_pause_menu.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_register.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project2-rev2/app/src/main/res/layout/dialog_victory.xml" value="0.4" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/dialog_custom.xml" value="0.4161458333333333" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_baseline_water_drop_24.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_circle.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_coin.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_home.xml" value="0.24375" />
@@ -43,6 +45,7 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/activity_tower_upgrade_info.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/content_tower_upgrade_info.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/dialog_death.xml" value="0.22760416666666666" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/dialog_victory.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/fragment_main_menu.xml" value="0.34103260869565216" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/fragment_second.xml" value="0.4" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/layout/fragment_tower.xml" value="0.4" />
