@@ -24,7 +24,7 @@ public class TowerManager {
         this.towerArrayList = new ArrayList<>();
         this.towerArrayList.add(new FireSpreader(xCoordinate(1760), yCoordinate(450), towerBar, waveManager, projectileManager, this, context));
         //this.towerArrayList.add(new Turret(xCoordinate(1000), yCoordinate(100), towerBar, waveManager, projectileManager, this, context));
-        //this.towerArrayList.add(new Turret(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
+        this.towerArrayList.add(new Turret(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
         this.isAnyTowerSelected = false;
     }
 

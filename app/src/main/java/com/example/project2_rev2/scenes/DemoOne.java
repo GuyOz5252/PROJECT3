@@ -96,7 +96,7 @@ public class DemoOne extends Scene {
 
         this.waveManager = new WaveManager(actionsArray[1], context);
         HashMap<Enemy.EnemyType, Integer> waveMap = new HashMap<>();
-        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 1);
+        waveMap.put(Enemy.EnemyType.DEMO_ENEMY, 6);
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
@@ -124,7 +124,7 @@ public class DemoOne extends Scene {
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                20,
+                28,
                 context
         ));
 

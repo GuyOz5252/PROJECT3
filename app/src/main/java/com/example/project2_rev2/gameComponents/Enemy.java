@@ -212,8 +212,6 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         if (isOnFire) {
             receiveDamageOverTime(damageOverTimeDamage, damageOverTimeDuration, damageOverTimeInterval, damageOverTimeOriginTower);
         }
-
-        System.out.println(health);
     }
 
     private enum MovementDirection {

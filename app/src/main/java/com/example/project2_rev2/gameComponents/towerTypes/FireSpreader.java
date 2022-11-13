@@ -45,9 +45,9 @@ public class FireSpreader extends Tower {
         };
         this.animationTick = 0;
         this.animationIndex = 0;
-        this.damage = 3;
-        this.duration = 180;
-        this.interval = 2;
+        this.damage = 11;
+        this.duration = 300;
+        this.interval = 3;
     }
 
     public void animateFiring() {
@@ -85,9 +85,12 @@ public class FireSpreader extends Tower {
     @Override
     public void draw(Canvas canvas) {
         if (areEnemiesInRange) {
-            bitmap = firingBitmapArr[animationIndex];
-        } else {
-            bitmap = originalBitmap;
+            canvas.drawBitmap(
+                    firingBitmapArr[animationIndex],
+                    (int)centerPosition.x-firingBitmapArr[animationIndex].getWidth()/2,
+                    (int)centerPosition.y-firingBitmapArr[animationIndex].getHeight()/2,
+                    paint
+            );
         }
         super.draw(canvas);
     }

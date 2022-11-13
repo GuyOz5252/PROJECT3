@@ -278,11 +278,11 @@ public abstract class Tower extends BitmapObject {
         ),
         FIRE_SPREADER(
                 "Fire Spreader",
-                R.drawable.ic_launcher_background,
+                R.drawable.fire_spreader_base,
                 180,
                 0,
                 500,
-                new Size(85, 85),
+                new Size(110, 110),
                 null,
                 new TowerUpgradePath(
                         new String[] {"None"},
