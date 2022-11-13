@@ -37,7 +37,8 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     private int damageOverTimeDurationTick;
     private int damageOverTimeTick;
     private int damageOverTimeDamage;
-    private int damageOverTimeTime;
+    private int damageOverTimeDuration;
+    private int damageOverTimeInterval;
     private Tower damageOverTimeOriginTower;
 
     public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
@@ -63,12 +64,17 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         this.damageOverTimeDurationTick = 0;
         this.damageOverTimeTick = 0;
         this.damageOverTimeDamage = 0;
-        this.damageOverTimeTime = 0;
+        this.damageOverTimeDuration = 0;
+        this.damageOverTimeInterval = 0;
         this.damageOverTimeOriginTower = null;
     }
 
     public boolean getIsAlive() {
         return isAlive;
+    }
+
+    public boolean getIsOnFire() {
+        return isOnFire;
     }
 
     public void handlePathMovement() {
@@ -158,11 +164,11 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         }
     }
 
-    public void receiveDamageOverTime(int damage, int time, int interval, Tower originTower) {
-        if (damageOverTimeDurationTick < time) {
-            if (damageOverTimeTick > time/interval) {
+    public void receiveDamageOverTime(int damage, int duration, int interval, Tower originTower) {
+        if (damageOverTimeDurationTick <= duration+1) { // to get into the if for the last time in the duration, adding one
+            if (damageOverTimeTick > duration/interval) {
                 health -= damage;
-                damageOverTimeTick = 0;
+                damageOverTimeTick = 2;
             } else {
                 damageOverTimeTick++;
             }
@@ -175,16 +181,18 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
             damageOverTimeDurationTick = 0;
             damageOverTimeTick = 0;
             damageOverTimeDamage = 0;
-            damageOverTimeTime = 0;
+            damageOverTimeDuration = 0;
+            damageOverTimeInterval = 0;
             damageOverTimeOriginTower = null;
         }
     }
 
-    public void setOnFire(int damage, int time, Tower originTower) {
+    public void setOnFire(int damage, int duration, int interval, Tower originTower) {
         damageOverTimeDurationTick = 0;
         damageOverTimeTick = 0;
         damageOverTimeDamage = damage;
-        damageOverTimeTime = time;
+        damageOverTimeDuration = duration;
+        damageOverTimeInterval = interval;
         damageOverTimeOriginTower = originTower;
         isOnFire = true;
     }
@@ -202,7 +210,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         }
 
         if (isOnFire) {
-            receiveDamageOverTime(damageOverTimeDamage, damageOverTimeDurationTick, damageOverTimeTick, damageOverTimeOriginTower);
+            receiveDamageOverTime(damageOverTimeDamage, damageOverTimeDuration, damageOverTimeInterval, damageOverTimeOriginTower);
         }
 
         System.out.println(health);

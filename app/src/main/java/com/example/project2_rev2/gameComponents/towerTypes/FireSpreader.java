@@ -24,7 +24,8 @@ public class FireSpreader extends Tower {
     private boolean areEnemiesInRange;
 
     private int damage;
-    private int burnTime;
+    private int duration;
+    private int interval;
 
     public FireSpreader(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(x, y, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
@@ -45,7 +46,8 @@ public class FireSpreader extends Tower {
         this.animationTick = 0;
         this.animationIndex = 0;
         this.damage = 3;
-        this.burnTime = 3000;
+        this.duration = 180;
+        this.interval = 2;
     }
 
     public void animateFiring() {
@@ -74,7 +76,9 @@ public class FireSpreader extends Tower {
     @Override
     public void attack(Enemy enemy) {
         if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
-            enemy.setOnFire(damage, burnTime, this);
+            if (!enemy.getIsOnFire()) {
+                enemy.setOnFire(damage, duration, interval, this);
+            }
         }
     }
 
