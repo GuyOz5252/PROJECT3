@@ -33,17 +33,35 @@ public class FireSpreader extends Tower {
         super(x, y, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
         this.firingBitmapArr = new Bitmap[] {
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.start_wave_button_background_inactive),
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-25,
+                        range*2-25,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-50,
+                        range*2-50,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
                         range*2,
                         range*2,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.ic_launcher_background),
-                        range*2,
-                        range*2,
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2+15,
+                        range*2+15,
                         false
-                )
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2+30,
+                        range*2+30,
+                        false
+                ),
         };
         this.animationTick = 0;
         this.animationIndex = 0;
@@ -53,9 +71,15 @@ public class FireSpreader extends Tower {
     }
 
     public void animateFiring() {
-        if (animationTick > 20) {
+        if (animationTick > 7) {
             if (animationIndex == 0) {
                 animationIndex = 1;
+            } else if (animationIndex == 1) {
+                animationIndex = 2;
+            } else if (animationIndex == 2) {
+                animationIndex = 3;
+            } else if (animationIndex == 3) {
+                animationIndex = 4;
             } else {
                 animationIndex = 0;
             }
@@ -77,9 +101,12 @@ public class FireSpreader extends Tower {
 
     @Override
     public void attack(Enemy enemy) {
-        if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
-            if (!enemy.getIsOnFire()) {
-                enemy.setOnFire(damage, duration, interval, this);
+        if (currentTick >= cooldown) {
+            if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
+                if (!enemy.getIsOnFire()) {
+                    enemy.setOnFire(damage, duration, interval, this);
+                    currentTick = 0;
+                }
             }
         }
     }
@@ -131,7 +158,7 @@ public class FireSpreader extends Tower {
                             interval = 7;
                             break;
                         case 3:
-                            // fire storm
+                            // agidyne
                             damage = 20;
                             interval = 10;
                             break;
@@ -142,14 +169,83 @@ public class FireSpreader extends Tower {
                         case 0:
                             // range
                             range = 220;
+                            firingBitmapArr = new Bitmap[] {
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2-25,
+                                            range*2-25,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2-50,
+                                            range*2-50,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2,
+                                            range*2,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2+15,
+                                            range*2+15,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2+30,
+                                            range*2+30,
+                                            false
+                                    ),
+                            };
                             break;
                         case 1:
-                            // burn more enemies
-
+                            // multi burn
+                            cooldown = 38;
                             break;
                         case 2:
+                            //
+
                             break;
                         case 3:
+                            // carmen
+                            range = 250;
+                            firingBitmapArr = new Bitmap[] {
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2-25,
+                                            range*2-25,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2-50,
+                                            range*2-50,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2,
+                                            range*2,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2+15,
+                                            range*2+15,
+                                            false
+                                    ),
+                                    Bitmap.createScaledBitmap(
+                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                                            range*2+30,
+                                            range*2+30,
+                                            false
+                                    ),
+                            };
+                            cooldown = 0;
                             break;
                     }
                 }

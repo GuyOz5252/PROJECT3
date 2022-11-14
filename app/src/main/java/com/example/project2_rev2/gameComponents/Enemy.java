@@ -95,19 +95,19 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     private boolean checkPosition() { // after testing, decided to put the offsets in the if statements
-        if (centerPosition.x < nextPathDestination.x-1) {
+        if (centerPosition.x < nextPathDestination.x-4) {
             movementDirection = MovementDirection.RIGHT;
             return true;
         }
-        if (centerPosition.x > nextPathDestination.x+1) {
+        if (centerPosition.x > nextPathDestination.x+4) {
             movementDirection = MovementDirection.LEFT;
             return true;
         }
-        if (centerPosition.y > nextPathDestination.y+2) {
+        if (centerPosition.y > nextPathDestination.y+4) {
             movementDirection = MovementDirection.UP;
             return true;
         }
-        if (centerPosition.y < nextPathDestination.y-1) {
+        if (centerPosition.y < nextPathDestination.y-4) {
             movementDirection = MovementDirection.DOWN;
             return true;
         }
@@ -222,7 +222,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     public enum EnemyType {
-        DEMO_ENEMY(R.drawable.ic_launcher_background, 3, new Size(85, 85), 30, 10, 7);
+        DEMO_ENEMY(R.drawable.ic_launcher_background, 4, new Size(85, 85), 30, 10, 7);
 
         public int resourceId;
         public int speed;

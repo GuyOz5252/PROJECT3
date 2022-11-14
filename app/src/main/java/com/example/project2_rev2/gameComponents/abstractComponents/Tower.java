@@ -71,7 +71,7 @@ public abstract class Tower extends BitmapObject {
         this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
         this.rangeBorderPaint.setStyle(Paint.Style.STROKE);
         this.rangeBorderPaint.setStrokeWidth(2);
-        this.currentTick = 0;
+        this.currentTick = cooldown;
         this.originalBitmap = bitmap;
         this.towerRect = new Rect(
                 (int)(x-towerType.size.width/2),
@@ -280,19 +280,19 @@ public abstract class Tower extends BitmapObject {
                 "Fire Spreader",
                 R.drawable.fire_spreader_base,
                 180,
-                0,
+                50,
                 500,
                 new Size(110, 110),
                 null,
                 new TowerUpgradePath(
-                        new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Fire Storm"},
+                        new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Agidyne"},
                         new int[] {450, 500, 800, 1000},
                         new int[] {0, 0, 0, 0}
                 ),
                 new TowerUpgradePath(
-                        new String[] {"Range"},
-                        new int[] {300},
-                        new int[] {0}
+                        new String[] {"Range", "Multi Burn", "", "Carmen"},
+                        new int[] {300, 350, 400, 500},
+                        new int[] {0, 0, 0, 0}
                 )
         );
 
