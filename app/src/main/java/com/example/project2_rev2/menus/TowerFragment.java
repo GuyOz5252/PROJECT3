@@ -1,5 +1,8 @@
 package com.example.project2_rev2.menus;
 
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
+
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -89,12 +92,14 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         params.setMargins(0, 0, 0, 5);
 
         ImageView imageView = new ImageView(getContext());
-        imageView.setImageResource(towerArrayList.get(towerIndex).bitmap);
         imageView.setLayoutParams(params);
+        Bitmap bitmap = getBitmapFromVectorDrawable(getContext(), towerArrayList.get(towerIndex).bitmap);
+        Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, 250, 250, true);
+        imageView.setImageBitmap(newBitmap);
 
         TextView textView = new TextView(getContext());
         textView.setText(towerArrayList.get(towerIndex).towerName);
-        textView.setTextSize(40);
+        textView.setTextSize(30);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         textView.setLayoutParams(params);
