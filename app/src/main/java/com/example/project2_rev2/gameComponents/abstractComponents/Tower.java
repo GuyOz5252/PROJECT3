@@ -285,13 +285,13 @@ public abstract class Tower extends BitmapObject {
                 new Size(110, 110),
                 null,
                 new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
-                        new int[] {0}
+                        new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Fire Storm"},
+                        new int[] {450, 500, 800, 1000},
+                        new int[] {0, 0, 0, 0}
                 ),
                 new TowerUpgradePath(
-                        new String[] {"None"},
-                        new int[] {0},
+                        new String[] {"Range"},
+                        new int[] {300},
                         new int[] {0}
                 )
         );

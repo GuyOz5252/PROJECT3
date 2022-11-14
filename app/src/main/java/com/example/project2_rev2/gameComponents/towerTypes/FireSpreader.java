@@ -8,11 +8,13 @@ import android.graphics.Canvas;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Enemy;
+import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.HelperMethods;
 
 public class FireSpreader extends Tower {
@@ -45,7 +47,7 @@ public class FireSpreader extends Tower {
         };
         this.animationTick = 0;
         this.animationIndex = 0;
-        this.damage = 11;
+        this.damage = 8;
         this.duration = 300;
         this.interval = 3;
     }
@@ -106,6 +108,58 @@ public class FireSpreader extends Tower {
 
     @Override
     public boolean upgrade(int upgradePathIndex) {
+        // checks that the user has enough money and xp to upgrade
+        if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].name.length) {
+            if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
+                    GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
+                // check which path is being upgraded
+
+                if (upgradePathIndex == 0) {
+                    // path one
+                    switch (pathLevels[upgradePathIndex]) {
+                        case 0:
+                            // longer burn
+                            duration = 500;
+                            interval = 5;
+                            break;
+                        case 1:
+                            // hot flames
+                            damage = 15;
+                            break;
+                        case 2:
+                            // violent fire
+                            interval = 7;
+                            break;
+                        case 3:
+                            // fire storm
+                            damage = 20;
+                            interval = 10;
+                            break;
+                    }
+                } else {
+                    // path two
+                    switch (pathLevels[upgradePathIndex]) {
+                        case 0:
+                            // range
+                            range = 220;
+                            break;
+                        case 1:
+                            // burn more enemies
+
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+                }
+
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
+                return true;
+            }
+        }
         return false;
     }
 }
