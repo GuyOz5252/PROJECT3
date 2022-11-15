@@ -64,25 +64,25 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
     public void cycleTowers() {
         if (currentTowerIndex == 0) {
             prevTowerCard.setVisibility(View.INVISIBLE);
-            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.upgradeNotReady));
+            btnPrevTower.setAlpha(0.5f);
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.VISIBLE);
-            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
+            btnNextTower.setAlpha(1f);
             createTowerCard(nextTowerCard, currentTowerIndex+1);
         } else if (currentTowerIndex == towerArrayList.size()-1) {
             prevTowerCard.setVisibility(View.VISIBLE);
-            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
+            btnPrevTower.setAlpha(1f);
             createTowerCard(prevTowerCard, currentTowerIndex-1);
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.INVISIBLE);
-            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.upgradeNotReady));
+            btnNextTower.setAlpha(0.5f);
         } else {
             prevTowerCard.setVisibility(View.VISIBLE);
-            btnPrevTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
+            btnPrevTower.setAlpha(1f);
             createTowerCard(prevTowerCard, currentTowerIndex-1);
             createTowerCard(currentTowerCard, currentTowerIndex);
             nextTowerCard.setVisibility(View.VISIBLE);
-            btnNextTower.setColorFilter(ContextCompat.getColor(getContext(), R.color.black));
+            btnNextTower.setAlpha(1f);
             createTowerCard(nextTowerCard, currentTowerIndex+1);
         }
     }
