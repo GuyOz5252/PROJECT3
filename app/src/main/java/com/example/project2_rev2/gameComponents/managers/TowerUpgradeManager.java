@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents.managers;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,9 +15,11 @@ import com.example.project2_rev2.gameComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
+import com.example.project2_rev2.utils.HelperMethods;
 
 public class TowerUpgradeManager {
 
+    private Context context;
     private UpgradeButton upgradeButtonPathOne;
     private UpgradeButton upgradeButtonPathTwo;
     private Tower tower;
@@ -24,6 +27,7 @@ public class TowerUpgradeManager {
     private TextUI towerNameText;
 
     public TowerUpgradeManager(Tower tower, TowerManager towerManager, Context context) {
+        this.context = context;
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
         this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(450), 1, tower, this, context);
         this.tower = tower;
@@ -46,6 +50,12 @@ public class TowerUpgradeManager {
     }
 
     public void draw(Canvas canvas) {
+        canvas.drawBitmap(
+                Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.tower_background), 160, 160, false),
+                (float)xCoordinate(95),
+                (float)yCoordinate(25),
+                null
+        );
         canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(30), null);
 
         upgradeButtonPathOne.draw(canvas);

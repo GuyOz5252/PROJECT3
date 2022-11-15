@@ -31,38 +31,7 @@ public class FireSpreader extends Tower {
 
     public FireSpreader(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(x, y, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
-        this.firingBitmapArr = new Bitmap[] {
-                Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                        range*2-25,
-                        range*2-25,
-                        false
-                ),
-                Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                        range*2-50,
-                        range*2-50,
-                        false
-                ),
-                Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                        range*2,
-                        range*2,
-                        false
-                ),
-                Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                        range*2+15,
-                        range*2+15,
-                        false
-                ),
-                Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                        range*2+30,
-                        range*2+30,
-                        false
-                ),
-        };
+        initFiringBitmapArr();
         this.animationTick = 0;
         this.animationIndex = 0;
         this.damage = 8;
@@ -70,18 +39,107 @@ public class FireSpreader extends Tower {
         this.interval = 3;
     }
 
+    public void initFiringBitmapArr() {
+        firingBitmapArr = new Bitmap[] {
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range-range/2,
+                        range-range/2,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range-50,
+                        range-50,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range-35,
+                        range-35,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range-25,
+                        range-25,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range,
+                        range,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range+range/2,
+                        range+range/2,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-25,
+                        range*2-25,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-15,
+                        range*2-15,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-7,
+                        range*2-7,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2,
+                        range*2,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2+7,
+                        range*2+7,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2+15,
+                        range*2+15,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2+7,
+                        range*2+7,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2,
+                        range*2,
+                        false
+                ),
+                Bitmap.createScaledBitmap(
+                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        range*2-7,
+                        range*2-7,
+                        false
+                ),
+        };
+    }
+
     public void animateFiring() {
-        if (animationTick > 7) {
-            if (animationIndex == 0) {
-                animationIndex = 1;
-            } else if (animationIndex == 1) {
-                animationIndex = 2;
-            } else if (animationIndex == 2) {
-                animationIndex = 3;
-            } else if (animationIndex == 3) {
-                animationIndex = 4;
+        if (animationTick > 0) {
+            if (animationIndex != 13) {
+                animationIndex++;
             } else {
-                animationIndex = 0;
+                animationIndex = 7;
             }
             animationTick = 0;
         } else {
@@ -130,6 +188,8 @@ public class FireSpreader extends Tower {
         areEnemiesInRangeCheck();
         if (areEnemiesInRange) {
             animateFiring();
+        } else {
+            animationIndex = 0;
         }
     }
 
@@ -159,7 +219,7 @@ public class FireSpreader extends Tower {
                             break;
                         case 3:
                             // agidyne
-                            damage = 20;
+                            damage = 22;
                             interval = 10;
                             break;
                     }
@@ -169,82 +229,21 @@ public class FireSpreader extends Tower {
                         case 0:
                             // range
                             range = 220;
-                            firingBitmapArr = new Bitmap[] {
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2-25,
-                                            range*2-25,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2-50,
-                                            range*2-50,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2,
-                                            range*2,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2+15,
-                                            range*2+15,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2+30,
-                                            range*2+30,
-                                            false
-                                    ),
-                            };
+                            initFiringBitmapArr();
                             break;
                         case 1:
                             // multi burn
                             cooldown = 38;
                             break;
                         case 2:
-                            //
-
+                            // hotter
+                            cooldown = 28;
+                            damage = 15;
                             break;
                         case 3:
                             // carmen
                             range = 250;
-                            firingBitmapArr = new Bitmap[] {
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2-25,
-                                            range*2-25,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2-50,
-                                            range*2-50,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2,
-                                            range*2,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2+15,
-                                            range*2+15,
-                                            false
-                                    ),
-                                    Bitmap.createScaledBitmap(
-                                            HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
-                                            range*2+30,
-                                            range*2+30,
-                                            false
-                                    ),
-                            };
+                            initFiringBitmapArr();
                             cooldown = 0;
                             break;
                     }
