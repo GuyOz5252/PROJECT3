@@ -26,6 +26,9 @@ public class TowerUpgradeManager {
     private SellTowerButton sellTowerButton;
     private TextUI towerNameText;
 
+    private Bitmap towerBackground;
+    private Bitmap towerBitmap;
+
     public TowerUpgradeManager(Tower tower, TowerManager towerManager, Context context) {
         this.context = context;
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
@@ -43,6 +46,9 @@ public class TowerUpgradeManager {
                 Paint.Align.CENTER,
                 context
         );
+
+        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.tower_background), 160, 160, false);
+        this.towerBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, tower.getIcon()), 150, 150, false);
     }
 
     public void postUpgrade() {
@@ -51,12 +57,20 @@ public class TowerUpgradeManager {
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(
-                Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.tower_background), 160, 160, false),
+                towerBackground,
                 (float)xCoordinate(95),
                 (float)yCoordinate(25),
                 null
         );
-        canvas.drawBitmap(Bitmap.createScaledBitmap(tower.getOriginalBitmap(), 150, 150, false), (float)xCoordinate(100), (float)yCoordinate(30), null);
+        canvas.drawBitmap(Bitmap.createScaledBitmap(
+                towerBitmap,
+                150,
+                150,
+                false),
+                (float)xCoordinate(100),
+                (float)yCoordinate(30),
+                null
+        );
 
         upgradeButtonPathOne.draw(canvas);
         upgradeButtonPathTwo.draw(canvas);

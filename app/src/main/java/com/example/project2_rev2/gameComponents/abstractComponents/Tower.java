@@ -42,7 +42,8 @@ public abstract class Tower extends BitmapObject {
     protected int cooldown;
     protected int currentTick;
 
-    protected final Bitmap originalBitmap;
+    protected Bitmap originalBitmap;
+    protected int icon;
 
     private Rect towerRect;
     private boolean isSelected;
@@ -73,6 +74,7 @@ public abstract class Tower extends BitmapObject {
         this.rangeBorderPaint.setStrokeWidth(2);
         this.currentTick = cooldown;
         this.originalBitmap = bitmap;
+        this.icon = towerType.icon;
         this.towerRect = new Rect(
                 (int)(x-towerType.size.width/2),
                 (int)(y-towerType.size.height/2),
@@ -97,8 +99,8 @@ public abstract class Tower extends BitmapObject {
         return projectileType;
     }
 
-    public Bitmap getOriginalBitmap() {
-        return originalBitmap;
+    public int getIcon() {
+        return icon;
     }
 
     public String getName() {
@@ -239,6 +241,7 @@ public abstract class Tower extends BitmapObject {
         DEMO_TOWER(
                 "Demo Tower",
                 R.drawable.ic_launcher_background,
+                R.drawable.ic_launcher_background,
                 300,
                 30,
                 70,
@@ -259,11 +262,12 @@ public abstract class Tower extends BitmapObject {
 
         TURRET(
                 "Turret",
-                R.drawable.ic_launcher_background,
+                R.drawable.turret_head_1,
+                R.drawable.turret_icon,
                 250,
                 8,
                 500,
-                new Size(85, 85),
+                new Size(150, 150),
                 Projectile.ProjectileType.TURRET_BULLETS,
                 new TowerUpgradePath(
                         new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
@@ -278,6 +282,7 @@ public abstract class Tower extends BitmapObject {
         ),
         FIRE_SPREADER(
                 "Fire Spreader",
+                R.drawable.fire_spreader_base,
                 R.drawable.fire_spreader_base,
                 180,
                 50,
@@ -297,6 +302,7 @@ public abstract class Tower extends BitmapObject {
         );
 
         public String towerName;
+        public int icon;
         public int bitmap;
         public int range;
         public int cooldown;
@@ -306,9 +312,10 @@ public abstract class Tower extends BitmapObject {
         public TowerUpgradePath towerUpgradePathOne;
         public TowerUpgradePath towerUpgradePathTwo;
 
-        TowerType(String towerName, int bitmap, int range, int cooldown, int value, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
+        TowerType(String towerName, int bitmap, int icon, int range, int cooldown, int value, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
             this.towerName = towerName;
             this.bitmap = bitmap;
+            this.icon = icon;
             this.range = range;
             this.cooldown = cooldown;
             this.value = value;

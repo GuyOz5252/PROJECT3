@@ -1,7 +1,12 @@
 package com.example.project2_rev2.gameComponents.towerTypes;
 
-import android.content.Context;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
@@ -9,6 +14,7 @@ import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
+import com.example.project2_rev2.utils.HelperMethods;
 
 /**
  * a class that inherits Tower
@@ -16,6 +22,9 @@ import com.example.project2_rev2.utils.GameValues;
  */
 
 public class Turret extends Tower {
+
+    private Bitmap turretBase;
+    private Bitmap turretHead2;
 
     public Turret(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(
@@ -28,6 +37,29 @@ public class Turret extends Tower {
                 towerManager,
                 context
         );
+        this.turretBase = Bitmap.createScaledBitmap(
+                getBitmapFromVectorDrawable(context, R.drawable.turret_base),
+                (int)size.width,
+                (int)size.height,
+                false
+        );
+        this.turretHead2 = Bitmap.createScaledBitmap(
+                getBitmapFromVectorDrawable(context, R.drawable.turret_head_2),
+                (int)size.width,
+                (int)size.height,
+                false
+        );
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawBitmap(
+                turretBase,
+                (int)centerPosition.x-turretBase.getWidth()/2,
+                (int)centerPosition.y-turretBase.getHeight()/2,
+                paint
+        );
+        super.draw(canvas);
     }
 
     @Override
@@ -51,6 +83,8 @@ public class Turret extends Tower {
                             break;
                         case 2:
                             // double projectile
+                            bitmap = turretHead2;
+                            originalBitmap = turretHead2;
                             isDoubleShot = true;
                             break;
                         case 3:

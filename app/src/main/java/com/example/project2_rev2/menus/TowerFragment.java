@@ -17,6 +17,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
@@ -35,6 +36,8 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
     private ArrayList<Tower.TowerType> towerArrayList;
     private int currentTowerIndex;
 
+    private Bitmap towerBackground;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tower, container, false);
@@ -48,6 +51,8 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         currentTowerCard.setOnTouchListener(this);
         btnPrevTower.setOnTouchListener(this);
         btnNextTower.setOnTouchListener(this);
+
+        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(getContext(), R.drawable.tower_background), 260, 260, false);
 
         this.towerArrayList = new ArrayList<>(Arrays.asList(Tower.TowerType.values()));
         this.currentTowerIndex = 0;
@@ -91,11 +96,24 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         );
         params.setMargins(0, 0, 0, 5);
 
+        RelativeLayout relativeLayout = new RelativeLayout(getContext());
+        relativeLayout.setLayoutParams(params);
+
+        ImageView towerBackgroundImageView = new ImageView(getContext());
+        towerBackgroundImageView.setImageBitmap(towerBackground);
+
+        RelativeLayout.LayoutParams towerImageViewParams = new RelativeLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
+        );
+        towerImageViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         ImageView imageView = new ImageView(getContext());
-        imageView.setLayoutParams(params);
-        Bitmap bitmap = getBitmapFromVectorDrawable(getContext(), towerArrayList.get(towerIndex).bitmap);
-        Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, 250, 250, true);
+        imageView.setLayoutParams(towerImageViewParams);
+        Bitmap newBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(getContext(), towerArrayList.get(towerIndex).icon), 250, 250, false);
         imageView.setImageBitmap(newBitmap);
+
+        relativeLayout.addView(towerBackgroundImageView);
+        relativeLayout.addView(imageView);
 
         TextView textView = new TextView(getContext());
         textView.setText(towerArrayList.get(towerIndex).towerName);
@@ -161,12 +179,12 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
                 }
             }
 
-            linearLayout.addView(imageView);
+            linearLayout.addView(relativeLayout);
             linearLayout.addView(textView);
             linearLayout.addView(pathOne);
             linearLayout.addView(pathTwo);
         } else {
-            linearLayout.addView(imageView);
+            linearLayout.addView(relativeLayout);
             linearLayout.addView(textView);
         }
     }
