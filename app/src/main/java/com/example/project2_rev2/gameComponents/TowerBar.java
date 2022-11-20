@@ -24,6 +24,8 @@ public class TowerBar extends RectObject {
 
     private Paint borderPaint;
 
+    private DragAndDropUI dragAndDropUI;
+
     private TowerManager towerManager;
 
     private StartWaveButton startWaveButton;
@@ -35,6 +37,8 @@ public class TowerBar extends RectObject {
         this.borderPaint.setStyle(Paint.Style.STROKE);
         this.borderPaint.setStrokeWidth(10);
         this.borderPaint.setColor(ContextCompat.getColor(context, R.color.black));
+
+        this.dragAndDropUI = new DragAndDropUI(context);
 
         this.startWaveButton = new StartWaveButton(waveManager, context);
         waveManager.setStartWaveButton(startWaveButton);
@@ -53,11 +57,20 @@ public class TowerBar extends RectObject {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawRect(rect, borderPaint);
 
         if (!towerManager.getIsAnyTowerSelected()) {
-            // draw drag n drop ui
+            dragAndDropUI.draw(canvas);
         }
+
+        canvas.drawRect(
+                new Rect(
+                        (int)xCoordinate(0),
+                        (int)yCoordinate(gameDisplay.size.height-210),
+                        (int)xCoordinate(350),
+                        (int)yCoordinate(gameDisplay.size.height)
+                ),
+                paint
+        );
 
         canvas.drawLine(
                 (float)xCoordinate(0),
@@ -69,6 +82,8 @@ public class TowerBar extends RectObject {
 
         startWaveButton.draw(canvas);
         fastForwardButton.draw(canvas);
+
+        canvas.drawRect(rect, borderPaint);
     }
 
     @Override
@@ -81,7 +96,7 @@ public class TowerBar extends RectObject {
         fastForwardButton.onTouchEvent(motionEvent);
 
         if (!towerManager.getIsAnyTowerSelected()) {
-            // listen to drag n drop ui
+            dragAndDropUI.onTouchEvent(motionEvent);
         }
     }
 }
