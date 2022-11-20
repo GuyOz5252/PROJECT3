@@ -40,6 +40,7 @@ public class PauseButton extends Button {
         this.pause = pause;
     }
 
+    @Override
     public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;

@@ -43,6 +43,7 @@ public class SellTowerButton extends Button {
         sellPriceTextUI.changeText(String.valueOf(newPrice));
     }
 
+    @Override
     public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;

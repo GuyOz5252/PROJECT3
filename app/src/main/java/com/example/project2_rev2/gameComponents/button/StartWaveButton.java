@@ -50,6 +50,7 @@ public class StartWaveButton extends Button {
         }
     }
 
+    @Override
     public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;

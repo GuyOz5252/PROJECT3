@@ -39,6 +39,7 @@ public class FastForwardButton extends Button {
         fastForwardIcon = originalFastForwardIcon;
     }
 
+    @Override
     public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;
@@ -62,7 +63,6 @@ public class FastForwardButton extends Button {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 GameValues.isFastForwarded = !GameValues.isFastForwarded;
-                //setAlpha(255);
                 setPressEffect(false);
                 if (GameValues.isFastForwarded) {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
@@ -70,7 +70,6 @@ public class FastForwardButton extends Button {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_off);
                 }
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                //setAlpha(100);
                 setPressEffect(true);
                 if (GameValues.isFastForwarded) {
                     fastForwardIcon.changeBitmap(R.drawable.ic_fast_forward_on);
@@ -79,7 +78,6 @@ public class FastForwardButton extends Button {
                 }
             }
         } else {
-            //setAlpha(255);
             setPressEffect(false);
         }
         return true;

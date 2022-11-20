@@ -88,7 +88,7 @@ public class TowerBar extends RectObject {
 
     @Override
     public void update() {
-
+        dragAndDropUI.update();
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

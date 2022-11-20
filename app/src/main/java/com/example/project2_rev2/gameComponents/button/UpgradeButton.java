@@ -192,6 +192,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
+    @Override
     public void setPressEffect(boolean b) {
         if (b) {
             bitmap = pressedBitmap;

@@ -34,6 +34,8 @@ public abstract class Button extends BitmapObject {
         this.pressedPosition = new Position(position.x+size.width/40, position.y+size.height/40);
     }
 
+    public abstract void setPressEffect(boolean b);
+
     public boolean getIsActive() {
         return isActive;
     }
