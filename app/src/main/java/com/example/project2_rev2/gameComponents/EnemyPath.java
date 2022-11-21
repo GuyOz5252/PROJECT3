@@ -28,6 +28,12 @@ public class EnemyPath {
 
     public void calculateColliders() {
         for (int i = 1; i < positionArrayList.size(); i++) {
+//            GameValues.colliderArrayList.add(new Rect(
+//                        (int)positionArrayList.get(i-1).x-60,
+//                        (int)positionArrayList.get(i-1).y-60,
+//                        (int)positionArrayList.get(i).x+60,
+//                        (int)positionArrayList.get(i).y+60
+//            ));
             if (positionArrayList.get(i-1).x < positionArrayList.get(i).x || positionArrayList.get(i-1).y < positionArrayList.get(i).y) {
                 GameValues.colliderArrayList.add(new Rect(
                         (int)positionArrayList.get(i-1).x-60,
@@ -37,10 +43,10 @@ public class EnemyPath {
                 ));
             } else {
                 GameValues.colliderArrayList.add(new Rect(
-                        (int)positionArrayList.get(i-1).x+60,
-                        (int)positionArrayList.get(i-1).y-60,
                         (int)positionArrayList.get(i).x-60,
-                        (int)positionArrayList.get(i).y+60
+                        (int)positionArrayList.get(i).y-60,
+                        (int)positionArrayList.get(i-1).x+60,
+                        (int)positionArrayList.get(i-1).y+60
                 ));
             }
         }

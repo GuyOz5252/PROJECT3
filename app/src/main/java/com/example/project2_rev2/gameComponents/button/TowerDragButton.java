@@ -1,5 +1,8 @@
 package com.example.project2_rev2.gameComponents.button;
 
+import static com.example.project2_rev2.utils.GameValues.xCoordinate;
+import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -29,7 +32,7 @@ public class TowerDragButton extends Button {
     private Paint rangeBorderPaint;
 
     public TowerDragButton(int resourceId, TowerManager towerManager, Tower.TowerType towerType, Size size, Context context) {
-        super(80, 0, resourceId, size, context);
+        super(xCoordinate(80), 0, resourceId, size, context);
         this.towerManager = towerManager;
         this.towerType = towerType;
         this.towerIcon = new BitmapObject(
@@ -79,7 +82,7 @@ public class TowerDragButton extends Button {
 
     public void setY(int y) {
         this.position.y = y;
-        this.buttonRect.set(80, y, (int)(80+size.width), (int)(y+size.height));
+        this.buttonRect.set((int)xCoordinate(80), (int)yCoordinate(y), (int)xCoordinate(80+size.width), (int)yCoordinate(y+size.height));
         centerPosition.y = position.y+bitmap.getHeight()/2;
         towerIcon.setPosition(centerPosition.x - (size.width-10)/2, centerPosition.y - (size.height-10)/2);
     }
@@ -139,7 +142,7 @@ public class TowerDragButton extends Button {
                     }
                 }
                 if (b) {
-                    towerManager.addTower(towerType, motionEvent.getX(), motionEvent.getY());
+                    towerManager.addTower(towerType, (motionEvent.getX()), (motionEvent.getY()));
                     GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerType.value);
                 }
 

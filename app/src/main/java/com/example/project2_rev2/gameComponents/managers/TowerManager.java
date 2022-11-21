@@ -42,16 +42,16 @@ public class TowerManager {
         return isAnyTowerSelected;
     }
 
-    public void addTower(Tower.TowerType towerType, float x, float y) {
+    public void addTower(Tower.TowerType towerType, double x, double y) {
         switch (towerType) {
             case DEMO_TOWER:
-                towerArrayList.add(new DemoTower(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new DemoTower(x, y, towerBar, waveManager, projectileManager, this, context));
                 break;
             case TURRET:
-                towerArrayList.add(new Turret(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new Turret(x, y, towerBar, waveManager, projectileManager, this, context));
                 break;
             case FIRE_SPREADER:
-                towerArrayList.add(new FireSpreader(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new FireSpreader(x, y, towerBar, waveManager, projectileManager, this, context));
                 break;
         }
     }
