@@ -18,6 +18,7 @@ public class DragAndDropUI {
 
     private Context context;
     private ArrayList<TowerDragButton> towerDragButtonArrayList;
+    private TowerDragButton selectedTowerDragButton;
 
     public DragAndDropUI(TowerManager towerManager, Context context) {
         this.context = context;

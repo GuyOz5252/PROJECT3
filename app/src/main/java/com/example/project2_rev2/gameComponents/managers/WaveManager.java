@@ -111,12 +111,8 @@ public class WaveManager {
             }
         }
 
-        aliveList.forEach(enemy -> {
-            enemy.update();
-            if (!enemy.getIsAlive()) {
-                aliveList.remove(enemy);
-            }
-        });
+        aliveList.forEach(Enemy::update);
+        aliveList.removeIf(enemy -> !enemy.getIsAlive());
     }
 
     /**********************************************************************************************/

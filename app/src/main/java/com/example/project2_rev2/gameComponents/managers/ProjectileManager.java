@@ -80,9 +80,7 @@ public class ProjectileManager {
                 projectile.update();
                 projectile.hitEnemy(waveManager.getAliveList());
             }
-            if (!projectile.getIsActive()) {
-                projectileArrayList.remove(projectile);
-            }
         });
+        projectileArrayList.removeIf(projectile -> !projectile.getIsActive());
     }
 }
