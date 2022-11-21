@@ -27,6 +27,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
 import java.util.HashMap;
@@ -93,6 +94,7 @@ public class DemoOne extends Scene {
         this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(500)));
         this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(500)));
         this.enemyPath.add(new Position(xCoordinate(1200), yCoordinate(gameDisplay.size.height+50)));
+        this.enemyPath.calculateColliders();
 
         this.waveManager = new WaveManager(actionsArray[1], context);
         HashMap<Enemy.EnemyType, Integer> waveMap = new HashMap<>();
@@ -151,6 +153,7 @@ public class DemoOne extends Scene {
         pauseButton.draw(canvas);
         coinCounter.draw(canvas);
         healthCounter.draw(canvas);
+        waveManager.drawWaveCounter(canvas);
 
         for (Rect rect : coverRect) {
             canvas.drawRect(rect, coverPaint);
@@ -159,6 +162,7 @@ public class DemoOne extends Scene {
 
     @Override
     public void update() {
+        towerBar.update();
         waveManager.update();
         projectileManager.update();
         towerManager.update();

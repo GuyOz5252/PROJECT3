@@ -40,6 +40,10 @@ public abstract class BitmapObject extends GameObject {
         return paint;
     }
 
+    public Size getSize() {
+        return size;
+    }
+
     public void changeBitmap(@DrawableRes int resourceId) {
         bitmap = getBitmapFromVectorDrawable(context, resourceId);
         bitmap = Bitmap.createScaledBitmap(bitmap, (int)size.width, (int)size.height, false);

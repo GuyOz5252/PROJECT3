@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
 import java.util.ArrayList;
@@ -23,11 +24,26 @@ public class EnemyPath {
 
     public void add(Position position) {
         positionArrayList.add(position);
-
     }
 
-    public void update() {
-
+    public void calculateColliders() {
+        for (int i = 1; i < positionArrayList.size(); i++) {
+            if (positionArrayList.get(i-1).x < positionArrayList.get(i).x || positionArrayList.get(i-1).y < positionArrayList.get(i).y) {
+                GameValues.colliderArrayList.add(new Rect(
+                        (int)positionArrayList.get(i-1).x-60,
+                        (int)positionArrayList.get(i-1).y-60,
+                        (int)positionArrayList.get(i).x+60,
+                        (int)positionArrayList.get(i).y+60
+                ));
+            } else {
+                GameValues.colliderArrayList.add(new Rect(
+                        (int)positionArrayList.get(i-1).x+60,
+                        (int)positionArrayList.get(i-1).y-60,
+                        (int)positionArrayList.get(i).x-60,
+                        (int)positionArrayList.get(i).y+60
+                ));
+            }
+        }
     }
 
     public void draw(Canvas canvas) {

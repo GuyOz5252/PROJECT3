@@ -12,7 +12,7 @@ import com.example.project2_rev2.utils.Size;
 
 public abstract class Button extends BitmapObject {
 
-    private Rect buttonRect;
+    protected Rect buttonRect;
     protected boolean isActive;
     protected Bitmap originalBitmap;
     protected Position originalPosition;

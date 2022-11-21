@@ -73,12 +73,14 @@ public class WaveManager {
         enemyIndexInWave++;
     }
 
+    public void drawWaveCounter(Canvas canvas) {
+        waveCounter.draw(canvas);
+    }
+
     public void draw(Canvas canvas) {
         for (Enemy enemy : aliveList) {
             enemy.draw(canvas);
         }
-
-        waveCounter.draw(canvas);
     }
 
     public void update() {

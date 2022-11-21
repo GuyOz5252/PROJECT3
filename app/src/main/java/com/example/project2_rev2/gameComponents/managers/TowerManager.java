@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
 import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 
@@ -16,15 +17,20 @@ import java.util.ArrayList;
 
 public class TowerManager {
 
+    private Context context;
+    private TowerBar towerBar;
+    private WaveManager waveManager;
+    private ProjectileManager projectileManager;
     private ArrayList<Tower> towerArrayList;
     private boolean isAnyTowerSelected;
     private Tower selectedTower;
 
     public TowerManager(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+        this.context = context;
+        this.towerBar = towerBar;
+        this.waveManager = waveManager;
+        this.projectileManager = projectileManager;
         this.towerArrayList = new ArrayList<>();
-        this.towerArrayList.add(new FireSpreader(xCoordinate(1760), yCoordinate(450), towerBar, waveManager, projectileManager, this, context));
-        //this.towerArrayList.add(new Turret(xCoordinate(1000), yCoordinate(100), towerBar, waveManager, projectileManager, this, context));
-        this.towerArrayList.add(new Turret(xCoordinate(450), yCoordinate(750), towerBar, waveManager, projectileManager, this, context));
         this.isAnyTowerSelected = false;
     }
 
@@ -34,6 +40,20 @@ public class TowerManager {
 
     public boolean getIsAnyTowerSelected() {
         return isAnyTowerSelected;
+    }
+
+    public void addTower(Tower.TowerType towerType, float x, float y) {
+        switch (towerType) {
+            case DEMO_TOWER:
+                towerArrayList.add(new DemoTower(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                break;
+            case TURRET:
+                towerArrayList.add(new Turret(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                break;
+            case FIRE_SPREADER:
+                towerArrayList.add(new FireSpreader(xCoordinate(x), yCoordinate(y), towerBar, waveManager, projectileManager, this, context));
+                break;
+        }
     }
 
     public void drawTowerUpgradeUI(Canvas canvas) {

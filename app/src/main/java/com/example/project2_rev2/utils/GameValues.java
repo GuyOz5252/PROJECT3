@@ -1,6 +1,7 @@
 package com.example.project2_rev2.utils;
 
 import android.app.Activity;
+import android.graphics.Rect;
 
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
@@ -23,6 +24,8 @@ public class GameValues {
     public static double yCoordinate(double value) {
         return value + yOffset;
     }
+
+    public static ArrayList<Rect> colliderArrayList = new ArrayList<>();
 
     public static boolean isPaused = false;
 

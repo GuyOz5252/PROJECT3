@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.TowerDragButton;
+import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.Size;
 
 import java.util.ArrayList;
@@ -18,14 +19,14 @@ public class DragAndDropUI {
     private Context context;
     private ArrayList<TowerDragButton> towerDragButtonArrayList;
 
-    public DragAndDropUI(Context context) {
+    public DragAndDropUI(TowerManager towerManager, Context context) {
         this.context = context;
         ArrayList<Tower.TowerType> towerTypeArrayList = new ArrayList<>(Arrays.asList(Tower.TowerType.values()));
         this.towerDragButtonArrayList = new ArrayList<>();
         towerTypeArrayList.forEach(towerType -> towerDragButtonArrayList.add(
                 new TowerDragButton(
-                        80,
                         R.drawable.tower_background,
+                        towerManager,
                         towerType,
                         new Size(190, 190),
                         context
@@ -51,7 +52,7 @@ public class DragAndDropUI {
     }
 
     public void update() {
-
+        towerDragButtonArrayList.forEach(TowerDragButton::update);
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

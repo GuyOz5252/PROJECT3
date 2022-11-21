@@ -19,8 +19,11 @@ import com.example.project2_rev2.gameComponents.button.FastForwardButton;
 import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
+import com.example.project2_rev2.utils.GameValues;
 
 public class TowerBar extends RectObject {
+
+    private Context context;
 
     private Paint borderPaint;
 
@@ -33,17 +36,18 @@ public class TowerBar extends RectObject {
 
     public TowerBar(WaveManager waveManager, Context context) {
         super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
+        this.context = context;
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);
         this.borderPaint.setStrokeWidth(10);
         this.borderPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
-        this.dragAndDropUI = new DragAndDropUI(context);
-
         this.startWaveButton = new StartWaveButton(waveManager, context);
         waveManager.setStartWaveButton(startWaveButton);
 
         this.fastForwardButton = new FastForwardButton(context);
+
+        GameValues.colliderArrayList.add(rect);
     }
 
     public Rect getTowerBarRect() {
@@ -52,15 +56,12 @@ public class TowerBar extends RectObject {
 
     public void setTowerManager(TowerManager towerManager) {
         this.towerManager = towerManager;
+        this.dragAndDropUI = new DragAndDropUI(towerManager, context);
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-
-        if (!towerManager.getIsAnyTowerSelected()) {
-            dragAndDropUI.draw(canvas);
-        }
 
         canvas.drawRect(
                 new Rect(
@@ -84,6 +85,10 @@ public class TowerBar extends RectObject {
         fastForwardButton.draw(canvas);
 
         canvas.drawRect(rect, borderPaint);
+
+        if (!towerManager.getIsAnyTowerSelected()) {
+            dragAndDropUI.draw(canvas);
+        }
     }
 
     @Override
