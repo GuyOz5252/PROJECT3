@@ -58,7 +58,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void createLoginDialog() {
         login = new Dialog(this);
         login.setContentView(R.layout.dialog_login);
-        login.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); // hide bottom bar
         login.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         login.setTitle("Login");
 
@@ -154,7 +153,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void createRegisterDialog() {
         register = new Dialog(this);
         register.setContentView(R.layout.dialog_register);
-        register.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); // hide bottom bar
         register.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         register.setTitle("Register");
 

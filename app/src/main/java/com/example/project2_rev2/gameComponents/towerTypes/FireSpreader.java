@@ -228,8 +228,8 @@ public class FireSpreader extends Tower {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
                             // range
-                            range = 220;
                             initFiringBitmapArr();
+                            range = 220;
                             break;
                         case 1:
                             // multi burn

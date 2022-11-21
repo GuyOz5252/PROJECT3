@@ -29,8 +29,8 @@ public class SellTowerButton extends Button {
         this.towerManager = towerManager;
         this.currentPrice = tower.getValue() + 100*tower.getUpgradeCount();
         this.sellPriceTextUI = new SellPriceTextUI(
-                (position.x+size.width/2)-15,
-                (position.y+size.height/2)+13,
+                (centerPosition.x)-15,
+                (centerPosition.y)+13,
                 String.valueOf(currentPrice),
                 R.color.white,
                 35,
@@ -64,17 +64,14 @@ public class SellTowerButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                //setAlpha(255);
                 setPressEffect(false);
                 towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
                 tower.deselect();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                //setAlpha(200);
                 setPressEffect(true);
             }
         } else {
-            //setAlpha(255);
             setPressEffect(false);
         }
         return false;

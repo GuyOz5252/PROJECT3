@@ -12,14 +12,14 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.gameComponents.CoinTextUI;
+import com.example.project2_rev2.gameComponents.SellPriceTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TowerDragButton extends Button {
 
@@ -30,6 +30,7 @@ public class TowerDragButton extends Button {
     private boolean isDragged;
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
+    private CoinTextUI towerPriceTextUI;
 
     public TowerDragButton(int resourceId, TowerManager towerManager, Tower.TowerType towerType, Size size, Context context) {
         super(xCoordinate(80), 0, resourceId, size, context);
@@ -84,7 +85,22 @@ public class TowerDragButton extends Button {
         this.position.y = y;
         this.buttonRect.set((int)xCoordinate(80), (int)yCoordinate(y), (int)xCoordinate(80+size.width), (int)yCoordinate(y+size.height));
         centerPosition.y = position.y+bitmap.getHeight()/2;
+        pressedPosition.y = position.y+size.height/40;
         towerIcon.setPosition(centerPosition.x - (size.width-10)/2, centerPosition.y - (size.height-10)/2);
+        int textXOffset = 50;
+        if (String.valueOf(towerType.value).length() <= 2) {
+            textXOffset = 30;
+        }
+        this.towerPriceTextUI = new CoinTextUI(
+                xCoordinate(centerPosition.x-textXOffset),
+                yCoordinate(centerPosition.y+size.height/2+5),
+                String.valueOf(towerType.value),
+                R.color.white,
+                35f,
+                context
+        );
+        this.towerPriceTextUI.setBold();
+        this.towerPriceTextUI.setShadow();
     }
 
     @Override
@@ -105,6 +121,7 @@ public class TowerDragButton extends Button {
             draggedTower.draw(canvas);
         } else {
             towerIcon.draw(canvas);
+            towerPriceTextUI.draw(canvas);
         }
     }
 
