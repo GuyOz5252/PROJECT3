@@ -5,6 +5,7 @@ import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -31,6 +32,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
     private CoinTextUI towerPriceTextUI;
+    private Paint priceTextBackgroundPaint;
 
     public TowerDragButton(int resourceId, TowerManager towerManager, Tower.TowerType towerType, Size size, Context context) {
         super(xCoordinate(80), 0, resourceId, size, context);
@@ -50,6 +52,8 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
         this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
         this.rangeBorderPaint.setStyle(Paint.Style.STROKE);
         this.rangeBorderPaint.setStrokeWidth(2);
+        this.priceTextBackgroundPaint = new Paint();
+        this.priceTextBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.textBackground));
         this.draggedTower = new BitmapObject(
                 0,
                 0,
@@ -90,7 +94,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
         towerIcon.setPosition(centerPosition.x - (size.width-10)/2, centerPosition.y - (size.height-10)/2);
         int textXOffset = 50;
         if (String.valueOf(towerType.value).length() <= 2) {
-            textXOffset = 30;
+            textXOffset = 40;
         }
         this.towerPriceTextUI = new CoinTextUI(
                 centerPosition.x-textXOffset,
@@ -102,6 +106,10 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
         );
         this.towerPriceTextUI.setBold();
         this.towerPriceTextUI.setShadow();
+    }
+
+    public String getTowerName() {
+        return towerType.towerName;
     }
 
     @Override
@@ -131,6 +139,16 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
             draggedTower.draw(canvas);
         } else {
             towerIcon.draw(canvas);
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+            canvas.drawRect(new Rect(
+                    (int)(centerPosition.x-60),
+                    (int)(centerPosition.y+size.height/2-25),
+                    (int)(centerPosition.x+60),
+                    (int)(centerPosition.y+size.height/2+15)
+            ),
+                priceTextBackgroundPaint
+            );
             towerPriceTextUI.draw(canvas);
         }
     }

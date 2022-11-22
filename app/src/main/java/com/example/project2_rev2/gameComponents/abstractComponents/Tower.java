@@ -158,7 +158,7 @@ public abstract class Tower extends BitmapObject {
         }
     }
 
-    public void deselect() {
+    public void sell() {
         isSelected = false;
         isActive = false;
         GameValues.colliderArrayList.remove(collider);

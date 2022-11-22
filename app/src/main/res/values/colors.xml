@@ -19,11 +19,11 @@
     <color name="towerBarBackground">#33251B</color>
     <color name="rangeCircle">#40292929</color>
     <color name="invalidRangeCircle">#40FF0000</color>
-    <color name="bulletProjectile">#CD7F32</color>
     <color name="coin">#FFC107</color>
     <color name="green">#47FD4E</color>
     <color name="red">#FD4747</color>
     <color name="upgradeLocked">#3A3A3A</color>
+    <color name="textBackground">#BF000000</color>
 
-    <color name="tankProjectile">#9A5F2B</color>
+    <color name="bulletProjectile">#CD7F32</color>
 </resources>

@@ -21,7 +21,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DragAndDropUI {
 
     private ArrayList<TowerDragButton> towerDragButtonArrayList;
-    private TowerDragButton selectedTowerDragButton;
     private int startTowerPageIndex;
     private TextUI towerNameText;
 
@@ -38,22 +37,21 @@ public class DragAndDropUI {
                 )
         ));
         this.startTowerPageIndex = 0;
-        for (int i = startTowerPageIndex, y = 150; i < startTowerPageIndex+3; i++, y+=210) {
+        for (int i = startTowerPageIndex, y = 110; i < startTowerPageIndex+3; i++, y+=220) {
             if (i < towerDragButtonArrayList.size()) {
                 towerDragButtonArrayList.get(i).setY(y);
             }
         }
         this.startTowerPageIndex = 3;
-        for (int i = startTowerPageIndex, y = 150; i < startTowerPageIndex+3; i++, y+=210) {
+        for (int i = startTowerPageIndex, y = 110; i < startTowerPageIndex+3; i++, y+=220) {
             if (i < towerDragButtonArrayList.size()) {
                 towerDragButtonArrayList.get(i).setY(y);
             }
         }
         this.startTowerPageIndex = 0;
-        this.selectedTowerDragButton = null;
         this.towerNameText = new TextUI(
                 xCoordinate(175),
-                yCoordinate(75),
+                yCoordinate(80),
                 "Towers",
                 R.color.white,
                 70f,

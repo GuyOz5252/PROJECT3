@@ -76,5 +76,6 @@ public class GameValues {
         isFinished = false;
         playerCoins = START_COINS;
         playerHealth = START_HEALTH;
+        colliderArrayList.clear();
     }
 }

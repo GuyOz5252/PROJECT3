@@ -67,7 +67,7 @@ public class SellTowerButton extends Button {
                 setPressEffect(false);
                 //towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
-                tower.deselect();
+                tower.sell();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 setPressEffect(true);
             }

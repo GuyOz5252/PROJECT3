@@ -187,7 +187,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickExit() {
         pauseMenu.dismiss();
         startActivity(new Intent(this, MainMenu.class));
-        //startActivity(new Intent(this, Login.class));
         this.finish();
     }
 
