@@ -1,6 +1,7 @@
 package com.example.project2_rev2.gameComponents.towerTypes;
 
 import android.content.Context;
+import android.graphics.Rect;
 
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -11,10 +12,11 @@ import com.example.project2_rev2.utils.GameValues;
 
 public class DemoTower extends Tower {
 
-    public DemoTower(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public DemoTower(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(
                 x,
                 y,
+                collider,
                 TowerType.DEMO_TOWER,
                 towerBar,
                 waveManager,

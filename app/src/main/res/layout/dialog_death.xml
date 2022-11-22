@@ -14,7 +14,7 @@
 
         android:text="YOU DIED"
         android:textAllCaps="true"
-        android:textColor="@color/upgradeNotReady"
+        android:textColor="@color/red"
         android:textSize="60dp"
         android:textStyle="bold" />
 

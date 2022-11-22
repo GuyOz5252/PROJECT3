@@ -1,22 +1,16 @@
 package com.example.project2_rev2.gameComponents;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.xOffset;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-
-import androidx.annotation.ColorRes;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
 public class HealthCounter extends TextUI implements OnHealthChangeListener {
@@ -29,7 +23,7 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
                 xCoordinate(GameValues.gameDisplay.size.width-70),
                 yCoordinate(55),
                 String.valueOf(GameValues.getPlayerHealth()),
-                R.color.upgradeNotReady,
+                R.color.red,
                 55,
                 Paint.Align.RIGHT,
                 context

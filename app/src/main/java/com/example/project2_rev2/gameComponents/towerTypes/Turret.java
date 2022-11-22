@@ -5,6 +5,7 @@ import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorD
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Projectile;
@@ -26,10 +27,11 @@ public class Turret extends Tower {
     private Bitmap turretBase;
     private Bitmap turretHead2;
 
-    public Turret(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public Turret(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(
                 x,
                 y,
+                collider,
                 TowerType.TURRET,
                 towerBar,
                 waveManager,

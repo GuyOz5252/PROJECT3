@@ -5,6 +5,7 @@ import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.Enemy;
@@ -29,8 +30,8 @@ public class FireSpreader extends Tower {
     private int duration;
     private int interval;
 
-    public FireSpreader(double x, double y, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
-        super(x, y, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
+    public FireSpreader(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+        super(x, y, collider, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
         initFiringBitmapArr();
         this.animationTick = 0;
         this.animationIndex = 0;

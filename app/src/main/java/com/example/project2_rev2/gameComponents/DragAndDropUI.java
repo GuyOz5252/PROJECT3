@@ -64,7 +64,7 @@ public class DragAndDropUI {
     }
 
     public void drawTowerButtons(Canvas canvas) {
-        for (int i = startTowerPageIndex, y = 150; i < startTowerPageIndex+3; i++, y+=210) {
+        for (int i = startTowerPageIndex; i < startTowerPageIndex+3; i++) {
             if (i < towerDragButtonArrayList.size()) {
                 towerDragButtonArrayList.get(i).draw(canvas);
             }
@@ -77,10 +77,18 @@ public class DragAndDropUI {
     }
 
     public void update() {
-        towerDragButtonArrayList.forEach(TowerDragButton::update);
+        for (int i = startTowerPageIndex; i < startTowerPageIndex+3; i++) {
+            if (i < towerDragButtonArrayList.size()) {
+                towerDragButtonArrayList.get(i).update();
+            }
+        }
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
-        towerDragButtonArrayList.forEach(towerDragButton -> towerDragButton.onTouchEvent(motionEvent));
+        for (int i = startTowerPageIndex; i < startTowerPageIndex+3; i++) {
+            if (i < towerDragButtonArrayList.size()) {
+                towerDragButtonArrayList.get(i).onTouchEvent(motionEvent);
+            }
+        }
     }
 }

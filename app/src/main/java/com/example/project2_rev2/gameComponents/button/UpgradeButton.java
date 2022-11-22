@@ -117,7 +117,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 coinTextUI.changeColor(R.color.white);
                 upgradeArrows.changeBitmap(R.drawable.ic_upgrade_arrows_green);
             } else {
-                coinTextUI.changeColor(R.color.upgradeNotReady);
+                coinTextUI.changeColor(R.color.red);
                 upgradeArrows.changeBitmap(R.drawable.ic_upgrade_arrows_red);
             }
         }

@@ -20,6 +20,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
 /**
@@ -33,6 +34,8 @@ public abstract class Tower extends BitmapObject {
     protected WaveManager waveManager;
     private ProjectileManager projectileManager;
     protected TowerType towerType;
+    private Rect collider;
+    protected boolean isActive;
 
     protected int range;
     protected int value;
@@ -56,12 +59,14 @@ public abstract class Tower extends BitmapObject {
 
     protected boolean isDoubleShot;
 
-    public Tower(double x, double y, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public Tower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
         this.waveManager = waveManager;
         this.projectileManager = projectileManager;
         this.towerType = towerType;
+        this.collider = collider;
+        this.isActive = true;
         this.projectileType = towerType.projectileType;
         this.value = towerType.value;
         this.range = towerType.range;
@@ -135,9 +140,12 @@ public abstract class Tower extends BitmapObject {
         return isDoubleShot;
     }
 
+    public boolean getIsActive() {
+        return isActive;
+    }
+
     public void setXP(int xp) {
         this.xp = xp;
-
     }
 
     public void attack(Enemy enemy) {
@@ -152,6 +160,8 @@ public abstract class Tower extends BitmapObject {
 
     public void deselect() {
         isSelected = false;
+        isActive = false;
+        GameValues.colliderArrayList.remove(collider);
     }
 
     public void drawRange(Canvas canvas) {

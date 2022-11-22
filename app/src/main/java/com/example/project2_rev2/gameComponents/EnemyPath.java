@@ -30,17 +30,17 @@ public class EnemyPath {
         for (int i = 1; i < positionArrayList.size(); i++) {
             if (positionArrayList.get(i-1).x < positionArrayList.get(i).x || positionArrayList.get(i-1).y < positionArrayList.get(i).y) {
                 GameValues.colliderArrayList.add(new Rect(
-                        (int)positionArrayList.get(i-1).x-60,
-                        (int)positionArrayList.get(i-1).y-60,
-                        (int)positionArrayList.get(i).x+60,
-                        (int)positionArrayList.get(i).y+60
+                        (int)positionArrayList.get(i-1).x-80,
+                        (int)positionArrayList.get(i-1).y-80,
+                        (int)positionArrayList.get(i).x+80,
+                        (int)positionArrayList.get(i).y+80
                 ));
             } else {
                 GameValues.colliderArrayList.add(new Rect(
-                        (int)positionArrayList.get(i).x-60,
-                        (int)positionArrayList.get(i).y-60,
-                        (int)positionArrayList.get(i-1).x+60,
-                        (int)positionArrayList.get(i-1).y+60
+                        (int)positionArrayList.get(i).x-80,
+                        (int)positionArrayList.get(i).y-80,
+                        (int)positionArrayList.get(i-1).x+80,
+                        (int)positionArrayList.get(i-1).y+80
                 ));
             }
         }

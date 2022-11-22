@@ -13,15 +13,15 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
-import com.example.project2_rev2.gameComponents.SellPriceTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
+import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
-public class TowerDragButton extends Button {
+public class TowerDragButton extends Button implements OnCoinsChangeListener {
 
     private TowerManager towerManager;
     private Tower.TowerType towerType;
@@ -34,6 +34,7 @@ public class TowerDragButton extends Button {
 
     public TowerDragButton(int resourceId, TowerManager towerManager, Tower.TowerType towerType, Size size, Context context) {
         super(xCoordinate(80), 0, resourceId, size, context);
+        GameValues.coinsChangeListenerArrayList.add(this);
         this.towerManager = towerManager;
         this.towerType = towerType;
         this.towerIcon = new BitmapObject(
@@ -92,8 +93,8 @@ public class TowerDragButton extends Button {
             textXOffset = 30;
         }
         this.towerPriceTextUI = new CoinTextUI(
-                xCoordinate(centerPosition.x-textXOffset),
-                yCoordinate(centerPosition.y+size.height/2+5),
+                centerPosition.x-textXOffset,
+                centerPosition.y+size.height/2+5,
                 String.valueOf(towerType.value),
                 R.color.white,
                 35f,
@@ -101,6 +102,15 @@ public class TowerDragButton extends Button {
         );
         this.towerPriceTextUI.setBold();
         this.towerPriceTextUI.setShadow();
+    }
+
+    @Override
+    public void onCoinsChange() {
+        if (GameValues.getPlayerCoins() < towerType.value) {
+            towerPriceTextUI.changeColor(R.color.red);
+        } else {
+            towerPriceTextUI.changeColor(R.color.white);
+        }
     }
 
     @Override
@@ -148,6 +158,19 @@ public class TowerDragButton extends Button {
             int action = motionEvent.getAction();
             if (action == MotionEvent.ACTION_MOVE) {
                 draggedTower.setPosition(motionEvent.getX() - draggedTower.getSize().width / 2, motionEvent.getY() - draggedTower.getSize().height / 2);
+
+                boolean b = true;
+                for (Rect rect : GameValues.colliderArrayList) {
+                    b = !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY());
+                    if (!b) {
+                        break;
+                    }
+                }
+                if (b) {
+                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
+                } else {
+                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.invalidRangeCircle));
+                }
             } else if (action == MotionEvent.ACTION_UP) {
 
                 // collider check

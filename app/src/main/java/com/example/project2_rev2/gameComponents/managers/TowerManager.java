@@ -1,10 +1,8 @@
 package com.example.project2_rev2.gameComponents.managers;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.gameComponents.TowerBar;
@@ -12,6 +10,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
 import com.example.project2_rev2.gameComponents.towerTypes.Turret;
+import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 
@@ -34,24 +33,27 @@ public class TowerManager {
         this.isAnyTowerSelected = false;
     }
 
-    public void removeTower(Tower tower) {
-        towerArrayList.remove(tower);
-    }
-
     public boolean getIsAnyTowerSelected() {
         return isAnyTowerSelected;
     }
 
     public void addTower(Tower.TowerType towerType, double x, double y) {
+        GameValues.colliderArrayList.add(new Rect(
+                (int)(x-towerType.size.width/2),
+                (int)(y-towerType.size.height/2),
+                (int)(x+towerType.size.width/2),
+                (int)(y+towerType.size.height/2)
+        ));
+        Rect collider = GameValues.colliderArrayList.get(GameValues.colliderArrayList.size()-1);
         switch (towerType) {
             case DEMO_TOWER:
-                towerArrayList.add(new DemoTower(x, y, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, this, context));
                 break;
             case TURRET:
-                towerArrayList.add(new Turret(x, y, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new Turret(x, y, collider, towerBar, waveManager, projectileManager, this, context));
                 break;
             case FIRE_SPREADER:
-                towerArrayList.add(new FireSpreader(x, y, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, this, context));
                 break;
         }
     }
@@ -86,6 +88,7 @@ public class TowerManager {
                 selectedTower = null;
             }
         }
+        towerArrayList.removeIf(tower -> !tower.getIsActive());
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
