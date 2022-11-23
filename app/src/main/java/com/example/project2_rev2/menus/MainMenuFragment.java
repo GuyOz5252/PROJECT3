@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.GameView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
@@ -53,15 +57,16 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
         startActivity(intent);
+        ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
         ((Activity) view.getContext()).finish();
     }
 
     public void clickPlay(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickPlay();
             ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(50);
             ((ViewGroup)view).getChildAt(0).setScaleX(1);
             ((ViewGroup)view).getChildAt(0).setScaleY(1);
+            clickPlay();
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(47.5f);
             ((ViewGroup)view).getChildAt(0).setScaleX(0.95f);

@@ -29,7 +29,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".menus.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

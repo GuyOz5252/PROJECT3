@@ -16,6 +16,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
 
+    boolean isRun;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +30,26 @@ public class MainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
 
-        AtomicBoolean isRun = new AtomicBoolean(false);
+        isRun = false;
 
         RelativeLayout relativeLayout = findViewById(R.id.touchDetector);
-        relativeLayout.setOnTouchListener((view, motionEvent) -> {
-            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                isRun.set(true);
-                startActivity(new Intent(MainActivity.this, Login.class));
-                this.finish();
-            }
-            return true;
-        });
+        relativeLayout.setOnTouchListener(this::skipSplashScreen);
 
         new Handler().postDelayed(() -> {
-            if (!isRun.get()) {
+            if (!isRun) {
                 startActivity(new Intent(MainActivity.this, Login.class));
                 this.finish();
             }
         }, 1500);
+    }
+
+    public boolean skipSplashScreen(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            isRun = true;
+            startActivity(new Intent(MainActivity.this, Login.class));
+            this.finish();
+        }
+        return true;
     }
 
     @Override
