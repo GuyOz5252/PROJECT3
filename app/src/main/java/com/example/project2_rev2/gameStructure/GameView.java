@@ -238,9 +238,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickHomeVictory(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickHomeVictory();
-            view.setAlpha(1);
+            view.setScaleX(1f);
+            view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -252,9 +254,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickContinue(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickContinue();
-            view.setAlpha(1);
+            view.setScaleX(1f);
+            view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     /*****/
@@ -294,9 +298,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickHomeDeath(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickHomeDeath();
-            view.setAlpha(1);
+            view.setScaleX(1f);
+            view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     /*****/
