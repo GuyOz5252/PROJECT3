@@ -14,6 +14,12 @@ import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the start wave button in the tower bar
+ * on press, start the next wave
+ * if a wave is currently active the button is inactive
+ */
+
 public class StartWaveButton extends Button {
 
     private WaveManager waveManager;

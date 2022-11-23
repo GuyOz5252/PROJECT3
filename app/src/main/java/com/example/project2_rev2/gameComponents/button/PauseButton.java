@@ -13,6 +13,11 @@ import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the pause button
+ * on press, create the pause menu dialog from game view
+ */
+
 public class PauseButton extends Button {
 
     private Action pause;

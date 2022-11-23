@@ -22,6 +22,11 @@ import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the tower buttons in the tower bar
+ * include all logic for tower drag and drop and adding towers to tower manager
+ */
+
 public class TowerDragButton extends Button implements OnCoinsChangeListener {
 
     private TowerManager towerManager;

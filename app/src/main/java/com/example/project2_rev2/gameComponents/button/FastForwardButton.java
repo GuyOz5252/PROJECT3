@@ -14,6 +14,11 @@ import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the fast forward button in the tower bar
+ * on press, switch between fast forwarded and regular speed
+ */
+
 public class FastForwardButton extends Button {
 
     private BitmapObject fastForwardIcon;

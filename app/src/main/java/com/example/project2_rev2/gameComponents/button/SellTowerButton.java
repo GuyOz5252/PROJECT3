@@ -16,6 +16,11 @@ import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the sell tower button from the tower upgrade ui
+ * on press, remove tower from tower array list in tower manager
+ */
+
 public class SellTowerButton extends Button {
 
     private int currentPrice;

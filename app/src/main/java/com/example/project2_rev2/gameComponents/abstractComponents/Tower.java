@@ -276,17 +276,17 @@ public abstract class Tower extends BitmapObject {
                 R.drawable.turret_icon,
                 250,
                 8,
-                500,
+                300,
                 new Size(150, 150),
                 Projectile.ProjectileType.TURRET_BULLETS,
                 new TowerUpgradePath(
                         new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
-                        new int[] {120, 200, 300},
+                        new int[] {180, 200, 320},
                         new int[] {0, 0, 0}
                 ),
                 new TowerUpgradePath(
                         new String[] {"Range", "ATK Speed"},
-                        new int[] {100, 150},
+                        new int[] {150, 230},
                         new int[] {0, 0}
                 )
         ),
@@ -296,17 +296,17 @@ public abstract class Tower extends BitmapObject {
                 R.drawable.fire_spreader_base,
                 180,
                 50,
-                500,
+                250,
                 new Size(110, 110),
                 null,
                 new TowerUpgradePath(
                         new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Agidyne"},
-                        new int[] {450, 500, 800, 1000},
+                        new int[] {270, 300, 420, 500},
                         new int[] {0, 0, 0, 0}
                 ),
                 new TowerUpgradePath(
                         new String[] {"Range", "Multi Burn", "Hotter", "Carmen"},
-                        new int[] {300, 350, 500, 700},
+                        new int[] {300, 360, 480, 600},
                         new int[] {0, 0, 0, 0}
                 )
         );

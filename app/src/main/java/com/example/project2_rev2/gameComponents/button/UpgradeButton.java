@@ -20,6 +20,11 @@ import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
 
+/**
+ * a class that represents the tower upgrade button in the tower upgrade ui
+ * on press, upgrade the tower to the next level if the upgrade is unlocked and player has enough money
+ */
+
 public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     private TowerUpgradeManager towerUpgradeManager;

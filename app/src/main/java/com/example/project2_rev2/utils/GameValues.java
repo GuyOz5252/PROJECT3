@@ -33,7 +33,7 @@ public class GameValues {
 
     public static boolean isFinished = false;
 
-    public final static int START_COINS = 800;
+    public final static int START_COINS = 650;
 
     private static int playerCoins = START_COINS;
 
@@ -77,5 +77,7 @@ public class GameValues {
         playerCoins = START_COINS;
         playerHealth = START_HEALTH;
         colliderArrayList.clear();
+        coinsChangeListenerArrayList.clear();
+        healthChangeListenerArrayList.clear();
     }
 }

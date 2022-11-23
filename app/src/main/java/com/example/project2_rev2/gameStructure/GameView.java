@@ -330,9 +330,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     @Override
-    public void onBackPressed() {
-        return;
-    }
+    public void onBackPressed() {}
 
     @Override
     protected void onPause() {

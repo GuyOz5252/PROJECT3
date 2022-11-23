@@ -67,5 +67,6 @@ public class MainMenu extends AppCompatActivity {
         return true;
     }
 
-
+    @Override
+    public void onBackPressed() {}
 }
