@@ -12,19 +12,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchListener {
 
     LinearLayout currentUpgradeCard, prevUpgradeCard, nextUpgradeCard;
-    ImageButton btnPrevUpgrade, btnNextUpgrade;
+    ImageButton btnPrevUpgrade, btnNextUpgrade, btnBack;
     TextView tvTowerName;
 
     private ArrayList<String>[] upgradeNameArrayList;
@@ -48,9 +46,11 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         tvTowerName = findViewById(R.id.towerName_towerUpgradeInfo);
         btnPrevUpgrade = findViewById(R.id.btnPrevUpgrade);
         btnNextUpgrade = findViewById(R.id.btnNextUpgrade);
+        btnBack = findViewById(R.id.btnBack_towerUpgradeInfo);
 
         btnPrevUpgrade.setOnTouchListener(this);
         btnNextUpgrade.setOnTouchListener(this);
+        btnBack.setOnTouchListener(this);
 
         Bundle bundle = getIntent().getExtras();
         Tower.TowerType towerType = (Tower.TowerType) bundle.getSerializable("TowerType");
@@ -177,6 +177,21 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         }
     }
 
+    public void clickBack() {
+        this.finish();
+    }
+
+    public void clickBack(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickBack();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
@@ -185,6 +200,9 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
                 break;
             case R.id.btnNextUpgrade:
                 clickNextUpgrade(view, motionEvent);
+                break;
+            case R.id.btnBack_towerUpgradeInfo:
+                clickBack(view, motionEvent);
                 break;
         }
         return true;
