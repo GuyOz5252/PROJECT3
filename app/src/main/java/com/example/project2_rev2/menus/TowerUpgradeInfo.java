@@ -28,6 +28,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
     TextView tvTowerName;
 
     private ArrayList<String>[] upgradeNameArrayList;
+    private ArrayList<String>[] upgradeInfoArrayList;
     private int currentIndex;
 
     @Override
@@ -58,6 +59,9 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         upgradeNameArrayList = new ArrayList[2];
         upgradeNameArrayList[0] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathOne.name));
         upgradeNameArrayList[1] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathTwo.name));
+        upgradeInfoArrayList = new ArrayList[2];
+        upgradeInfoArrayList[0] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathOne.upgradeInfo));
+        upgradeInfoArrayList[1] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathTwo.upgradeInfo));
 
         currentIndex = 0;
         cycleTowerUpgrades();
@@ -67,42 +71,43 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         if (currentIndex == 0) {
             prevUpgradeCard.setVisibility(View.INVISIBLE);
             btnPrevUpgrade.setAlpha(0.5f);
-            createTowerUpgradeCard(currentUpgradeCard);
+            createTowerUpgradeCard(currentUpgradeCard, currentIndex);
             nextUpgradeCard.setVisibility(View.VISIBLE);
             btnNextUpgrade.setAlpha(1f);
-            createTowerUpgradeCard(nextUpgradeCard);
+            createTowerUpgradeCard(nextUpgradeCard, currentIndex+1);
         } else if (currentIndex == 3) {
             prevUpgradeCard.setVisibility(View.VISIBLE);
             btnPrevUpgrade.setAlpha(1f);
-            createTowerUpgradeCard(prevUpgradeCard);
-            createTowerUpgradeCard(currentUpgradeCard);
+            createTowerUpgradeCard(prevUpgradeCard, currentIndex-1);
+            createTowerUpgradeCard(currentUpgradeCard, currentIndex);
             nextUpgradeCard.setVisibility(View.INVISIBLE);
             btnNextUpgrade.setAlpha(0.5f);
         } else {
             prevUpgradeCard.setVisibility(View.VISIBLE);
             btnPrevUpgrade.setAlpha(1f);
-            createTowerUpgradeCard(prevUpgradeCard);
-            createTowerUpgradeCard(currentUpgradeCard);
+            createTowerUpgradeCard(prevUpgradeCard, currentIndex-1);
+            createTowerUpgradeCard(currentUpgradeCard, currentIndex);
             nextUpgradeCard.setVisibility(View.VISIBLE);
             btnNextUpgrade.setAlpha(1f);
-            createTowerUpgradeCard(nextUpgradeCard);
+            createTowerUpgradeCard(nextUpgradeCard, currentIndex+1);
         }
     }
 
-    public void createTowerUpgradeCard(LinearLayout linearLayout) {
+    public void createTowerUpgradeCard(LinearLayout linearLayout, int upgradeIndex) {
         linearLayout.removeAllViews();
 
-        linearLayout.addView(createTowerUpgradePathInfo(0));
-        linearLayout.addView(createTowerUpgradePathInfo(1));
+        linearLayout.addView(createTowerUpgradePathInfo(0, upgradeIndex));
+        linearLayout.addView(createTowerUpgradePathInfo(1, upgradeIndex));
     }
 
-    public LinearLayout createTowerUpgradePathInfo(int pathIndex) {
+    public LinearLayout createTowerUpgradePathInfo(int pathIndex, int upgradeIndex) {
         LinearLayout linearLayout = new LinearLayout(this);
 
         float scale = this.getResources().getDisplayMetrics().density;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)(210 * scale + 0.5f), (int)(117 * scale + 0.5f));
         params.setMargins(0, 0, 0, 5);
         linearLayout.setLayoutParams(params);
+        linearLayout.setPadding(30, 0, 30, 0);
         linearLayout.setGravity(Gravity.CENTER|Gravity.TOP);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundResource(R.drawable.dialog_custom);
@@ -118,15 +123,17 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         upgradeNameTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeNameTextView.setTextSize(20);
         upgradeNameTextView.setTypeface(null, Typeface.BOLD);
-        if (currentIndex < upgradeNameArrayList[pathIndex].size()) {
-            upgradeNameTextView.setText(upgradeNameArrayList[pathIndex].get(currentIndex));
+        if (upgradeIndex < upgradeNameArrayList[pathIndex].size()) {
+            upgradeNameTextView.setText(upgradeNameArrayList[pathIndex].get(upgradeIndex));
         }
 
         TextView upgradeInfoTextView = new TextView(this);
         upgradeInfoTextView.setLayoutParams(textViewParams);
         upgradeInfoTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeInfoTextView.setTextSize(16);
-        upgradeInfoTextView.setText("INFO");
+        if (upgradeIndex < upgradeInfoArrayList[pathIndex].size()) {
+            upgradeInfoTextView.setText(upgradeInfoArrayList[pathIndex].get(upgradeIndex));
+        }
 
         linearLayout.addView(upgradeNameTextView);
         linearLayout.addView(upgradeInfoTextView);

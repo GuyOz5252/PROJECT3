@@ -236,11 +236,13 @@ public abstract class Tower extends BitmapObject {
         public String[] name;
         public int[] cost;
         public int[] xpReq;
+        public String[] upgradeInfo;
 
-        public TowerUpgradePath(String[] name, int[] cost, int[] xpReq) {
+        public TowerUpgradePath(String[] name, int[] cost, int[] xpReq, String[] upgradeInfo) {
             this.name = name;
             this.cost = cost;
             this.xpReq = xpReq;
+            this.upgradeInfo = upgradeInfo;
         }
     }
 
@@ -262,12 +264,14 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         new String[] {"Range", "Range", "Range"},
                         new int[] {100, 200, 350},
-                        new int[] {0, 0, 0}
+                        new int[] {0, 0, 0},
+                        new String[] {"", "", ""}
                 ),
                 new TowerUpgradePath(
                         new String[] {"ATK Speed", "ATK Speed", "ATK Speed"},
                         new int[] {100, 200, 300},
-                        new int[] {0, 0, 0}
+                        new int[] {0, 0, 0},
+                        new String[] {"", "", ""}
                 )
 
         ),
@@ -284,12 +288,21 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
                         new int[] {180, 200, 320},
-                        new int[] {0, 0, 0}
+                        new int[] {0, 0, 0},
+                        new String[] {
+                                "bullets do double the damage",
+                                "bullets are now bigger, they hurt more",
+                                "additional barrel to the turret, double the bullets shot"
+                        }
                 ),
                 new TowerUpgradePath(
                         new String[] {"Range", "ATK Speed"},
                         new int[] {150, 230},
-                        new int[] {0, 0}
+                        new int[] {0, 0},
+                        new String[] {
+                                "increase the turret's range",
+                                "increase the turret's attack speed, shoot faster"
+                        }
                 )
         ),
         FIRE_SPREADER(
@@ -304,12 +317,24 @@ public abstract class Tower extends BitmapObject {
                 new TowerUpgradePath(
                         new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Agidyne"},
                         new int[] {270, 300, 420, 500},
-                        new int[] {0, 0, 0, 0}
+                        new int[] {0, 0, 0, 0},
+                        new String[] {
+                                "enemies burn for longer, dealing more damage over more time",
+                                "damage received by flames increased",
+                                "burn for more, in the sane time",
+                                "significantly increase damage, and the flames burns more"
+                        }
                 ),
                 new TowerUpgradePath(
                         new String[] {"Range", "Multi Burn", "Hotter", "Carmen"},
                         new int[] {300, 360, 480, 600},
-                        new int[] {0, 0, 0, 0}
+                        new int[] {0, 0, 0, 0},
+                        new String[] {
+                                "increase the flames reach",
+                                "burn more enemies in the fire's range",
+                                "burn even more enemies in the fire's range and increase damage done by the fire",
+                                "increase the fire's reach to its limit, and burn every enemy in it's path"
+                        }
                 )
         );
 
