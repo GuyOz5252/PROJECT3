@@ -19,47 +19,44 @@
 
     <LinearLayout
         android:id="@+id/towerCard_prev"
-        android:layout_width="290dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
-        android:layout_toStartOf="@+id/lv"
         android:alpha="0.6"
         android:background="@drawable/dialog_custom"
         android:gravity="center_horizontal"
-        android:minWidth="290dp"
+        android:minWidth="220dp"
         android:minHeight="250dp"
         android:orientation="vertical"
-        android:paddingHorizontal="30dp"
         android:paddingVertical="15dp"
         android:scaleX="0.6"
         android:scaleY="0.6" />
 
     <LinearLayout
-        android:id="@+id/lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="90dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btnPrevTower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_left_arrow"
-            android:background="@color/transparent"/>
+            android:background="@color/transparent"
+            android:src="@drawable/ic_left_arrow" />
 
         <LinearLayout
             android:id="@+id/towerCard_curr"
-            android:layout_width="300dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:background="@drawable/dialog_custom"
+            android:backgroundTint="@color/black"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="30dp"
             android:paddingVertical="15dp">
 
             <ImageView
@@ -71,10 +68,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="Tower Name"
                 android:textColor="@color/white"
-                android:textSize="40dp"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="30dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -84,30 +81,30 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_green"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_green" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_green"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_green" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_green"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_green" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_gray"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_gray" />
 
             </LinearLayout>
 
@@ -119,30 +116,30 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_gray"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_gray" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_gray"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_gray" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_gray"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_gray" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_square_gray"
+                    android:layout_margin="5dp"
                     android:scaleX="2"
-                    android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_square_gray" />
 
             </LinearLayout>
 
@@ -152,24 +149,24 @@
             android:id="@+id/btnNextTower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_right_arrow"
-            android:background="@color/transparent"/>
+            android:background="@color/transparent"
+            android:src="@drawable/ic_right_arrow" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/towerCard_next"
-        android:layout_width="290dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
-        android:layout_toEndOf="@+id/lv"
         android:alpha="0.6"
         android:background="@drawable/dialog_custom"
         android:gravity="center_horizontal"
+        android:minWidth="220dp"
         android:minHeight="250dp"
         android:orientation="vertical"
-        android:paddingHorizontal="30dp"
         android:paddingVertical="15dp"
         android:scaleX="0.6"
         android:scaleY="0.6" />

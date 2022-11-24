@@ -6,9 +6,134 @@
     android:layout_height="match_parent"
     tools:context=".menus.TowerUpgradeInfo">
 
-    <FrameLayout
-        android:id="@+id/frameLayout_towerInfo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/towerName_towerUpgradeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-black"
+        android:text="tower name"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:id="@+id/towerUpgradeCard_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:alpha="0.6"
+        android:scaleX="0.6"
+        android:scaleY="0.6" />
+
+    <LinearLayout
+        android:id="@+id/lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnPrevUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_left_arrow" />
+
+        <LinearLayout
+            android:id="@+id/towerUpgradeCard_curr"
+            android:layout_width="wrap_content"
+            android:layout_height="260dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/towerUpgradeCard_curr_pathOne"
+                android:layout_width="210dp"
+                android:layout_height="117dp"
+                android:gravity="top|center"
+                android:orientation="vertical"
+                android:background="@drawable/dialog_custom"
+                android:backgroundTint="@color/black"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Upgrade Name"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="upgrade info"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/towerUpgradeCard_curr_pathTwo"
+                android:layout_width="210dp"
+                android:layout_height="117dp"
+                android:gravity="top|center"
+                android:background="@drawable/dialog_custom"
+                android:backgroundTint="@color/black"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Upgrade Name"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="upgrade info"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnNextUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_right_arrow" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/towerUpgradeCard_next"
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:alpha="0.6"
+        android:scaleX="0.6"
+        android:scaleY="0.6" />
 
 </RelativeLayout>

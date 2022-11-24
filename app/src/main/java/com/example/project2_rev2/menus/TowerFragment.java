@@ -2,7 +2,9 @@ package com.example.project2_rev2.menus;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -89,6 +91,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
 
     public void createTowerCard(LinearLayout linearLayout, int towerIndex) {
         linearLayout.removeAllViews();
+        linearLayout.getBackground().setTint(ContextCompat.getColor(getContext(), R.color.black));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT,
@@ -118,12 +121,12 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         TextView textView = new TextView(getContext());
         textView.setText(towerArrayList.get(towerIndex).towerName);
         textView.setTextSize(30);
+        textView.setTypeface(null, Typeface.BOLD);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         textView.setLayoutParams(params);
 
-        if (linearLayout == currentTowerCard) {
-            LinearLayout pathOne = new LinearLayout(getContext());
+        LinearLayout pathOne = new LinearLayout(getContext());
             LinearLayout pathTwo = new LinearLayout(getContext());
             params.gravity = Gravity.CENTER;
             pathOne.setLayoutParams(params);
@@ -183,14 +186,12 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
             linearLayout.addView(textView);
             linearLayout.addView(pathOne);
             linearLayout.addView(pathTwo);
-        } else {
-            linearLayout.addView(relativeLayout);
-            linearLayout.addView(textView);
-        }
     }
 
     public void clickTowerCard() {
-
+        Intent intent = new Intent(getContext(), TowerUpgradeInfo.class);
+        intent.putExtra("TowerType", towerArrayList.get(currentTowerIndex));
+        startActivity(intent);
     }
 
     public void clickTowerCard(View view, MotionEvent motionEvent) {

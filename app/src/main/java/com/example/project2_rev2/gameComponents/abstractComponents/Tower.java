@@ -23,6 +23,8 @@ import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
+import java.io.Serializable;
+
 /**
  * a class that includes all the fields of a tower
  * all methods and logic a tower needs
@@ -247,7 +249,7 @@ public abstract class Tower extends BitmapObject {
      * all values required to create a tower
      */
 
-    public enum TowerType {
+    public enum TowerType implements Serializable {
         DEMO_TOWER(
                 "Demo Tower",
                 R.drawable.ic_launcher_background,
