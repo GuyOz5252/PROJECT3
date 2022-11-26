@@ -2,7 +2,9 @@ package com.example.project2_rev2.gameComponents.abstractComponents;
 
 import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
+import static com.example.project2_rev2.utils.GameValues.CONTEXT;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,6 +26,7 @@ import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * a class that includes all the fields of a tower
@@ -61,7 +64,7 @@ public abstract class Tower extends BitmapObject {
 
     protected boolean isDoubleShot;
 
-    public Tower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public Tower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
         this.towerBar = towerBar;
         this.waveManager = waveManager;
@@ -96,7 +99,7 @@ public abstract class Tower extends BitmapObject {
         this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
         setXP(0);
-        this.towerUpgradeManager = new TowerUpgradeManager(this, towerManager, context);
+        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
         this.isDoubleShot = false;
     }
 
@@ -249,6 +252,7 @@ public abstract class Tower extends BitmapObject {
     /**
      * an enum that includes all tower types
      * all values required to create a tower
+     * implements Serializable to pass with extras
      */
 
     public enum TowerType implements Serializable {
@@ -277,32 +281,28 @@ public abstract class Tower extends BitmapObject {
         ),
 
         TURRET(
-                "Turret",
+                CONTEXT.getResources().getString(R.string.turret_name),
                 R.drawable.turret_head_1,
                 R.drawable.turret_icon,
-                250,
-                8,
-                300,
-                new Size(150, 150),
+                CONTEXT.getResources().getInteger(R.integer.turret_range),
+                CONTEXT.getResources().getInteger(R.integer.turret_cooldown),
+                CONTEXT.getResources().getInteger(R.integer.turret_value),
+                new Size(
+                        CONTEXT.getResources().getIntArray(R.array.turret_size)[0],
+                        CONTEXT.getResources().getIntArray(R.array.turret_size)[1]
+                ),
                 Projectile.ProjectileType.TURRET_BULLETS,
                 new TowerUpgradePath(
-                        new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
-                        new int[] {180, 200, 320},
-                        new int[] {0, 0, 0},
-                        new String[] {
-                                "bullets do double the damage",
-                                "bullets are now bigger, they hurt more",
-                                "additional barrel to the turret, double the bullets shot"
-                        }
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_names_path1),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_price_path1),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_xp_req_path1),
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_info_path1)
                 ),
                 new TowerUpgradePath(
-                        new String[] {"Range", "ATK Speed"},
-                        new int[] {150, 230},
-                        new int[] {0, 0},
-                        new String[] {
-                                "increase the turret's range",
-                                "increase the turret's attack speed, shoot faster"
-                        }
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_names_path1),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_price_path1),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_xp_req_path1),
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_info_path1)
                 )
         ),
         FIRE_SPREADER(
