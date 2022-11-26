@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.project2_rev2.gameStructure.GameView;
 import com.example.project2_rev2.R;
 
 public class Login extends AppCompatActivity implements View.OnTouchListener {
@@ -22,18 +21,25 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     // login dialog elements
     Dialog login;
-    Button btnLoginLoginD, btnGoogleLoginD;
-    EditText edtEmailLoginD, edtPasswordLoginD;
-    TextView txtRegisterLoginD;
+    Button btnLoginLoginDialog, btnGoogleLoginDialog;
+    EditText edtEmailLoginDialog, edtPasswordLoginDialog;
+    TextView txtResetPasswordLoginDialog;
 
     // register dialog elements
     Dialog register;
-    Button btnRegisterRegisterD;
-    EditText edtEmailRegisterD, edtPasswordRegisterD, edtConPasswordRegisterD;
+    Button btnRegisterRegisterDialog;
+    EditText edtEmailRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View decorView = getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
         setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.btnLogin);
@@ -61,15 +67,15 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         login.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         login.setTitle("Login");
 
-        btnLoginLoginD = login.findViewById(R.id.btnLogin_loginDialog);
-        btnGoogleLoginD = login.findViewById(R.id.btnGoogle_loginDialog);
-        edtEmailLoginD = login.findViewById(R.id.edtMail_loginDialog);
-        edtPasswordLoginD = login.findViewById(R.id.edtPassword_loginDialog);
-        txtRegisterLoginD = login.findViewById(R.id.txtRegister_loginDialog);
+        btnLoginLoginDialog = login.findViewById(R.id.btnLogin_loginDialog);
+        btnGoogleLoginDialog = login.findViewById(R.id.btnGoogle_loginDialog);
+        edtEmailLoginDialog = login.findViewById(R.id.edtMail_loginDialog);
+        edtPasswordLoginDialog = login.findViewById(R.id.edtPassword_loginDialog);
+        txtResetPasswordLoginDialog = login.findViewById(R.id.txtResetPassword_loginDialog);
 
-        btnLoginLoginD.setOnTouchListener(this);
-        btnGoogleLoginD.setOnTouchListener(this);
-        txtRegisterLoginD.setOnTouchListener(this);
+        btnLoginLoginDialog.setOnTouchListener(this);
+        btnGoogleLoginDialog.setOnTouchListener(this);
+        txtResetPasswordLoginDialog.setOnTouchListener(this);
 
         login.show();
     }
@@ -84,24 +90,24 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
 
     public void clickLogin() {
-        String email = edtEmailLoginD.getText().toString();
-        String password = edtPasswordLoginD.getText().toString();
+        String email = edtEmailLoginDialog.getText().toString();
+        String password = edtPasswordLoginDialog.getText().toString();
 
         if (email.isEmpty()) {
-            edtEmailLoginD.setError("email required");
-            edtEmailLoginD.requestFocus();
+            edtEmailLoginDialog.setError("email required");
+            edtEmailLoginDialog.requestFocus();
             return;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            edtEmailLoginD.setError("invalid email");
-            edtEmailLoginD.requestFocus();
+            edtEmailLoginDialog.setError("invalid email");
+            edtEmailLoginDialog.requestFocus();
             return;
         } else if (password.isEmpty()) {
-            edtPasswordLoginD.setError("password required");
-            edtPasswordLoginD.requestFocus();
+            edtPasswordLoginDialog.setError("password required");
+            edtPasswordLoginDialog.requestFocus();
             return;
         } else if (password.length() < 6) {
-            edtPasswordLoginD.setError("password too short, minimum length is 6");
-            edtPasswordLoginD.requestFocus();
+            edtPasswordLoginDialog.setError("password too short, minimum length is 6");
+            edtPasswordLoginDialog.requestFocus();
             return;
         }
 
@@ -134,14 +140,13 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
     }
 
-    public void clickedRegisterInDialog() {
+    public void clickedResetPassword() {
         login.dismiss();
-        createRegisterDialog();
     }
 
-    public void clickedRegisterInDialog(View view, MotionEvent motionEvent) {
+    public void clickedResetPassword(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickedRegisterInDialog();
+            clickedResetPassword();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha((float)0.5);
@@ -156,12 +161,12 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         register.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         register.setTitle("Register");
 
-        btnRegisterRegisterD = register.findViewById(R.id.btnRegister_registerDialog);
-        edtEmailRegisterD = register.findViewById(R.id.edtMail_registerDialog);
-        edtPasswordRegisterD = register.findViewById(R.id.edtPassword_registerDialog);
-        edtConPasswordRegisterD = register.findViewById(R.id.edtConPassword_registerDialog);
+        btnRegisterRegisterDialog = register.findViewById(R.id.btnRegister_registerDialog);
+        edtEmailRegisterDialog = register.findViewById(R.id.edtMail_registerDialog);
+        edtPasswordRegisterDialog = register.findViewById(R.id.edtPassword_registerDialog);
+        edtConPasswordRegisterDialog = register.findViewById(R.id.edtConPassword_registerDialog);
 
-        btnRegisterRegisterD.setOnTouchListener(this);
+        btnRegisterRegisterDialog.setOnTouchListener(this);
 
         register.show();
     }
@@ -176,33 +181,33 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
 
     public void clickRegister() {
-        String email = edtEmailRegisterD.getText().toString();
-        String password = edtPasswordRegisterD.getText().toString();
-        String conPassword = edtConPasswordRegisterD.getText().toString();
+        String email = edtEmailRegisterDialog.getText().toString();
+        String password = edtPasswordRegisterDialog.getText().toString();
+        String conPassword = edtConPasswordRegisterDialog.getText().toString();
 
         if (email.isEmpty()) {
-            edtEmailRegisterD.setError("email required");
-            edtEmailRegisterD.requestFocus();
+            edtEmailRegisterDialog.setError("email required");
+            edtEmailRegisterDialog.requestFocus();
             return;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            edtEmailRegisterD.setError("invalid email");
-            edtEmailRegisterD.requestFocus();
+            edtEmailRegisterDialog.setError("invalid email");
+            edtEmailRegisterDialog.requestFocus();
             return;
         } else if (password.isEmpty()) {
-            edtPasswordRegisterD.setError("password required");
-            edtPasswordRegisterD.requestFocus();
+            edtPasswordRegisterDialog.setError("password required");
+            edtPasswordRegisterDialog.requestFocus();
             return;
         } else if (password.length() < 6) {
-            edtPasswordRegisterD.setError("password too short, minimum length is 6");
-            edtPasswordRegisterD.requestFocus();
+            edtPasswordRegisterDialog.setError("password too short, minimum length is 6");
+            edtPasswordRegisterDialog.requestFocus();
             return;
         } else if (conPassword.isEmpty()) {
-            edtConPasswordRegisterD.setError("confirm password");
-            edtConPasswordRegisterD.requestFocus();
+            edtConPasswordRegisterDialog.setError("confirm password");
+            edtConPasswordRegisterDialog.requestFocus();
             return;
         } else if (!conPassword.equals(password)) {
-            edtConPasswordRegisterD.setError("passwords don't match");
-            edtConPasswordRegisterD.requestFocus();
+            edtConPasswordRegisterDialog.setError("passwords don't match");
+            edtConPasswordRegisterDialog.requestFocus();
             return;
         }
 
@@ -240,8 +245,8 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             case R.id.btnGoogle_loginDialog:
                 clickGoogle(view, motionEvent);
                 break;
-            case R.id.txtRegister_loginDialog:
-                clickedRegisterInDialog(view, motionEvent);
+            case R.id.txtResetPassword_loginDialog:
+                clickedResetPassword(view, motionEvent);
                 break;
             //=register dialog=//
             case R.id.btnRegister_registerDialog:

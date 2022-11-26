@@ -47,13 +47,13 @@ public class TowerManager {
         Rect collider = GameValues.colliderArrayList.get(GameValues.colliderArrayList.size()-1);
         switch (towerType) {
             case DEMO_TOWER:
-                towerArrayList.add(new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
             case TURRET:
-                towerArrayList.add(new Turret(x, y, collider, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new Turret(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
             case FIRE_SPREADER:
-                towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, this, context));
+                towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
         }
     }

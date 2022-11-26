@@ -27,7 +27,7 @@ public class Turret extends Tower {
     private Bitmap turretBase;
     private Bitmap turretHead2;
 
-    public Turret(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public Turret(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(
                 x,
                 y,
@@ -36,7 +36,6 @@ public class Turret extends Tower {
                 towerBar,
                 waveManager,
                 projectileManager,
-                towerManager,
                 context
         );
         this.turretBase = Bitmap.createScaledBitmap(

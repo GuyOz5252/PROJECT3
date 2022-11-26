@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dialogColor">
@@ -21,37 +21,78 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:layout_margin="20dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="30dp">
 
         <Button
             android:id="@+id/btnResume_pauseMenuDialog"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
 
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:text="resume"
             android:textSize="20dp"
             app:cornerRadius="20dp" />
 
         <Button
-            android:id="@+id/btnSettings_pauseMenuDialog"
-            android:layout_width="250dp"
+            android:id="@+id/btnTowerInfo_pauseMenuDialog"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
 
             android:layout_below="@+id/btnResume_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="towers"
+            android:textSize="20dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btnSave_pauseMenuDialog"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btnTowerInfo_pauseMenuDialog"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="save"
+            android:textSize="20dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btnSettings_pauseMenuDialog"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/btnSave_pauseMenuDialog"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:text="settings"
             android:textSize="20dp"
             app:cornerRadius="20dp" />
 
         <Button
             android:id="@+id/btnExit_pauseMenuDialog"
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
 
             android:layout_below="@+id/btnSettings_pauseMenuDialog"

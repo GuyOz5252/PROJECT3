@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.utils.GameValues;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenu extends AppCompatActivity {
@@ -44,6 +45,8 @@ public class MainMenu extends AppCompatActivity {
         navbar = findViewById(R.id.NavBar_mainMenu);
         navbar.setOnItemSelectedListener(this::onItemItemSelected);
         navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
+
+        GameValues.CONTEXT = this;
     }
 
     public void replaceFragment(Fragment fragment) {

@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">project2-rev2</string>
 
-    <string name="have_account">A new player?</string>
-    <string name="send_login">Click here to register</string>
-    <string name="Google_login">or continue with Google</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="reset_password">Click here to reset</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tower_upgrade_info">TowerUpgradeInfo</string>

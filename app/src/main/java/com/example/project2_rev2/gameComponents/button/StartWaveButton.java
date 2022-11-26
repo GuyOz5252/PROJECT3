@@ -81,17 +81,14 @@ public class StartWaveButton extends Button {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 if (isActive) {
                     waveManager.startWave();
-                    //setAlpha(255);
                     setPressEffect(false);
                     changeBitmap(R.drawable.start_wave_button_background_inactive);
                     startWaveIconIcon.changeBitmap(R.drawable.ic_start_wave_inactive);
                 }
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && isActive) {
-                //setAlpha(100);
                 setPressEffect(true);
             }
         } else if (isActive) {
-            //setAlpha(255);
             setPressEffect(false);
         }
         return true;

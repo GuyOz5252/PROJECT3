@@ -68,16 +68,13 @@ public class PauseButton extends Button {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                //setAlpha(255);
                 pause.action();
                 setPressEffect(false);
                 return true;
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                //setAlpha(100);
                 setPressEffect(true);
             }
         } else {
-            //setAlpha(255);
             setPressEffect(false);
         }
         return false;

@@ -2,6 +2,7 @@ package com.example.project2_rev2.menus;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -192,6 +193,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         Intent intent = new Intent(getContext(), TowerUpgradeInfo.class);
         intent.putExtra("TowerType", towerArrayList.get(currentTowerIndex));
         startActivity(intent);
+        // not finishing current activity in order to return to same point
     }
 
     public void clickTowerCard(View view, MotionEvent motionEvent) {

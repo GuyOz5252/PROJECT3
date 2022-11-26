@@ -11,8 +11,8 @@ import com.example.project2_rev2.gameComponents.managers.WaveManager;
 
 public class IceTower extends Tower {
 
-    public IceTower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
-        super(x, y, collider, towerType, towerBar, waveManager, projectileManager, towerManager, context);
+    public IceTower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+        super(x, y, collider, towerType, towerBar, waveManager, projectileManager, context);
     }
 
     @Override

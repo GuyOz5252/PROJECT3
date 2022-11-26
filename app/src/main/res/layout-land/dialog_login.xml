@@ -111,27 +111,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
 
-                android:text="@string/have_account"
+                android:text="@string/forgot_password"
                 android:textColor="@color/secondaryTextColor"/>
 
             <TextView
-                android:id="@+id/txtRegister_loginDialog"
+                android:id="@+id/txtResetPassword_loginDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="2dp"
 
-                android:text="@string/send_login"
+                android:text="@string/reset_password"
                 android:textColor="@color/link" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/ln"
-                android:layout_marginLeft="2dp"
-
-                android:text="@string/Google_login"
-                android:textColor="@color/secondaryTextColor" />
 
         </LinearLayout>
 

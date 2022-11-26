@@ -30,9 +30,9 @@ public class FireSpreader extends Tower {
     private int duration;
     private int interval;
 
-    public FireSpreader(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
-        super(x, y, collider, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, towerManager, context);
-        initFiringBitmapArr();
+    public FireSpreader(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+        super(x, y, collider, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, context);
+        initFiringBitmapArr(range);
         this.animationTick = 0;
         this.animationIndex = 0;
         this.damage = 8;
@@ -40,7 +40,7 @@ public class FireSpreader extends Tower {
         this.interval = 3;
     }
 
-    public void initFiringBitmapArr() {
+    public void initFiringBitmapArr(int range) {
         firingBitmapArr = new Bitmap[] {
                 Bitmap.createScaledBitmap(
                         HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
@@ -229,7 +229,7 @@ public class FireSpreader extends Tower {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
                             // range
-                            initFiringBitmapArr();
+                            initFiringBitmapArr(220);
                             range = 220;
                             break;
                         case 1:
@@ -243,8 +243,8 @@ public class FireSpreader extends Tower {
                             break;
                         case 3:
                             // carmen
+                            initFiringBitmapArr(250);
                             range = 250;
-                            initFiringBitmapArr();
                             cooldown = 0;
                             break;
                     }

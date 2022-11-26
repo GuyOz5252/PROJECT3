@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameStructure;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,9 +16,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.project2_rev2.menus.TowerFragment;
+import com.example.project2_rev2.menus.TowerUpgradeInfo;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
@@ -35,7 +39,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     // pause menu dialog elements
     Dialog pauseMenu;
-    Button btnResume, btnSettings, btnExitPauseMenu;
+    Button btnResume, btnTowers, btnSave, btnSettings, btnExitPauseMenu;
     TextView txtLevelName;
 
     // victory dialog elements
@@ -142,13 +146,18 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         pauseMenu.setTitle("Pause Menu");
 
         btnResume = pauseMenu.findViewById(R.id.btnResume_pauseMenuDialog);
+        btnTowers = pauseMenu.findViewById(R.id.btnTowerInfo_pauseMenuDialog);
+        btnSave = pauseMenu.findViewById(R.id.btnSave_pauseMenuDialog);
         btnSettings = pauseMenu.findViewById(R.id.btnSettings_pauseMenuDialog);
         btnExitPauseMenu = pauseMenu.findViewById(R.id.btnExit_pauseMenuDialog);
         txtLevelName = pauseMenu.findViewById(R.id.txtLevelName_pauseMenuDialog);
 
         btnResume.setOnTouchListener(this);
+        btnTowers.setOnTouchListener(this);
+        btnSave.setOnTouchListener(this);
         btnSettings.setOnTouchListener(this);
         btnExitPauseMenu.setOnTouchListener(this);
+
         txtLevelName.setText(sceneManager.getLevelName());
 
         pauseMenu.show();
@@ -167,7 +176,39 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             clickResume();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setAlpha(0.5f);
+        }
+    }
+
+    public void clickTowers() {
+        Dialog towerInfoDialog = new Dialog(this);
+        towerInfoDialog.setContentView(R.layout.dialog_tower);
+        //FrameLayout frameLayout = towerInfoDialog.findViewById(R.id.frameLayout_towerDialog);
+        //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        //fragmentTransaction.replace(frameLayout.getId(), new TowerFragment());
+        //fragmentTransaction.commit();
+        towerInfoDialog.show();
+    }
+
+    public void clickTowers(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickTowers();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha(0.5f);
+        }
+    }
+
+    public void clickSave() {
+        // TODO save game
+    }
+
+    public void clickSave(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickSave();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha(0.5f);
         }
     }
 
@@ -180,7 +221,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             clickSettings();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setAlpha(0.5f);
         }
     }
 
@@ -195,7 +236,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             clickExit();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setAlpha(0.5f);
         }
     }
     /*****/
@@ -313,6 +354,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             //=pause menu dialog=//
             case R.id.btnResume_pauseMenuDialog:
                 clickResume(view, motionEvent);
+                break;
+            case R.id.btnTowerInfo_pauseMenuDialog:
+                clickTowers(view, motionEvent);
+                break;
+            case R.id.btnSave_pauseMenuDialog:
+                clickSave(view, motionEvent);
                 break;
             case R.id.btnSettings_pauseMenuDialog:
                 clickSettings(view, motionEvent);

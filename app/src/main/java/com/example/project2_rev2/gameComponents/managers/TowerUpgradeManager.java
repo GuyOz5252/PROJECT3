@@ -29,13 +29,13 @@ public class TowerUpgradeManager {
     private Bitmap towerBackground;
     private Bitmap towerBitmap;
 
-    public TowerUpgradeManager(Tower tower, TowerManager towerManager, Context context) {
+    public TowerUpgradeManager(Tower tower, Context context) {
         this.context = context;
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
         this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(450), 1, tower, this, context);
         this.tower = tower;
 
-        this.sellTowerButton = new SellTowerButton(tower, towerManager, context);
+        this.sellTowerButton = new SellTowerButton(tower, context);
 
         this.towerNameText = new TextUI(
                 xCoordinate(175),

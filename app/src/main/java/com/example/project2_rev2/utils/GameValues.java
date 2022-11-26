@@ -1,6 +1,7 @@
 package com.example.project2_rev2.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
@@ -10,11 +11,14 @@ import java.util.ArrayList;
 
 public class GameValues {
 
+    public static Context CONTEXT;
+
     public final static Display gameDisplay = new Display(1916, 1080);
 
     public static Display display = new Display(0, 0);
 
     public static double xOffset = 0;
+
     public static double yOffset = 0;
 
     public static double xCoordinate(double value) {
@@ -66,6 +70,7 @@ public class GameValues {
     }
 
     public static void init(Activity activity, Display display) {
+        CONTEXT = activity;
         GameValues.display.size.width = display.size.width;
         GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         GameValues.display.size.height = display.size.height;

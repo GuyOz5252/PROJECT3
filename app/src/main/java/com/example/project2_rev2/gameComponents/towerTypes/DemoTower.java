@@ -12,7 +12,7 @@ import com.example.project2_rev2.utils.GameValues;
 
 public class DemoTower extends Tower {
 
-    public DemoTower(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, TowerManager towerManager, Context context) {
+    public DemoTower(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(
                 x,
                 y,
@@ -21,7 +21,6 @@ public class DemoTower extends Tower {
                 towerBar,
                 waveManager,
                 projectileManager,
-                towerManager,
                 context
         );
     }

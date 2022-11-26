@@ -25,13 +25,11 @@ public class SellTowerButton extends Button {
 
     private int currentPrice;
     private Tower tower;
-    private TowerManager towerManager;
     private CoinTextUI sellPriceTextUI;
 
-    public SellTowerButton(Tower tower, TowerManager towerManager, Context context) {
+    public SellTowerButton(Tower tower, Context context) {
         super(xCoordinate(60), yCoordinate(790), R.drawable.sell_button_background, new Size(230, 60), context);
         this.tower = tower;
-        this.towerManager = towerManager;
         this.currentPrice = tower.getValue() + 100*tower.getUpgradeCount();
         this.sellPriceTextUI = new SellPriceTextUI(
                 (centerPosition.x)-15,
@@ -70,7 +68,6 @@ public class SellTowerButton extends Button {
         if (isPressed(motionEvent)) {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 setPressEffect(false);
-                //towerManager.removeTower(tower);
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() + currentPrice);
                 tower.sell();
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
