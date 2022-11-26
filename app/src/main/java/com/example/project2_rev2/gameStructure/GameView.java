@@ -53,6 +53,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         View decorView = getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -65,7 +66,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         setContentView(R.layout.activity_game_view);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity)this).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         display = new Display(displayMetrics);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);

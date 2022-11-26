@@ -299,10 +299,10 @@ public abstract class Tower extends BitmapObject {
                         CONTEXT.getResources().getStringArray(R.array.turret_upgrade_info_path1)
                 ),
                 new TowerUpgradePath(
-                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_names_path1),
-                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_price_path1),
-                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_xp_req_path1),
-                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_info_path1)
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_names_path2),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_price_path2),
+                        CONTEXT.getResources().getIntArray(R.array.turret_upgrade_xp_req_path2),
+                        CONTEXT.getResources().getStringArray(R.array.turret_upgrade_info_path2)
                 )
         ),
         FIRE_SPREADER(

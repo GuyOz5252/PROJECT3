@@ -46,6 +46,7 @@ public class TowerUpgradeManager {
                 Paint.Align.CENTER,
                 context
         );
+        towerNameText.setBold();
 
         this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.tower_background), 160, 160, false);
         this.towerBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, tower.getIcon()), 150, 150, false);

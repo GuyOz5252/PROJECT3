@@ -16,12 +16,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
 
+    Handler handler;
     boolean isRun;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         View decorView = getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout relativeLayout = findViewById(R.id.touchDetector);
         relativeLayout.setOnTouchListener(this::skipSplashScreen);
 
-        new Handler().postDelayed(() -> {
+        handler = new Handler();
+        handler.postDelayed(() -> {
             if (!isRun) {
                 startActivity(new Intent(MainActivity.this, Login.class));
                 this.finish();
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean skipSplashScreen(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            handler = null;
             isRun = true;
             startActivity(new Intent(MainActivity.this, Login.class));
             this.finish();

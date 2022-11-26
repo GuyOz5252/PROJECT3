@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         View decorView = getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -63,6 +64,12 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //============login dialog=============//
     public void createLoginDialog() {
         login = new Dialog(this);
+        View decorView = login.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
         login.setContentView(R.layout.dialog_login);
         login.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         login.setTitle("Login");
@@ -157,6 +164,12 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //==========register dialog============//
     public void createRegisterDialog() {
         register = new Dialog(this);
+        View decorView = register.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
         register.setContentView(R.layout.dialog_register);
         register.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
         register.setTitle("Register");
