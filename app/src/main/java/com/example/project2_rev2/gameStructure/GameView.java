@@ -181,13 +181,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickTowers() {
-        Dialog towerInfoDialog = new Dialog(this);
-        towerInfoDialog.setContentView(R.layout.dialog_tower);
-        //FrameLayout frameLayout = towerInfoDialog.findViewById(R.id.frameLayout_towerDialog);
-        //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        //fragmentTransaction.replace(frameLayout.getId(), new TowerFragment());
-        //fragmentTransaction.commit();
-        towerInfoDialog.show();
+
     }
 
     public void clickTowers(View view, MotionEvent motionEvent) {
