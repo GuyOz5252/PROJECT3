@@ -51,9 +51,14 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void replaceFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout_mainMenu, fragment);
-        fragmentTransaction.commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_left,
+                        R.anim.slide_right
+                )
+                .replace(R.id.frameLayout_mainMenu, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     public boolean onItemItemSelected(@NonNull MenuItem item) {
