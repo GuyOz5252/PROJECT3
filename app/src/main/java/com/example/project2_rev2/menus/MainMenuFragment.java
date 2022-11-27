@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.GameView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,25 +28,38 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     private View view;
 
+    private FirebaseAuth firebaseAuth;
+
     ImageButton btnSettings;
     RelativeLayout btnPlay;
+    TextView txtUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
+        txtUser = view.findViewById(R.id.txtUser_mainMenuFragment);
 
         btnSettings.setOnTouchListener(this);
         btnPlay.setOnTouchListener(this);
 
+        txtUser.setText(firebaseAuth.getCurrentUser().getEmail());
+
         return view;
+    }
+
+    public void clickSettings() {
+        firebaseAuth.signOut();
+        startActivity(new Intent(getContext(), Login.class));
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            System.out.println("click settings");
+            clickSettings();
             view.setScaleX(1);
             view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {

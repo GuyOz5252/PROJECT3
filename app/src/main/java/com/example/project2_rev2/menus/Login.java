@@ -1,20 +1,30 @@
 package com.example.project2_rev2.menus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project2_rev2.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnTouchListener {
+
+    private FirebaseAuth firebaseAuth;
 
     // menu elements
     Button btnLogin, btnRegister, btnDebugGame;
@@ -31,6 +41,16 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     EditText edtEmailRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            startActivity(new Intent(this, MainMenu.class));
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
@@ -42,6 +62,8 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         decorView.setSystemUiVisibility(flags);
         decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
         setContentView(R.layout.activity_login);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
@@ -119,6 +141,15 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
 
         // login user
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(Login.this, "user logged in", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainMenu.class));
+                this.finish();
+            } else {
+                Log.d("error", task.getException().getMessage());
+            }
+        });
 
         login.dismiss();
     }
@@ -225,6 +256,13 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
 
         //register user
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("error", task.getException().getMessage());
+            }
+        });
 
         register.dismiss();
     }
