@@ -58,4 +58,14 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/white"
+        android:scaleX="2"
+        android:scaleY="2"/>
+
 </RelativeLayout>

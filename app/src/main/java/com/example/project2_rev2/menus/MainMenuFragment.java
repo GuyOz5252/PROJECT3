@@ -6,29 +6,30 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameStructure.GameView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     private View view;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
 
     ImageButton btnSettings;
     RelativeLayout btnPlay;
@@ -39,6 +40,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
@@ -47,7 +49,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         btnSettings.setOnTouchListener(this);
         btnPlay.setOnTouchListener(this);
 
-        txtUser.setText(firebaseAuth.getCurrentUser().getEmail());
+        txtUser.setText(User.getInstance().getUsername());
 
         return view;
     }

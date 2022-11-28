@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -40,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         handler = new Handler();
         handler.postDelayed(() -> {
             if (!isRun) {
-                startActivity(new Intent(MainActivity.this, Login.class));
-                this.finish();
+                start();
             }
         }, 1500);
     }
@@ -50,10 +52,29 @@ public class MainActivity extends AppCompatActivity {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             handler = null;
             isRun = true;
+            start();
+        }
+        return true;
+    }
+
+    public void start() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            setContentView(R.layout.activity_main);
+            db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    User.getInstance().initUser(task.getResult());
+                    startActivity(new Intent(this, MainMenu.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, Login.class));
+                }
+                this.finish();
+            });
+        } else {
             startActivity(new Intent(MainActivity.this, Login.class));
             this.finish();
         }
-        return true;
     }
 
     @Override

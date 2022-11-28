@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +26,11 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -133,53 +139,57 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
             pathOne.setLayoutParams(params);
             pathTwo.setLayoutParams(params);
             for (int i = 0; i < 4; i++) {
-                if (true) { // TODO set condition
-                    LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
-                            LayoutParams.WRAP_CONTENT,
-                            LayoutParams.WRAP_CONTENT
-                    );
-                    rectParams.setMargins(5, 5, 5, 5);
-                    ImageView greenRect = new ImageView(getContext());
-                    greenRect.setImageResource(R.drawable.ic_square_green);
-                    greenRect.setScaleX(2);
-                    greenRect.setLayoutParams(rectParams);
-                    pathOne.addView(greenRect);
-                } else {
-                    LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
-                            LayoutParams.WRAP_CONTENT,
-                            LayoutParams.WRAP_CONTENT
-                    );
-                    rectParams.setMargins(5, 5, 5, 5);
-                    ImageView grayRect = new ImageView(getContext());
-                    grayRect.setImageResource(R.drawable.ic_square_gray);
-                    grayRect.setScaleX(2);
-                    grayRect.setLayoutParams(rectParams);
-                    pathOne.addView(grayRect);
+                if (i < towerArrayList.get(towerIndex).towerUpgradePathOne.name.length) {
+                    if (towerArrayList.get(towerIndex).towerUpgradePathOne.xpReq[i] >= towerArrayList.get(towerIndex).xp) {
+                        LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
+                                LayoutParams.WRAP_CONTENT,
+                                LayoutParams.WRAP_CONTENT
+                        );
+                        rectParams.setMargins(5, 5, 5, 5);
+                        ImageView greenRect = new ImageView(getContext());
+                        greenRect.setImageResource(R.drawable.ic_square_green);
+                        greenRect.setScaleX(2);
+                        greenRect.setLayoutParams(rectParams);
+                        pathOne.addView(greenRect);
+                    } else {
+                        LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
+                                LayoutParams.WRAP_CONTENT,
+                                LayoutParams.WRAP_CONTENT
+                        );
+                        rectParams.setMargins(5, 5, 5, 5);
+                        ImageView grayRect = new ImageView(getContext());
+                        grayRect.setImageResource(R.drawable.ic_square_gray);
+                        grayRect.setScaleX(2);
+                        grayRect.setLayoutParams(rectParams);
+                        pathOne.addView(grayRect);
+                    }
                 }
             }
             for (int i = 0; i < 4; i++) {
-                if (false) { // TODO set condition
-                    LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
-                            LayoutParams.WRAP_CONTENT,
-                            LayoutParams.WRAP_CONTENT
-                    );
-                    rectParams.setMargins(5, 5, 5, 5);
-                    ImageView greenRect = new ImageView(getContext());
-                    greenRect.setImageResource(R.drawable.ic_square_green);
-                    greenRect.setScaleX(2);
-                    greenRect.setLayoutParams(rectParams);
-                    pathTwo.addView(greenRect);
-                } else {
-                    LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
-                            LayoutParams.WRAP_CONTENT,
-                            LayoutParams.WRAP_CONTENT
-                    );
-                    rectParams.setMargins(5, 5, 5, 5);
-                    ImageView grayRect = new ImageView(getContext());
-                    grayRect.setImageResource(R.drawable.ic_square_gray);
-                    grayRect.setScaleX(2);
-                    grayRect.setLayoutParams(rectParams);
-                    pathTwo.addView(grayRect);
+                if (i < towerArrayList.get(towerIndex).towerUpgradePathTwo.name.length) {
+                    if (towerArrayList.get(towerIndex).towerUpgradePathTwo.xpReq[i] >= towerArrayList.get(towerIndex).xp) {
+                        LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
+                                LayoutParams.WRAP_CONTENT,
+                                LayoutParams.WRAP_CONTENT
+                        );
+                        rectParams.setMargins(5, 5, 5, 5);
+                        ImageView greenRect = new ImageView(getContext());
+                        greenRect.setImageResource(R.drawable.ic_square_green);
+                        greenRect.setScaleX(2);
+                        greenRect.setLayoutParams(rectParams);
+                        pathTwo.addView(greenRect);
+                    } else {
+                        LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
+                                LayoutParams.WRAP_CONTENT,
+                                LayoutParams.WRAP_CONTENT
+                        );
+                        rectParams.setMargins(5, 5, 5, 5);
+                        ImageView grayRect = new ImageView(getContext());
+                        grayRect.setImageResource(R.drawable.ic_square_gray);
+                        grayRect.setScaleX(2);
+                        grayRect.setLayoutParams(rectParams);
+                        pathTwo.addView(grayRect);
+                    }
                 }
             }
 

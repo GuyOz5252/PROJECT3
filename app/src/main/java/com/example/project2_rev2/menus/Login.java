@@ -1,33 +1,37 @@
 package com.example.project2_rev2.menus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project2_rev2.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.project2_rev2.data.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
 
     // menu elements
     Button btnLogin, btnRegister, btnDebugGame;
+    ProgressBar loginProgressBar;
 
     // login dialog elements
     Dialog login;
@@ -38,17 +42,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     // register dialog elements
     Dialog register;
     Button btnRegisterRegisterDialog;
-    EditText edtEmailRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            startActivity(new Intent(this, MainMenu.class));
-        }
-    }
+    EditText edtEmailRegisterDialog, edtNameRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,22 +58,81 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         btnDebugGame = findViewById(R.id.btnDebugGame);
+        loginProgressBar = findViewById(R.id.loginProgressBar);
 
         btnLogin.setOnTouchListener(this);
         btnRegister.setOnTouchListener(this);
         btnDebugGame.setOnTouchListener(this);
     }
 
-    public void debugGame(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            startActivity(new Intent(this, MainMenu.class));
-            this.finish();
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+    public void loginUser(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        User.getInstance().initUser(task1.getResult());
+                        Toast.makeText(Login.this, "user logged in", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, MainMenu.class));
+                        this.finish();
+                    } else {
+                        setLoading(false);
+                        Toast.makeText(Login.this, task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                setLoading(false);
+                Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void registerUser(String email, String password, String name) {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentReference userDocument = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
+
+                HashMap<String, Object> userData = new HashMap<>();
+                userData.put("user_name", name);
+                userDocument.set(userData);
+
+                HashMap<String, Object> towerData = new HashMap<>();
+                towerData.put("xp", 0);
+                CollectionReference collectionReference = userDocument.collection("towers");
+                collectionReference.document("turret").set(towerData);
+                collectionReference.document("fire_spreader").set(towerData);
+
+                userDocument.get().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        User.getInstance().initUser(task1.getResult());
+                        Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, MainMenu.class));
+                        this.finish();
+                    } else {
+                        setLoading(false);
+                        Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                setLoading(false);
+                Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void setLoading(boolean b) {
+        if (b) {
+            loginProgressBar.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.INVISIBLE);
+            btnRegister.setVisibility(View.INVISIBLE);
+        } else {
+            loginProgressBar.setVisibility(View.INVISIBLE);
+            btnLogin.setVisibility(View.VISIBLE);
+            btnRegister.setVisibility(View.VISIBLE);
         }
     }
 
@@ -134,23 +187,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             edtPasswordLoginDialog.setError("password required");
             edtPasswordLoginDialog.requestFocus();
             return;
-        } else if (password.length() < 6) {
-            edtPasswordLoginDialog.setError("password too short, minimum length is 6");
-            edtPasswordLoginDialog.requestFocus();
-            return;
         }
 
         // login user
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(Login.this, "user logged in", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainMenu.class));
-                this.finish();
-            } else {
-                Log.d("error", task.getException().getMessage());
-            }
-        });
-
+        loginUser(email, password);
+        setLoading(true);
         login.dismiss();
     }
 
@@ -207,6 +248,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
         btnRegisterRegisterDialog = register.findViewById(R.id.btnRegister_registerDialog);
         edtEmailRegisterDialog = register.findViewById(R.id.edtMail_registerDialog);
+        edtNameRegisterDialog = register.findViewById(R.id.edtName_registerDialog);
         edtPasswordRegisterDialog = register.findViewById(R.id.edtPassword_registerDialog);
         edtConPasswordRegisterDialog = register.findViewById(R.id.edtConPassword_registerDialog);
 
@@ -226,6 +268,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     public void clickRegister() {
         String email = edtEmailRegisterDialog.getText().toString();
+        String name = edtNameRegisterDialog.getText().toString();
         String password = edtPasswordRegisterDialog.getText().toString();
         String conPassword = edtConPasswordRegisterDialog.getText().toString();
 
@@ -236,6 +279,10 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             edtEmailRegisterDialog.setError("invalid email");
             edtEmailRegisterDialog.requestFocus();
+            return;
+        } else if (name.isEmpty()) {
+            edtNameRegisterDialog.setError("name required");
+            edtNameRegisterDialog.requestFocus();
             return;
         } else if (password.isEmpty()) {
             edtPasswordRegisterDialog.setError("password required");
@@ -256,14 +303,8 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
 
         //register user
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.d("error", task.getException().getMessage());
-            }
-        });
-
+        registerUser(email, password, name);
+        setLoading(true);
         register.dismiss();
     }
 
@@ -276,6 +317,15 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
     }
     //====================================//
+
+    public void debugGame(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            startActivity(new Intent(this, MainMenu.class));
+            this.finish();
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {

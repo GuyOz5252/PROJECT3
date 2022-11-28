@@ -338,16 +338,17 @@ public abstract class Tower extends BitmapObject {
                 )
         );
 
-        public String towerName;
-        public int icon;
-        public int bitmap;
-        public int range;
-        public int cooldown;
-        public int value;
-        public Size size;
-        public Projectile.ProjectileType projectileType;
-        public TowerUpgradePath towerUpgradePathOne;
-        public TowerUpgradePath towerUpgradePathTwo;
+        public final String towerName;
+        public final int icon;
+        public final int bitmap;
+        public final int range;
+        public final int cooldown;
+        public final int value;
+        public final Size size;
+        public final Projectile.ProjectileType projectileType;
+        public final TowerUpgradePath towerUpgradePathOne;
+        public final TowerUpgradePath towerUpgradePathTwo;
+        public int xp;
 
         TowerType(String towerName, int bitmap, int icon, int range, int cooldown, int value, Size size, Projectile.ProjectileType projectileType, TowerUpgradePath towerUpgradePathOne, TowerUpgradePath towerUpgradePathTwo) {
             this.towerName = towerName;
@@ -360,6 +361,7 @@ public abstract class Tower extends BitmapObject {
             this.projectileType = projectileType;
             this.towerUpgradePathOne = towerUpgradePathOne;
             this.towerUpgradePathTwo = towerUpgradePathTwo;
+            this.xp = 0;
         }
     }
 }
