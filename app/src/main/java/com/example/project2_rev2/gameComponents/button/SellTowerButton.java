@@ -30,7 +30,7 @@ public class SellTowerButton extends Button {
     public SellTowerButton(Tower tower, Context context) {
         super(xCoordinate(60), yCoordinate(790), R.drawable.sell_button_background, new Size(230, 60), context);
         this.tower = tower;
-        this.currentPrice = tower.getValue() + 100*tower.getUpgradeCount();
+        this.currentPrice = (int)(0.8*tower.getValue() + 100*tower.getUpgradeCount());
         this.sellPriceTextUI = new SellPriceTextUI(
                 (centerPosition.x)-15,
                 (centerPosition.y)+13,

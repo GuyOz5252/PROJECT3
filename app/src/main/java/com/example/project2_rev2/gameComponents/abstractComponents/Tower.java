@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
@@ -97,7 +98,7 @@ public abstract class Tower extends BitmapObject {
         };
         this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
-        setXP(0);
+        this.xp = User.getInstance().getTowerXP(towerType);
         this.towerUpgradeManager = new TowerUpgradeManager(this, context);
         this.isDoubleShot = false;
     }
@@ -136,10 +137,6 @@ public abstract class Tower extends BitmapObject {
         return upgradeCount;
     }
 
-    public int getXP() {
-        return xp;
-    }
-
     public boolean getIsDoubleShot() {
         return isDoubleShot;
     }
@@ -148,8 +145,8 @@ public abstract class Tower extends BitmapObject {
         return isActive;
     }
 
-    public void setXP(int xp) {
-        this.xp = xp;
+    public int getXP() {
+        return xp;
     }
 
     public void attack(Enemy enemy) {
