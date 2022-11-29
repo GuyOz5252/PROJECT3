@@ -17,12 +17,8 @@ import android.widget.Toast;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 public class Login extends AppCompatActivity implements View.OnTouchListener {
 
@@ -75,7 +71,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             if (task.isSuccessful()) {
                 db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
-                        User.getInstance().initUser(task1.getResult());
+                        User.getInstance().setUserData(task1.getResult());
                         Toast.makeText(Login.this, "user logged in", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(this, MainMenu.class));
                         this.finish();
@@ -95,28 +91,10 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentReference userDocument = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-
-                HashMap<String, Object> userData = new HashMap<>();
-                userData.put("user_name", name);
-                userDocument.set(userData);
-
-                HashMap<String, Object> towerData = new HashMap<>();
-                towerData.put("xp", 0);
-                CollectionReference collectionReference = userDocument.collection("towers");
-                collectionReference.document("turret").set(towerData);
-                collectionReference.document("fire_spreader").set(towerData);
-
-                userDocument.get().addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        User.getInstance().initUser(task1.getResult());
-                        Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, MainMenu.class));
-                        this.finish();
-                    } else {
-                        setLoading(false);
-                        Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                User.getInstance().createUserData(userDocument, name);
+                Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainMenu.class));
+                this.finish();
             } else {
                 setLoading(false);
                 Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

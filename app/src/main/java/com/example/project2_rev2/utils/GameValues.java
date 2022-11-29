@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class GameValues {
 
-    public static Context CONTEXT;
-
     public final static Display gameDisplay = new Display(1916, 1080);
 
     public static Display display = new Display(0, 0);
@@ -70,7 +68,6 @@ public class GameValues {
     }
 
     public static void init(Activity activity, Display display) {
-        CONTEXT = activity;
         GameValues.display.size.width = display.size.width;
         GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         GameValues.display.size.height = display.size.height;

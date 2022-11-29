@@ -6,21 +6,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class MainActivity extends AppCompatActivity {
 
     Handler handler;
-    boolean isRun;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -35,26 +30,8 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(flags);
         setContentView(R.layout.activity_main);
 
-        isRun = false;
-
-        RelativeLayout relativeLayout = findViewById(R.id.touchDetector);
-        relativeLayout.setOnTouchListener(this::skipSplashScreen);
-
         handler = new Handler();
-        handler.postDelayed(() -> {
-            if (!isRun) {
-                start();
-            }
-        }, 1500);
-    }
-
-    public boolean skipSplashScreen(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            handler = null;
-            isRun = true;
-            start();
-        }
-        return true;
+        handler.postDelayed(this::start, 800);
     }
 
     public void start() {
@@ -64,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    User.getInstance().initUser(task.getResult());
+                    User.getInstance().setUserData(task.getResult());
                     startActivity(new Intent(this, MainMenu.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, Login.class));

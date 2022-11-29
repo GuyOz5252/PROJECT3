@@ -46,8 +46,6 @@ public class MainMenu extends AppCompatActivity {
         navbar = findViewById(R.id.NavBar_mainMenu);
         navbar.setOnItemSelectedListener(this::onItemItemSelected);
         navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
-
-        GameValues.CONTEXT = this;
     }
 
     public void replaceFragment(Fragment fragment) {
@@ -77,5 +75,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+        replaceFragment(mainMenuFragment);
+    }
 }
