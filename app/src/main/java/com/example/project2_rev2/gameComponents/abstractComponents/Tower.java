@@ -140,8 +140,16 @@ public abstract class Tower extends BitmapObject {
         return isActive;
     }
 
+    public TowerType getTowerType() {
+        return towerType;
+    }
+
     public int getXP() {
         return xp;
+    }
+
+    public void setXP(int xp) {
+        this.xp = xp;
     }
 
     public void attack(Enemy enemy) {

@@ -33,7 +33,7 @@
             android:textColorHint="@color/secondaryTextColor" />
 
         <EditText
-            android:id="@+id/edtName_registerDialog"
+            android:id="@+id/edtUsername_registerDialog"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
 
@@ -47,7 +47,7 @@
             android:background="@drawable/edit_text_custom"
             android:drawableStart="@drawable/pen_icon_custom"
             android:drawablePadding="3dp"
-            android:hint="name"
+            android:hint="username"
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="10dp"
@@ -60,7 +60,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/edtName_registerDialog"
+            android:layout_below="@+id/edtUsername_registerDialog"
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
 

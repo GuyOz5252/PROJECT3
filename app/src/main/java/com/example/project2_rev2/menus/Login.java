@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     // register dialog elements
     Dialog register;
     Button btnRegisterRegisterDialog;
-    EditText edtEmailRegisterDialog, edtNameRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
+    EditText edtEmailRegisterDialog, edtUsernameRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
 
     // reset password dialog elements
     Dialog resetPassword;
@@ -92,11 +92,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         });
     }
 
-    public void registerUser(String email, String password, String name) {
+    public void registerUser(String email, String password, String username) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentReference userDocument = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
-                User.getInstance().createUserData(userDocument, name);
+                User.getInstance().createUserData(userDocument, username);
                 Toast.makeText(Login.this, "user registered", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainMenu.class));
                 this.finish();
@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         login.setContentView(R.layout.dialog_login);
-        login.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        login.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         login.setTitle("Login");
 
         btnLoginLoginDialog = login.findViewById(R.id.btnLogin_loginDialog);
@@ -203,8 +203,8 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
 
     public void clickedResetPassword() {
-        login.dismiss();
         createResetPasswordDialog();
+        login.dismiss();
     }
 
     public void clickedResetPassword(View view, MotionEvent motionEvent) {
@@ -227,12 +227,12 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         register.setContentView(R.layout.dialog_register);
-        register.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        register.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         register.setTitle("Register");
 
         btnRegisterRegisterDialog = register.findViewById(R.id.btnRegister_registerDialog);
         edtEmailRegisterDialog = register.findViewById(R.id.edtMail_registerDialog);
-        edtNameRegisterDialog = register.findViewById(R.id.edtName_registerDialog);
+        edtUsernameRegisterDialog = register.findViewById(R.id.edtUsername_registerDialog);
         edtPasswordRegisterDialog = register.findViewById(R.id.edtPassword_registerDialog);
         edtConPasswordRegisterDialog = register.findViewById(R.id.edtConPassword_registerDialog);
 
@@ -252,7 +252,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     public void clickRegister() {
         String email = edtEmailRegisterDialog.getText().toString();
-        String name = edtNameRegisterDialog.getText().toString();
+        String username = edtUsernameRegisterDialog.getText().toString();
         String password = edtPasswordRegisterDialog.getText().toString();
         String conPassword = edtConPasswordRegisterDialog.getText().toString();
 
@@ -264,9 +264,9 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             edtEmailRegisterDialog.setError("invalid email");
             edtEmailRegisterDialog.requestFocus();
             return;
-        } else if (name.isEmpty()) {
-            edtNameRegisterDialog.setError("name required");
-            edtNameRegisterDialog.requestFocus();
+        } else if (username.isEmpty()) {
+            edtUsernameRegisterDialog.setError("name required");
+            edtUsernameRegisterDialog.requestFocus();
             return;
         } else if (password.isEmpty()) {
             edtPasswordRegisterDialog.setError("password required");
@@ -287,7 +287,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         }
 
         //register user
-        registerUser(email, password, name);
+        registerUser(email, password, username);
         setLoading(true);
         register.dismiss();
     }
@@ -312,7 +312,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         resetPassword.setContentView(R.layout.dialog_reset_password);
-        resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");
 
         edtEmailResetPassword = resetPassword.findViewById(R.id.edtMail_resetPasswordDialog);

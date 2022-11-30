@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +38,15 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        Bundle bundle = getIntent().getExtras();
+        if (!bundle.getBoolean("hasNavbar")) {
+            flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        }
         decorView.setSystemUiVisibility(flags);
 
         currentUpgradeCard = findViewById(R.id.towerUpgradeCard_curr);
@@ -53,8 +61,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         btnNextUpgrade.setOnTouchListener(this);
         btnBack.setOnTouchListener(this);
 
-        Bundle bundle = getIntent().getExtras();
-        TowerType towerType = (TowerType) bundle.getSerializable("TowerType");
+        TowerType towerType = (TowerType) bundle.getSerializable("towerType");
         tvTowerName.setText(towerType.towerName);
 
         upgradeNameArrayList = new ArrayList[2];
@@ -111,7 +118,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         linearLayout.setPadding(30, 0, 30, 0);
         linearLayout.setGravity(Gravity.CENTER|Gravity.TOP);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundResource(R.drawable.dialog_custom);
+        linearLayout.setBackgroundResource(R.drawable.rounded_corners);
         linearLayout.getBackground().setTint(ContextCompat.getColor(this, R.color.black));
 
         TextView upgradeNameTextView = new TextView(this);

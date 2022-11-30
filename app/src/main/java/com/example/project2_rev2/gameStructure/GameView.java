@@ -2,9 +2,7 @@ package com.example.project2_rev2.gameStructure;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -16,12 +14,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.project2_rev2.menus.TowerFragment;
-import com.example.project2_rev2.menus.TowerUpgradeInfo;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
@@ -143,7 +138,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
-        pauseMenu.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        pauseMenu.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         pauseMenu.setTitle("Pause Menu");
 
         btnResume = pauseMenu.findViewById(R.id.btnResume_pauseMenuDialog);
@@ -249,7 +244,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
-        victoryDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        victoryDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         victoryDialog.setTitle("Victory Dialog");
 
         btnExitVictory = victoryDialog.findViewById(R.id.btnHome_victoryDialog);
@@ -312,7 +307,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
-        deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         deathDialog.setTitle("Death Dialog");
 
         btnExitDeath = deathDialog.findViewById(R.id.btnHome_deathDialog);

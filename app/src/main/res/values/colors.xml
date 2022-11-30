@@ -13,6 +13,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="link">#4897EC</color>
     <color name="dialogColor">#001427</color>
+    <color name="transparentBlue">#800081FF</color>
 
     <color name="black">#000000</color>
     <color name="background">#8BC34A</color>

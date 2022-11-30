@@ -203,7 +203,8 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
 
     public void clickTowerCard() {
         Intent intent = new Intent(getContext(), TowerUpgradeInfo.class);
-        intent.putExtra("TowerType", towerArrayList.get(currentTowerIndex));
+        intent.putExtra("hasNavbar", true);
+        intent.putExtra("towerType", towerArrayList.get(currentTowerIndex));
         startActivity(intent);
         // not finishing current activity in order to return to same point
     }
