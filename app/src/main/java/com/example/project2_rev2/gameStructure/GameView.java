@@ -34,7 +34,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     // pause menu dialog elements
     Dialog pauseMenu;
-    Button btnResume, btnTowers, btnSave, btnSettings, btnExitPauseMenu;
+    Button btnResume, btnSave, btnSettings, btnExitPauseMenu;
     TextView txtLevelName;
 
     // victory dialog elements
@@ -142,14 +142,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         pauseMenu.setTitle("Pause Menu");
 
         btnResume = pauseMenu.findViewById(R.id.btnResume_pauseMenuDialog);
-        btnTowers = pauseMenu.findViewById(R.id.btnTowerInfo_pauseMenuDialog);
         btnSave = pauseMenu.findViewById(R.id.btnSave_pauseMenuDialog);
         btnSettings = pauseMenu.findViewById(R.id.btnSettings_pauseMenuDialog);
         btnExitPauseMenu = pauseMenu.findViewById(R.id.btnExit_pauseMenuDialog);
         txtLevelName = pauseMenu.findViewById(R.id.txtLevelName_pauseMenuDialog);
 
         btnResume.setOnTouchListener(this);
-        btnTowers.setOnTouchListener(this);
         btnSave.setOnTouchListener(this);
         btnSettings.setOnTouchListener(this);
         btnExitPauseMenu.setOnTouchListener(this);
@@ -170,19 +168,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickResume(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickResume();
-            view.setAlpha(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
-        }
-    }
-
-    public void clickTowers() {
-
-    }
-
-    public void clickTowers(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickTowers();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha(0.5f);
@@ -344,9 +329,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             //=pause menu dialog=//
             case R.id.btnResume_pauseMenuDialog:
                 clickResume(view, motionEvent);
-                break;
-            case R.id.btnTowerInfo_pauseMenuDialog:
-                clickTowers(view, motionEvent);
                 break;
             case R.id.btnSave_pauseMenuDialog:
                 clickSave(view, motionEvent);
