@@ -40,6 +40,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     Button btnRegisterRegisterDialog;
     EditText edtEmailRegisterDialog, edtNameRegisterDialog, edtPasswordRegisterDialog, edtConPasswordRegisterDialog;
 
+    // reset password dialog elements
+    Dialog resetPassword;
+    Button btnSendResetEmail;
+    EditText edtEmailResetPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -199,6 +204,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     public void clickedResetPassword() {
         login.dismiss();
+        createResetPasswordDialog();
     }
 
     public void clickedResetPassword(View view, MotionEvent motionEvent) {
@@ -296,6 +302,48 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
     //====================================//
 
+    //=======reset password dialog=======//
+    public void createResetPasswordDialog() {
+        resetPassword = new Dialog(this);
+        View decorView = resetPassword.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        resetPassword.setContentView(R.layout.dialog_reset_password);
+        resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.dialog_custom);
+        resetPassword.setTitle("Forgot Password");
+
+        edtEmailResetPassword = resetPassword.findViewById(R.id.edtMail_resetPasswordDialog);
+        btnSendResetEmail = resetPassword.findViewById(R.id.btnSendMail_resetPasswordDialog);
+
+        btnSendResetEmail.setOnTouchListener(this);
+
+        resetPassword.show();
+    }
+
+    public void clickResetPassword() {
+        firebaseAuth.sendPasswordResetEmail(edtEmailResetPassword.getText().toString()).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(Login.this, "email sent", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        resetPassword.dismiss();
+    }
+
+    public void clickResetPassword(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickResetPassword();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha((float)0.5);
+        }
+    }
+    //====================================//
+
     public void debugGame(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             startActivity(new Intent(this, MainMenu.class));
@@ -330,6 +378,10 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             //=register dialog=//
             case R.id.btnRegister_registerDialog:
                 clickRegister(view, motionEvent);
+                break;
+            //=reset password dialog=//
+            case R.id.btnSendMail_resetPasswordDialog:
+                clickResetPassword(view, motionEvent);
                 break;
         }
         return true;
