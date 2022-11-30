@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         btnBack.setOnTouchListener(this);
 
         Bundle bundle = getIntent().getExtras();
-        Tower.TowerType towerType = (Tower.TowerType) bundle.getSerializable("TowerType");
+        TowerType towerType = (TowerType) bundle.getSerializable("TowerType");
         tvTowerName.setText(towerType.towerName);
 
         upgradeNameArrayList = new ArrayList[2];

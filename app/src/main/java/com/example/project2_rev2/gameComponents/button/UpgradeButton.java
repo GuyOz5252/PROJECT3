@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
@@ -31,7 +32,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     private int upgradePathIndex;
     private UpgradeButtonState upgradeButtonState;
-    private Tower.TowerUpgradePath upgradePath;
+    private TowerType.TowerUpgradePath upgradePath;
     private int pathLevel;
     private Tower tower;
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.example.project2_rev2.data.EnemyType;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.EnemyPath;
@@ -122,13 +123,13 @@ public class WaveManager {
         private ArrayList<Enemy> enemyArrayList;
         private int updatesBetweenSpawn;
 
-        public Wave(HashMap<Enemy.EnemyType, Integer> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
+        public Wave(HashMap<EnemyType, Integer> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
             this.enemyArrayList = new ArrayList<>();
             this.updatesBetweenSpawn = updatesBetweenSpawn;
             convertCodeToUnit(enemyMap, enemyPath, context);
         }
 
-        public void convertCodeToUnit(HashMap<Enemy.EnemyType, Integer> enemyMap, EnemyPath enemyPath, Context context) {
+        public void convertCodeToUnit(HashMap<EnemyType, Integer> enemyMap, EnemyPath enemyPath, Context context) {
             enemyMap.forEach((enemyType, enemyTypeNumber) -> {
                 for (int i = 0; i < enemyTypeNumber; i++) {
                     enemyArrayList.add(new Enemy(enemyType, enemyPath, context));

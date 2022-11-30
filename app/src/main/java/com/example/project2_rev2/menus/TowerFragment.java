@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,7 +44,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
     LinearLayout currentTowerCard, prevTowerCard, nextTowerCard;
     ImageButton btnPrevTower, btnNextTower;
 
-    private ArrayList<Tower.TowerType> towerArrayList;
+    private ArrayList<TowerType> towerArrayList;
     private int currentTowerIndex;
 
     private Bitmap towerBackground;
@@ -64,7 +65,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
 
         this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(getContext(), R.drawable.tower_background), 260, 260, false);
 
-        this.towerArrayList = new ArrayList<>(Arrays.asList(Tower.TowerType.values()));
+        this.towerArrayList = new ArrayList<>(Arrays.asList(TowerType.values()));
         this.currentTowerIndex = 0;
         cycleTowers();
 

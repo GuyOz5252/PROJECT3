@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
@@ -37,7 +38,7 @@ public class TowerManager {
         return isAnyTowerSelected;
     }
 
-    public void addTower(Tower.TowerType towerType, double x, double y) {
+    public void addTower(TowerType towerType, double x, double y) {
         GameValues.colliderArrayList.add(new Rect(
                 (int)(x-towerType.size.width/2),
                 (int)(y-towerType.size.height/2),

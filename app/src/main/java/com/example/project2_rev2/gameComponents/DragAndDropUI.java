@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.TowerDragButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
@@ -25,7 +26,7 @@ public class DragAndDropUI {
     private TextUI towerNameText;
 
     public DragAndDropUI(TowerManager towerManager, Context context) {
-        ArrayList<Tower.TowerType> towerTypeArrayList = new ArrayList<>(Arrays.asList(Tower.TowerType.values()));
+        ArrayList<TowerType> towerTypeArrayList = new ArrayList<>(Arrays.asList(TowerType.values()));
         this.towerDragButtonArrayList = new ArrayList<>();
         towerTypeArrayList.forEach(towerType -> this.towerDragButtonArrayList.add(
                 new TowerDragButton(

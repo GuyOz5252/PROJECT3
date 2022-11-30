@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;

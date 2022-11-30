@@ -1,5 +1,6 @@
 package com.example.project2_rev2.gameComponents.towerTypes;
 
+import static com.example.project2_rev2.data.TowerType.FIRE_SPREADER;
 import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;

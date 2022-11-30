@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
@@ -30,7 +31,7 @@ import com.example.project2_rev2.utils.Size;
 public class TowerDragButton extends Button implements OnCoinsChangeListener {
 
     private TowerManager towerManager;
-    private Tower.TowerType towerType;
+    private TowerType towerType;
     private BitmapObject towerIcon;
     private BitmapObject draggedTower;
     private boolean isDragged;
@@ -39,7 +40,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     private CoinTextUI towerPriceTextUI;
     private Paint priceTextBackgroundPaint;
 
-    public TowerDragButton(int resourceId, TowerManager towerManager, Tower.TowerType towerType, Size size, Context context) {
+    public TowerDragButton(int resourceId, TowerManager towerManager, TowerType towerType, Size size, Context context) {
         super(xCoordinate(80), 0, resourceId, size, context);
         GameValues.coinsChangeListenerArrayList.add(this);
         this.towerManager = towerManager;

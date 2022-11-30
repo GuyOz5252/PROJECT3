@@ -1,6 +1,5 @@
 package com.example.project2_rev2.data;
 
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -12,11 +11,11 @@ public class User {
     private static User user;
 
     private String username;
-    private Map<String, Object> towerXPData;
+    private Map<String, Object> towerXP;
 
     private User() {
         this.username = null;
-        this.towerXPData = null;
+        this.towerXP = null;
     }
 
     public void createUserData(DocumentReference userDocument, String username) {
@@ -25,11 +24,11 @@ public class User {
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("user_name", username);
 
-        HashMap<String, Object> towers = new HashMap<>();
-        for (Tower.TowerType towerType : Tower.TowerType.values()) {
-            towers.put(towerType.name().toLowerCase(), 0);
+        HashMap<String, Object> towerXPMap = new HashMap<>();
+        for (TowerType towerType : TowerType.values()) {
+            towerXPMap.put(towerType.name().toLowerCase(), 0);
         }
-        userData.put("tower_xp", towers);
+        userData.put("tower_xp", towerXPMap);
 
         userDocument.set(userData);
 
@@ -43,8 +42,7 @@ public class User {
     @SuppressWarnings("all")
     public void setUserData(DocumentSnapshot documentSnapshot) {
         username = documentSnapshot.getString("user_name");
-        towerXPData = (Map<String, Object>) documentSnapshot.get("tower_xp");
-        System.out.println(towerXPData);
+        towerXP = (Map<String, Object>) documentSnapshot.get("tower_xp");
     }
 
     public static User getInstance() {
@@ -58,7 +56,7 @@ public class User {
         return username;
     }
 
-    public int getTowerXP(Tower.TowerType towerType) {
-        return ((Long)towerXPData.get(towerType.name().toLowerCase())).intValue();
+    public int getTowerXP(TowerType towerType) {
+        return ((Long) towerXP.get(towerType.name().toLowerCase())).intValue();
     }
 }
