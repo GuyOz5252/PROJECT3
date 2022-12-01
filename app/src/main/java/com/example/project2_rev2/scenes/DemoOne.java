@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.data.EnemyType;
+import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
@@ -26,6 +27,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
+import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
 
 import java.util.HashMap;
@@ -135,6 +137,18 @@ public class DemoOne extends Scene {
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
         this.deathManager = new DeathManager(actionsArray[2], context);
+    }
+
+    @Override
+    public void saveGame() {
+        SaveData.getInstance().setSaveData(
+                0,
+                waveManager.getCurrentWave(),
+                GameValues.getPlayerCoins(),
+                GameValues.getPlayerHealth(),
+                towerManager.getTowerArrayList(),
+                GameValues.colliderArrayList
+        );
     }
 
     @Override

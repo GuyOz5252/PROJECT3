@@ -5,6 +5,8 @@ import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.utils.Size;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * an enum that includes all tower types

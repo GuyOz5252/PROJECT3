@@ -35,6 +35,8 @@ public class GameValues {
 
     public static boolean isFinished = false;
 
+    public static boolean canSave = true;
+
     public final static int START_COINS = 650;
 
     private static int playerCoins = START_COINS;
@@ -76,6 +78,7 @@ public class GameValues {
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;
+        canSave = true;
         playerCoins = START_COINS;
         playerHealth = START_HEALTH;
         colliderArrayList.clear();

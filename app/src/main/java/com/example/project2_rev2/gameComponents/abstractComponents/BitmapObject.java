@@ -13,6 +13,7 @@ import androidx.annotation.DrawableRes;
 
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
+import com.google.firebase.firestore.Exclude;
 
 public abstract class BitmapObject extends GameObject {
 

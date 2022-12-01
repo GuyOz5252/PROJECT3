@@ -20,6 +20,10 @@ public class SceneManager {
         }
     }
 
+    public void saveGame() {
+        currentScene.saveGame();
+    }
+
     public void update() {
         currentScene.update();
     }

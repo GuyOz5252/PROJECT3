@@ -3,10 +3,9 @@ package com.example.project2_rev2.gameStructure.sceneManagement;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.example.project2_rev2.listeners.OnHealthChangeListener;
-
 public abstract class Scene {
 
+    public abstract void saveGame();
     public abstract void draw(Canvas canvas);
     public abstract void update();
     public abstract void onTouchEvent(MotionEvent motionEvent);

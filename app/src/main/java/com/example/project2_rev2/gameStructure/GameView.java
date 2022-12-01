@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameStructure;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -24,6 +25,12 @@ import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.io.Serializable;
+import java.util.HashMap;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
 
@@ -149,9 +156,14 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         txtLevelName = pauseMenu.findViewById(R.id.txtLevelName_pauseMenuDialog);
 
         btnResume.setOnTouchListener(this);
-        btnSave.setOnTouchListener(this);
         btnSettings.setOnTouchListener(this);
         btnExitPauseMenu.setOnTouchListener(this);
+        if (GameValues.canSave) {
+            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.primaryColor));
+            btnSave.setOnTouchListener(this);
+        } else {
+            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
+        }
 
         txtLevelName.setText(sceneManager.getLevelName());
 
@@ -176,11 +188,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickSave() {
-        // TODO save game
-//        SaveData.getInstance().setSaveData(
-//                getIntent().getExtras().getInt("sceneIndex", 0),
-//
-//        );
+        if (GameValues.canSave) {
+            sceneManager.saveGame();
+            GameValues.canSave = false;
+            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
+            btnSave.setOnTouchListener(null);
+        }
+        System.out.println(SaveData.getInstance().toString() + " hi");
     }
 
     public void clickSave(View view, MotionEvent motionEvent) {
@@ -207,6 +221,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickExit() {
         pauseMenu.dismiss();
+        HashMap<String, Object> saveData = new HashMap<>();
+        //saveData.put("game_save_data", SaveData.getInstance()); // TODO save game
+        //FirebaseFirestore.getInstance().collection("users")
+        //        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        //        .set(saveData, SetOptions.merge());
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }

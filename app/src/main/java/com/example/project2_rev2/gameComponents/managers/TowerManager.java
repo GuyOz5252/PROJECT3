@@ -34,6 +34,10 @@ public class TowerManager {
         this.isAnyTowerSelected = false;
     }
 
+    public ArrayList<Tower> getTowerArrayList() {
+        return towerArrayList;
+    }
+
     public boolean getIsAnyTowerSelected() {
         return isAnyTowerSelected;
     }

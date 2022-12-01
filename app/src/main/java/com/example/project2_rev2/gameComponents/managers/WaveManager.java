@@ -47,6 +47,10 @@ public class WaveManager {
         this.context = context;
     }
 
+    public int getCurrentWave() {
+        return currentWaveIndex;
+    }
+
     public ArrayList<Enemy> getAliveList() {
         return aliveList;
     }

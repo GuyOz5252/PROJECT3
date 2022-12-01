@@ -5,37 +5,35 @@ import android.graphics.Rect;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SaveData {
 
-    private static SaveData saveData;
+    private static SaveData saveData = new SaveData();
 
     private int sceneIndex;
     private int currentWave;
     private int money;
     private int health;
-    private ArrayList<Tower> towerArrayList;
-    private ArrayList<Rect> colliderArrayList;
+    private ArrayList<Tower> towerList;
+    private ArrayList<Rect> colliderList;
 
     private SaveData() {}
 
-    public void setSaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Tower> towerArrayList, ArrayList<Rect> colliderArrayList) {
+    public void setSaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Tower> towerList, ArrayList<Rect> colliderList) {
         this.sceneIndex = sceneIndex;
         this.currentWave = currentWave;
         this.money = money;
         this.health = health;
-        this.towerArrayList = towerArrayList;
-        this.colliderArrayList = colliderArrayList;
+        this.towerList = towerList;
+        this.colliderList = colliderList;
     }
 
     public void setSaveData(SaveData saveData) {
-        this.saveData = saveData;
+        SaveData.saveData = saveData;
     }
 
     public static SaveData getInstance() {
-        if (saveData == null) {
-            return new SaveData();
-        }
         return saveData;
     }
 
@@ -55,11 +53,23 @@ public class SaveData {
         return health;
     }
 
-    public ArrayList<Tower> getTowerArrayList() {
-        return towerArrayList;
+    public List<Tower> getTowerList() {
+        return towerList;
     }
 
-    public ArrayList<Rect> getColliderArrayList() {
-        return colliderArrayList;
+    public List<Rect> getColliderList() {
+        return colliderList;
+    }
+
+    @Override
+    public String toString() {
+        return "SaveData{" +
+                "sceneIndex=" + sceneIndex +
+                ", currentWave=" + currentWave +
+                ", money=" + money +
+                ", health=" + health +
+                ", towerArrayList=" + towerList +
+                ", colliderArrayList=" + colliderList +
+                '}';
     }
 }
