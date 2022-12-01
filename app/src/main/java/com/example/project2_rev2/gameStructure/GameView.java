@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
@@ -176,6 +177,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickSave() {
         // TODO save game
+//        SaveData.getInstance().setSaveData(
+//                getIntent().getExtras().getInt("sceneIndex", 0),
+//
+//        );
     }
 
     public void clickSave(View view, MotionEvent motionEvent) {

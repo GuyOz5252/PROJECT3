@@ -3,13 +3,12 @@ package com.example.project2_rev2.data;
 import android.graphics.Rect;
 
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.google.firebase.firestore.core.UserData;
 
 import java.util.ArrayList;
 
 public class SaveData {
 
-    private SaveData saveData;
+    private static SaveData saveData;
 
     private int sceneIndex;
     private int currentWave;
@@ -33,7 +32,7 @@ public class SaveData {
         this.saveData = saveData;
     }
 
-    public SaveData getInstance() {
+    public static SaveData getInstance() {
         if (saveData == null) {
             return new SaveData();
         }
