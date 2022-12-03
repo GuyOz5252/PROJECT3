@@ -19,4 +19,9 @@ public class IceTower extends Tower {
     public boolean upgrade(int upgradePathIndex) {
         return false;
     }
+
+    @Override
+    public void loadUpgrades(int upgradePathIndex, int level) {
+
+    }
 }

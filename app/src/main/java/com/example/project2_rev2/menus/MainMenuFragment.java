@@ -73,6 +73,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     public void clickPlay() {
         Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
+        intent.putExtra("loadSave", true);
         startActivity(intent);
         ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
         ((Activity) view.getContext()).finish();

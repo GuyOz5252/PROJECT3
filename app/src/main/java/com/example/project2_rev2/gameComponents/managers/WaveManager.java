@@ -51,6 +51,11 @@ public class WaveManager {
         return currentWaveIndex;
     }
 
+    public void setCurrentWave(int currentWaveIndex) {
+        this.currentWaveIndex = currentWaveIndex;
+        waveCounter.changeText("WAVE: " + currentWaveIndex + "/" + waveArrayList.size());
+    }
+
     public ArrayList<Enemy> getAliveList() {
         return aliveList;
     }
@@ -61,7 +66,7 @@ public class WaveManager {
 
     public void addWave(Wave wave) {
         waveArrayList.add(wave);
-        waveCounter.changeText("WAVE: 0/" + waveArrayList.size());
+        waveCounter.changeText("WAVE: " + currentWaveIndex + "/" + waveArrayList.size());
     }
 
     public void startWave() {

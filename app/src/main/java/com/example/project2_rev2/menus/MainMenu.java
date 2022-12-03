@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.GameValues;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

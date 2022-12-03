@@ -58,7 +58,7 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
-    private TowerUpgradeManager towerUpgradeManager;
+    protected TowerUpgradeManager towerUpgradeManager;
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;
     protected int[] pathLevels;
     protected int upgradeCount;
@@ -107,6 +107,8 @@ public abstract class Tower extends BitmapObject {
 
     public abstract boolean upgrade(int upgradePathIndex);
 
+    public abstract void loadUpgrades(int upgradePathIndex, int level);
+
     public Projectile.ProjectileType getProjectileType() {
         return projectileType;
     }
@@ -121,6 +123,10 @@ public abstract class Tower extends BitmapObject {
 
     public boolean getIsSelected() {
         return isSelected;
+    }
+
+    public Rect getCollider() {
+        return collider;
     }
 
     public TowerType.TowerUpgradePath[] getTowerUpgradePaths() {

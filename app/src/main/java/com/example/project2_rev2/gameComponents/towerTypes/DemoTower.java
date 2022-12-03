@@ -60,10 +60,46 @@ public class DemoTower extends Tower {
 
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public void loadUpgrades(int upgradePathIndex, int level) {
+        for (int i = 0; i < level; i++) {
+            if (upgradePathIndex == 0) {
+                switch (i) {
+                    case 0:
+                        range = 350;
+                        break;
+                    case 1:
+                        range = 400;
+                        break;
+                    case 2:
+                        range = 500;
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+            } else {
+                switch (i) {
+                    case 0:
+                        cooldown = 25;
+                        break;
+                    case 1:
+                        cooldown = 23;
+                        break;
+                    case 2:
+                        cooldown = 18;
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+            }
+        }
     }
 }

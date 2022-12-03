@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.data.SaveData;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
@@ -28,6 +29,7 @@ import com.example.project2_rev2.utils.GameValues;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.firestore.core.UserData;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -101,7 +103,21 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         );
 
         Bundle bundle = getIntent().getExtras();
-        sceneManager = new SceneManager(bundle.getInt("sceneIndex", 0), new Action[] {pause, victory, death}, this); // receive the index of the requested scene and init a new sceneManager with that scene
+        if (!bundle.getBoolean("loadSave", false)) {
+            sceneManager = new SceneManager( // receive the index of the requested scene and init a new sceneManager with that scene
+                    bundle.getInt("sceneIndex", 0),
+                    new Action[] {pause, victory, death},
+                    bundle.getBoolean("loadSave", false),
+                    this
+            );
+        } else {
+            sceneManager = new SceneManager( // receive the index of the requested scene and init a new sceneManager with that scene
+                    User.getInstance().getSaveData().getSceneIndex(),
+                    new Action[] {pause, victory, death},
+                    bundle.getBoolean("loadSave", false),
+                    this
+            );
+        }
     }
 
     public void update() {
@@ -194,7 +210,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
             btnSave.setOnTouchListener(null);
         }
-        System.out.println(SaveData.getInstance().toString() + " hi");
     }
 
     public void clickSave(View view, MotionEvent motionEvent) {
@@ -221,11 +236,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickExit() {
         pauseMenu.dismiss();
-        HashMap<String, Object> saveData = new HashMap<>();
-        //saveData.put("game_save_data", SaveData.getInstance()); // TODO save game
-        //FirebaseFirestore.getInstance().collection("users")
-        //        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-        //        .set(saveData, SetOptions.merge());
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("data_segment")
+                .document("save_data")
+                .set(User.getInstance().getSaveData(), SetOptions.merge());
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }

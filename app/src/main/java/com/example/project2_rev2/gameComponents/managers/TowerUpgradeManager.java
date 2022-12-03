@@ -24,6 +24,7 @@ import com.example.project2_rev2.utils.HelperMethods;
 public class TowerUpgradeManager {
 
     private Context context;
+
     private UpgradeButton upgradeButtonPathOne;
     private UpgradeButton upgradeButtonPathTwo;
     private Tower tower;
@@ -69,6 +70,14 @@ public class TowerUpgradeManager {
                 (int)xCoordinate(95+towerBackground.getWidth()),
                 (int)yCoordinate(25+towerBackground.getHeight())
         );
+    }
+
+    public UpgradeButton getUpgradeButtonPathOne() {
+        return upgradeButtonPathOne;
+    }
+
+    public UpgradeButton getUpgradeButtonPathTwo() {
+        return upgradeButtonPathTwo;
     }
 
     public void clickedTowerInfo(MotionEvent motionEvent) {

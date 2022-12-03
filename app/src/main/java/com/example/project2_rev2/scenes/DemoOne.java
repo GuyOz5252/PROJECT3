@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.data.EnemyType;
 import com.example.project2_rev2.data.SaveData;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.CoinCounter;
@@ -56,7 +57,7 @@ public class DemoOne extends Scene {
     private HealthCounter healthCounter;
     private DeathManager deathManager;
 
-    public DemoOne(Action[] actionsArray, Context context) {
+    public DemoOne(Action[] actionsArray, boolean loadSave, Context context) {
 
         this.backgroundRect = new Rect(
                 (int)xCoordinate(0),
@@ -80,7 +81,6 @@ public class DemoOne extends Scene {
                         (int)xCoordinate(0),
                         (int)display.size.height
                 )
-
         };
         this.coverPaint = new Paint();
         this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
@@ -137,18 +137,27 @@ public class DemoOne extends Scene {
         this.coinCounter = new CoinCounter(context);
         this.healthCounter = new HealthCounter(context);
         this.deathManager = new DeathManager(actionsArray[2], context);
+
+        if (loadSave) {
+            SaveData saveData = User.getInstance().getSaveData();
+            waveManager.setCurrentWave(saveData.getCurrentWave());
+            GameValues.setPlayerCoins(saveData.getMoney());
+            GameValues.setPlayerHealth(saveData.getHealth());
+            GameValues.colliderArrayList = saveData.getColliderArrayList();
+            towerManager.setTowerArrayList(saveData.getTowerArrayList());
+        }
     }
 
     @Override
     public void saveGame() {
-        SaveData.getInstance().setSaveData(
+        User.getInstance().setSaveData(new SaveData(
                 0,
                 waveManager.getCurrentWave(),
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
-                towerManager.getTowerArrayList(),
-                GameValues.colliderArrayList
-        );
+                GameValues.colliderArrayList,
+                towerManager.getTowerArrayList()
+        ));
     }
 
     @Override

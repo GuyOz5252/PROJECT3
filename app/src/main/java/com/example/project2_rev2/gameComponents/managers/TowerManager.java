@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import com.example.project2_rev2.data.TowerSaveData;
 import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
@@ -40,6 +41,24 @@ public class TowerManager {
 
     public boolean getIsAnyTowerSelected() {
         return isAnyTowerSelected;
+    }
+
+    public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
+        for (TowerSaveData towerSaveData : towerSaveDataArrayList) {
+            switch (towerSaveData.getType()) {
+                case "DEMO_TOWER":
+                    towerArrayList.add(new DemoTower(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    break;
+                case "TURRET":
+                    towerArrayList.add(new Turret(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    break;
+                case "FIRE_SPREADER":
+                    towerArrayList.add(new FireSpreader(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    break;
+            }
+            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
+            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
+        }
     }
 
     public void addTower(TowerType towerType, double x, double y) {

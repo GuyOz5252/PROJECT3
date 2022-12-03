@@ -4,14 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
 import com.example.project2_rev2.R;
+import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     User.getInstance().setUserData(task.getResult());
                     startActivity(new Intent(this, MainMenu.class));
                 } else {
-                    startActivity(new Intent(MainActivity.this, Login.class));
+                    startActivity(new Intent(this, Login.class));
                 }
                 this.finish();
             });
         } else {
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(this, Login.class));
             this.finish();
         }
     }

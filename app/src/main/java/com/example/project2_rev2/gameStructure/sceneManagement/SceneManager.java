@@ -12,10 +12,10 @@ public class SceneManager {
     private Scene currentScene;
     private String levelName;
 
-    public SceneManager(int currentSceneIdx, Action[] actionsArray, Context context) { // receive index of requested scene and init that scene
+    public SceneManager(int currentSceneIdx, Action[] actionsArray, boolean loadSave, Context context) { // receive index of requested scene and init that scene
         switch (currentSceneIdx) {
             case 0:
-                this.currentScene = new DemoOne(actionsArray, context);
+                this.currentScene = new DemoOne(actionsArray, loadSave, context);
                 this.levelName = Scene.sceneTitles[currentSceneIdx];
         }
     }

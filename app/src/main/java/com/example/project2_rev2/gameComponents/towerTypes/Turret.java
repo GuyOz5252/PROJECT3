@@ -119,4 +119,54 @@ public class Turret extends Tower {
         }
         return false;
     }
+
+    @Override
+    public void loadUpgrades(int upgradePathIndex, int level) {
+        for (int i = 0; i < level; i++) {
+            if (upgradePathIndex == 0) {
+                // path one
+                switch (i) {
+                    case 0:
+                        // double DMG
+                        projectileType = Projectile.ProjectileType.TURRET_BULLETS_V2;
+                        break;
+                    case 1:
+                        // bigger bullets
+                        projectileType = Projectile.ProjectileType.TURRET_BULLETS_V3;
+                        break;
+                    case 2:
+                        // double projectile
+                        bitmap = turretHead2;
+                        originalBitmap = turretHead2;
+                        isDoubleShot = true;
+                        break;
+                    case 3:
+
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+            } else {
+                // path two
+                switch (i) {
+                    case 0:
+                        // range
+                        range = 350;
+                        break;
+                    case 1:
+                        // ATK speed
+                        cooldown = 4;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+            }
+        }
+    }
 }

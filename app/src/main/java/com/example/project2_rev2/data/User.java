@@ -1,5 +1,12 @@
 package com.example.project2_rev2.data;
 
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -12,11 +19,9 @@ public class User {
 
     private String username;
     private Map<String, Object> towerXP;
+    private SaveData saveData;
 
-    private User() {
-        this.username = null;
-        this.towerXP = null;
-    }
+    private User() {}
 
     public void createUserData(DocumentReference userDocument, String username) {
         this.username = username;
@@ -43,6 +48,14 @@ public class User {
     public void setUserData(DocumentSnapshot documentSnapshot) {
         username = documentSnapshot.getString("user_name");
         towerXP = (Map<String, Object>) documentSnapshot.get("tower_xp");
+        documentSnapshot.getReference()
+                .collection("data_segment")
+                .document("save_data")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        saveData = task.getResult().toObject(SaveData.class);
+                    }
+                });
     }
 
     public static User getInstance() {
@@ -58,5 +71,13 @@ public class User {
 
     public int getTowerXP(TowerType towerType) {
         return ((Long) towerXP.get(towerType.name().toLowerCase())).intValue();
+    }
+
+    public SaveData getSaveData() {
+        return saveData;
+    }
+
+    public void setSaveData(SaveData saveData) {
+        this.saveData = saveData;
     }
 }

@@ -257,4 +257,63 @@ public class FireSpreader extends Tower {
         }
         return false;
     }
+
+    @Override
+    public void loadUpgrades(int upgradePathIndex, int level) {
+        for (int i = 0; i < level; i++) {
+            if (upgradePathIndex == 0) {
+                // path one
+                switch (i) {
+                    case 0:
+                        // longer burn
+                        duration = 500;
+                        interval = 5;
+                        break;
+                    case 1:
+                        // hot flames
+                        damage = 15;
+                        break;
+                    case 2:
+                        // violent fire
+                        interval = 7;
+                        break;
+                    case 3:
+                        // agidyne
+                        damage = 22;
+                        interval = 10;
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+            } else {
+                // path two
+                switch (i) {
+                    case 0:
+                        // range
+                        initFiringBitmapArr(220);
+                        range = 220;
+                        break;
+                    case 1:
+                        // multi burn
+                        cooldown = 38;
+                        break;
+                    case 2:
+                        // hotter
+                        cooldown = 28;
+                        damage = 15;
+                        break;
+                    case 3:
+                        // carmen
+                        initFiringBitmapArr(250);
+                        range = 250;
+                        cooldown = 0;
+                        break;
+                }
+                pathLevels[upgradePathIndex]++;
+                upgradeCount++;
+                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+            }
+        }
+    }
 }

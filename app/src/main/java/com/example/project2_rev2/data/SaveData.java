@@ -9,32 +9,31 @@ import java.util.List;
 
 public class SaveData {
 
-    private static SaveData saveData = new SaveData();
-
     private int sceneIndex;
     private int currentWave;
     private int money;
     private int health;
-    private ArrayList<Tower> towerList;
-    private ArrayList<Rect> colliderList;
+    private ArrayList<Rect> colliderArrayList;
+    private ArrayList<TowerSaveData> towerArrayList;
 
-    private SaveData() {}
+    public SaveData() {} // firestore object mapper
 
-    public void setSaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Tower> towerList, ArrayList<Rect> colliderList) {
+    public SaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Rect> colliderList, ArrayList<Tower> towerList) {
         this.sceneIndex = sceneIndex;
         this.currentWave = currentWave;
         this.money = money;
         this.health = health;
-        this.towerList = towerList;
-        this.colliderList = colliderList;
-    }
-
-    public void setSaveData(SaveData saveData) {
-        SaveData.saveData = saveData;
-    }
-
-    public static SaveData getInstance() {
-        return saveData;
+        this.colliderArrayList = colliderList;
+        this.towerArrayList = new ArrayList<>();
+        for (Tower tower : towerList) {
+            this.towerArrayList.add(new TowerSaveData(
+                    tower.getTowerType().name(),
+                    tower.getCenterPosition(),
+                    tower.getPathLevels()[0],
+                    tower.getPathLevels()[1],
+                    tower.getCollider()
+            ));
+        }
     }
 
     public int getSceneIndex() {
@@ -53,12 +52,12 @@ public class SaveData {
         return health;
     }
 
-    public List<Tower> getTowerList() {
-        return towerList;
+    public ArrayList<Rect> getColliderArrayList() {
+        return colliderArrayList;
     }
 
-    public List<Rect> getColliderList() {
-        return colliderList;
+    public ArrayList<TowerSaveData> getTowerArrayList() {
+        return towerArrayList;
     }
 
     @Override
@@ -68,8 +67,8 @@ public class SaveData {
                 ", currentWave=" + currentWave +
                 ", money=" + money +
                 ", health=" + health +
-                ", towerArrayList=" + towerList +
-                ", colliderArrayList=" + colliderList +
+                ", towerArrayList=" + towerArrayList +
+                ", colliderArrayList=" + colliderArrayList +
                 '}';
     }
 }
