@@ -13,36 +13,24 @@
         android:backgroundTint="@color/transparent"
         android:src="@drawable/ic_settings" />
 
-    <RelativeLayout
+    <TextView
         android:id="@+id/btnPlay_mainMenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_circle" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="play"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="50dp" />
-
-    </RelativeLayout>
+        android:layout_centerInParent="true"
+        android:text="play"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-black"
+        android:textSize="50dp" />
 
     <TextView
         android:id="@+id/txtUser_mainMenuFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="USER"
         android:fontFamily="sans-serif-black"
+        android:text="USERNAME"
         android:textColor="@color/black"
-        android:textSize="25dp"/>
+        android:textSize="25dp" />
 
 </RelativeLayout>

@@ -193,7 +193,5 @@ public class DemoOne extends Scene {
         towerBar.onTouchEvent(motionEvent);
         towerManager.onTowerUpgradeTouchEvent(motionEvent);
         pauseButton.onTouchEvent(motionEvent);
-
-        System.out.println(GameValues.colliderArrayList);
     }
 }

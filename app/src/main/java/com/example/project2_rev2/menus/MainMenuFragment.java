@@ -1,6 +1,7 @@
 package com.example.project2_rev2.menus;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -29,18 +30,20 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     private View view;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore db;
 
     ImageButton btnSettings;
-    RelativeLayout btnPlay;
+    TextView btnPlay;
     TextView txtUser;
+
+    // start game dialog elements
+    Dialog statGame;
+    RelativeLayout btnNewGame, btnLoadGame;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
 
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
@@ -71,26 +74,60 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickPlay() {
+        createStartGameDialog();
+    }
+
+    public void clickPlay(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            btnPlay.setTextSize(50);
+            clickPlay();
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            btnPlay.setTextSize(47.5f);
+        }
+    }
+
+    //==========start game dialog===========//
+    public void createStartGameDialog() {
+        statGame = new Dialog(getContext());
+        View decorView = statGame.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        statGame.setContentView(R.layout.dialog_start_game);
+        statGame.setTitle("start game");
+
+        btnNewGame = statGame.findViewById(R.id.btnNewGame_startGameDialog);
+        btnLoadGame = statGame.findViewById(R.id.btnLoadGame_startGameDialog);
+
+        btnNewGame.setOnTouchListener(this);
+        btnLoadGame.setOnTouchListener(this);
+
+        statGame.show();
+    }
+
+    public void clickNewGame() {
+        statGame.dismiss();
         Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
-        intent.putExtra("loadSave", true);
+        intent.putExtra("loadSave", false);
         startActivity(intent);
         ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
         ((Activity) view.getContext()).finish();
     }
 
-    public void clickPlay(View view, MotionEvent motionEvent) {
+    private void clickNewGame(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(50);
-            ((ViewGroup)view).getChildAt(0).setScaleX(1);
-            ((ViewGroup)view).getChildAt(0).setScaleY(1);
-            clickPlay();
+            clickNewGame();
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            ((TextView)((ViewGroup)view).getChildAt(1)).setTextSize(47.5f);
-            ((ViewGroup)view).getChildAt(0).setScaleX(0.95f);
-            ((ViewGroup)view).getChildAt(0).setScaleY(0.95f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
+    //=====================================//
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -100,6 +137,10 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
                 break;
             case R.id.btnPlay_mainMenuFragment:
                 clickPlay(view, motionEvent);
+                break;
+            //=start game dialog=//
+            case R.id.btnNewGame_startGameDialog:
+                clickNewGame(view, motionEvent);
                 break;
         }
         return true;
