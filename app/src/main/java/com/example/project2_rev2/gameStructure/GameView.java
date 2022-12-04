@@ -32,6 +32,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.core.UserData;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
@@ -337,6 +338,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitDeath = deathDialog.findViewById(R.id.btnHome_deathDialog);
 
         btnExitDeath.setOnTouchListener(this);
+
+        // TODO set save data inactive
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("data_segment")
+                .document("save_data")
+                .set(User.getInstance().getSaveData(), SetOptions.merge());
 
         deathDialog.setCancelable(false);
         deathDialog.show();

@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,11 +22,6 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameStructure.GameView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
@@ -36,8 +34,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     TextView txtUser;
 
     // start game dialog elements
-    Dialog statGame;
+    Dialog startGame;
     RelativeLayout btnNewGame, btnLoadGame;
+    ImageButton btnBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -88,27 +87,42 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     //==========start game dialog===========//
     public void createStartGameDialog() {
-        statGame = new Dialog(getContext());
-        View decorView = statGame.getWindow().getDecorView();
+        btnPlay.setVisibility(View.INVISIBLE);
+        startGame = new Dialog(getContext());
+        View decorView = startGame.getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
-        statGame.setContentView(R.layout.dialog_start_game);
-        statGame.setTitle("start game");
+        startGame.setContentView(R.layout.dialog_start_game);
+        startGame.setCancelable(false);
+        startGame.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        startGame.getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
+        startGame.setTitle("start game");
 
-        btnNewGame = statGame.findViewById(R.id.btnNewGame_startGameDialog);
-        btnLoadGame = statGame.findViewById(R.id.btnLoadGame_startGameDialog);
+        btnNewGame = startGame.findViewById(R.id.btnNewGame_startGameDialog);
+        btnLoadGame = startGame.findViewById(R.id.btnLoadGame_startGameDialog);
+        btnBack = startGame.findViewById(R.id.btnBack_startGame);
+
+        // TODO check if data is active
+        if (User.getInstance().getSaveData() == null) {
+            ((ImageView)((ViewGroup)btnLoadGame).getChildAt(0)).setColorFilter(ContextCompat.getColor(getContext(), R.color.rangeCircle));
+            ((TextView)((ViewGroup)btnLoadGame).getChildAt(1)).setTextColor(ContextCompat.getColor(getContext(), R.color.rangeCircle));
+        } else {
+            btnLoadGame.setOnTouchListener(this);
+        }
 
         btnNewGame.setOnTouchListener(this);
-        btnLoadGame.setOnTouchListener(this);
+        btnBack.setOnTouchListener(this);
 
-        statGame.show();
+        startGame.show();
+
+        startGame.setOnDismissListener(dialog -> btnPlay.setVisibility(View.VISIBLE));
     }
 
     public void clickNewGame() {
-        statGame.dismiss();
+        startGame.dismiss();
         Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", 0);
         intent.putExtra("loadSave", false);
@@ -117,9 +131,45 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         ((Activity) view.getContext()).finish();
     }
 
-    private void clickNewGame(View view, MotionEvent motionEvent) {
+    public void clickNewGame(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickNewGame();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickLoadGame() {
+        startGame.dismiss();
+        Intent intent = new Intent(getContext(), GameView.class);
+        intent.putExtra("sceneIndex", 0);
+        intent.putExtra("loadSave", true);
+        startActivity(intent);
+        ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
+        ((Activity) view.getContext()).finish();
+    }
+
+    public void clickLoadGame(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickLoadGame();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickBack() {
+        startGame.dismiss();
+    }
+
+    public void clickBack(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickBack();
             view.setScaleX(1);
             view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -141,6 +191,12 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             //=start game dialog=//
             case R.id.btnNewGame_startGameDialog:
                 clickNewGame(view, motionEvent);
+                break;
+            case R.id.btnLoadGame_startGameDialog:
+                clickLoadGame(view, motionEvent);
+                break;
+            case R.id.btnBack_startGame:
+                clickBack(view, motionEvent);
                 break;
         }
         return true;
