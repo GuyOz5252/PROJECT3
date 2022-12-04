@@ -58,6 +58,8 @@ public class TowerManager {
             }
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
+
+            GameValues.colliderArrayList.add(towerSaveData.getCollider());
         }
     }
 

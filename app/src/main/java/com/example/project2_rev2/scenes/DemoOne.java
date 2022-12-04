@@ -143,7 +143,6 @@ public class DemoOne extends Scene {
             waveManager.setCurrentWave(saveData.getCurrentWave());
             GameValues.setPlayerCoins(saveData.getMoney());
             GameValues.setPlayerHealth(saveData.getHealth());
-            GameValues.colliderArrayList = saveData.getColliderArrayList();
             towerManager.setTowerArrayList(saveData.getTowerArrayList());
         }
     }
@@ -155,7 +154,6 @@ public class DemoOne extends Scene {
                 waveManager.getCurrentWave(),
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
-                GameValues.colliderArrayList,
                 towerManager.getTowerArrayList()
         ));
     }
@@ -195,5 +193,7 @@ public class DemoOne extends Scene {
         towerBar.onTouchEvent(motionEvent);
         towerManager.onTowerUpgradeTouchEvent(motionEvent);
         pauseButton.onTouchEvent(motionEvent);
+
+        System.out.println(GameValues.colliderArrayList);
     }
 }
