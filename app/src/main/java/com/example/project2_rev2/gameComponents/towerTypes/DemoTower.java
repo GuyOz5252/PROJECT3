@@ -7,7 +7,6 @@ import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
 
@@ -83,7 +82,7 @@ public class DemoTower extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 switch (i) {
                     case 0:
@@ -98,7 +97,7 @@ public class DemoTower extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }
     }

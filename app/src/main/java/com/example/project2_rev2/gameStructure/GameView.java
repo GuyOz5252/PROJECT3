@@ -237,11 +237,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickExit() {
         pauseMenu.dismiss();
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("data_segment")
-                .document("save_data")
-                .set(User.getInstance().getSaveData(), SetOptions.merge());
+        User.getInstance().updateFirestoreUserData();
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }
@@ -340,11 +336,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitDeath.setOnTouchListener(this);
 
         User.getInstance().getSaveData().setIsActive(false);
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("data_segment")
-                .document("save_data")
-                .update("isActive", false);
+        User.getInstance().updateFirestoreUserData();
 
         deathDialog.setCancelable(false);
         deathDialog.show();

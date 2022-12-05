@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents.managers;
+package com.example.project2_rev2.gameComponents;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
@@ -21,7 +21,7 @@ import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 import com.example.project2_rev2.menus.TowerUpgradeInfo;
 import com.example.project2_rev2.utils.HelperMethods;
 
-public class TowerUpgradeManager {
+public class TowerUpgradeUI {
 
     private Context context;
 
@@ -39,7 +39,7 @@ public class TowerUpgradeManager {
     private boolean isTowerPressed;
     private Rect towerInfoButton;
 
-    public TowerUpgradeManager(Tower tower, Context context) {
+    public TowerUpgradeUI(Tower tower, Context context) {
         this.context = context;
         this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
         this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(450), 1, tower, this, context);

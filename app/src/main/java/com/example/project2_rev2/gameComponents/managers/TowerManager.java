@@ -44,7 +44,7 @@ public class TowerManager {
     }
 
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
-        for (TowerSaveData towerSaveData : towerSaveDataArrayList) {
+        towerSaveDataArrayList.forEach(towerSaveData -> {
             switch (towerSaveData.getType()) {
                 case "DEMO_TOWER":
                     towerArrayList.add(new DemoTower(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
@@ -60,7 +60,7 @@ public class TowerManager {
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
 
             GameValues.colliderArrayList.add(towerSaveData.getCollider());
-        }
+        });
     }
 
     public void addTower(TowerType towerType, double x, double y) {

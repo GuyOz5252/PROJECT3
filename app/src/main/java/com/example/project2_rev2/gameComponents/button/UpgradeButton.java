@@ -15,7 +15,7 @@ import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.TextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
+import com.example.project2_rev2.gameComponents.TowerUpgradeUI;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
@@ -28,7 +28,7 @@ import com.example.project2_rev2.utils.Size;
 
 public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
-    private TowerUpgradeManager towerUpgradeManager;
+    private TowerUpgradeUI towerUpgradeUI;
 
     private int upgradePathIndex;
     private UpgradeButtonState upgradeButtonState;
@@ -48,10 +48,10 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     private BitmapObject[] levelIndicator;
 
-    public UpgradeButton(double y, int upgradePathIndex, Tower tower, TowerUpgradeManager towerUpgradeManager, Context context) {
+    public UpgradeButton(double y, int upgradePathIndex, Tower tower, TowerUpgradeUI towerUpgradeUI, Context context) {
         super(xCoordinate(20), y, R.drawable.upgrade_button_bckground, new Size(310, 160), context);
         GameValues.coinsChangeListenerArrayList.add(this);
-        this.towerUpgradeManager = towerUpgradeManager;
+        this.towerUpgradeUI = towerUpgradeUI;
         this.upgradePathIndex = upgradePathIndex;
         this.tower = tower;
         this.upgradePath = tower.getTowerUpgradePaths()[upgradePathIndex];
@@ -169,7 +169,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void postUpgrade() {
-        towerUpgradeManager.postUpgrade();
+        towerUpgradeUI.postUpgrade();
         pathLevel = tower.getPathLevels()[upgradePathIndex];
         if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             upgradeNameText.changeText(String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].name[tower.getPathLevels()[upgradePathIndex]]));

@@ -13,10 +13,8 @@ import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
-import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
-import com.example.project2_rev2.utils.HelperMethods;
 
 /**
  * a class that inherits Tower
@@ -146,7 +144,7 @@ public class Turret extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 // path two
                 switch (i) {
@@ -165,7 +163,7 @@ public class Turret extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }
     }

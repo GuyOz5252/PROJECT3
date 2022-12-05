@@ -9,6 +9,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +40,10 @@ public class User {
 
         userDocument.set(userData);
 
+        userDocument.collection("data_segment")
+                .document("save_data")
+                .set(new SaveData(0, 0, 0, 0, new ArrayList<>(), false));
+
         userDocument.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 setUserData(task.getResult());
@@ -59,6 +65,18 @@ public class User {
                 });
     }
 
+    public void updateFirestoreUserData() {
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .update("tower_xp", towerXP);
+
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("data_segment")
+                .document("save_data")
+                .set(getInstance().getSaveData(), SetOptions.merge());
+    }
+
     public static User getInstance() {
         if (user == null) {
             user = new User();
@@ -71,7 +89,15 @@ public class User {
     }
 
     public int getTowerXP(TowerType towerType) {
-        return ((Long) towerXP.get(towerType.name().toLowerCase())).intValue();
+        if (towerXP.get(towerType.name().toLowerCase()).getClass().equals(Long.class)) {
+            return ((Long) towerXP.get(towerType.name().toLowerCase())).intValue();
+        } else {
+            return (int) towerXP.get(towerType.name().toLowerCase());
+        }
+    }
+
+    public void setTowerXP(TowerType towerType, int xp) {
+        towerXP.replace(towerType.name().toLowerCase(), xp);
     }
 
     public SaveData getSaveData() {

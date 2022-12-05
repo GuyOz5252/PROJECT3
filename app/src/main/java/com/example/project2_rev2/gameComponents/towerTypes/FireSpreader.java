@@ -285,7 +285,7 @@ public class FireSpreader extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathOne().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 // path two
                 switch (i) {
@@ -312,7 +312,7 @@ public class FireSpreader extends Tower {
                 }
                 pathLevels[upgradePathIndex]++;
                 upgradeCount++;
-                towerUpgradeManager.getUpgradeButtonPathTwo().postUpgrade();
+                towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }
     }

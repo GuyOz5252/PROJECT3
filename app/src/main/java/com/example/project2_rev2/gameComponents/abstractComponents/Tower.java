@@ -19,16 +19,9 @@ import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
-import com.example.project2_rev2.gameComponents.managers.TowerUpgradeManager;
+import com.example.project2_rev2.gameComponents.TowerUpgradeUI;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
-import com.google.firebase.firestore.Exclude;
-import com.google.firebase.firestore.IgnoreExtraProperties;
-
-import java.io.Serializable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import java.util.ArrayList;
 
 /**
  * a class that includes all the fields of a tower
@@ -58,7 +51,7 @@ public abstract class Tower extends BitmapObject {
     private Rect towerRect;
     private boolean isSelected;
 
-    protected TowerUpgradeManager towerUpgradeManager;
+    protected TowerUpgradeUI towerUpgradeUI;
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;
     protected int[] pathLevels;
     protected int upgradeCount;
@@ -101,7 +94,7 @@ public abstract class Tower extends BitmapObject {
         this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
         this.xp = User.getInstance().getTowerXP(towerType);
-        this.towerUpgradeManager = new TowerUpgradeManager(this, context);
+        this.towerUpgradeUI = new TowerUpgradeUI(this, context);
         this.isDoubleShot = false;
     }
 
@@ -158,11 +151,13 @@ public abstract class Tower extends BitmapObject {
     }
 
     public int getXP() {
-        return xp;
+        return User.getInstance().getTowerXP(towerType);
     }
 
     public void setXP(int xp) {
-        this.xp = xp;
+        User.getInstance().setTowerXP(towerType, xp);
+        towerUpgradeUI.getUpgradeButtonPathOne().handleState();
+        towerUpgradeUI.getUpgradeButtonPathTwo().handleState();
     }
 
     public void attack(Enemy enemy) {
@@ -197,11 +192,11 @@ public abstract class Tower extends BitmapObject {
     }
 
     public void drawTowerUpgradeUI(Canvas canvas) {
-        towerUpgradeManager.draw(canvas);
+        towerUpgradeUI.draw(canvas);
     }
 
     public void onTowerUpgradeTouchEvent(MotionEvent motionEvent) {
-        towerUpgradeManager.onTouchEvent(motionEvent);
+        towerUpgradeUI.onTouchEvent(motionEvent);
     }
 
     public void handleTowerRotation(float angle) {
@@ -230,6 +225,8 @@ public abstract class Tower extends BitmapObject {
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
+
+        System.out.println(User.getInstance().getTowerXP(towerType));
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

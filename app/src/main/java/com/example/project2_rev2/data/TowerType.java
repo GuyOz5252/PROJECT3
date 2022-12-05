@@ -51,7 +51,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
                     new int[] {180, 200, 320},
-                    new int[] {0, 0, 0},
+                    new int[] {0, 0, 80},
                     new String[] {
                             "bullets do double the damage",
                             "bullets are now bigger, they hurt more",

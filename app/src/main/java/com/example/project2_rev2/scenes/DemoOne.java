@@ -154,7 +154,8 @@ public class DemoOne extends Scene {
                 waveManager.getCurrentWave(),
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
-                towerManager.getTowerArrayList()
+                towerManager.getTowerArrayList(),
+                true
         ));
     }
 
