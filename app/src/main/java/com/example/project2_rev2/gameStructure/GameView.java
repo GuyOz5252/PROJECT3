@@ -339,12 +339,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         btnExitDeath.setOnTouchListener(this);
 
-        // TODO set save data inactive
+        User.getInstance().getSaveData().setIsActive(false);
         FirebaseFirestore.getInstance().collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("data_segment")
                 .document("save_data")
-                .set(User.getInstance().getSaveData(), SetOptions.merge());
+                .update("isActive", false);
 
         deathDialog.setCancelable(false);
         deathDialog.show();

@@ -105,10 +105,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         btnLoadGame = startGame.findViewById(R.id.btnLoadGame_startGameDialog);
         btnBack = startGame.findViewById(R.id.btnBack_startGame);
 
-        // TODO check if data is active
-        if (User.getInstance().getSaveData() == null) {
-            ((ImageView)((ViewGroup)btnLoadGame).getChildAt(0)).setColorFilter(ContextCompat.getColor(getContext(), R.color.rangeCircle));
-            ((TextView)((ViewGroup)btnLoadGame).getChildAt(1)).setTextColor(ContextCompat.getColor(getContext(), R.color.rangeCircle));
+        if (!User.getInstance().getSaveData().getIsActive()) {
+            ((ImageView)((ViewGroup)btnLoadGame).getChildAt(0)).setColorFilter(ContextCompat.getColor(getContext(), R.color.transparentGray));
+            ((TextView)((ViewGroup)btnLoadGame).getChildAt(1)).setTextColor(ContextCompat.getColor(getContext(), R.color.transparentGray));
         } else {
             btnLoadGame.setOnTouchListener(this);
         }

@@ -11,6 +11,7 @@ public class SaveData {
     private int money;
     private int health;
     private ArrayList<TowerSaveData> towerArrayList;
+    private boolean isActive;
 
     public SaveData() {} // firestore object mapper
 
@@ -29,6 +30,7 @@ public class SaveData {
                     tower.getCollider()
             ));
         }
+        this.isActive = true;
     }
 
     public int getSceneIndex() {
@@ -49,6 +51,14 @@ public class SaveData {
 
     public ArrayList<TowerSaveData> getTowerArrayList() {
         return towerArrayList;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean b) {
+        isActive = b;
     }
 
     @Override

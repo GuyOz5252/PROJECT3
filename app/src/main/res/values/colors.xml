@@ -15,6 +15,7 @@
     <color name="dialogColor">#001427</color>
     <color name="transparentBlue">#800081FF</color>
     <color name="transparentWhite">#BFFFFFFF</color>
+    <color name="transparentGray">#80292929</color>
 
     <color name="black">#000000</color>
     <color name="background">#8BC34A</color>
