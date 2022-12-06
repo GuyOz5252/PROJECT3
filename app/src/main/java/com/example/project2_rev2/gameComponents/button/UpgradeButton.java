@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.ProgressBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
@@ -123,11 +124,15 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         ) {};
         this.xpBar = new ProgressBar(
                 position.x+10,
-                position.y+100,
-                new Size(200, 20),
+                position.y+70,
+                new Size(190, 30),
                 ContextCompat.getColor(context, R.color.upgradeLocked),
                 ContextCompat.getColor(context, R.color.green),
                 context
+        );
+        this.xpBar.setPercentage(
+                (double)User.getInstance().getTowerXP(tower.getTowerType()) /
+                        tower.getTowerUpgradePaths()[upgradePathIndex].xpReq[tower.getPathLevels()[upgradePathIndex]]
         );
 
         this.pressedBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(size.width-size.width/50), (int)(size.height-size.height/50), false);
@@ -148,6 +153,10 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 upgradeButtonState = UpgradeButtonState.UPGRADE_READY;
             } else {
                 upgradeButtonState = UpgradeButtonState.XP_REQ;
+                xpBar.setPercentage(
+                        (double)User.getInstance().getTowerXP(tower.getTowerType()) /
+                                tower.getTowerUpgradePaths()[upgradePathIndex].xpReq[tower.getPathLevels()[upgradePathIndex]]
+                );
             }
         }
     }
@@ -220,6 +229,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public void drawRequireXP(Canvas canvas) {
         xpLock.draw(canvas);
         xpReqText.draw(canvas);
+        xpBar.draw(canvas);
         for (BitmapObject bitmapObject : levelIndicator) {
             bitmapObject.draw(canvas);
         }
