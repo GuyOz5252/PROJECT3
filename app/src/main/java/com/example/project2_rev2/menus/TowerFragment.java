@@ -142,7 +142,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
             pathTwo.setLayoutParams(params);
             for (int i = 0; i < 4; i++) {
                 if (i < towerArrayList.get(towerIndex).towerUpgradePathOne.name.length) {
-                    if (towerArrayList.get(towerIndex).towerUpgradePathOne.xpReq[i] >= User.getInstance().getTowerXP(towerArrayList.get(towerIndex))) {
+                    if (towerArrayList.get(towerIndex).towerUpgradePathOne.xpReq[i] <= User.getInstance().getTowerXP(towerArrayList.get(towerIndex))) {
                         LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
                                 LayoutParams.WRAP_CONTENT,
                                 LayoutParams.WRAP_CONTENT
@@ -169,7 +169,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
             }
             for (int i = 0; i < 4; i++) {
                 if (i < towerArrayList.get(towerIndex).towerUpgradePathTwo.name.length) {
-                    if (towerArrayList.get(towerIndex).towerUpgradePathTwo.xpReq[i] >= User.getInstance().getTowerXP(towerArrayList.get(towerIndex))) {
+                    if (towerArrayList.get(towerIndex).towerUpgradePathTwo.xpReq[i] <= User.getInstance().getTowerXP(towerArrayList.get(towerIndex))) {
                         LinearLayout.LayoutParams rectParams = new LinearLayout.LayoutParams(
                                 LayoutParams.WRAP_CONTENT,
                                 LayoutParams.WRAP_CONTENT

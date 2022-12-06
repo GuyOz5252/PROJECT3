@@ -55,7 +55,6 @@ public abstract class Tower extends BitmapObject {
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;
     protected int[] pathLevels;
     protected int upgradeCount;
-    protected int xp;
 
     protected boolean isDoubleShot;
 
@@ -93,7 +92,6 @@ public abstract class Tower extends BitmapObject {
         };
         this.pathLevels = new int[] {0, 0};
         this.upgradeCount = 0;
-        this.xp = User.getInstance().getTowerXP(towerType);
         this.towerUpgradeUI = new TowerUpgradeUI(this, context);
         this.isDoubleShot = false;
     }

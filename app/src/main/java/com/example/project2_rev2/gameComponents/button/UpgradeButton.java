@@ -8,9 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
+import com.example.project2_rev2.gameComponents.ProgressBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.TextUI;
@@ -44,6 +47,10 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
 
     private TextUI maxLevelText;
 
+    private TextUI xpReqText;
+    private BitmapObject xpLock;
+    private ProgressBar xpBar;
+
     private BitmapObject upgradeArrows;
 
     private BitmapObject[] levelIndicator;
@@ -54,8 +61,8 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         this.towerUpgradeUI = towerUpgradeUI;
         this.upgradePathIndex = upgradePathIndex;
         this.tower = tower;
-        this.upgradePath = tower.getTowerUpgradePaths()[upgradePathIndex];
-        this.pathLevel = tower.getPathLevels()[upgradePathIndex];
+        this.upgradePath = tower.getTowerUpgradePaths()[upgradePathIndex]; //
+        this.pathLevel = tower.getPathLevels()[upgradePathIndex]; //
 
         this.upgradeNameString = tower.getTowerUpgradePaths()[upgradePathIndex].name[tower.getPathLevels()[upgradePathIndex]];
         this.priceString = String.valueOf(tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]);
@@ -79,14 +86,16 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 context
         );
         this.maxLevelText = new TextUI(
-                position.x+10,
-                position.y+100,
+                position.x+15,
+                position.y+90,
                 "MAX LEVEL",
                 R.color.coin,
-                35,
+                52,
                 Paint.Align.LEFT,
                 context
         );
+        this.maxLevelText.setBold();
+        this.maxLevelText.setShadow();
         this.upgradeArrows = new BitmapObject(
                 position.x+size.width-130,
                 position.y-10,
@@ -94,6 +103,32 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 new Size(150, 150),
                 context
         ) {};
+        this.xpReqText = new TextUI(
+                position.x+10,
+                position.y+50,
+                "XP Required",
+                R.color.white,
+                40,
+                Paint.Align.LEFT,
+                context
+        );
+        this.xpReqText.setBold();
+        this.xpReqText.setShadow();
+        this.xpLock = new BitmapObject(
+                position.x+size.width-105,
+                position.y+30,
+                R.drawable.ic_lock_unfocused,
+                new Size(100, 100),
+                context
+        ) {};
+        this.xpBar = new ProgressBar(
+                position.x+10,
+                position.y+100,
+                new Size(200, 20),
+                ContextCompat.getColor(context, R.color.upgradeLocked),
+                ContextCompat.getColor(context, R.color.green),
+                context
+        );
 
         this.pressedBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(size.width-size.width/50), (int)(size.height-size.height/50), false);
         this.pressedPosition = new Position(position.x+size.width/100, position.y+size.height/100);
@@ -135,17 +170,8 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
-    /**Upgrade Ready**/
-    public void drawUpgradeReady(Canvas canvas) {
-        upgradeArrows.draw(canvas);
-        coinTextUI.draw(canvas);
-        for (BitmapObject bitmapObject : levelIndicator) {
-            bitmapObject.draw(canvas);
-        }
-    }
-
     public void handleLevelIndicator() {
-        double xPosition = position.x;
+        double xPosition = position.x-10;
         for (int i = 0; i < tower.getTowerUpgradePaths()[upgradePathIndex].name.length; i++) {
             if (i < tower.getPathLevels()[upgradePathIndex]) {
                 levelIndicator[i] = new BitmapObject(
@@ -180,14 +206,23 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         handleLevelIndicator();
     }
 
-    @Override
-    public void onCoinsChange() {
-        handlePriceColor();
+    /**Upgrade Ready**/
+    public void drawUpgradeReady(Canvas canvas) {
+        upgradeArrows.draw(canvas);
+        coinTextUI.draw(canvas);
+        for (BitmapObject bitmapObject : levelIndicator) {
+            bitmapObject.draw(canvas);
+        }
+        upgradeNameText.draw(canvas);
     }
 
     /**XP REQ**/
     public void drawRequireXP(Canvas canvas) {
-
+        xpLock.draw(canvas);
+        xpReqText.draw(canvas);
+        for (BitmapObject bitmapObject : levelIndicator) {
+            bitmapObject.draw(canvas);
+        }
     }
 
     /**Max Level**/
@@ -196,6 +231,11 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         for (BitmapObject bitmapObject : levelIndicator) {
             bitmapObject.draw(canvas);
         }
+    }
+
+    @Override
+    public void onCoinsChange() {
+        handlePriceColor();
     }
 
     @Override
@@ -223,7 +263,6 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 drawMaxLevel(canvas);
                 break;
         }
-        upgradeNameText.draw(canvas);
     }
 
     @Override

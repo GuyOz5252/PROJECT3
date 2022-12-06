@@ -15,9 +15,9 @@ public abstract class RectObject extends GameObject {
     protected Size size;
     protected Paint paint;
 
-    public RectObject(double posX, double posY, double width, double height, int color) {
+    public RectObject(double posX, double posY, Size size, int color) {
         super(posX, posY);
-        this.size = new Size(width, height);
+        this.size = size;
         this.paint = new Paint();
         this.paint.setColor(color);
         this.rect = new Rect(

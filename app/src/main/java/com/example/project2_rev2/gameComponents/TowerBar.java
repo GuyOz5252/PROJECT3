@@ -20,6 +20,7 @@ import com.example.project2_rev2.gameComponents.button.StartWaveButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
+import com.example.project2_rev2.utils.Size;
 
 public class TowerBar extends RectObject {
 
@@ -35,7 +36,7 @@ public class TowerBar extends RectObject {
     private FastForwardButton fastForwardButton;
 
     public TowerBar(WaveManager waveManager, Context context) {
-        super(xCoordinate(0), yCoordinate(0), 350, gameDisplay.size.height, ContextCompat.getColor(context, R.color.towerBarBackground));
+        super(xCoordinate(0), yCoordinate(0), new Size(350, gameDisplay.size.height), ContextCompat.getColor(context, R.color.towerBarBackground));
         this.context = context;
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);

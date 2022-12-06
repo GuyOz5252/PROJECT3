@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.project2_rev2.data.TowerType;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
@@ -28,7 +29,7 @@ public class DemoTower extends Tower {
     @Override
     public boolean upgrade(int upgradePathIndex) {
         if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].name.length) {
-            if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
+            if (User.getInstance().getTowerXP(towerType) >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
                     GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
 
                 if (upgradePathIndex == 0) {

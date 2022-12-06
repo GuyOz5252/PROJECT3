@@ -274,6 +274,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitVictory.setOnTouchListener(this);
         btnContinue.setOnTouchListener(this);
 
+        User.getInstance().updateFirestoreUserData();
+
         victoryDialog.setCancelable(false);
         victoryDialog.show();
     }

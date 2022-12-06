@@ -51,7 +51,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
                     new int[] {180, 200, 320},
-                    new int[] {0, 0, 80},
+                    new int[] {0, 400, 950},
                     new String[] {
                             "bullets do double the damage",
                             "bullets are now bigger, they hurt more",
@@ -61,7 +61,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Range", "ATK Speed"},
                     new int[] {150, 230},
-                    new int[] {0, 0},
+                    new int[] {200, 800},
                     new String[] {
                             "increase the turret's range",
                             "increase the turret's attack speed, shoot faster"
@@ -80,7 +80,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Agidyne"},
                     new int[] {270, 300, 420, 500},
-                    new int[] {0, 0, 0, 0},
+                    new int[] {0, 250, 1200, 2200},
                     new String[] {
                             "enemies burn for longer, dealing more damage over more time",
                             "damage received by flames increased",
@@ -91,7 +91,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Range", "Multi Burn", "Hotter", "Carmen"},
                     new int[] {300, 360, 480, 600},
-                    new int[] {0, 0, 0, 0},
+                    new int[] {100, 950, 1800, 2800},
                     new String[] {
                             "increase the flames reach",
                             "burn more enemies in the fire's range",

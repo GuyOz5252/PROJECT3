@@ -9,6 +9,7 @@ import android.graphics.Rect;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
@@ -197,7 +198,7 @@ public class FireSpreader extends Tower {
     public boolean upgrade(int upgradePathIndex) {
         // checks that the user has enough money and xp to upgrade
         if (pathLevels[upgradePathIndex] < towerUpgradePaths[upgradePathIndex].name.length) {
-            if (xp >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
+            if (User.getInstance().getTowerXP(towerType) >= towerUpgradePaths[upgradePathIndex].xpReq[pathLevels[upgradePathIndex]] &&
                     GameValues.getPlayerCoins() >= towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]]) {
                 // check which path is being upgraded
 
