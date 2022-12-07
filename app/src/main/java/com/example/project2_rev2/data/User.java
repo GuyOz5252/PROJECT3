@@ -23,8 +23,6 @@ public class User {
     private User() {}
 
     public void createUserData(DocumentReference userDocument, String username) {
-        this.username = username;
-
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("user_name", username);
         userData.put("user_level", 1);
@@ -42,11 +40,23 @@ public class User {
                 .document("save_data")
                 .set(new SaveData(0, 0, 0, 0, new ArrayList<>(), false));
 
-        userDocument.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                setUserData(task.getResult());
-            }
-        });
+        this.username = username;
+        this.userLevel = 1;
+        this.userXP = 0;
+        this.towerXP = towerXPMap;
+        userDocument.collection("data_segment")
+                .document("save_data")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        saveData = task.getResult().toObject(SaveData.class);
+                    }
+                });
+
+        //userDocument.get().addOnCompleteListener(task -> {
+        //    if (task.isSuccessful()) {
+        //        setUserData(task.getResult());
+        //    }
+        //});
     }
 
     @SuppressWarnings("all")
