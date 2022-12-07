@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameStructure.GameView;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
@@ -32,6 +33,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     ImageButton btnSettings;
     TextView btnPlay;
     TextView txtUser;
+
+    LinearProgressIndicator xpProgressBar;
+    TextView txtPlayerLevel;
 
     // start game dialog elements
     Dialog startGame;
@@ -47,13 +51,25 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
         txtUser = view.findViewById(R.id.txtUser_mainMenuFragment);
+        xpProgressBar = view.findViewById(R.id.xpProgressBar);
+        txtPlayerLevel = view.findViewById(R.id.txtLevel_mainMenuFragment);
 
         btnSettings.setOnTouchListener(this);
         btnPlay.setOnTouchListener(this);
 
+        setPlayerLevel();
         txtUser.setText(User.getInstance().getUsername());
 
         return view;
+    }
+
+    public void setPlayerLevel() {
+        int level = User.getInstance().getUserLevel();
+        double xp = User.getInstance().getUserXP();
+        double max = level*1800;
+        double percentage = (xp/max)*100;
+        xpProgressBar.setProgress((int)percentage, true);
+        txtPlayerLevel.setText(String.valueOf(level));
     }
 
     public void clickSettings() {

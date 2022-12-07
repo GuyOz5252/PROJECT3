@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.EnemyType;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
@@ -155,6 +156,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     public void die(Tower tower) {
         isAlive = false;
         tower.setXP(tower.getXP() + value);
+        User.getInstance().setUserXP(User.getInstance().getUserXP() + value/2);
         GameValues.setPlayerCoins(GameValues.getPlayerCoins() + value);
     }
 

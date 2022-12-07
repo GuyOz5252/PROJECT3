@@ -1,11 +1,5 @@
 package com.example.project2_rev2.data;
 
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -21,6 +15,8 @@ public class User {
     private static User user;
 
     private String username;
+    private int userLevel;
+    private int userXP;
     private Map<String, Object> towerXP;
     private SaveData saveData;
 
@@ -31,6 +27,8 @@ public class User {
 
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("user_name", username);
+        userData.put("user_level", 1);
+        userData.put("user_xp", 0);
 
         HashMap<String, Object> towerXPMap = new HashMap<>();
         for (TowerType towerType : TowerType.values()) {
@@ -54,6 +52,8 @@ public class User {
     @SuppressWarnings("all")
     public void setUserData(DocumentSnapshot documentSnapshot) {
         username = documentSnapshot.getString("user_name");
+        userLevel = ((Long)documentSnapshot.get("user_level")).intValue();
+        userXP = ((Long)documentSnapshot.get("user_xp")).intValue();
         towerXP = (Map<String, Object>) documentSnapshot.get("tower_xp");
         documentSnapshot.getReference()
                 .collection("data_segment")
@@ -66,14 +66,14 @@ public class User {
     }
 
     public void updateFirestoreUserData() {
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .update("tower_xp", towerXP);
+        DocumentReference userDocument = FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("data_segment")
-                .document("save_data")
+        userDocument.update("user_level", getInstance().getUserLevel());
+        userDocument.update("user_xp", getInstance().getUserXP());
+        userDocument.update("tower_xp", towerXP);
+
+        userDocument.collection("data_segment").document("save_data")
                 .set(getInstance().getSaveData(), SetOptions.merge());
     }
 
@@ -86,6 +86,26 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public int getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
+
+    public int getUserXP() {
+        return userXP;
+    }
+
+    public void setUserXP(int userXP) {
+        this.userXP = userXP;
+        if (this.userXP > userLevel*1800) {
+            userLevel++;
+            this.userXP = 0;
+        }
     }
 
     public int getTowerXP(TowerType towerType) {

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".menus.MainMenuFragment">
 
     <ImageButton
@@ -12,6 +13,45 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="@color/transparent"
         android:src="@drawable/ic_settings" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/xpProgressBar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:padding="3dp"
+        android:background="@color/black"
+        android:max="100"
+        android:progress="35"
+        app:indicatorColor="@color/green"
+        app:trackColor="@color/upgradeLocked"
+        app:trackThickness="15dp" />
+
+    <TextView
+        android:id="@+id/txtLevel_mainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xpProgressBar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="LVL"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txtUser_mainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/xpProgressBar"
+        android:layout_toEndOf="@+id/txtLevel_mainMenuFragment"
+        android:fontFamily="sans-serif-black"
+        android:text="USERNAME"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/btnPlay_mainMenuFragment"
@@ -23,14 +63,5 @@
         android:textColor="@color/black"
         android:fontFamily="sans-serif-black"
         android:textSize="50dp" />
-
-    <TextView
-        android:id="@+id/txtUser_mainMenuFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="USERNAME"
-        android:textColor="@color/black"
-        android:textSize="25dp" />
 
 </RelativeLayout>

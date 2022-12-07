@@ -266,6 +266,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         victoryDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
+        victoryDialog.setCancelable(false);
         victoryDialog.setTitle("Victory Dialog");
 
         btnExitVictory = victoryDialog.findViewById(R.id.btnHome_victoryDialog);
@@ -274,16 +275,15 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitVictory.setOnTouchListener(this);
         btnContinue.setOnTouchListener(this);
 
+        User.getInstance().setUserXP(User.getInstance().getUserXP() + 1500);
         User.getInstance().updateFirestoreUserData();
 
-        victoryDialog.setCancelable(false);
         victoryDialog.show();
     }
 
     public Action victory = this::createVictoryDialog;
 
     public void clickHomeVictory() {
-        // pass earnings
         victoryDialog.dismiss();
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
