@@ -26,7 +26,6 @@ public class ProgressBar extends RectObject {
         this.borderPaint.setStrokeWidth(3);
         this.progressPaint = new Paint();
         this.progressPaint.setColor(progressColor);
-        //this.percentage = 0;
     }
 
     public void setPercentage(double percentage) {
@@ -44,7 +43,7 @@ public class ProgressBar extends RectObject {
         canvas.drawRect(new Rect(
                         (int)position.x,
                         (int)position.y,
-                        (int)(0+((position.x+size.width)*percentage)),
+                        (int)(position.x+((size.width)*percentage)),
                         (int)(position.y+size.height)
                 ),
                 progressPaint
