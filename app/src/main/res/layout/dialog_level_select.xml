@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/btnBack_levelSelectDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_cancel" />
+
+    <TextView
+        android:id="@+id/levelName_levelSelectDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/lv"
+        android:fontFamily="sans-serif-black"
+        android:text="level name"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:id="@+id/lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnPrevLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_left_arrow" />
+
+        <ImageView
+            android:id="@+id/levelThumbnail_levelSelectDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:padding="5dp"
+            android:adjustViewBounds="true"
+            android:maxWidth="350dp"
+            android:maxHeight="300dp"
+            android:src="@drawable/level_thumbnail" />
+
+        <ImageButton
+            android:id="@+id/btnNextLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_right_arrow" />
+
+    </LinearLayout>
+
+</RelativeLayout>

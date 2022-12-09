@@ -2,9 +2,11 @@ package com.example.project2_rev2.menus;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -21,8 +23,11 @@ import android.widget.TextView;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameStructure.GameView;
+import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
@@ -41,6 +46,15 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     Dialog startGame;
     RelativeLayout btnNewGame, btnLoadGame;
     ImageButton btnBack;
+
+    // level select dialog elements
+    Dialog levelSelect;
+    TextView txtLevelName;
+    ImageView btnPrevLevel, btnNextLevel;
+    ImageView levelThumbnail;
+    ImageButton btnBackLevelSelect;
+    ArrayList<Level> levelArrayList;
+    int currentLevelIndex;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -119,7 +133,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         btnNewGame = startGame.findViewById(R.id.btnNewGame_startGameDialog);
         btnLoadGame = startGame.findViewById(R.id.btnLoadGame_startGameDialog);
-        btnBack = startGame.findViewById(R.id.btnBack_startGame);
+        btnBack = startGame.findViewById(R.id.btnBack_startGameDialog);
 
         if (!User.getInstance().getSaveData().getIsActive()) {
             ((ImageView)((ViewGroup)btnLoadGame).getChildAt(0)).setColorFilter(ContextCompat.getColor(getContext(), R.color.transparentGray));
@@ -137,13 +151,8 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickNewGame() {
+        createLevelSelectDialog();
         startGame.dismiss();
-        Intent intent = new Intent(getContext(), GameView.class);
-        intent.putExtra("sceneIndex", 0);
-        intent.putExtra("loadSave", false);
-        startActivity(intent);
-        ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
-        ((Activity) view.getContext()).finish();
     }
 
     public void clickNewGame(View view, MotionEvent motionEvent) {
@@ -194,6 +203,139 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
     //=====================================//
 
+    //==========level select dialog========//
+    public void createLevelSelectDialog() {
+        btnPlay.setVisibility(View.INVISIBLE);
+        levelSelect = new Dialog(getContext());
+        View decorView = levelSelect.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        levelSelect.setContentView(R.layout.dialog_level_select);
+        levelSelect.setCancelable(false);
+        levelSelect.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        levelSelect.getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
+        levelSelect.setTitle("level select");
+
+        txtLevelName = levelSelect.findViewById(R.id.levelName_levelSelectDialog);
+        levelThumbnail = levelSelect.findViewById(R.id.levelThumbnail_levelSelectDialog);
+        btnPrevLevel = levelSelect.findViewById(R.id.btnPrevLevel);
+        btnNextLevel = levelSelect.findViewById(R.id.btnNextLevel);
+        btnBackLevelSelect = levelSelect.findViewById(R.id.btnBack_levelSelectDialog);
+
+        levelThumbnail.setOnTouchListener(this);
+        btnPrevLevel.setOnTouchListener(this);
+        btnNextLevel.setOnTouchListener(this);
+        btnBackLevelSelect.setOnTouchListener(this);
+
+        currentLevelIndex = 0;
+
+        levelArrayList = new ArrayList<>();
+        for (String sceneTitle : Scene.sceneTitles) {
+            levelArrayList.add(new Level(sceneTitle, Level.getLevelThumbnail(sceneTitle)));
+        }
+
+        cycleLevels();
+
+        levelSelect.show();
+
+        levelSelect.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
+    }
+
+    public void cycleLevels() {
+        if (currentLevelIndex == 0) {
+            btnPrevLevel.setAlpha(0.5f);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            btnNextLevel.setAlpha(1f);
+        } else if (currentLevelIndex == levelArrayList.size()-1) {
+            btnPrevLevel.setAlpha(1f);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            btnNextLevel.setAlpha(0.5f);
+        } else {
+            btnPrevLevel.setAlpha(1f);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            btnNextLevel.setAlpha(1f);
+        }
+    }
+
+    public void clickLevelThumbnail() {
+        levelSelect.dismiss();
+        Intent intent = new Intent(getContext(), GameView.class);
+        intent.putExtra("sceneIndex", currentLevelIndex);
+        intent.putExtra("loadSave", false);
+        startActivity(intent);
+        ((Activity) view.getContext()).setContentView(R.layout.activity_loading_screen);
+        ((Activity) view.getContext()).finish();
+    }
+
+    public void clickLevelThumbnail(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickLevelThumbnail();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.95f);
+            view.setScaleY(0.95f);
+        }
+    }
+
+    public void clickPrevLevel() {
+        if (currentLevelIndex != 0) {
+            currentLevelIndex--;
+            cycleLevels();
+        }
+    }
+
+    public void clickPrevLevel(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickPrevLevel();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickNextLevel() {
+        if (currentLevelIndex != levelArrayList.size()-1) {
+            currentLevelIndex++;
+            cycleLevels();
+        }
+    }
+
+    public void clickNextLevel(View view,MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickNextLevel();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickBackLevelSelect() {
+        levelSelect.dismiss();
+    }
+
+    public void clickBackLevelSelect(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickBackLevelSelect();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+    //=====================================//
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
@@ -210,10 +352,45 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             case R.id.btnLoadGame_startGameDialog:
                 clickLoadGame(view, motionEvent);
                 break;
-            case R.id.btnBack_startGame:
+            case R.id.btnBack_startGameDialog:
                 clickBack(view, motionEvent);
+                break;
+            //=level select dialog=//
+            case R.id.levelThumbnail_levelSelectDialog:
+                clickLevelThumbnail(view, motionEvent);
+                break;
+            case R.id.btnPrevLevel:
+                clickPrevLevel(view, motionEvent);
+                break;
+            case R.id.btnNextLevel:
+                clickNextLevel(view, motionEvent);
+                break;
+            case R.id.btnBack_levelSelectDialog:
+                clickBackLevelSelect(view, motionEvent);
                 break;
         }
         return true;
+    }
+
+    public static class Level {
+
+        public String levelName;
+        public int thumbnail;
+
+        public Level(String levelName, int thumbnail) {
+            this.levelName = levelName;
+            this.thumbnail = thumbnail;
+        }
+
+        public static int getLevelThumbnail(String levelName) {
+            switch (levelName) {
+                case "DEMO 1":
+                    return R.drawable.level_thumbnail;
+                case "LEVEL":
+                    return R.drawable.level_thumbnail;
+                default:
+                    return 0;
+            }
+        }
     }
 }
