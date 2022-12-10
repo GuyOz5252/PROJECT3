@@ -2,11 +2,9 @@ package com.example.project2_rev2.menus;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -37,7 +35,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     ImageButton btnSettings;
     TextView btnPlay;
-    TextView txtUser;
+    TextView txtUsername;
 
     LinearProgressIndicator xpProgressBar;
     TextView txtPlayerLevel;
@@ -48,7 +46,6 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     ImageButton btnBack;
 
     // level select dialog elements
-    Dialog levelSelect;
     TextView txtLevelName;
     ImageView btnPrevLevel, btnNextLevel;
     ImageView levelThumbnail;
@@ -64,7 +61,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
-        txtUser = view.findViewById(R.id.txtUser_mainMenuFragment);
+        txtUsername = view.findViewById(R.id.txtUser_mainMenuFragment);
         xpProgressBar = view.findViewById(R.id.xpProgressBar);
         txtPlayerLevel = view.findViewById(R.id.txtLevel_mainMenuFragment);
 
@@ -72,7 +69,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         btnPlay.setOnTouchListener(this);
 
         setPlayerLevel();
-        txtUser.setText(User.getInstance().getUsername());
+        txtUsername.setText(User.getInstance().getUsername());
 
         return view;
     }

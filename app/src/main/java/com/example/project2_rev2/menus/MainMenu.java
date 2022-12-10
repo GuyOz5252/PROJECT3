@@ -23,6 +23,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenu extends AppCompatActivity {
 
+    UserProfileFragment userProfileFragment;
     MainMenuFragment mainMenuFragment;
     TowerFragment towerFragment;
 
@@ -41,6 +42,7 @@ public class MainMenu extends AppCompatActivity {
         decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
         setContentView(R.layout.activity_main_menu);
 
+        userProfileFragment = new UserProfileFragment();
         mainMenuFragment = new MainMenuFragment();
         towerFragment = new TowerFragment();
 
@@ -63,7 +65,7 @@ public class MainMenu extends AppCompatActivity {
     public boolean onItemItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.profile_mainMenuNavbar:
-                //replaceFragment();
+                replaceFragment(userProfileFragment);
                 break;
             case R.id.home_mainMenuNavbar:
                 replaceFragment(mainMenuFragment);

@@ -51,12 +51,6 @@ public class User {
                         saveData = task.getResult().toObject(SaveData.class);
                     }
                 });
-
-        //userDocument.get().addOnCompleteListener(task -> {
-        //    if (task.isSuccessful()) {
-        //        setUserData(task.getResult());
-        //    }
-        //});
     }
 
     @SuppressWarnings("all")
@@ -102,17 +96,13 @@ public class User {
         return userLevel;
     }
 
-    public void setUserLevel(int userLevel) {
-        this.userLevel = userLevel;
-    }
-
     public int getUserXP() {
         return userXP;
     }
 
     public void setUserXP(int userXP) {
         this.userXP = userXP;
-        if (this.userXP > userLevel*1800) {
+        if (this.userXP > userLevel* 1800) {
             userLevel++;
             this.userXP = 0;
         }
