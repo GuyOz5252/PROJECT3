@@ -151,9 +151,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickNewGame() {
-        startGame.setContentView(R.layout.dialog_level_select);
-        btnBack = startGame.findViewById(R.id.btnBack_startGameDialog);
-        btnBack.setOnTouchListener(this);
+        createLevelSelectDialog();
     }
 
     public void clickNewGame(View view, MotionEvent motionEvent) {
@@ -202,48 +200,30 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             view.setScaleY(0.9f);
         }
     }
-    //=====================================//
 
-    //==========level select dialog========//
-    //public void createLevelSelectDialog() {
-    //    btnPlay.setVisibility(View.INVISIBLE);
-    //    levelSelect = new Dialog(getContext());
-    //    View decorView = levelSelect.getWindow().getDecorView();
-    //    int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-    //            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-    //            | View.SYSTEM_UI_FLAG_FULLSCREEN
-    //            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-    //    decorView.setSystemUiVisibility(flags);
-    //    levelSelect.setContentView(R.layout.dialog_level_select);
-    //    levelSelect.setCancelable(false);
-    //    levelSelect.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-    //    levelSelect.getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
-    //    levelSelect.setTitle("level select");
-//
-    //    txtLevelName = levelSelect.findViewById(R.id.levelName_levelSelectDialog);
-    //    levelThumbnail = levelSelect.findViewById(R.id.levelThumbnail_levelSelectDialog);
-    //    btnPrevLevel = levelSelect.findViewById(R.id.btnPrevLevel);
-    //    btnNextLevel = levelSelect.findViewById(R.id.btnNextLevel);
-    //    btnBackLevelSelect = levelSelect.findViewById(R.id.btnBack_levelSelectDialog);
-//
-    //    levelThumbnail.setOnTouchListener(this);
-    //    btnPrevLevel.setOnTouchListener(this);
-    //    btnNextLevel.setOnTouchListener(this);
-    //    btnBackLevelSelect.setOnTouchListener(this);
-//
-    //    currentLevelIndex = 0;
-//
-    //    levelArrayList = new ArrayList<>();
-    //    for (String sceneTitle : Scene.sceneTitles) {
-    //        levelArrayList.add(new Level(sceneTitle, Level.getLevelThumbnail(sceneTitle)));
-    //    }
-//
-    //    cycleLevels();
-//
-    //    levelSelect.show();
-//
-    //    levelSelect.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
-    //}
+    public void createLevelSelectDialog() {
+        startGame.setContentView(R.layout.dialog_level_select);
+
+        txtLevelName = startGame.findViewById(R.id.levelName_levelSelectDialog);
+        levelThumbnail = startGame.findViewById(R.id.levelThumbnail_levelSelectDialog);
+        btnPrevLevel = startGame.findViewById(R.id.btnPrevLevel);
+        btnNextLevel = startGame.findViewById(R.id.btnNextLevel);
+        btnBackLevelSelect = startGame.findViewById(R.id.btnBack_startGameDialog);
+
+        levelThumbnail.setOnTouchListener(this);
+        btnPrevLevel.setOnTouchListener(this);
+        btnNextLevel.setOnTouchListener(this);
+        btnBackLevelSelect.setOnTouchListener(this);
+
+        currentLevelIndex = 0;
+
+        levelArrayList = new ArrayList<>();
+        for (String sceneTitle : Scene.sceneTitles) {
+            levelArrayList.add(new Level(sceneTitle, Level.getLevelThumbnail(sceneTitle)));
+        }
+
+        cycleLevels();
+    }
 
     public void cycleLevels() {
         if (currentLevelIndex == 0) {
@@ -265,7 +245,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickLevelThumbnail() {
-        levelSelect.dismiss();
+        startGame.dismiss();
         Intent intent = new Intent(getContext(), GameView.class);
         intent.putExtra("sceneIndex", currentLevelIndex);
         intent.putExtra("loadSave", false);
@@ -320,21 +300,6 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             view.setScaleY(0.9f);
         }
     }
-
-    public void clickBackLevelSelect() {
-        levelSelect.dismiss();
-    }
-
-    public void clickBackLevelSelect(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickBackLevelSelect();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
     //=====================================//
 
     @Override
@@ -356,7 +321,6 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             case R.id.btnBack_startGameDialog:
                 clickBack(view, motionEvent);
                 break;
-            //=level select dialog=//
             case R.id.levelThumbnail_levelSelectDialog:
                 clickLevelThumbnail(view, motionEvent);
                 break;
@@ -366,9 +330,6 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
             case R.id.btnNextLevel:
                 clickNextLevel(view, motionEvent);
                 break;
-            //case R.id.btnBack_levelSelectDialog:
-            //    clickBackLevelSelect(view, motionEvent);
-            //    break;
         }
         return true;
     }
