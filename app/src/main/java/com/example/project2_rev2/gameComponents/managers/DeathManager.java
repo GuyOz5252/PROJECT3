@@ -29,6 +29,7 @@ public class DeathManager implements OnHealthChangeListener {
 
     public void update() {
         if (isDead && !((Activity)context).isFinishing()) {
+            isDead = false;
             ((Activity)context).runOnUiThread(() -> death.action());
         }
     }

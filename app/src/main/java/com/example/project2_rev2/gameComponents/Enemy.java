@@ -156,7 +156,8 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     public void die(Tower tower) {
         isAlive = false;
         tower.setXP(tower.getXP() + value);
-        User.getInstance().setUserXP(User.getInstance().getUserXP() + value/2);
+        User.getInstance().getPlayerStats().setEnemiesKilled(User.getInstance().getPlayerStats().getEnemiesKilled() + 1);
+        User.getInstance().addUserXP(value/2);
         GameValues.setPlayerCoins(GameValues.getPlayerCoins() + value);
     }
 

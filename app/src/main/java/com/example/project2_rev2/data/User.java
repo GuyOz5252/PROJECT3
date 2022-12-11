@@ -19,6 +19,7 @@ public class User {
     private int userXP;
     private Map<String, Object> towerXP;
     private SaveData saveData;
+    private PlayerStats playerStats;
 
     private User() {}
 
@@ -38,7 +39,12 @@ public class User {
 
         userDocument.collection("data_segment")
                 .document("save_data")
-                .set(new SaveData(0, 0, 0, 0, new ArrayList<>(), false));
+                .set(new SaveData());
+                //.set(new SaveData(0, 0, 0, 0, new ArrayList<>(), false));
+
+        userDocument.collection("data_segment")
+                .document("player_stats")
+                .set(new PlayerStats());
 
         this.username = username;
         this.userLevel = 1;
@@ -49,6 +55,13 @@ public class User {
                 .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         saveData = task.getResult().toObject(SaveData.class);
+                    }
+                });
+        userDocument.collection("data_segment")
+                .document("player_stats")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        playerStats = task.getResult().toObject(PlayerStats.class);
                     }
                 });
     }
@@ -67,6 +80,14 @@ public class User {
                         saveData = task.getResult().toObject(SaveData.class);
                     }
                 });
+        documentSnapshot.getReference()
+                .collection("data_segment")
+                .document("player_stats")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        playerStats = task.getResult().toObject(PlayerStats.class);
+                    }
+                });
     }
 
     public void updateFirestoreUserData() {
@@ -79,6 +100,8 @@ public class User {
 
         userDocument.collection("data_segment").document("save_data")
                 .set(getInstance().getSaveData(), SetOptions.merge());
+        userDocument.collection("data_segment").document("player_stats")
+                .set(getInstance().getPlayerStats(), SetOptions.merge());
     }
 
     public static User getInstance() {
@@ -100,11 +123,12 @@ public class User {
         return userXP;
     }
 
-    public void setUserXP(int userXP) {
-        this.userXP = userXP;
-        if (this.userXP > userLevel* 1800) {
+    public void addUserXP(int xp) {
+        userXP += xp;
+        getPlayerStats().setXpEarned(getPlayerStats().getXpEarned() + xp);
+        if (userXP >= userLevel*1800) {
+            userXP -= userLevel*1800;
             userLevel++;
-            this.userXP = 0;
         }
     }
 
@@ -126,5 +150,9 @@ public class User {
 
     public void setSaveData(SaveData saveData) {
         this.saveData = saveData;
+    }
+
+    public PlayerStats getPlayerStats() {
+        return playerStats;
     }
 }

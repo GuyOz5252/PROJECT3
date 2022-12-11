@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 import com.example.project2_rev2.data.TowerSaveData;
 import com.example.project2_rev2.data.TowerType;
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
@@ -82,6 +83,7 @@ public class TowerManager {
                 towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
         }
+        User.getInstance().getPlayerStats().setTowersPlaced(User.getInstance().getPlayerStats().getTowersPlaced() + 1);
     }
 
     public void drawTowerUpgradeUI(Canvas canvas) {

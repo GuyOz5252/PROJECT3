@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 
+import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 
@@ -53,6 +54,9 @@ public class GameValues {
     }
 
     public static void setPlayerCoins(int playerCoins) {
+        if (playerCoins > GameValues.playerCoins) {
+            User.getInstance().getPlayerStats().setMoneyEarned(User.getInstance().getPlayerStats().getMoneyEarned() + playerCoins-GameValues.getPlayerCoins());
+        }
         GameValues.playerCoins = playerCoins;
         coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
     }

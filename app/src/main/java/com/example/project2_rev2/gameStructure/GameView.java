@@ -275,7 +275,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitVictory.setOnTouchListener(this);
         btnContinue.setOnTouchListener(this);
 
-        User.getInstance().setUserXP(User.getInstance().getUserXP() + 1500);
+        User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
+        User.getInstance().getPlayerStats().setGamesWon(User.getInstance().getPlayerStats().getGamesWon() + 1);
+        User.getInstance().addUserXP(1500);
         User.getInstance().updateFirestoreUserData();
 
         victoryDialog.show();
@@ -337,6 +339,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         btnExitDeath.setOnTouchListener(this);
 
+        User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
+        User.getInstance().getPlayerStats().setGamesLost(User.getInstance().getPlayerStats().getGamesLost() + 1);
+        System.out.println("lose game");
         User.getInstance().getSaveData().setIsActive(false);
         User.getInstance().updateFirestoreUserData();
 

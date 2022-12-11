@@ -60,15 +60,4 @@ public class SaveData {
     public void setIsActive(boolean b) {
         isActive = b;
     }
-
-    @Override
-    public String toString() {
-        return "SaveData{" +
-                "sceneIndex=" + sceneIndex +
-                ", currentWave=" + currentWave +
-                ", money=" + money +
-                ", health=" + health +
-                ", towerArrayList=" + towerArrayList +
-                '}';
-    }
 }
