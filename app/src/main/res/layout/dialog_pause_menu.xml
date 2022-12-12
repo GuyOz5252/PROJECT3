@@ -40,7 +40,7 @@
             android:layout_marginBottom="5dp"
             android:text="resume"
             android:textSize="20dp"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="15dp" />
 
         <Button
             android:id="@+id/btnSave_pauseMenuDialog"
@@ -56,7 +56,7 @@
             android:layout_marginBottom="5dp"
             android:text="save"
             android:textSize="20dp"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="15dp" />
 
         <Button
             android:id="@+id/btnSettings_pauseMenuDialog"
@@ -72,7 +72,7 @@
             android:layout_marginBottom="5dp"
             android:text="settings"
             android:textSize="20dp"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="15dp" />
 
         <Button
             android:id="@+id/btnExit_pauseMenuDialog"
@@ -88,7 +88,7 @@
             android:layout_marginBottom="5dp"
             android:text="exit"
             android:textSize="20dp"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="15dp" />
 
     </RelativeLayout>
 

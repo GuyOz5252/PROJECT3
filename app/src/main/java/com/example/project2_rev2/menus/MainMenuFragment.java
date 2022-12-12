@@ -84,8 +84,8 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickSettings() {
-        firebaseAuth.signOut();
-        startActivity(new Intent(getContext(), Login.class));
+        startActivity(new Intent(getContext(), Settings.class));
+        ((Activity) view.getContext()).finish();
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {

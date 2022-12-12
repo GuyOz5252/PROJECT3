@@ -11,21 +11,30 @@
         android:layout_height="wrap_content"
         android:padding="30dp">
 
+        <TextView
+            android:id="@+id/txtConfirmUsername_deleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:text="Type your username to confirm"
+            android:textAlignment="center"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
         <EditText
-            android:id="@+id/edtMail_resetPasswordDialog"
+            android:id="@+id/edtUsernameConfirm_deleteAccountDialog"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-
+            android:layout_below="@+id/txtConfirmUsername_deleteAccount"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="5dp"
-
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edit_text_custom"
-            android:drawableStart="@drawable/email_icon_custom"
             android:drawablePadding="3dp"
-            android:hint="email"
+            android:hint="username"
             android:inputType="textEmailAddress"
             android:paddingVertical="8dp"
             android:paddingStart="10dp"
@@ -34,19 +43,16 @@
             android:textColorHint="@color/secondaryTextColor" />
 
         <Button
-            android:id="@+id/btnSendMail_resetPasswordDialog"
+            android:id="@+id/btnDeleteAccount_deleteAccountDialog"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-
-            android:layout_below="@+id/edtMail_resetPasswordDialog"
+            android:layout_below="@+id/edtUsernameConfirm_deleteAccountDialog"
             android:layout_centerHorizontal="true"
-
-            android:layout_marginStart="10dp"
             android:layout_marginTop="12dp"
-
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="send reset email"
+            android:backgroundTint="@color/red"
+            android:text="delete account"
             android:textSize="20dp"
             app:cornerRadius="15dp" />
 

@@ -29,12 +29,12 @@
         android:id="@+id/towerUpgradeCard_prev"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:alpha="0.6"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:alpha="0.6"
         android:scaleX="0.6"
         android:scaleY="0.6" />
 
@@ -42,9 +42,9 @@
         android:id="@+id/lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -59,19 +59,19 @@
             android:id="@+id/towerUpgradeCard_curr"
             android:layout_width="wrap_content"
             android:layout_height="260dp"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center">
+            android:padding="10dp">
 
             <LinearLayout
                 android:id="@+id/towerUpgradeCard_curr_pathOne"
                 android:layout_width="210dp"
                 android:layout_height="117dp"
-                android:gravity="top|center"
-                android:orientation="vertical"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_corners"
                 android:backgroundTint="@color/black"
-                android:layout_marginBottom="5dp">
+                android:gravity="top|center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,9 +95,9 @@
                 android:id="@+id/towerUpgradeCard_curr_pathTwo"
                 android:layout_width="210dp"
                 android:layout_height="117dp"
-                android:gravity="top|center"
                 android:background="@drawable/rounded_corners"
                 android:backgroundTint="@color/black"
+                android:gravity="top|center"
                 android:orientation="vertical">
 
                 <TextView
@@ -133,13 +133,13 @@
         android:id="@+id/towerUpgradeCard_next"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:gravity="center"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:alpha="0.6"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
         android:scaleX="0.6"
         android:scaleY="0.6" />
 

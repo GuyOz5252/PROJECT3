@@ -329,6 +329,16 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
 
     public void clickResetPassword() {
+        if (edtEmailResetPassword.getText().toString().isEmpty()) {
+            edtEmailResetPassword.setError("email required");
+            edtEmailResetPassword.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(edtEmailResetPassword.getText().toString()).matches()) {
+            edtEmailResetPassword.setError("invalid email");
+            edtEmailResetPassword.requestFocus();
+            return;
+        }
         firebaseAuth.sendPasswordResetEmail(edtEmailResetPassword.getText().toString()).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(Login.this, "email sent", Toast.LENGTH_SHORT).show();
