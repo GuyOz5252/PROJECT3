@@ -338,4 +338,10 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
         }
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainMenu.class));
+        this.finish();
+    }
 }

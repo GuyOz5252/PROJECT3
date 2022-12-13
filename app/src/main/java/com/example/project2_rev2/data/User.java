@@ -6,7 +6,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +39,6 @@ public class User {
         userDocument.collection("data_segment")
                 .document("save_data")
                 .set(new SaveData());
-                //.set(new SaveData(0, 0, 0, 0, new ArrayList<>(), false));
 
         userDocument.collection("data_segment")
                 .document("player_stats")
