@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
 
+            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -50,6 +51,7 @@
             android:layout_below="@+id/btnResume_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
+            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -66,6 +68,7 @@
             android:layout_below="@+id/btnSave_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
+            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -82,6 +85,7 @@
             android:layout_below="@+id/btnSettings_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
+            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"

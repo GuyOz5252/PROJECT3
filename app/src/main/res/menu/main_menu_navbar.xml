@@ -10,6 +10,7 @@
         android:id="@+id/home_mainMenuNavbar"/>
 
     <item android:title="Towers"
+        android:icon="@drawable/ic_tower"
         android:id="@+id/towers_mainMenuNavbar"/>
 
 </menu>
