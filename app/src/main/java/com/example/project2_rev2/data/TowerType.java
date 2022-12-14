@@ -55,7 +55,7 @@ public enum TowerType implements Serializable {
                     new String[] {
                             "bullets do double the damage",
                             "bullets are now bigger, they hurt more",
-                            "additional barrel to the turret, double the bullets shot"
+                            "add an additional barrel to the turret, doubling the bullets shot"
                     }
             ),
             new TowerUpgradePath(
@@ -93,7 +93,7 @@ public enum TowerType implements Serializable {
                     new int[] {300, 360, 480, 600},
                     new int[] {100, 950, 1800, 2800},
                     new String[] {
-                            "increase the flames reach",
+                            "increase the flame's reach",
                             "burn more enemies in the fire's range",
                             "burn even more enemies in the fire's range and increase damage done by the fire",
                             "increase the fire's reach to its limit, and burn every enemy in it's path"

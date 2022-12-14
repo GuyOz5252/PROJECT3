@@ -77,7 +77,23 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.put(EnemyType.DEMO_ENEMY, 500);
+        waveMap.put(EnemyType.DEMO_ENEMY, 100);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                30,
+                context
+        ));
+        waveMap.clear();
+        waveMap.put(EnemyType.DEMO_ENEMY, 150);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                28,
+                context
+        ));
+        waveMap.clear();
+        waveMap.put(EnemyType.DEMO_ENEMY, 200);
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,

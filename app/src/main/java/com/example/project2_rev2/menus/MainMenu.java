@@ -79,6 +79,6 @@ public class MainMenu extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        replaceFragment(mainMenuFragment);
+        navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
     }
 }
