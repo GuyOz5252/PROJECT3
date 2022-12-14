@@ -7,17 +7,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
+import com.example.project2_rev2.data.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchListener {
 
@@ -25,8 +30,11 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
     ImageButton btnPrevUpgrade, btnNextUpgrade, btnBack;
     TextView tvTowerName;
 
+    private TowerType towerType;
+
     private ArrayList<String>[] upgradeNameArrayList;
     private ArrayList<String>[] upgradeInfoArrayList;
+    private int[][] upgradeXpReqArray;
     private int currentIndex;
 
     @Override
@@ -62,6 +70,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         btnBack.setOnTouchListener(this);
 
         TowerType towerType = (TowerType) bundle.getSerializable("towerType");
+        this.towerType = towerType;
         tvTowerName.setText(towerType.towerName);
 
         upgradeNameArrayList = new ArrayList[2];
@@ -70,6 +79,11 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         upgradeInfoArrayList = new ArrayList[2];
         upgradeInfoArrayList[0] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathOne.upgradeInfo));
         upgradeInfoArrayList[1] = new ArrayList<>(Arrays.asList(towerType.towerUpgradePathTwo.upgradeInfo));
+        upgradeXpReqArray = new int[2][];
+        upgradeXpReqArray[0] = new int[towerType.towerUpgradePathOne.xpReq.length];
+        System.arraycopy(towerType.towerUpgradePathOne.xpReq, 0, upgradeXpReqArray[0], 0, towerType.towerUpgradePathOne.xpReq.length);
+        upgradeXpReqArray[1] = new int[towerType.towerUpgradePathTwo.xpReq.length];
+        System.arraycopy(towerType.towerUpgradePathTwo.xpReq, 0, upgradeXpReqArray[1], 0, towerType.towerUpgradePathTwo.xpReq.length);
 
         currentIndex = 0;
         cycleTowerUpgrades();
@@ -139,6 +153,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         upgradeInfoTextView.setLayoutParams(textViewParams);
         upgradeInfoTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeInfoTextView.setTextSize(16);
+        upgradeInfoTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         if (upgradeIndex < upgradeInfoArrayList[pathIndex].size()) {
             upgradeInfoTextView.setText(upgradeInfoArrayList[pathIndex].get(upgradeIndex));
         }
@@ -146,7 +161,30 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         linearLayout.addView(upgradeNameTextView);
         linearLayout.addView(upgradeInfoTextView);
 
-        return linearLayout;
+        LinearLayout finalLinearLayout = new LinearLayout(this);
+
+        if (upgradeXpReqArray[pathIndex].length > upgradeIndex && upgradeXpReqArray[pathIndex][upgradeIndex] > User.getInstance().getTowerXP(towerType)) {
+            RelativeLayout relativeLayout = new RelativeLayout(this);
+            linearLayout.getChildAt(0).setAlpha(0.5f);
+            linearLayout.getChildAt(1).setAlpha(0.5f);
+            relativeLayout.addView(linearLayout);
+            RelativeLayout.LayoutParams imageViewParams = new RelativeLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT
+            );
+            imageViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(imageViewParams);
+            imageView.setImageResource(R.drawable.ic_lock_unfocused);
+            imageView.setScaleX(3);
+            imageView.setScaleY(3);
+            relativeLayout.addView(imageView);
+            finalLinearLayout.addView(relativeLayout);
+        } else {
+            finalLinearLayout.addView(linearLayout);
+        }
+
+        return finalLinearLayout;
     }
 
     public void clickPrevUpgrade() {

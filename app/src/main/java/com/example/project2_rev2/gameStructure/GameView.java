@@ -341,7 +341,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
         User.getInstance().getPlayerStats().setGamesLost(User.getInstance().getPlayerStats().getGamesLost() + 1);
-        System.out.println("lose game");
         User.getInstance().getSaveData().setIsActive(false);
         User.getInstance().updateFirestoreUserData();
 
