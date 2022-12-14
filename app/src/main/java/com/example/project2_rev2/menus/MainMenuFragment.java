@@ -26,6 +26,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
@@ -50,7 +51,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     ImageView btnPrevLevel, btnNextLevel;
     ImageView levelThumbnail;
     ImageButton btnBackLevelSelect;
-    ArrayList<Level> levelArrayList;
+    ArrayList<Scene.Levels> levelArrayList;
     int currentLevelIndex;
 
     @Override
@@ -214,10 +215,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         currentLevelIndex = 0;
 
-        levelArrayList = new ArrayList<>();
-        for (String sceneTitle : Scene.sceneTitles) {
-            levelArrayList.add(new Level(sceneTitle, Level.getLevelThumbnail(sceneTitle)));
-        }
+        levelArrayList = new ArrayList<>(Arrays.asList(Scene.Levels.values()));
 
         cycleLevels();
     }
@@ -225,17 +223,17 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     public void cycleLevels() {
         if (currentLevelIndex == 0) {
             btnPrevLevel.setAlpha(0.5f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
             levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
             btnNextLevel.setAlpha(1f);
         } else if (currentLevelIndex == levelArrayList.size()-1) {
             btnPrevLevel.setAlpha(1f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
             levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
             btnNextLevel.setAlpha(0.5f);
         } else {
             btnPrevLevel.setAlpha(1f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).levelName);
+            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
             levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
             btnNextLevel.setAlpha(1f);
         }
@@ -329,27 +327,5 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
                 break;
         }
         return true;
-    }
-
-    public static class Level {
-
-        public String levelName;
-        public int thumbnail;
-
-        public Level(String levelName, int thumbnail) {
-            this.levelName = levelName;
-            this.thumbnail = thumbnail;
-        }
-
-        public static int getLevelThumbnail(String levelName) {
-            switch (levelName) {
-                case "DEMO 1":
-                    return R.drawable.level_thumbnail;
-                case "LEVEL":
-                    return R.drawable.level_thumbnail;
-                default:
-                    return 0;
-            }
-        }
     }
 }

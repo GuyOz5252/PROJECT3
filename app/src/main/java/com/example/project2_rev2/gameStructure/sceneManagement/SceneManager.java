@@ -16,7 +16,8 @@ public class SceneManager {
         switch (currentSceneIdx) {
             case 0:
                 this.currentScene = new DemoOne(actionsArray, loadSave, context);
-                this.levelName = Scene.sceneTitles[currentSceneIdx];
+                //this.levelName = Scene.sceneTitles[currentSceneIdx];
+                this.levelName = Scene.Levels.values()[currentSceneIdx].name;
         }
     }
 
