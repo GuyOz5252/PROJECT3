@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -26,14 +25,6 @@ import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.firestore.core.UserData;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
 
@@ -45,7 +36,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     // pause menu dialog elements
     Dialog pauseMenu;
-    Button btnResume, btnSave, btnSettings, btnExitPauseMenu;
+    Button btnResume, btnSettings, btnSaveAndExit, btnExitPauseMenu;
     TextView txtLevelName;
 
     // victory dialog elements
@@ -167,7 +158,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         pauseMenu.setTitle("Pause Menu");
 
         btnResume = pauseMenu.findViewById(R.id.btnResume_pauseMenuDialog);
-        btnSave = pauseMenu.findViewById(R.id.btnSave_pauseMenuDialog);
+        btnSaveAndExit = pauseMenu.findViewById(R.id.btnSaveAndExit_pauseMenuDialog);
         btnSettings = pauseMenu.findViewById(R.id.btnSettings_pauseMenuDialog);
         btnExitPauseMenu = pauseMenu.findViewById(R.id.btnExit_pauseMenuDialog);
         txtLevelName = pauseMenu.findViewById(R.id.txtLevelName_pauseMenuDialog);
@@ -175,12 +166,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnResume.setOnTouchListener(this);
         btnSettings.setOnTouchListener(this);
         btnExitPauseMenu.setOnTouchListener(this);
-        if (GameValues.canSave) {
-            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.primaryColor));
-            btnSave.setOnTouchListener(this);
-        } else {
-            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
-        }
+        btnSaveAndExit.setOnTouchListener(this);
 
         txtLevelName.setText(sceneManager.getLevelName());
 
@@ -204,24 +190,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         }
     }
 
-    public void clickSave() {
-        if (GameValues.canSave) {
-            sceneManager.saveGame();
-            GameValues.canSave = false;
-            btnSave.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
-            btnSave.setOnTouchListener(null);
-        }
-    }
-
-    public void clickSave(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickSave();
-            view.setAlpha(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
-        }
-    }
-
     public void clickSettings() {
 
     }
@@ -229,6 +197,22 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickSettings(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickSettings();
+            view.setAlpha(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setAlpha(0.5f);
+        }
+    }
+
+    public void clickSaveAndExit() {
+        sceneManager.saveGame();
+        btnSaveAndExit.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
+        btnSaveAndExit.setOnTouchListener(null);
+        clickExit();
+    }
+
+    public void clickSaveAndExit(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickSaveAndExit();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             view.setAlpha(0.5f);
@@ -375,8 +359,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             case R.id.btnResume_pauseMenuDialog:
                 clickResume(view, motionEvent);
                 break;
-            case R.id.btnSave_pauseMenuDialog:
-                clickSave(view, motionEvent);
+            case R.id.btnSaveAndExit_pauseMenuDialog:
+                clickSaveAndExit(view, motionEvent);
                 break;
             case R.id.btnSettings_pauseMenuDialog:
                 clickSettings(view, motionEvent);

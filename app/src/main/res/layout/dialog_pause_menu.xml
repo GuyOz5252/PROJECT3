@@ -44,36 +44,36 @@
             app:cornerRadius="15dp" />
 
         <Button
-            android:id="@+id/btnSave_pauseMenuDialog"
+            android:id="@+id/btnSettings_pauseMenuDialog"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
 
             android:layout_below="@+id/btnResume_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
-            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:text="save"
+            android:fontFamily="sans-serif-black"
+            android:text="settings"
             android:textSize="20dp"
             app:cornerRadius="15dp" />
 
         <Button
-            android:id="@+id/btnSettings_pauseMenuDialog"
+            android:id="@+id/btnSaveAndExit_pauseMenuDialog"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/btnSave_pauseMenuDialog"
+            android:layout_below="@+id/btnSettings_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
-            android:fontFamily="sans-serif-black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:text="settings"
+            android:fontFamily="sans-serif-black"
+            android:text="save and exit"
             android:textSize="20dp"
             app:cornerRadius="15dp" />
 
@@ -82,7 +82,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/btnSettings_pauseMenuDialog"
+            android:layout_below="@+id/btnSaveAndExit_pauseMenuDialog"
             android:layout_centerHorizontal="true"
 
             android:fontFamily="sans-serif-black"

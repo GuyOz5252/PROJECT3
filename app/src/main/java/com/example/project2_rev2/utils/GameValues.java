@@ -82,7 +82,6 @@ public class GameValues {
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;
-        canSave = true;
         playerCoins = START_COINS;
         playerHealth = START_HEALTH;
         colliderArrayList.clear();
