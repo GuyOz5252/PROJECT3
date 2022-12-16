@@ -205,8 +205,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickSaveAndExit() {
         sceneManager.saveGame();
-        btnSaveAndExit.setBackgroundColor(ContextCompat.getColor(this, R.color.upgradeLocked));
-        btnSaveAndExit.setOnTouchListener(null);
         clickExit();
     }
 

@@ -83,6 +83,7 @@ public abstract class Scene {
             GameValues.setPlayerCoins(saveData.getMoney());
             GameValues.setPlayerHealth(saveData.getHealth());
             towerManager.setTowerArrayList(saveData.getTowerArrayList());
+            GameValues.isFinished = saveData.getIsFinished();
         }
     }
 
@@ -93,6 +94,7 @@ public abstract class Scene {
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
                 towerManager.getTowerArrayList(),
+                GameValues.isFinished,
                 true
         ));
     }

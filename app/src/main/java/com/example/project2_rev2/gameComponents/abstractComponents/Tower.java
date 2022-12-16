@@ -38,7 +38,6 @@ public abstract class Tower extends BitmapObject {
     protected boolean isActive;
 
     protected int range;
-    protected int value;
     protected Projectile.ProjectileType projectileType;
     private Paint rangeCirclePaint;
     private Paint rangeBorderPaint;
@@ -54,7 +53,7 @@ public abstract class Tower extends BitmapObject {
     protected TowerUpgradeUI towerUpgradeUI;
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;
     protected int[] pathLevels;
-    protected int upgradeCount;
+    protected int moneySpent;
 
     protected boolean isDoubleShot;
 
@@ -67,7 +66,6 @@ public abstract class Tower extends BitmapObject {
         this.collider = collider;
         this.isActive = true;
         this.projectileType = towerType.projectileType;
-        this.value = towerType.value;
         this.range = towerType.range;
         this.cooldown = towerType.cooldown;
         this.rangeCirclePaint = new Paint();
@@ -91,7 +89,7 @@ public abstract class Tower extends BitmapObject {
                 towerType.towerUpgradePathTwo
         };
         this.pathLevels = new int[] {0, 0};
-        this.upgradeCount = 0;
+        this.moneySpent = towerType.value;
         this.towerUpgradeUI = new TowerUpgradeUI(this, context);
         this.isDoubleShot = false;
     }
@@ -128,12 +126,8 @@ public abstract class Tower extends BitmapObject {
         return pathLevels;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public int getUpgradeCount() {
-        return upgradeCount;
+    public int getMoneySpent() {
+        return moneySpent;
     }
 
     public boolean getIsDoubleShot() {
@@ -223,6 +217,8 @@ public abstract class Tower extends BitmapObject {
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
+
+        System.out.println(moneySpent);
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

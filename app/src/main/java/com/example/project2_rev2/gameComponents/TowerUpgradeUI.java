@@ -13,13 +13,10 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.gameComponents.TextUI;
-import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.button.SellTowerButton;
 import com.example.project2_rev2.gameComponents.button.UpgradeButton;
 import com.example.project2_rev2.menus.TowerUpgradeInfo;
-import com.example.project2_rev2.utils.HelperMethods;
 
 public class TowerUpgradeUI {
 
@@ -97,7 +94,7 @@ public class TowerUpgradeUI {
     }
 
     public void postUpgrade() {
-        sellTowerButton.updateSellPrice((int)(tower.getValue()*0.75 + 100*tower.getUpgradeCount()));
+        sellTowerButton.updateSellPrice((int)(tower.getMoneySpent()*0.75));
     }
 
     public void draw(Canvas canvas) {

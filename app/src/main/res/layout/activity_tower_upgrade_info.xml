@@ -28,13 +28,17 @@
     <LinearLayout
         android:id="@+id/towerUpgradeCard_prev"
         android:layout_width="wrap_content"
-        android:layout_height="260dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lv"
+        android:layout_marginEnd="-20dp"
+        android:layout_toStartOf="@+id/lv"
         android:alpha="0.6"
-        android:gravity="center"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center_horizontal"
+        android:minWidth="220dp"
+        android:minHeight="250dp"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingVertical="15dp"
         android:scaleX="0.6"
         android:scaleY="0.6" />
 
@@ -42,9 +46,7 @@
         android:id="@+id/lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -58,10 +60,9 @@
         <LinearLayout
             android:id="@+id/towerUpgradeCard_curr"
             android:layout_width="wrap_content"
-            android:layout_height="260dp"
+            android:layout_height="240dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/towerUpgradeCard_curr_pathOne"
@@ -132,14 +133,17 @@
     <LinearLayout
         android:id="@+id/towerUpgradeCard_next"
         android:layout_width="wrap_content"
-        android:layout_height="260dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lv"
+        android:layout_marginStart="-20dp"
+        android:layout_toEndOf="@+id/lv"
         android:alpha="0.6"
-        android:gravity="center"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center_horizontal"
+        android:minWidth="220dp"
+        android:minHeight="250dp"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingVertical="15dp"
         android:scaleX="0.6"
         android:scaleY="0.6" />
 

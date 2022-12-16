@@ -110,8 +110,8 @@ public class Turret extends Tower {
                     }
                 }
 
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
                 return true;
             }
@@ -143,8 +143,8 @@ public class Turret extends Tower {
 
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 // path two
@@ -162,8 +162,8 @@ public class Turret extends Tower {
                     case 3:
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }

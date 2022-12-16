@@ -12,7 +12,6 @@ import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.SellPriceTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
@@ -30,7 +29,7 @@ public class SellTowerButton extends Button {
     public SellTowerButton(Tower tower, Context context) {
         super(xCoordinate(60), yCoordinate(790), R.drawable.sell_button_background, new Size(230, 60), context);
         this.tower = tower;
-        this.currentPrice = (int)(0.8*tower.getValue() + 100*tower.getUpgradeCount());
+        this.currentPrice = (int)(tower.getMoneySpent()*0.75);
         this.sellPriceTextUI = new SellPriceTextUI(
                 (centerPosition.x)-15,
                 (centerPosition.y)+13,

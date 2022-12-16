@@ -11,11 +11,12 @@ public class SaveData {
     private int money;
     private int health;
     private ArrayList<TowerSaveData> towerArrayList;
+    private boolean isFinished;
     private boolean isActive;
 
     public SaveData() {} // firestore object mapper
 
-    public SaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Tower> towerList, boolean isActive) {
+    public SaveData(int sceneIndex, int currentWave, int money, int health, ArrayList<Tower> towerList, boolean isFinished, boolean isActive) {
         this.sceneIndex = sceneIndex;
         this.currentWave = currentWave;
         this.money = money;
@@ -30,6 +31,7 @@ public class SaveData {
                     tower.getCollider()
             ));
         }
+        this.isFinished = isFinished;
         this.isActive = isActive;
     }
 
@@ -51,6 +53,10 @@ public class SaveData {
 
     public ArrayList<TowerSaveData> getTowerArrayList() {
         return towerArrayList;
+    }
+
+    public boolean getIsFinished() {
+        return isFinished;
     }
 
     public boolean getIsActive() {

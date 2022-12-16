@@ -250,8 +250,8 @@ public class FireSpreader extends Tower {
                     }
                 }
 
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
                 return true;
             }
@@ -284,8 +284,8 @@ public class FireSpreader extends Tower {
                         interval = 10;
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 // path two
@@ -311,8 +311,8 @@ public class FireSpreader extends Tower {
                         cooldown = 0;
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }

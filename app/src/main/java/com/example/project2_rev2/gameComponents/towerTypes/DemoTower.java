@@ -58,8 +58,9 @@ public class DemoTower extends Tower {
                     }
                 }
 
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
+                GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]-1]);
                 return true;
             }
         }
@@ -81,8 +82,8 @@ public class DemoTower extends Tower {
                         range = 500;
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathOne().postUpgrade();
             } else {
                 switch (i) {
@@ -96,8 +97,8 @@ public class DemoTower extends Tower {
                         cooldown = 18;
                         break;
                 }
+                moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
                 pathLevels[upgradePathIndex]++;
-                upgradeCount++;
                 towerUpgradeUI.getUpgradeButtonPathTwo().postUpgrade();
             }
         }
