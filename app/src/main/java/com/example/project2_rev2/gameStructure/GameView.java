@@ -2,10 +2,10 @@ package com.example.project2_rev2.gameStructure;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.project2_rev2.recivers.BatteryReceiver;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -33,6 +34,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     private Display display;
     private Rect gameCanvasRect;
+
+    private BatteryReceiver batteryReceiver;
 
     // pause menu dialog elements
     Dialog pauseMenu;
@@ -110,6 +113,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                     this
             );
         }
+
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
+        batteryReceiver = new BatteryReceiver(this);
+        registerReceiver(batteryReceiver, intentFilter);
     }
 
     public void update() {
@@ -388,5 +395,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     protected void onPause() {
         mainThread.stopThread();
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(batteryReceiver);
+        super.onDestroy();
     }
 }
