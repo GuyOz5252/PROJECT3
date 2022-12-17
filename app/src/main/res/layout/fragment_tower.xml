@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/towerCard_prev"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/lv"
         android:layout_marginEnd="-20dp"
@@ -28,8 +28,6 @@
         android:alpha="0.6"
         android:background="@drawable/rounded_corners"
         android:gravity="center_horizontal"
-        android:minWidth="220dp"
-        android:minHeight="250dp"
         android:orientation="vertical"
         android:paddingVertical="15dp"
         android:scaleX="0.6"
@@ -157,7 +155,7 @@
 
     <LinearLayout
         android:id="@+id/towerCard_next"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/lv"
         android:layout_marginStart="-20dp"
@@ -165,8 +163,6 @@
         android:alpha="0.6"
         android:background="@drawable/rounded_corners"
         android:gravity="center_horizontal"
-        android:minWidth="220dp"
-        android:minHeight="250dp"
         android:orientation="vertical"
         android:paddingVertical="15dp"
         android:scaleX="0.6"

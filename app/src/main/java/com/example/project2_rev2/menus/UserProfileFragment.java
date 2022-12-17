@@ -56,7 +56,7 @@ public class UserProfileFragment extends Fragment {
         rvPlayerStats.setLayoutManager(new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {
-                return false;
+                return true;
             }
         });
     }

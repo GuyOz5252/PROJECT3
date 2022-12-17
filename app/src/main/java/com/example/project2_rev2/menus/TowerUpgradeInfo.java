@@ -127,7 +127,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
 
         float scale = this.getResources().getDisplayMetrics().density;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)(210 * scale + 0.5f), (int)(117 * scale + 0.5f));
-        params.setMargins(0, 0, 0, 5);
+        params.setMargins(0, 0, 0, 10);
         linearLayout.setLayoutParams(params);
         linearLayout.setPadding(30, 0, 30, 0);
         linearLayout.setGravity(Gravity.CENTER|Gravity.TOP);
