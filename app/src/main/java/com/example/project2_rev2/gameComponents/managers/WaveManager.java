@@ -56,6 +56,10 @@ public class WaveManager {
         waveCounter.changeText("WAVE: " + currentWaveIndex + "/" + waveArrayList.size());
     }
 
+    public boolean getIsSpawning() {
+        return isSpawning;
+    }
+
     public ArrayList<Enemy> getAliveList() {
         return aliveList;
     }

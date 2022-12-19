@@ -54,7 +54,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playerStatsRecyclerView"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/txtUsername_userProfile"
         android:layout_marginStart="15dp"
         android:layout_marginTop="0dp" />

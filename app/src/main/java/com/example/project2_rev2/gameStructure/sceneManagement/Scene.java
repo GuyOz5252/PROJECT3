@@ -102,7 +102,7 @@ public abstract class Scene {
     public void saveGame() {
         User.getInstance().setSaveData(new SaveData(
                 0,
-                waveManager.getCurrentWave(),
+                (waveManager.getAliveList().isEmpty() || waveManager.getIsSpawning()) ? waveManager.getCurrentWave() : waveManager.getCurrentWave()-1,
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
                 towerManager.getTowerArrayList(),

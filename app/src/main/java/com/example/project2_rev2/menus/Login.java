@@ -148,9 +148,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void createLoginDialog(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             createLoginDialog();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -181,9 +183,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickLogin(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickLogin();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -196,9 +200,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickGoogle(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickGoogle();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -210,9 +216,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickedResetPassword(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickedResetPassword();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     //=====================================//
@@ -244,9 +252,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void createRegisterDialog(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             createRegisterDialog();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -295,9 +305,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickRegister(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickRegister();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     //====================================//
@@ -347,9 +359,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickResetPassword(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickResetPassword();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     //====================================//
@@ -358,8 +372,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             startActivity(new Intent(this, MainMenu.class));
             this.finish();
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha((float)0.5);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 

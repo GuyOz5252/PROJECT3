@@ -104,21 +104,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         );
 
         Bundle bundle = getIntent().getExtras();
-        if (!bundle.getBoolean("loadSave", false)) {
-            sceneManager = new SceneManager( // receive the index of the requested scene and init a new sceneManager with that scene
-                    bundle.getInt("sceneIndex", 0),
-                    new Action[] {pause, victory, death},
-                    bundle.getBoolean("loadSave", false),
-                    this
-            );
-        } else {
-            sceneManager = new SceneManager( // receive the index of the requested scene and init a new sceneManager with that scene
-                    User.getInstance().getSaveData().getSceneIndex(),
-                    new Action[] {pause, victory, death},
-                    bundle.getBoolean("loadSave", false),
-                    this
-            );
-        }
+        sceneManager = new SceneManager( // receive the index of the requested scene and init a new sceneManager with that scene
+                (bundle.getBoolean("loadSave", false)) ? User.getInstance().getSaveData().getSceneIndex() : bundle.getInt("sceneIndex", 0),
+                new Action[] {pause, victory, death},
+                bundle.getBoolean("loadSave", false),
+                this
+        );
 
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
         batteryReceiver = new BroadcastReceiver() {
@@ -202,9 +193,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickResume(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickResume();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -215,9 +208,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickSettings(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickSettings();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -230,9 +225,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             pauseMenu.dismiss();
             clickSaveAndExit();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -245,9 +242,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickExit(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickExit();
-            view.setAlpha(1);
+            view.setScaleX(1);
+            view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setAlpha(0.5f);
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
     /*****/
