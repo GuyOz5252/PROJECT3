@@ -10,7 +10,8 @@
         android:id="@+id/frameLayout_mainMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_alignBaseline="@+id/NavBar_mainMenu"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/NavBar_mainMenu"

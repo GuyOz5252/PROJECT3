@@ -52,7 +52,7 @@ public abstract class Scene {
         this.coverRect = new Rect[] {
                 new Rect(
                         (int)xCoordinate(gameDisplay.size.width),
-                        (int)yCoordinate(0),
+                        0,
                         (int)display.size.width,
                         (int)yCoordinate(display.size.height)
                 ),
@@ -60,6 +60,18 @@ public abstract class Scene {
                         0,
                         0,
                         (int)xCoordinate(0),
+                        (int)display.size.height
+                ),
+                new Rect(
+                        (int)xCoordinate(0),
+                        0,
+                        (int)xCoordinate(gameDisplay.size.width),
+                        (int)yCoordinate(0)
+                ),
+                new Rect(
+                        (int)xCoordinate(0),
+                        (int)yCoordinate(gameDisplay.size.height),
+                        (int)xCoordinate(gameDisplay.size.width),
                         (int)display.size.height
                 )
         };

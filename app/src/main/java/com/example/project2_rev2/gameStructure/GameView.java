@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Canvas;
@@ -18,7 +20,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.project2_rev2.recivers.BatteryReceiver;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -35,7 +36,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     private Display display;
     private Rect gameCanvasRect;
 
-    private BatteryReceiver batteryReceiver;
+    private BroadcastReceiver batteryReceiver;
 
     // pause menu dialog elements
     Dialog pauseMenu;
@@ -49,6 +50,11 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     // death dialog elements
     Dialog deathDialog;
     RelativeLayout btnExitDeath;
+
+    // battery low dialog
+    Dialog batteryLow;
+    TextView txtBatteryLowWarning;
+    Button btnContinueLowBattery, btnSaveAndExitLowBattery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +121,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         }
 
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
-        batteryReceiver = new BatteryReceiver(this);
+        batteryReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                createBatteryLowDialog();
+            }
+        };
         registerReceiver(batteryReceiver, intentFilter);
     }
 
@@ -162,7 +173,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         pauseMenu.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        pauseMenu.setTitle("Pause Menu");
+        pauseMenu.setTitle("pause menu");
 
         btnResume = pauseMenu.findViewById(R.id.btnResume_pauseMenuDialog);
         btnSaveAndExit = pauseMenu.findViewById(R.id.btnSaveAndExit_pauseMenuDialog);
@@ -217,6 +228,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public void clickSaveAndExit(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            pauseMenu.dismiss();
             clickSaveAndExit();
             view.setAlpha(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -225,7 +237,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickExit() {
-        pauseMenu.dismiss();
         User.getInstance().updateFirestoreUserData();
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
@@ -256,7 +267,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         decorView.setSystemUiVisibility(flags);
         victoryDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         victoryDialog.setCancelable(false);
-        victoryDialog.setTitle("Victory Dialog");
+        victoryDialog.setTitle("victory");
 
         btnExitVictory = victoryDialog.findViewById(R.id.btnHome_victoryDialog);
         btnContinue = victoryDialog.findViewById(R.id.btnContinue_victoryDialog);
@@ -322,7 +333,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(flags);
         deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        deathDialog.setTitle("Death Dialog");
+        deathDialog.setTitle("death");
 
         btnExitDeath = deathDialog.findViewById(R.id.btnHome_deathDialog);
 
@@ -348,6 +359,57 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void clickHomeDeath(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickHomeDeath();
+            view.setScaleX(1f);
+            view.setScaleY(1f);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+    /*****/
+
+    /***battery low dialog***/
+    public void createBatteryLowDialog() {
+        batteryLow = new Dialog(this);
+        batteryLow.setContentView(R.layout.dialog_confirm);
+        View decorView = batteryLow.getWindow().getDecorView();
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(flags);
+        batteryLow.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
+        batteryLow.setTitle("battery low");
+
+        txtBatteryLowWarning = batteryLow.findViewById(R.id.txtConfirmMessege_confirm);
+        btnContinueLowBattery = batteryLow.findViewById(R.id.btnYes_confirm);
+        btnSaveAndExitLowBattery = batteryLow.findViewById(R.id.btnNo_confirm);
+
+        txtBatteryLowWarning.setText("BATTERY LOW!\nAre you sure you want to continue?");
+        btnContinueLowBattery.setText("continue");
+        btnSaveAndExitLowBattery.setText("save and exit");
+        btnContinueLowBattery.setOnTouchListener(this);
+        btnSaveAndExitLowBattery.setOnTouchListener(this);
+
+        batteryLow.show();
+    }
+
+    public void clickContinueLowBattery(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            batteryLow.dismiss();
+            view.setScaleX(1f);
+            view.setScaleY(1f);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickSaveAndExitLowBattery(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickSaveAndExit();
             view.setScaleX(1f);
             view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -383,6 +445,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             //=death dialog=//
             case R.id.btnHome_deathDialog:
                 clickHomeDeath(view, motionEvent);
+                break;
+            //=battery low=//
+            case R.id.btnYes_confirm:
+                clickContinueLowBattery(view, motionEvent);
+                break;
+            case R.id.btnNo_confirm:
+                clickSaveAndExitLowBattery(view, motionEvent);
                 break;
         }
         return true;

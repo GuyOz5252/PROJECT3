@@ -3,7 +3,6 @@ package com.example.project2_rev2.data;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PlayerStats {
 

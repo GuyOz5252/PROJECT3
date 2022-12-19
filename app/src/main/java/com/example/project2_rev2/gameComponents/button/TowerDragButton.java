@@ -93,7 +93,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     }
 
     public void setY(int y) {
-        this.position.y = y;
+        this.position.y = (int)yCoordinate(y);
         this.buttonRect.set((int)xCoordinate(80), (int)yCoordinate(y), (int)xCoordinate(80+size.width), (int)yCoordinate(y+size.height));
         centerPosition.y = position.y+bitmap.getHeight()/2;
         pressedPosition.y = position.y+size.height/40;
