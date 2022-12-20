@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.menus.Settings;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
@@ -202,7 +203,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickSettings() {
-
+        Settings settings = new Settings(false, this);
+        settings.show();
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {

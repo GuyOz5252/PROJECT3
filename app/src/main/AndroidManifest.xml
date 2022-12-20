@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project2rev2">
         <activity
-            android:name=".menus.Settings"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".menus.TowerUpgradeInfo"
             android:exported="false"
             android:label="@string/title_activity_tower_upgrade_info"

@@ -1,33 +1,35 @@
 package com.example.project2_rev2.menus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.checkerframework.checker.guieffect.qual.UI;
+public class Settings extends Dialog implements View.OnTouchListener {
 
-public class Settings extends AppCompatActivity implements View.OnTouchListener {
+    private Context context;
 
+    private String state;
+
+    ImageButton btnBack, btnAccountSettings;
     Button btnLogout, btnChangePassword, btnDeleteAccount;
-    ImageButton btnBack;
 
     // confirm dialog elements
     Dialog confirmDialog;
@@ -44,30 +46,92 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
     EditText edtUsernameConfirm;
     Button btnDeleteAccountDialog;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+    public Settings(boolean accountSettings, @NonNull Context context) {
+        super(context);
+        this.context = context;
         View decorView = getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        setContentView(R.layout.dialog_settings);
+        int flags;
+        if (!accountSettings) {
+            findViewById(R.id.accountSettings_linearLayout).setVisibility(View.INVISIBLE);
+            flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        } else {
+            flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        }
         decorView.setSystemUiVisibility(flags);
-        decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
-        setContentView(R.layout.activity_settings);
+        setCancelable(false);
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
 
-        btnLogout = findViewById(R.id.btnLogout_settings);
-        btnChangePassword = findViewById(R.id.btnChangePassword_settings);
-        btnDeleteAccount = findViewById(R.id.btnDeleteAccount_settings);
+        bindSettings();
+    }
+
+    public void bindSettings() {
+        state = "SETTINGS";
+        btnAccountSettings = findViewById(R.id.btnAccountSettings_settingsDialog);
         btnBack = findViewById(R.id.btnBack_settings);
+        btnAccountSettings.setOnTouchListener(this);
+        btnBack.setOnTouchListener(this);
+        btnAccountSettings.getDrawable().setTint(ContextCompat.getColor(context, R.color.transparentWhite));
+    }
 
+    public void bindAccountSettings() {
+        state = "ACCOUNT";
+        setContentView(R.layout.dialog_account_settings);
+        btnBack = findViewById(R.id.btnBack_settings);
+        btnLogout = findViewById(R.id.btnLogout_accountSettings);
+        btnChangePassword = findViewById(R.id.btnChangePassword_accountSettings);
+        btnDeleteAccount = findViewById(R.id.btnDeleteAccount_accountSettings);
+        btnBack.setOnTouchListener(this);
         btnLogout.setOnTouchListener(this);
         btnChangePassword.setOnTouchListener(this);
         btnDeleteAccount.setOnTouchListener(this);
-        btnBack.setOnTouchListener(this);
     }
 
+    public void clickAccountSettings() {
+        bindAccountSettings();
+    }
+
+    public void clickAccountSettings(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickAccountSettings();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    public void clickBack() {
+        if (state.equals("SETTINGS")) {
+            dismiss();
+        } else if (state.equals("ACCOUNT")) {
+            setContentView(R.layout.dialog_settings);
+            bindSettings();
+        }
+    }
+
+    public void clickBack(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickBack();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
+    }
+
+    //============account settings=========//
     public void clickLogout() {
         createConfirmDialog(" logout?");
     }
@@ -112,26 +176,11 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
             view.setScaleY(0.9f);
         }
     }
-
-    public void clickBack() {
-        startActivity(new Intent(this, MainMenu.class));
-        this.finish();
-    }
-
-    public void clickBack(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickBack();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
+    //=====================================//
 
     //===========confirm dialog============//
     public void createConfirmDialog(String messege) {
-        confirmDialog = new Dialog(this);
+        confirmDialog = new Dialog(context);
         View decorView = confirmDialog.getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -157,8 +206,8 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
     public void clickYes() {
         if (txtConfirmMessege.getText().toString().equals("Are you sure you want to logout?")) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, Login.class));
-            this.finish();
+            context.startActivity(new Intent(context, Login.class));
+            ((Activity)context).finish();
         }
     }
 
@@ -189,9 +238,9 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
     }
     //=====================================//
 
-    //=======reset password dialog=======//
+    //=======reset password dialog=========//
     public void createResetPasswordDialog() {
-        resetPassword = new Dialog(this);
+        resetPassword = new Dialog(context);
         View decorView = resetPassword.getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -223,9 +272,9 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
         }
         FirebaseAuth.getInstance().sendPasswordResetEmail(edtEmailResetPassword.getText().toString()).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(this, "email sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "email sent", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         resetPassword.dismiss();
@@ -245,7 +294,7 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
 
     //========delete account dialog=======//
     public void createDeleteAccountDialog() {
-        deleteAccount = new Dialog(this);
+        deleteAccount = new Dialog(context);
         View decorView = deleteAccount.getWindow().getDecorView();
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -276,17 +325,17 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
-                                    Toast.makeText(Settings.this, "user deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(Settings.this, task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } else {
-                            Toast.makeText(Settings.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-            startActivity(new Intent(Settings.this, Login.class));
-            this.finish();
+            context.startActivity(new Intent(context, Login.class));
+            ((Activity)context).finish();
         } else {
             edtUsernameConfirm.setError("incorrect username");
             edtUsernameConfirm.requestFocus();
@@ -308,17 +357,21 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
-            case R.id.btnLogout_settings:
-                clickLogout(view, motionEvent);
-                break;
-            case R.id.btnChangePassword_settings:
-                clickChangePassword(view, motionEvent);
-                break;
-            case R.id.btnDeleteAccount_settings:
-                clickDeleteAccount(view, motionEvent);
+            case R.id.btnAccountSettings_settingsDialog:
+                clickAccountSettings(view, motionEvent);
                 break;
             case R.id.btnBack_settings:
                 clickBack(view, motionEvent);
+                break;
+            //=account settings=//
+            case R.id.btnLogout_accountSettings:
+                clickLogout(view, motionEvent);
+                break;
+            case R.id.btnChangePassword_accountSettings:
+                clickChangePassword(view, motionEvent);
+                break;
+            case R.id.btnDeleteAccount_accountSettings:
+                clickDeleteAccount(view, motionEvent);
                 break;
             //=confirm dialog=//
             case R.id.btnYes_confirm:
@@ -341,7 +394,6 @@ public class Settings extends AppCompatActivity implements View.OnTouchListener 
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, MainMenu.class));
-        this.finish();
+        clickBack();
     }
 }

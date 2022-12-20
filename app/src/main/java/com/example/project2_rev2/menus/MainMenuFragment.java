@@ -2,6 +2,7 @@ package com.example.project2_rev2.menus;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,7 +24,6 @@ import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameStructure.GameView;
 import com.example.project2_rev2.gameStructure.sceneManagement.Scene;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,8 +31,6 @@ import java.util.Arrays;
 public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     private View view;
-
-    private FirebaseAuth firebaseAuth;
 
     ImageButton btnSettings;
     TextView btnPlay;
@@ -57,8 +55,6 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-
-        firebaseAuth = FirebaseAuth.getInstance();
 
         btnSettings = view.findViewById(R.id.btnSettings_mainMenuFragment);
         btnPlay = view.findViewById(R.id.btnPlay_mainMenuFragment);
@@ -85,8 +81,10 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickSettings() {
-        startActivity(new Intent(getContext(), Settings.class));
-        ((Activity) view.getContext()).finish();
+        btnPlay.setVisibility(View.INVISIBLE);
+        Settings settings = new Settings(true, getContext());
+        settings.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
+        settings.show();
     }
 
     public void clickSettings(View view, MotionEvent motionEvent) {
@@ -145,7 +143,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         startGame.show();
 
-        startGame.setOnDismissListener(dialog -> btnPlay.setVisibility(View.VISIBLE));
+        startGame.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
     }
 
     public void clickNewGame() {
