@@ -80,7 +80,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
         btnBack = findViewById(R.id.btnBack_settings);
         btnAccountSettings.setOnTouchListener(this);
         btnBack.setOnTouchListener(this);
-        btnAccountSettings.getDrawable().setTint(ContextCompat.getColor(context, R.color.transparentWhite));
     }
 
     public void bindAccountSettings() {

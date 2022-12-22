@@ -26,7 +26,6 @@ import com.example.project2_rev2.gameComponents.managers.DeathManager;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
-import com.example.project2_rev2.menus.MainMenuFragment;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.utils.GameValues;
 
@@ -127,6 +126,7 @@ public abstract class Scene {
             canvas.drawRect(rect, coverPaint);
         }
     }
+
     public void update() {
         towerBar.update();
         waveManager.update();
@@ -143,7 +143,7 @@ public abstract class Scene {
     }
 
     public enum Levels {
-        DEMO_1("DEMO 1", R.drawable.level_thumbnail);
+        DEMO_1("DEMO 1", R.drawable.level_thumbnail_placeholder);
 
         public String name;
         public int thumbnail;

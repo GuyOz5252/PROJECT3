@@ -28,6 +28,7 @@ import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
 
@@ -47,6 +48,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     // victory dialog elements
     Dialog victoryDialog;
     RelativeLayout btnExitVictory, btnContinue;
+    LinearProgressIndicator xpProgressBar;
+    TextView txtPlayerLevel;
 
     // death dialog elements
     Dialog deathDialog;
@@ -272,6 +275,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         btnExitVictory = victoryDialog.findViewById(R.id.btnHome_victoryDialog);
         btnContinue = victoryDialog.findViewById(R.id.btnContinue_victoryDialog);
+        xpProgressBar = victoryDialog.findViewById(R.id.xpProgressBar_victoryDialog);
+        txtPlayerLevel = victoryDialog.findViewById(R.id.txtLevel_victoryDialog);
 
         btnExitVictory.setOnTouchListener(this);
         btnContinue.setOnTouchListener(this);
@@ -280,6 +285,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         User.getInstance().getPlayerStats().setGamesWon(User.getInstance().getPlayerStats().getGamesWon() + 1);
         User.getInstance().addUserXP(1500);
         User.getInstance().updateFirestoreUserData();
+
+        int level = User.getInstance().getUserLevel();
+        double xp = User.getInstance().getUserXP();
+        double max = level*1800;
+        double percentage = (xp/max)*100;
+        xpProgressBar.setProgress((int)percentage, true);
+        txtPlayerLevel.setText(String.valueOf(level));
 
         victoryDialog.show();
     }

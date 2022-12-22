@@ -46,7 +46,7 @@
             android:adjustViewBounds="true"
             android:maxWidth="350dp"
             android:maxHeight="300dp"
-            android:src="@drawable/level_thumbnail" />
+            android:src="@drawable/level_thumbnail_placeholder" />
 
         <ImageButton
             android:id="@+id/btnNextLevel"
