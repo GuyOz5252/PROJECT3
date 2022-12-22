@@ -1,5 +1,8 @@
 package com.example.project2_rev2.gameComponents.managers;
 
+import static com.example.project2_rev2.utils.GameValues.xCoordinate;
+import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -16,7 +19,6 @@ import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class TowerManager {
 
@@ -49,13 +51,13 @@ public class TowerManager {
         towerSaveDataArrayList.forEach(towerSaveData -> {
             switch (towerSaveData.getType()) {
                 case "DEMO_TOWER":
-                    towerArrayList.add(new DemoTower(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new DemoTower(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
                     break;
                 case "TURRET":
-                    towerArrayList.add(new Turret(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new Turret(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
                     break;
                 case "FIRE_SPREADER":
-                    towerArrayList.add(new FireSpreader(towerSaveData.getPosition().x, towerSaveData.getPosition().y, towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
                     break;
             }
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());

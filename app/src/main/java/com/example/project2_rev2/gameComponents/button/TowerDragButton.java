@@ -206,7 +206,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
                     }
                 }
                 if (b) {
-                    towerManager.addTower(towerType, (motionEvent.getX()), (motionEvent.getY()));
+                    towerManager.addTower(towerType, motionEvent.getX(), motionEvent.getY());
                     GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerType.value);
                 }
 
