@@ -183,14 +183,23 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
             if (action == MotionEvent.ACTION_MOVE) {
                 draggedTower.setPosition(motionEvent.getX() - draggedTower.getSize().width / 2, motionEvent.getY() - draggedTower.getSize().height / 2);
 
-                boolean b = true;
+                boolean isColliding = false;
                 for (Rect rect : GameValues.colliderArrayList) {
-                    b = !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY());
-                    if (!b) {
+                    isColliding = (rect.contains((int)(motionEvent.getX()-towerType.size.width/2), (int)(motionEvent.getY()-towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()+towerType.size.width/2), (int)(motionEvent.getY()+towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()+towerType.size.width/2), (int)(motionEvent.getY()-towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()-towerType.size.width/2), (int)(motionEvent.getY()+towerType.size.height/2)));
+                    if (towerType == TowerType.TURRET) {
+                        isColliding = (rect.contains((int)(motionEvent.getX()-towerType.size.width/2)+35, (int)(motionEvent.getY()-towerType.size.height/2)+30)) ||
+                                (rect.contains((int)(motionEvent.getX()+towerType.size.width/2)-25, (int)(motionEvent.getY()+towerType.size.height/2)-30)) ||
+                                (rect.contains((int)(motionEvent.getX()+towerType.size.width/2)-25, (int)(motionEvent.getY()-towerType.size.height/2)+30)) ||
+                                (rect.contains((int)(motionEvent.getX()-towerType.size.width/2)+35, (int)(motionEvent.getY()+towerType.size.height/2)-30));
+                    }
+                    if (isColliding) {
                         break;
                     }
                 }
-                if (b) {
+                if (!isColliding) {
                     rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
                 } else {
                     rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.invalidRangeCircle));
@@ -198,14 +207,23 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
             } else if (action == MotionEvent.ACTION_UP) {
 
                 // collider check
-                boolean b = true;
+                boolean isColliding = false;
                 for (Rect rect : GameValues.colliderArrayList) {
-                    b = !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY());
-                    if (!b) {
+                    isColliding = (rect.contains((int)(motionEvent.getX()-towerType.size.width/2), (int)(motionEvent.getY()-towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()+towerType.size.width/2), (int)(motionEvent.getY()+towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()+towerType.size.width/2), (int)(motionEvent.getY()-towerType.size.height/2))) ||
+                            (rect.contains((int)(motionEvent.getX()-towerType.size.width/2), (int)(motionEvent.getY()+towerType.size.height/2)));
+                    if (towerType == TowerType.TURRET) {
+                        isColliding = (rect.contains((int)(motionEvent.getX()-towerType.size.width/2)+35, (int)(motionEvent.getY()-towerType.size.height/2)+30)) ||
+                                (rect.contains((int)(motionEvent.getX()+towerType.size.width/2)-25, (int)(motionEvent.getY()+towerType.size.height/2)-30)) ||
+                                (rect.contains((int)(motionEvent.getX()+towerType.size.width/2)-25, (int)(motionEvent.getY()-towerType.size.height/2)+30)) ||
+                                (rect.contains((int)(motionEvent.getX()-towerType.size.width/2)+35, (int)(motionEvent.getY()+towerType.size.height/2)-30));
+                    }
+                    if (isColliding) {
                         break;
                     }
                 }
-                if (b) {
+                if (!isColliding) {
                     towerManager.addTower(towerType, motionEvent.getX(), motionEvent.getY());
                     GameValues.setPlayerCoins(GameValues.getPlayerCoins() - towerType.value);
                 }

@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents.managers;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+import static com.example.project2_rev2.utils.HelperMethods.getGameCoordinatesRect;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -63,29 +64,42 @@ public class TowerManager {
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
 
-            GameValues.colliderArrayList.add(towerSaveData.getCollider());
+            GameValues.colliderArrayList.add(getGameCoordinatesRect(towerSaveData.getCollider()));
         });
     }
 
     public void addTower(TowerType towerType, double x, double y) {
-        GameValues.colliderArrayList.add(new Rect(
-                (int)(x-towerType.size.width/2),
-                (int)(y-towerType.size.height/2),
-                (int)(x+towerType.size.width/2),
-                (int)(y+towerType.size.height/2)
-        ));
-        Rect collider = GameValues.colliderArrayList.get(GameValues.colliderArrayList.size()-1);
+        Rect collider = null;
         switch (towerType) {
             case DEMO_TOWER:
+                collider = new Rect(
+                        (int)(x-towerType.size.width/2),
+                        (int)(y-towerType.size.height/2),
+                        (int)(x+towerType.size.width/2),
+                        (int)(y+towerType.size.height/2)
+                );
                 towerArrayList.add(new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
             case TURRET:
+                collider = new Rect(
+                        (int)(x-towerType.size.width/2)+35,
+                        (int)(y-towerType.size.height/2)+30,
+                        (int)(x+towerType.size.width/2)-25,
+                        (int)(y+towerType.size.height/2)-30
+                );
                 towerArrayList.add(new Turret(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
             case FIRE_SPREADER:
+                collider = new Rect(
+                        (int)(x-towerType.size.width/2),
+                        (int)(y-towerType.size.height/2),
+                        (int)(x+towerType.size.width/2),
+                        (int)(y+towerType.size.height/2)
+                );
                 towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
         }
+        GameValues.colliderArrayList.add(collider);
         User.getInstance().getPlayerStats().setTowersPlaced(User.getInstance().getPlayerStats().getTowersPlaced() + 1);
     }
 

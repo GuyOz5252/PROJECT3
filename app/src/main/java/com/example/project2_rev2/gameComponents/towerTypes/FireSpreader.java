@@ -1,7 +1,5 @@
 package com.example.project2_rev2.gameComponents.towerTypes;
 
-import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

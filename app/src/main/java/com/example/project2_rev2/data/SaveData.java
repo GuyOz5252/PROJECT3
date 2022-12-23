@@ -1,6 +1,11 @@
 package com.example.project2_rev2.data;
 
+import static com.example.project2_rev2.utils.HelperMethods.getDisplayCoordinatesRect;
+
+import android.graphics.Rect;
+
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 
@@ -28,7 +33,7 @@ public class SaveData {
                     tower.getCenterPosition().toDisplayCoordinates(),
                     tower.getPathLevels()[0],
                     tower.getPathLevels()[1],
-                    tower.getCollider()
+                    getDisplayCoordinatesRect(tower.getCollider())
             ));
         }
         this.isFinished = isFinished;

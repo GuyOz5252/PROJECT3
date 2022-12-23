@@ -1,6 +1,5 @@
 package com.example.project2_rev2.gameComponents.abstractComponents;
 
-import static com.example.project2_rev2.utils.HelperMethods.getHypoDistance;
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
 import android.content.Context;
@@ -150,6 +149,10 @@ public abstract class Tower extends BitmapObject {
         User.getInstance().setTowerXP(towerType, xp);
         towerUpgradeUI.getUpgradeButtonPathOne().handleState();
         towerUpgradeUI.getUpgradeButtonPathTwo().handleState();
+    }
+
+    public double getHypoDistance(double towerX, double towerY, double enemyX, double enemyY) {
+        return Math.hypot(Math.abs(towerX-enemyX), Math.abs(towerY-enemyY));
     }
 
     public void attack(Enemy enemy) {

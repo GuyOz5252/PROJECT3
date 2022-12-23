@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.DrawableRes;
@@ -30,8 +31,22 @@ public class HelperMethods {
         return BitmapFactory.decodeResource(context.getResources(), resourceId);
     }
 
-    public static double getHypoDistance(double towerX, double towerY, double enemyX, double enemyY) {
-        return Math.hypot(Math.abs(towerX-enemyX), Math.abs(towerY-enemyY));
+    public static Rect getGameCoordinatesRect(Rect rect) {
+        return new Rect(
+                (int)(rect.left + GameValues.xOffset),
+                (int)(rect.top + GameValues.yOffset),
+                (int)(rect.right + GameValues.xOffset),
+                (int)(rect.bottom + GameValues.yOffset)
+        );
+    }
+
+    public static Rect getDisplayCoordinatesRect(Rect rect) {
+        return new Rect(
+                (int)(rect.left - GameValues.xOffset),
+                (int)(rect.top - GameValues.yOffset),
+                (int)(rect.right - GameValues.xOffset),
+                (int)(rect.bottom - GameValues.yOffset)
+        );
     }
 
     public static Bitmap rotateBitmap(Bitmap bitmap, float angle) {
