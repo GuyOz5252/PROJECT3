@@ -30,6 +30,7 @@ public class DeathManager implements OnHealthChangeListener {
     public void update() {
         if (isDead && !((Activity)context).isFinishing()) {
             isDead = false;
+            GameValues.isFinished = true;
             ((Activity)context).runOnUiThread(() -> death.action());
         }
     }
