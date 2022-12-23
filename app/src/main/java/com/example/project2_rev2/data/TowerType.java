@@ -17,8 +17,8 @@ import java.util.Arrays;
 public enum TowerType implements Serializable {
     DEMO_TOWER(
             "Demo Tower",
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_launcher_background,
+            R.drawable.level_thumbnail_placeholder,
+            R.drawable.level_thumbnail_placeholder,
             300,
             30,
             70,

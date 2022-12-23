@@ -1,6 +1,6 @@
 package com.example.project2_rev2.gameComponents.towerTypes;
 
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -39,13 +39,13 @@ public class Turret extends Tower {
                 context
         );
         this.turretBase = Bitmap.createScaledBitmap(
-                getBitmapFromVectorDrawable(context, R.drawable.turret_base),
+                getBitmapFromPicture(context, R.drawable.turret_base),
                 (int)size.width,
                 (int)size.height,
                 false
         );
         this.turretHead2 = Bitmap.createScaledBitmap(
-                getBitmapFromVectorDrawable(context, R.drawable.turret_head_2),
+                getBitmapFromPicture(context, R.drawable.turret_head_2),
                 (int)size.width,
                 (int)size.height,
                 false

@@ -2,6 +2,7 @@ package com.example.project2_rev2.gameComponents;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture;
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
 import android.content.Context;
@@ -55,10 +56,10 @@ public class TowerUpgradeUI {
         );
         towerNameText.setBold();
 
-        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.tower_background), 160, 160, false);
-        this.towerBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, tower.getIcon()), 150, 150, false);
-        this.pressedTowerBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, tower.getIcon()), 140, 140, false);
-        this.info = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(context, R.drawable.ic_info), 40, 40, false);
+        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.tower_background), 160, 160, false);
+        this.towerBitmap = Bitmap.createScaledBitmap(getBitmapFromPicture(context, tower.getIcon()), 150, 150, false);
+        this.pressedTowerBitmap = Bitmap.createScaledBitmap(getBitmapFromPicture(context, tower.getIcon()), 140, 140, false);
+        this.info = getBitmapFromVectorDrawable(context, R.drawable.ic_info);
 
         this.isTowerPressed = false;
         this.towerInfoButton = new Rect(

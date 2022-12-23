@@ -3,9 +3,7 @@ package com.example.project2_rev2.gameComponents.abstractComponents;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
@@ -13,7 +11,6 @@ import androidx.annotation.DrawableRes;
 
 import com.example.project2_rev2.utils.Position;
 import com.example.project2_rev2.utils.Size;
-import com.google.firebase.firestore.Exclude;
 
 public abstract class BitmapObject extends GameObject {
 

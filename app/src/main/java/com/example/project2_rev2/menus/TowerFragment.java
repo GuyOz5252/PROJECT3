@@ -1,14 +1,12 @@
 package com.example.project2_rev2.menus;
 
-import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
+import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -27,12 +25,6 @@ import android.widget.TextView;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +55,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         btnPrevTower.setOnTouchListener(this);
         btnNextTower.setOnTouchListener(this);
 
-        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(getContext(), R.drawable.tower_background), 260, 260, false);
+        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), R.drawable.tower_background), 260, 260, false);
 
         this.towerArrayList = new ArrayList<>(Arrays.asList(TowerType.values()));
         this.currentTowerIndex = 0;
@@ -121,7 +113,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         towerImageViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         ImageView imageView = new ImageView(getContext());
         imageView.setLayoutParams(towerImageViewParams);
-        Bitmap newBitmap = Bitmap.createScaledBitmap(getBitmapFromVectorDrawable(getContext(), towerArrayList.get(towerIndex).icon), 250, 250, false);
+        Bitmap newBitmap = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), towerArrayList.get(towerIndex).icon), 250, 250, false);
         imageView.setImageBitmap(newBitmap);
 
         relativeLayout.addView(towerBackgroundImageView);

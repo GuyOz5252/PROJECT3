@@ -27,8 +27,7 @@ public class HelperMethods {
     }
 
     public static Bitmap getBitmapFromPicture(Context context,@DrawableRes int resourceId) {
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
-        return bitmap;
+        return BitmapFactory.decodeResource(context.getResources(), resourceId);
     }
 
     public static double getHypoDistance(double towerX, double towerY, double enemyX, double enemyY) {

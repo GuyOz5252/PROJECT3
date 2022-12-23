@@ -258,6 +258,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     /***victory dialog***/
     public void createVictoryDialog() {
+        if (deathDialog != null) {
+            deathDialog.dismiss();
+        }
         pause();
         victoryDialog = new Dialog(this);
         victoryDialog.setContentView(R.layout.dialog_victory);

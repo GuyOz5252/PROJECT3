@@ -43,91 +43,91 @@ public class FireSpreader extends Tower {
     public void initFiringBitmapArr(int range) {
         firingBitmapArr = new Bitmap[] {
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range-range/2,
                         range-range/2,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range-50,
                         range-50,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range-35,
                         range-35,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range-25,
                         range-25,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range,
                         range,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range+range/2,
                         range+range/2,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2-25,
                         range*2-25,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2-15,
                         range*2-15,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2-7,
                         range*2-7,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2,
                         range*2,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2+7,
                         range*2+7,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2+15,
                         range*2+15,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2+7,
                         range*2+7,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2,
                         range*2,
                         false
                 ),
                 Bitmap.createScaledBitmap(
-                        HelperMethods.getBitmapFromVectorDrawable(context, R.drawable.fire_spreader_fire),
+                        HelperMethods.getBitmapFromPicture(context, R.drawable.fire_spreader_fire),
                         range*2-7,
                         range*2-7,
                         false
