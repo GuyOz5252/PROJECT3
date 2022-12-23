@@ -100,6 +100,22 @@ public class DemoOne extends Scene {
                 28,
                 context
         ));
+        waveMap.clear();
+        waveMap.put(EnemyType.DEMO_ENEMY, 15);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                30,
+                context
+        ));
+        waveMap.clear();
+        waveMap.put(EnemyType.DEMO_BOSS, 1);
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                0,
+                context
+        ));
     }
 
     @Override

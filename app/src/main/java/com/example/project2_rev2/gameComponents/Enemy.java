@@ -137,16 +137,20 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         if (needRotation) {
             switch (movementDirection) {
                 case RIGHT:
-                    bitmap = originalBitmap;
+                    //bitmap = originalBitmap;
+                    bitmap = rotateBitmap(originalBitmap, 90);
                     break;
                 case LEFT:
-                    bitmap = rotateBitmap(originalBitmap, 180);
+                    //bitmap = rotateBitmap(originalBitmap, 180);
+                    bitmap = rotateBitmap(originalBitmap, 270);
                     break;
                 case UP:
-                    bitmap = rotateBitmap(originalBitmap, -90);
+                    //bitmap = rotateBitmap(originalBitmap, -90);
+                    bitmap = originalBitmap;
                     break;
                 case DOWN:
-                    bitmap = rotateBitmap(originalBitmap, 90);
+                    //bitmap = rotateBitmap(originalBitmap, 90);
+                    bitmap = rotateBitmap(originalBitmap, 180);
                     break;
             }
             needRotation = false;
@@ -216,6 +220,8 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         if (isOnFire) {
             receiveDamageOverTime(damageOverTimeDamage, damageOverTimeDuration, damageOverTimeInterval, damageOverTimeOriginTower);
         }
+
+        System.out.println(health);
     }
 
     private enum MovementDirection {
