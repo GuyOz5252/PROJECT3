@@ -15,12 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.utils.Action;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Settings extends Dialog implements View.OnTouchListener {
 
@@ -312,6 +314,34 @@ public class Settings extends Dialog implements View.OnTouchListener {
         deleteAccount.show();
     }
 
+    Action deleteUserDocAndUser = () -> FirebaseFirestore.getInstance().collection("users")
+            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+            .delete().addOnCompleteListener(task -> FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
+                if (task1.isSuccessful()) {
+                    Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }));
+
+    public void deleteUser() {
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("data_segment")
+                .document("save_data")
+                .delete().addOnCompleteListener(task -> FirebaseFirestore.getInstance().collection("users")
+                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .collection("data_segment")
+                        .document("player_stats")
+                        .delete().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                deleteUserDocAndUser.action();
+                            } else {
+                                Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }));
+    }
+
     public void clickDeleteAccountDialog() {
         if (edtUsernameConfirm.getText().toString().isEmpty()) {
             edtUsernameConfirm.setError("enter username to confirm");
@@ -319,20 +349,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
             return;
         }
         if (edtUsernameConfirm.getText().toString().equals(User.getInstance().getUsername())) {
-            FirebaseFirestore.getInstance().collection("users")
-                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid()).delete().addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
-                                if (task1.isSuccessful()) {
-                                    Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        } else {
-                            Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            deleteUser();
             context.startActivity(new Intent(context, Login.class));
             ((Activity)context).finish();
         } else {
