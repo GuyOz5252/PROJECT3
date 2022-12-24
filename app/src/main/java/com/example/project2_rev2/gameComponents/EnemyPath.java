@@ -48,8 +48,8 @@ public class EnemyPath {
 
     public void draw(Canvas canvas) {
         Paint testPaint = new Paint();
-        testPaint.setColor(Color.GRAY);
-        testPaint.setStrokeWidth(96);
+        testPaint.setColor(Color.RED);
+        testPaint.setStrokeWidth(5);
 
         for (int i = 0; i < positionArrayList.size()-1; i++) {
             canvas.drawLine(
@@ -59,12 +59,6 @@ public class EnemyPath {
                     (float)positionArrayList.get(i+1).y,
                     testPaint
             );
-            canvas.drawRect(new Rect(
-                    (int)positionArrayList.get(i).x-48,
-                    (int)positionArrayList.get(i).y-48,
-                    (int)positionArrayList.get(i).x+48,
-                    (int)positionArrayList.get(i).y+48
-            ), testPaint);
         }
     }
 }

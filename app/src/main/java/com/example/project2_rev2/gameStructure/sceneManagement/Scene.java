@@ -29,6 +29,8 @@ import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.utils.GameValues;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public abstract class Scene {
 
     // scene components
@@ -46,7 +48,11 @@ public abstract class Scene {
     protected HealthCounter healthCounter;
     protected DeathManager deathManager;
 
+    private AtomicBoolean isStart;
+
     public Scene(Action[] actionsArray, boolean loadSave, Context context) {
+
+        this.isStart = new AtomicBoolean(false);
 
         this.coverRect = new Rect[] {
                 new Rect(
@@ -89,12 +95,9 @@ public abstract class Scene {
         this.deathManager = new DeathManager(actionsArray[2], context);
 
         if (loadSave) {
-            SaveData saveData = User.getInstance().getSaveData();
-            waveManager.setCurrentWave(saveData.getCurrentWave());
-            GameValues.setPlayerCoins(saveData.getMoney());
-            GameValues.setPlayerHealth(saveData.getHealth());
-            towerManager.setTowerArrayList(saveData.getTowerArrayList());
-            GameValues.isFinished = saveData.getIsFinished();
+            loadGame();
+        } else {
+            isStart.set(true);
         }
     }
 
@@ -110,8 +113,38 @@ public abstract class Scene {
         ));
     }
 
+    public void loadGame() {
+        Thread thread = new Thread(() -> {
+            SaveData saveData = User.getInstance().getSaveData();
+            waveManager.setCurrentWave(saveData.getCurrentWave());
+            GameValues.setPlayerCoins(saveData.getMoney());
+            GameValues.setPlayerHealth(saveData.getHealth());
+            towerManager.setTowerArrayList(saveData.getTowerArrayList());
+            GameValues.isFinished = saveData.getIsFinished();
+            isStart.set(true);
+        });
+        thread.start();
+    }
+
     public void draw(Canvas canvas) {
-        enemyPath.draw(canvas);
+        //if (isStart.get()) {
+        //    //enemyPath.draw(canvas);
+        //    waveManager.draw(canvas);
+        //    projectileManager.draw(canvas);
+        //    towerManager.draw(canvas);
+        //    towerBar.draw(canvas);
+        //    towerManager.drawTowerUpgradeUI(canvas);
+        //    pauseButton.draw(canvas);
+        //    coinCounter.draw(canvas);
+        //    healthCounter.draw(canvas);
+        //    waveManager.drawWaveCounter(canvas);
+//
+        //    for (Rect rect : coverRect) {
+        //        canvas.drawRect(rect, coverPaint);
+        //    }
+        //}
+
+        //enemyPath.draw(canvas);
         waveManager.draw(canvas);
         projectileManager.draw(canvas);
         towerManager.draw(canvas);
@@ -143,7 +176,7 @@ public abstract class Scene {
     }
 
     public enum Levels {
-        DEMO_1("DEMO 1", R.drawable.level_thumbnail_placeholder);
+        DEMO_1("DEMO 1", R.drawable.demo_one);
 
         public String name;
         public int thumbnail;
