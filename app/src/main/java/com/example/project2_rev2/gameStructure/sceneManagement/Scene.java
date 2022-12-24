@@ -20,6 +20,7 @@ import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.CoinCounter;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.HealthCounter;
+import com.example.project2_rev2.gameComponents.LoadingOverlay;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.button.PauseButton;
 import com.example.project2_rev2.gameComponents.managers.DeathManager;
@@ -32,6 +33,8 @@ import com.example.project2_rev2.utils.GameValues;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Scene {
+
+    protected Context context;
 
     // scene components
     protected Rect[] coverRect;
@@ -48,11 +51,12 @@ public abstract class Scene {
     protected HealthCounter healthCounter;
     protected DeathManager deathManager;
 
-    private AtomicBoolean isStart;
+    private final AtomicBoolean finishedLoading;
+    private final LoadingOverlay loadingOverlay;
 
     public Scene(Action[] actionsArray, boolean loadSave, Context context) {
 
-        this.isStart = new AtomicBoolean(false);
+        this.context = context;
 
         this.coverRect = new Rect[] {
                 new Rect(
@@ -94,10 +98,13 @@ public abstract class Scene {
         this.healthCounter = new HealthCounter(context);
         this.deathManager = new DeathManager(actionsArray[2], context);
 
+        this.finishedLoading = new AtomicBoolean(false);
+        this.loadingOverlay = new LoadingOverlay(context);
+
         if (loadSave) {
             loadGame();
         } else {
-            isStart.set(true);
+            finishedLoading.set(true);
         }
     }
 
@@ -121,29 +128,12 @@ public abstract class Scene {
             GameValues.setPlayerHealth(saveData.getHealth());
             towerManager.setTowerArrayList(saveData.getTowerArrayList());
             GameValues.isFinished = saveData.getIsFinished();
-            isStart.set(true);
+            finishedLoading.set(true);
         });
         thread.start();
     }
 
     public void draw(Canvas canvas) {
-        //if (isStart.get()) {
-        //    //enemyPath.draw(canvas);
-        //    waveManager.draw(canvas);
-        //    projectileManager.draw(canvas);
-        //    towerManager.draw(canvas);
-        //    towerBar.draw(canvas);
-        //    towerManager.drawTowerUpgradeUI(canvas);
-        //    pauseButton.draw(canvas);
-        //    coinCounter.draw(canvas);
-        //    healthCounter.draw(canvas);
-        //    waveManager.drawWaveCounter(canvas);
-//
-        //    for (Rect rect : coverRect) {
-        //        canvas.drawRect(rect, coverPaint);
-        //    }
-        //}
-
         //enemyPath.draw(canvas);
         waveManager.draw(canvas);
         projectileManager.draw(canvas);
@@ -154,6 +144,10 @@ public abstract class Scene {
         coinCounter.draw(canvas);
         healthCounter.draw(canvas);
         waveManager.drawWaveCounter(canvas);
+
+        if (!finishedLoading.get()) {
+            loadingOverlay.draw(canvas);
+        }
 
         for (Rect rect : coverRect) {
             canvas.drawRect(rect, coverPaint);
@@ -169,10 +163,12 @@ public abstract class Scene {
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
-        towerManager.onTouchEvent(motionEvent);
-        towerBar.onTouchEvent(motionEvent);
-        towerManager.onTowerUpgradeTouchEvent(motionEvent);
-        pauseButton.onTouchEvent(motionEvent);
+        if (finishedLoading.get()) {
+            towerManager.onTouchEvent(motionEvent);
+            towerBar.onTouchEvent(motionEvent);
+            towerManager.onTowerUpgradeTouchEvent(motionEvent);
+            pauseButton.onTouchEvent(motionEvent);
+        }
     }
 
     public enum Levels {

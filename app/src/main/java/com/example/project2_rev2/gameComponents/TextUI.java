@@ -42,6 +42,10 @@ public class TextUI extends GameObject {
         paint.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
+    public void setExtraBold() {
+        paint.setFakeBoldText(true);
+    }
+
     public void setShadow() {
         paint.setShadowLayer(1f, 3f, 3f, Color.BLACK);
     }

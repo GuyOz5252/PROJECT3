@@ -8,6 +8,12 @@ import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.EnemyType;
@@ -110,7 +116,6 @@ public class DemoOne extends Scene {
 
     @Override
     public void draw(Canvas canvas) {
-        //canvas.drawRect(backgroundRect, backgroundPaint);
         canvas.drawBitmap(background, (float)xCoordinate(350), (float)yCoordinate(0), null);
         super.draw(canvas);
     }
