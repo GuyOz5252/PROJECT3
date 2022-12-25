@@ -39,6 +39,11 @@ public class TowerSaveData {
     }
 
     public Rect getCollider() {
-        return collider;
+        return new Rect(
+                collider.left,
+                collider.top,
+                collider.right,
+                collider.bottom
+        );
     }
 }

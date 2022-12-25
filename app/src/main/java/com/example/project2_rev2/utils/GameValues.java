@@ -36,7 +36,7 @@ public class GameValues {
 
     public static boolean isFinished = false;
 
-    public final static int START_COINS = 650;
+    public final static int START_COINS = 10000;
 
     private static int playerCoins = START_COINS;
 

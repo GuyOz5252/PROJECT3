@@ -130,6 +130,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         if (GameValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
         }
+
+        //System.out.println(GameValues.colliderArrayList.size());
     }
 
     public void draw(Canvas canvas) {

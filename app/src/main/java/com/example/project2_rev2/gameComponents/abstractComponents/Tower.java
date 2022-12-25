@@ -21,6 +21,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.TowerUpgradeUI;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;
+import com.google.firebase.firestore.CollectionReference;
 
 /**
  * a class that includes all the fields of a tower
@@ -168,6 +169,7 @@ public abstract class Tower extends BitmapObject {
     public void sell() {
         isSelected = false;
         isActive = false;
+        GameValues.colliderArrayList.forEach(rect -> System.out.println(rect.equals(collider)));
         GameValues.colliderArrayList.remove(collider);
     }
 
@@ -220,6 +222,12 @@ public abstract class Tower extends BitmapObject {
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
+
+        System.out.println("=========================================================================================");
+        for (Rect rect : GameValues.colliderArrayList) {
+            System.out.println(rect.equals(collider));
+        }
+        System.out.println("=========================================================================================");
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

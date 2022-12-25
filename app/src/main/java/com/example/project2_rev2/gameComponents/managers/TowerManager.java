@@ -50,26 +50,27 @@ public class TowerManager {
 
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
         towerSaveDataArrayList.forEach(towerSaveData -> {
+            Rect collider = getGameCoordinatesRect(towerSaveData.getCollider());
             switch (towerSaveData.getType()) {
                 case "DEMO_TOWER":
-                    towerArrayList.add(new DemoTower(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new DemoTower(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
                 case "TURRET":
-                    towerArrayList.add(new Turret(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new Turret(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
                 case "FIRE_SPREADER":
-                    towerArrayList.add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), towerSaveData.getCollider(), towerBar, waveManager, projectileManager, context));
+                    towerArrayList.add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
             }
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
 
-            GameValues.colliderArrayList.add(getGameCoordinatesRect(towerSaveData.getCollider()));
+            GameValues.colliderArrayList.add(collider);
         });
     }
 
     public void addTower(TowerType towerType, double x, double y) {
-        Rect collider = null;
+        Rect collider;
         switch (towerType) {
             case DEMO_TOWER:
                 collider = new Rect(
@@ -97,6 +98,9 @@ public class TowerManager {
                         (int)(y+towerType.size.height/2)
                 );
                 towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context));
+                break;
+            default:
+                collider = new Rect();
                 break;
         }
         GameValues.colliderArrayList.add(collider);
