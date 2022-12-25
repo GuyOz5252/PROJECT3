@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.gameComponents.FPSCounter;
 import com.example.project2_rev2.menus.Settings;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -39,6 +40,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     private Rect gameCanvasRect;
 
     private BroadcastReceiver batteryReceiver;
+
+    private FPSCounter fpsCounter;
 
     // pause menu dialog elements
     Dialog pauseMenu;
@@ -79,12 +82,15 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         display = new Display(displayMetrics);
 
+        fpsCounter = new FPSCounter(this);
+
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
                 mainThread = new MainThread(surfaceHolder, GameView.this);
                 mainThread.startThread();
+                fpsCounter.setThread(mainThread);
             }
 
             @Override
@@ -130,14 +136,16 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         if (GameValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
         }
-
-        //System.out.println(GameValues.colliderArrayList.size());
+        fpsCounter.update();
     }
 
     public void draw(Canvas canvas) {
         // reset the canvas with background image
         // draw the scene
         sceneManager.draw(canvas);
+        if (getSharedPreferences("sp", MODE_PRIVATE).getBoolean("showFPS", false)) {
+            fpsCounter.draw(canvas);
+        }
     }
 
     @Override

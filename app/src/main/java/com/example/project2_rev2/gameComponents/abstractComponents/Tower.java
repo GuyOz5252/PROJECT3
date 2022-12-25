@@ -169,7 +169,6 @@ public abstract class Tower extends BitmapObject {
     public void sell() {
         isSelected = false;
         isActive = false;
-        GameValues.colliderArrayList.forEach(rect -> System.out.println(rect.equals(collider)));
         GameValues.colliderArrayList.remove(collider);
     }
 

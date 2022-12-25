@@ -20,6 +20,10 @@ public class MainThread extends Thread {
         this.gameView = gameView;
     }
 
+    public double getFPS() {
+        return AVG_FPS;
+    }
+
     public void startThread() {
         isRunning = true;
         start();
@@ -79,7 +83,7 @@ public class MainThread extends Thread {
                     AVG_FPS = 1000 / ((totalTime / frameCount) / 1000000);
                     frameCount = 0;
                     totalTime = 0;
-                    //System.out.println("FPS: " + AVG_FPS);
+                    System.out.println("FPS: " + AVG_FPS);
                 }
             }
         }

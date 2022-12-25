@@ -30,35 +30,14 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <Button
-            android:id="@+id/btnLogout_accountSettings"
-            android:layout_width="190dp"
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/fpsSwitch_devSettings"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:text="show FPS"
             android:fontFamily="sans-serif-black"
-            android:text="logout"
-            android:textColor="@color/white"
-            app:cornerRadius="15dp" />
-
-        <Button
-            android:id="@+id/btnChangePassword_accountSettings"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif-black"
-            android:text="change password"
-            android:textColor="@color/white"
-            app:cornerRadius="15dp" />
-
-        <Button
-            android:id="@+id/btnDeleteAccount_accountSettings"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif-black"
-            android:text="delete account"
-            android:textColor="@color/white"
-            app:cornerRadius="15dp" />
+            android:textSize="20dp"
+            app:switchPadding="5dp"/>
 
     </LinearLayout>
 

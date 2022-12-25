@@ -18,20 +18,20 @@ import androidx.annotation.NonNull;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.utils.Action;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Settings extends Dialog implements View.OnTouchListener {
 
     private Context context;
 
     private String state;
+    private Boolean accountSettings;
 
-    ImageButton btnBack, btnAccountSettings;
+    ImageButton btnBack, btnDevSettings, btnAccountSettings;
     Button btnLogout, btnChangePassword, btnDeleteAccount;
+    SwitchMaterial switchFPS;
 
     // confirm dialog elements
     Dialog confirmDialog;
@@ -54,8 +54,9 @@ public class Settings extends Dialog implements View.OnTouchListener {
         View decorView = getWindow().getDecorView();
         setContentView(R.layout.dialog_settings);
         int flags;
+        this.accountSettings = accountSettings;
         if (!accountSettings) {
-            findViewById(R.id.accountSettings_linearLayout).setVisibility(View.INVISIBLE);
+            findViewById(R.id.accountSettings_linearLayout).setVisibility(View.GONE);
             flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -78,9 +79,24 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     public void bindSettings() {
         state = "SETTINGS";
+        btnDevSettings = findViewById(R.id.btnDevSettings_settingsDialog);
         btnAccountSettings = findViewById(R.id.btnAccountSettings_settingsDialog);
         btnBack = findViewById(R.id.btnBack_settings);
+        btnDevSettings.setOnTouchListener(this);
         btnAccountSettings.setOnTouchListener(this);
+        btnBack.setOnTouchListener(this);
+        if (!accountSettings) findViewById(R.id.accountSettings_linearLayout).setVisibility(View.GONE);
+    }
+
+    public void bindDevSettings() {
+        state = "DEV";
+        setContentView(R.layout.dialog_dev_settings);
+        switchFPS = findViewById(R.id.fpsSwitch_devSettings);
+        btnBack = findViewById(R.id.btnBack_settings);
+        switchFPS.setChecked(context.getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("showFPS", false));
+        switchFPS.setOnCheckedChangeListener((compoundButton, b) -> {
+            context.getSharedPreferences("sp", Context.MODE_PRIVATE).edit().putBoolean("showFPS", b).apply();
+        });
         btnBack.setOnTouchListener(this);
     }
 
@@ -95,6 +111,21 @@ public class Settings extends Dialog implements View.OnTouchListener {
         btnLogout.setOnTouchListener(this);
         btnChangePassword.setOnTouchListener(this);
         btnDeleteAccount.setOnTouchListener(this);
+    }
+
+    public void clickDeVSettings() {
+        bindDevSettings();
+    }
+
+    public void clickDeVSettings(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickDeVSettings();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
+        }
     }
 
     public void clickAccountSettings() {
@@ -115,7 +146,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
     public void clickBack() {
         if (state.equals("SETTINGS")) {
             dismiss();
-        } else if (state.equals("ACCOUNT")) {
+        } else {
             setContentView(R.layout.dialog_settings);
             bindSettings();
         }
@@ -131,6 +162,10 @@ public class Settings extends Dialog implements View.OnTouchListener {
             view.setScaleY(0.9f);
         }
     }
+
+    //=============dev settings===========//
+
+    //====================================//
 
     //============account settings=========//
     public void clickLogout() {
@@ -314,17 +349,19 @@ public class Settings extends Dialog implements View.OnTouchListener {
         deleteAccount.show();
     }
 
-    Action deleteUserDocAndUser = () -> FirebaseFirestore.getInstance().collection("users")
-            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-            .delete().addOnCompleteListener(task -> FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
-                if (task1.isSuccessful()) {
-                    Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }));
+    public void deleteUserDocAndUser() {
+        FirebaseFirestore.getInstance().collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .delete().addOnCompleteListener(task -> FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }));
+    }
 
-    public void deleteUser() {
+    public void deleteData() {
         FirebaseFirestore.getInstance().collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("data_segment")
@@ -335,7 +372,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
                         .document("player_stats")
                         .delete().addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
-                                deleteUserDocAndUser.action();
+                                deleteUserDocAndUser();
                             } else {
                                 Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }
@@ -349,7 +386,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
             return;
         }
         if (edtUsernameConfirm.getText().toString().equals(User.getInstance().getUsername())) {
-            deleteUser();
+            deleteData();
             context.startActivity(new Intent(context, Login.class));
             ((Activity)context).finish();
         } else {
@@ -373,6 +410,9 @@ public class Settings extends Dialog implements View.OnTouchListener {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
+            case R.id.btnDevSettings_settingsDialog:
+                clickDeVSettings(view, motionEvent);
+                break;
             case R.id.btnAccountSettings_settingsDialog:
                 clickAccountSettings(view, motionEvent);
                 break;
