@@ -82,6 +82,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         display = new Display(displayMetrics);
 
+        GameValues.init(this, display);
+
         fpsCounter = new FPSCounter(this);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
@@ -103,8 +105,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
             }
         });
-
-        GameValues.init(this, display);
 
         this.gameCanvasRect = new Rect(
                 (int) GameValues.xCoordinate(0),

@@ -20,6 +20,7 @@ import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TowerManager {
 
@@ -28,6 +29,7 @@ public class TowerManager {
     private WaveManager waveManager;
     private ProjectileManager projectileManager;
     private ArrayList<Tower> towerArrayList;
+    private AtomicReference<ArrayList<Tower>> atomicTowerArrayList;
     private boolean isAnyTowerSelected;
     private Tower selectedTower;
 
@@ -49,21 +51,22 @@ public class TowerManager {
     }
 
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
+        atomicTowerArrayList = new AtomicReference<>(towerArrayList);
         towerSaveDataArrayList.forEach(towerSaveData -> {
             Rect collider = getGameCoordinatesRect(towerSaveData.getCollider());
             switch (towerSaveData.getType()) {
                 case "DEMO_TOWER":
-                    towerArrayList.add(new DemoTower(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
+                    atomicTowerArrayList.get().add(new DemoTower(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
                 case "TURRET":
-                    towerArrayList.add(new Turret(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
+                    atomicTowerArrayList.get().add(new Turret(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
                 case "FIRE_SPREADER":
-                    towerArrayList.add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
+                    atomicTowerArrayList.get().add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
             }
-            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
-            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
+            atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
+            atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
 
             GameValues.colliderArrayList.add(collider);
         });

@@ -221,12 +221,6 @@ public abstract class Tower extends BitmapObject {
         for (Enemy enemy : waveManager.getAliveList()) {
             attack(enemy);
         }
-
-        System.out.println("=========================================================================================");
-        for (Rect rect : GameValues.colliderArrayList) {
-            System.out.println(rect.equals(collider));
-        }
-        System.out.println("=========================================================================================");
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

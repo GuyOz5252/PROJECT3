@@ -19,6 +19,7 @@
 
     <color name="black">#000000</color>
     <color name="background">#8BC34A</color>
+<!--    <color name="towerBarBackground">#1C140D</color>-->
     <color name="towerBarBackground">#33251B</color>
     <color name="rangeCircle">#40292929</color>
     <color name="invalidRangeCircle">#40FF0000</color>
