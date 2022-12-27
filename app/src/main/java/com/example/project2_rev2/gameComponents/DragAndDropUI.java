@@ -10,7 +10,8 @@ import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.gameComponents.button.NextTowerPageButton;
+import com.example.project2_rev2.gameComponents.button.PrevTowerPageButton;
 import com.example.project2_rev2.gameComponents.button.TowerDragButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.Size;
@@ -25,6 +26,9 @@ public class DragAndDropUI {
     private int startTowerPageIndex;
     private TextUI towerNameText;
 
+    private PrevTowerPageButton prevTowerPageButton;
+    private NextTowerPageButton nextTowerPageButton;
+
     public DragAndDropUI(TowerManager towerManager, Context context) {
         ArrayList<TowerType> towerTypeArrayList = new ArrayList<>(Arrays.asList(TowerType.values()));
         this.towerDragButtonArrayList = new ArrayList<>();
@@ -37,19 +41,7 @@ public class DragAndDropUI {
                         context
                 )
         ));
-        this.startTowerPageIndex = 0;
-        for (int i = startTowerPageIndex, y = 110; i < startTowerPageIndex+3; i++, y+=220) {
-            if (i < towerDragButtonArrayList.size()) {
-                towerDragButtonArrayList.get(i).setY(y);
-            }
-        }
-        this.startTowerPageIndex = 3;
-        for (int i = startTowerPageIndex, y = 110; i < startTowerPageIndex+3; i++, y+=220) {
-            if (i < towerDragButtonArrayList.size()) {
-                towerDragButtonArrayList.get(i).setY(y);
-            }
-        }
-        this.startTowerPageIndex = 0;
+        setStartTowerPageIndex(0);
         this.towerNameText = new TextUI(
                 xCoordinate(175),
                 yCoordinate(80),
@@ -60,6 +52,25 @@ public class DragAndDropUI {
                 context
         );
         this.towerNameText.setBold();
+        this.prevTowerPageButton = new PrevTowerPageButton(this, context);
+        this.nextTowerPageButton = new NextTowerPageButton(this, context);
+    }
+
+    public int getStartTowerPageIndex() {
+        return startTowerPageIndex;
+    }
+
+    public void setStartTowerPageIndex(int startTowerPageIndex) {
+        this.startTowerPageIndex = startTowerPageIndex;
+        for (int i = startTowerPageIndex, y = 110; i < startTowerPageIndex+3; i++, y+=220) {
+            if (i < towerDragButtonArrayList.size()) {
+                towerDragButtonArrayList.get(i).setY(y);
+            }
+        }
+    }
+
+    public ArrayList<TowerDragButton> getTowerDragButtonArrayList() {
+        return towerDragButtonArrayList;
     }
 
     public void drawTowerButtons(Canvas canvas) {
@@ -73,6 +84,8 @@ public class DragAndDropUI {
     public void draw(Canvas canvas) {
         towerNameText.draw(canvas);
         drawTowerButtons(canvas);
+        prevTowerPageButton.draw(canvas);
+        nextTowerPageButton.draw(canvas);
     }
 
     public void update() {
@@ -89,5 +102,7 @@ public class DragAndDropUI {
                 towerDragButtonArrayList.get(i).onTouchEvent(motionEvent);
             }
         }
+        prevTowerPageButton.onTouchEvent(motionEvent);
+        nextTowerPageButton.onTouchEvent(motionEvent);
     }
 }

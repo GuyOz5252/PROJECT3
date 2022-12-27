@@ -16,6 +16,7 @@ import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
+import com.example.project2_rev2.gameComponents.towerTypes.Railgun;
 import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
 
@@ -64,6 +65,9 @@ public class TowerManager {
                 case "FIRE_SPREADER":
                     atomicTowerArrayList.get().add(new FireSpreader(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
                     break;
+                case "RAILGUN":
+                    atomicTowerArrayList.get().add(new Railgun(xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider, towerBar, waveManager, projectileManager, context));
+                    break;
             }
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
@@ -101,6 +105,15 @@ public class TowerManager {
                         (int)(y+towerType.size.height/2)
                 );
                 towerArrayList.add(new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context));
+                break;
+            case RAILGUN:
+                collider = new Rect(
+                        (int)(x-towerType.size.width/2),
+                        (int)(y-towerType.size.height/2),
+                        (int)(x+towerType.size.width/2),
+                        (int)(y+towerType.size.height/2)
+                );
+                towerArrayList.add(new Railgun(x, y, collider, towerBar, waveManager, projectileManager, context));
                 break;
             default:
                 collider = new Rect();

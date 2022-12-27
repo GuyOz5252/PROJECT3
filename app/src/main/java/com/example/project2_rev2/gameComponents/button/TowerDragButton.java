@@ -90,6 +90,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
             }
         };
         this.isDragged = false;
+        setY(0);
     }
 
     public void setY(int y) {

@@ -19,10 +19,10 @@ public class Projectile extends GameObject {
 
     private int velocityX;
     private int velocityY;
-    private boolean isActive;
-    private ProjectileType projectileType;
+    protected boolean isActive;
+    protected ProjectileType projectileType;
 
-    private Tower originTower;
+    protected Tower originTower;
 
     public Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
         super(x, y);
@@ -77,7 +77,8 @@ public class Projectile extends GameObject {
 
         TURRET_BULLETS(R.color.black, 120, 2, 35f, 5),
         TURRET_BULLETS_V2(R.color.black, 120, 4, 35f, 5),
-        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8);
+        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8),
+        RAILGUN_PROJECTILE(R.color.red, 150, 50, 40f, 15);
 
         public int color;
         public int speed;

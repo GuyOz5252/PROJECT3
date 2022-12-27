@@ -99,6 +99,28 @@ public enum TowerType implements Serializable {
                             "increase the fire's reach to its limit, and burn every enemy in it's path"
                     }
             )
+    ),
+    RAILGUN(
+            "Railgun",
+            R.drawable.turret_base,
+            R.drawable.turret_base,
+            400,
+            120,
+            280,
+            new Size(160, 160),
+            Projectile.ProjectileType.RAILGUN_PROJECTILE,
+            new TowerUpgradePath(
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
+            ),
+            new TowerUpgradePath(
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
+            )
     );
 
     public final String towerName;
