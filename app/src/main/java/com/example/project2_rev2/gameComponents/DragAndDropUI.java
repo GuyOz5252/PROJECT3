@@ -82,9 +82,9 @@ public class DragAndDropUI {
 
     public void draw(Canvas canvas) {
         towerNameText.draw(canvas);
-        drawTowerButtons(canvas);
         prevTowerPageButton.draw(canvas);
         nextTowerPageButton.draw(canvas);
+        drawTowerButtons(canvas);
     }
 
     public void update() {

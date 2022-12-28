@@ -37,6 +37,7 @@ public class NextTowerPageButton extends Button {
             if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 if (dragAndDropUI.getStartTowerPageIndex()+3 < dragAndDropUI.getTowerDragButtonArrayList().size()) {
                     dragAndDropUI.setStartTowerPageIndex(dragAndDropUI.getStartTowerPageIndex()+3);
+                    dragAndDropUI.getTowerDragButtonArrayList().forEach(TowerDragButton::onCoinsChange);
                 }
                 setPressEffect(false);
                 return true;

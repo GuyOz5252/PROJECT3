@@ -72,13 +72,16 @@ public class Projectile extends GameObject {
         canvas.drawCircle((float)position.x, (float)position.y, (float)radius, paint);
     }
 
+    public static Projectile createNewProjectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
+        return new Projectile(x, y, velocityX, velocityY, projectileType, originTower, context);
+    }
+
     public enum ProjectileType {
         DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f, 10),
 
         TURRET_BULLETS(R.color.black, 120, 2, 35f, 5),
         TURRET_BULLETS_V2(R.color.black, 120, 4, 35f, 5),
-        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8),
-        RAILGUN_PROJECTILE(R.color.red, 150, 50, 40f, 15);
+        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8);
 
         public int color;
         public int speed;

@@ -40,6 +40,7 @@ public class PrevTowerPageButton extends Button {
                     return true;
                 }
                 dragAndDropUI.setStartTowerPageIndex(Math.max(dragAndDropUI.getStartTowerPageIndex() - 3, 0));
+                dragAndDropUI.getTowerDragButtonArrayList().forEach(TowerDragButton::onCoinsChange);
                 setPressEffect(false);
                 return true;
             } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {

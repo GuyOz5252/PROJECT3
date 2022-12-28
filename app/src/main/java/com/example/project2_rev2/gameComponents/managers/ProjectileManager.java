@@ -3,10 +3,8 @@ package com.example.project2_rev2.gameComponents.managers;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
-import com.example.project2_rev2.gameComponents.projectileTypes.RailgunProjectile;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;
@@ -55,18 +53,14 @@ public class ProjectileManager {
 
         if (tower.getIsDoubleShot()) {
             if (yDistance < 0) {
-                projectileArrayList.add(new Projectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
-                projectileArrayList.add(new Projectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
             } else {
-                projectileArrayList.add(new Projectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
-                projectileArrayList.add(new Projectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
             }
         } else {
-            if (tower.getTowerType().equals(TowerType.RAILGUN)) {
-                projectileArrayList.add(new RailgunProjectile(tower.getCenterPosition().x, tower.getCenterPosition().y, 3, (int)velocityX, (int)velocityY, projectileType, tower, context));
-            } else {
-                projectileArrayList.add(new Projectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
-            }
+            projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
         }
 
         return rotate;
