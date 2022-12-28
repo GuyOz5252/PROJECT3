@@ -10,15 +10,14 @@ import android.view.MotionEvent;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.TowerType;
-import com.example.project2_rev2.gameComponents.button.NextTowerPageButton;
-import com.example.project2_rev2.gameComponents.button.PrevTowerPageButton;
-import com.example.project2_rev2.gameComponents.button.TowerDragButton;
+import com.example.project2_rev2.gameComponents.buttons.NextTowerPageButton;
+import com.example.project2_rev2.gameComponents.buttons.PrevTowerPageButton;
+import com.example.project2_rev2.gameComponents.buttons.TowerDragButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.utils.Size;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DragAndDropUI {
 

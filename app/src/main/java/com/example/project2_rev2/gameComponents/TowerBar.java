@@ -6,7 +6,6 @@ import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -15,8 +14,8 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.RectObject;
-import com.example.project2_rev2.gameComponents.button.FastForwardButton;
-import com.example.project2_rev2.gameComponents.button.StartWaveButton;
+import com.example.project2_rev2.gameComponents.buttons.FastForwardButton;
+import com.example.project2_rev2.gameComponents.buttons.StartWaveButton;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.utils.GameValues;

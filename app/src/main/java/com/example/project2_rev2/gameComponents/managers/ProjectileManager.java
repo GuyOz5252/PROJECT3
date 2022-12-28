@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.Projectile;
-import com.example.project2_rev2.gameComponents.RailgunProjectile;
+import com.example.project2_rev2.gameComponents.projectileTypes.RailgunProjectile;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;

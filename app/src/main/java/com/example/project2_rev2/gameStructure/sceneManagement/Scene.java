@@ -22,7 +22,7 @@ import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.HealthCounter;
 import com.example.project2_rev2.gameComponents.LoadingOverlay;
 import com.example.project2_rev2.gameComponents.TowerBar;
-import com.example.project2_rev2.gameComponents.button.PauseButton;
+import com.example.project2_rev2.gameComponents.buttons.PauseButton;
 import com.example.project2_rev2.gameComponents.managers.DeathManager;
 import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;

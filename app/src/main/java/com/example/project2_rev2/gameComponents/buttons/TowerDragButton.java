@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents.button;
+package com.example.project2_rev2.gameComponents.buttons;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
@@ -17,7 +17,6 @@ import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.gameComponents.CoinTextUI;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 import com.example.project2_rev2.gameComponents.managers.TowerManager;
 import com.example.project2_rev2.listeners.OnCoinsChangeListener;
 import com.example.project2_rev2.utils.GameValues;

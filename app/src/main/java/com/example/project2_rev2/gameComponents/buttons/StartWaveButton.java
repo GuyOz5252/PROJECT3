@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents.button;
+package com.example.project2_rev2.gameComponents.buttons;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
@@ -12,7 +12,6 @@ import com.example.project2_rev2.R;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.abstractComponents.Button;
-import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Size;
 
 /**

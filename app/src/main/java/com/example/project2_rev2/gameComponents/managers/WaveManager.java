@@ -9,12 +9,11 @@ import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.gameComponents.Enemy;
 import com.example.project2_rev2.gameComponents.EnemyPath;
 import com.example.project2_rev2.gameComponents.WaveCounter;
-import com.example.project2_rev2.gameComponents.button.StartWaveButton;
+import com.example.project2_rev2.gameComponents.buttons.StartWaveButton;
 import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class WaveManager {
 

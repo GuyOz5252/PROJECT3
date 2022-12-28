@@ -1,7 +1,9 @@
-package com.example.project2_rev2.gameComponents;
+package com.example.project2_rev2.gameComponents.projectileTypes;
 
 import android.content.Context;
 
+import com.example.project2_rev2.gameComponents.Enemy;
+import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.project2_rev2.gameComponents.button;
+package com.example.project2_rev2.gameComponents.buttons;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 
