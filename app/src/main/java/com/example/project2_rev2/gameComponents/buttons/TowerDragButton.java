@@ -104,7 +104,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
         }
         this.towerPriceTextUI = new CoinTextUI(
                 centerPosition.x-textXOffset,
-                centerPosition.y+size.height/2+5,
+                centerPosition.y+size.height/2+8,
                 String.valueOf(towerType.value),
                 R.color.white,
                 35f,

@@ -16,7 +16,7 @@ public class NextTowerPageButton extends Button {
     private DragAndDropUI dragAndDropUI;
 
     public NextTowerPageButton(DragAndDropUI dragAndDropUI, Context context) {
-        super(xCoordinate(185), yCoordinate(770), R.drawable.ic_launcher_background, new Size(140, 80), context);
+        super(xCoordinate(180), yCoordinate(750), R.drawable.ic_tower_page_right_arrow, new Size(120, 120), context);
         this.dragAndDropUI = dragAndDropUI;
     }
 

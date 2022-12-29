@@ -37,6 +37,8 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_android_studio_icon.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_back_arrow.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.3985" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_baseline_keyboard_double_arrow_left_24.xml" value="0.3985" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_baseline_keyboard_double_arrow_right_24.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_baseline_water_drop_24.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_bug.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_cancel.xml" value="0.3985" />
@@ -61,6 +63,9 @@
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_right_arrow.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_settings.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_tower.xml" value="0.3985" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_tower_nav_arrow_left.xml" value="0.3985" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_tower_page_left_arrow.xml" value="0.3985" />
+        <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/ic_tower_page_right_arrow.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/lock_icon_custom.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/pen_icon_custom.xml" value="0.3985" />
         <entry key="..\:/Users/Guy Oz/AndroidStudioProjects/project3-tower-defense/app/src/main/res/drawable/rounded_corners.xml" value="0.3985" />

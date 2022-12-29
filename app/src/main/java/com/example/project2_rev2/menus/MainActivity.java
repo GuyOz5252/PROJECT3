@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         handler = new Handler();
-        handler.postDelayed(this::start, 800);
+        handler.postDelayed(this::start, 500);
     }
 
     public void start() {
