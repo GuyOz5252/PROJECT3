@@ -50,26 +50,20 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     public Settings(boolean accountSettings, @NonNull Context context) {
         super(context);
-        this.context = context;
-        View decorView = getWindow().getDecorView();
         setContentView(R.layout.dialog_settings);
-        int flags;
+        this.context = context;
         this.accountSettings = accountSettings;
         if (!accountSettings) {
             findViewById(R.id.accountSettings_linearLayout).setVisibility(View.GONE);
-            flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            View decorView = getWindow().getDecorView();
+            int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        } else {
-            flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(flags);
         }
-        decorView.setSystemUiVisibility(flags);
         setCancelable(false);
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
@@ -163,10 +157,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
         }
     }
 
-    //=============dev settings===========//
-
-    //====================================//
-
     //============account settings=========//
     public void clickLogout() {
         createConfirmDialog(" logout?");
@@ -217,12 +207,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //===========confirm dialog============//
     public void createConfirmDialog(String messege) {
         confirmDialog = new Dialog(context);
-        View decorView = confirmDialog.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         confirmDialog.setContentView(R.layout.dialog_confirm);
         confirmDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         confirmDialog.setTitle("confirm dialog");
@@ -277,12 +261,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //=======reset password dialog=========//
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(context);
-        View decorView = resetPassword.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");
@@ -331,12 +309,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //========delete account dialog=======//
     public void createDeleteAccountDialog() {
         deleteAccount = new Dialog(context);
-        View decorView = deleteAccount.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         deleteAccount.setContentView(R.layout.dialog_delete_account);
         deleteAccount.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         deleteAccount.setTitle("delete account");

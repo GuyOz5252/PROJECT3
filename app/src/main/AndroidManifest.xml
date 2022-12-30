@@ -14,9 +14,7 @@
         <activity
             android:name=".menus.TowerUpgradeInfo"
             android:exported="false"
-            android:label="@string/title_activity_tower_upgrade_info"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.Project2rev2.NoActionBar" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".menus.MainMenu"
             android:exported="false"
@@ -35,7 +33,6 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

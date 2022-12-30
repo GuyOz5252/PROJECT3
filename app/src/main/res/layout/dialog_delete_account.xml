@@ -54,6 +54,7 @@
             android:backgroundTint="@color/red"
             android:text="delete account"
             android:textSize="20dp"
+            android:textAllCaps="true"
             app:cornerRadius="15dp" />
 
     </RelativeLayout>

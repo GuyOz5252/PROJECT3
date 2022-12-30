@@ -48,14 +48,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        View decorView = getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
-        decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -122,12 +114,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //============login dialog=============//
     public void createLoginDialog() {
         login = new Dialog(this);
-        View decorView = login.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         login.setContentView(R.layout.dialog_login);
         login.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         login.setTitle("Login");
@@ -228,12 +214,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //==========register dialog============//
     public void createRegisterDialog() {
         register = new Dialog(this);
-        View decorView = register.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         register.setContentView(R.layout.dialog_register);
         register.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         register.setTitle("Register");
@@ -317,12 +297,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //=======reset password dialog=======//
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(this);
-        View decorView = resetPassword.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");

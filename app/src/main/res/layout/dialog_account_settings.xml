@@ -37,6 +37,7 @@
             android:backgroundTint="@color/black"
             android:fontFamily="sans-serif-black"
             android:text="logout"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             app:cornerRadius="15dp" />
 
@@ -47,6 +48,7 @@
             android:backgroundTint="@color/black"
             android:fontFamily="sans-serif-black"
             android:text="change password"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             app:cornerRadius="15dp" />
 
@@ -57,6 +59,7 @@
             android:backgroundTint="@color/black"
             android:fontFamily="sans-serif-black"
             android:text="delete account"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             app:cornerRadius="15dp" />
 

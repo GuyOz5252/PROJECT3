@@ -108,6 +108,7 @@
             android:fontFamily="sans-serif-black"
             android:text="register"
             android:textSize="20dp"
+            android:textAllCaps="true"
             app:cornerRadius="15dp" />
 
     </RelativeLayout>

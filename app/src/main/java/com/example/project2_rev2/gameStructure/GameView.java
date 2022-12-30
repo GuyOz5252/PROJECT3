@@ -66,16 +66,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        View decorView = getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
-        decorView.setOnSystemUiVisibilityChangeListener(i -> decorView.setSystemUiVisibility(flags));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_game_view);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -168,15 +159,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void createPauseMenuDialog() {
         pause();
         pauseMenu = new Dialog(this);
+        pauseMenu.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         pauseMenu.setContentView(R.layout.dialog_pause_menu);
-        View decorView = pauseMenu.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         pauseMenu.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         pauseMenu.setTitle("pause menu");
 
@@ -273,15 +257,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         }
         pause();
         victoryDialog = new Dialog(this);
+        victoryDialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         victoryDialog.setContentView(R.layout.dialog_victory);
-        View decorView = victoryDialog.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         victoryDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         victoryDialog.setCancelable(false);
         victoryDialog.setTitle("victory");
@@ -349,15 +326,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void createDeathDialog() {
         pause();
         deathDialog = new Dialog(this);
+        deathDialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         deathDialog.setContentView(R.layout.dialog_death);
-        View decorView = deathDialog.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         deathDialog.setTitle("death");
 
@@ -399,15 +369,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     /***battery low dialog***/
     public void createBatteryLowDialog() {
         batteryLow = new Dialog(this);
+        batteryLow.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         batteryLow.setContentView(R.layout.dialog_confirm);
-        View decorView = batteryLow.getWindow().getDecorView();
-        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(flags);
         batteryLow.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         batteryLow.setTitle("battery low");
 

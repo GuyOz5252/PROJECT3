@@ -3,5 +3,4 @@
 
     <string name="forgot_password">Forgot your password?</string>
     <string name="reset_password">Click here to reset</string>
-    <string name="title_activity_tower_upgrade_info">TowerUpgradeInfo</string>
 </resources>

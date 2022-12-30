@@ -15,8 +15,14 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/NavBar_mainMenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/main_menu_navbar"/>
+        app:menu="@menu/main_menu_navbar"
+        app:backgroundTint="@color/white"
+        app:itemRippleColor="@color/transparentGray"
+        app:labelVisibilityMode="selected"
+        app:itemPaddingTop="5dp"
+        app:itemPaddingBottom="10dp"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"/>
 
 </RelativeLayout>
