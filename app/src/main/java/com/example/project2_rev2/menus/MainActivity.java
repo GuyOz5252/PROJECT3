@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.example.project2_rev2.PendingVerification;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.data.User;
@@ -41,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
             db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     User.getInstance().setUserData(task.getResult());
-                    startActivity(new Intent(this, MainMenu.class));
+                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                        startActivity(new Intent(this, MainMenu.class));
+                    } else {
+                        startActivity(new Intent(this, MainMenu.class));
+                    }
                 } else {
                     startActivity(new Intent(this, Login.class));
                 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PendingVerification">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Hello, "
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/txtUser_pendingVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv"
+        android:fontFamily="sans-serif-black"
+        android:text="USERNAME"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/txtUser_mainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Your account is pending verification"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnAccountVerified"
+            android:layout_width="250dp"
+            android:text="Account Verified"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            style="@style/button" />
+
+        <Button
+            android:id="@+id/btnResendVerificationEmail"
+            android:layout_width="250dp"
+            android:text="Resend verification Email"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            style="@style/button" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDeleteAccount_pendingVerification"
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
+        android:text="Delete Account"
+        android:layout_below="@+id/ll"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/red"
+        android:layout_marginTop="10dp"
+        style="@style/button" />
+
+</RelativeLayout>
