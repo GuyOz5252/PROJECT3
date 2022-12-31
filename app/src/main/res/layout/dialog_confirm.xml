@@ -20,7 +20,7 @@
             android:text="Are you sure you want to"
             android:textAlignment="center"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -32,22 +32,14 @@
 
             <Button
                 android:id="@+id/btnYes_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:text="yes"
-                android:textAllCaps="true"
-                android:fontFamily="sans-serif-black"
-                app:cornerRadius="15dp" />
+                style="@style/button" />
 
             <Button
                 android:id="@+id/btnNo_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="no"
-                android:textAllCaps="true"
-                android:fontFamily="sans-serif-black"
-                app:cornerRadius="15dp" />
+                style="@style/button" />
 
         </LinearLayout>
 

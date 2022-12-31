@@ -134,7 +134,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         // reset the canvas with background image
         // draw the scene
         sceneManager.draw(canvas);
-        if (getSharedPreferences("sp", MODE_PRIVATE).getBoolean("showFPS", false)) {
+        if (false) { // TODO debug
             fpsCounter.draw(canvas);
         }
     }

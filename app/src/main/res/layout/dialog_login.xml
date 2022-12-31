@@ -58,22 +58,15 @@
 
         <Button
             android:id="@+id/btnLogin_loginDialog"
+            style="@style/button"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-
             android:layout_below="@+id/edtPassword_loginDialog"
             android:layout_centerHorizontal="true"
-
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif-black"
-            android:text="login"
-            android:textSize="20dp"
-            android:textAllCaps="true"
-            app:cornerRadius="15dp" />
+            android:text="login" />
 
         <ImageView
             android:id="@+id/line"
@@ -87,22 +80,13 @@
         <Button
             android:id="@+id/btnGoogle_loginDialog"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-
             android:layout_below="@+id/line"
             android:layout_centerHorizontal="true"
-
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-
-            android:fontFamily="sans-serif-black"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
             android:backgroundTint="@color/white"
             android:text="Login With Google"
             android:textAllCaps="false"
-            android:textSize="20dp"
-            app:cornerRadius="15dp" />
+            style="@style/button" />
 
         <LinearLayout
             android:id="@+id/ln"
@@ -116,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
+                android:layout_marginEnd="2dp"
 
                 android:text="@string/forgot_password"
                 android:textColor="@color/secondaryTextColor"/>
@@ -125,7 +109,7 @@
                 android:id="@+id/txtResetPassword_loginDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
+                android:layout_marginStart="2dp"
 
                 android:text="@string/reset_password"
                 android:textColor="@color/link" />

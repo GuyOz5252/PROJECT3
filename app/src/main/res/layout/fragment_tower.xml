@@ -15,7 +15,7 @@
         android:text="towers"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:textStyle="italic" />
 
     <LinearLayout
@@ -70,7 +70,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="Tower Name"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menus.MainMenu">
+    tools:context=".menus.MainMenu"
+    android:background="@color/white">
 
     <FrameLayout
         android:id="@+id/frameLayout_mainMenu"
@@ -22,7 +23,7 @@
         app:itemRippleColor="@color/transparentGray"
         app:labelVisibilityMode="selected"
         app:itemPaddingTop="5dp"
-        app:itemPaddingBottom="10dp"
-        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"/>
+        app:itemPaddingBottom="8dp"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator" />
 
 </RelativeLayout>

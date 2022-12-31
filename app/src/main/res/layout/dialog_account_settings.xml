@@ -21,7 +21,7 @@
         android:text="settings"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:textStyle="italic" />
 
     <LinearLayout
@@ -33,35 +33,29 @@
         <Button
             android:id="@+id/btnLogout_accountSettings"
             android:layout_width="190dp"
-            android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif-black"
-            android:text="logout"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            app:cornerRadius="15dp" />
+            android:text="logout"
+            android:textSize="14dp"
+            style="@style/button" />
 
         <Button
             android:id="@+id/btnChangePassword_accountSettings"
             android:layout_width="190dp"
-            android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif-black"
-            android:text="change password"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            app:cornerRadius="15dp" />
+            android:text="change password"
+            android:textSize="14dp"
+            style="@style/button" />
 
         <Button
             android:id="@+id/btnDeleteAccount_accountSettings"
             android:layout_width="190dp"
-            android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:fontFamily="sans-serif-black"
-            android:text="delete account"
-            android:textAllCaps="true"
             android:textColor="@color/white"
-            app:cornerRadius="15dp" />
+            android:text="delete account"
+            android:textSize="14dp"
+            style="@style/button" />
 
     </LinearLayout>
 

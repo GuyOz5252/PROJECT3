@@ -15,7 +15,7 @@
         android:text="level name"
         android:textAllCaps="true"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -30,73 +30,47 @@
 
         <Button
             android:id="@+id/btnResume_pauseMenuDialog"
+            style="@style/button"
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="resume"
-            android:textAllCaps="true"
-            android:textSize="20dp"
-            app:cornerRadius="15dp" />
+            android:layout_margin="5dp"
+            android:text="resume" />
 
         <Button
             android:id="@+id/btnSettings_pauseMenuDialog"
+            style="@style/button"
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
-
             android:layout_below="@+id/btnResume_pauseMenuDialog"
             android:layout_centerHorizontal="true"
-
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="settings"
-            android:textSize="20dp"
-            android:textAllCaps="true"
-            app:cornerRadius="15dp" />
+            android:text="settings" />
 
         <Button
             android:id="@+id/btnSaveAndExit_pauseMenuDialog"
+            style="@style/button"
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
-
             android:layout_below="@+id/btnSettings_pauseMenuDialog"
             android:layout_centerHorizontal="true"
-
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="save and exit"
-            android:textSize="20dp"
-            android:textAllCaps="true"
-            app:cornerRadius="15dp" />
+            android:text="save and exit" />
 
         <Button
             android:id="@+id/btnExit_pauseMenuDialog"
+            style="@style/button"
             android:layout_width="280dp"
-            android:layout_height="wrap_content"
-
             android:layout_below="@+id/btnSaveAndExit_pauseMenuDialog"
             android:layout_centerHorizontal="true"
-
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="exit"
-            android:textSize="20dp"
-            android:textAllCaps="true"
-            app:cornerRadius="15dp" />
+            android:text="exit" />
 
     </RelativeLayout>
 

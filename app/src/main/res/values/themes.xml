@@ -15,6 +15,16 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/rangeCircle</item>
+        <item name="android:color">@color/material_on_surface_stroke</item>
     </style>
+
+    <style name="button" parent="Widget.Material3.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="cornerRadius">15dp</item>
+    </style>
+
 </resources>

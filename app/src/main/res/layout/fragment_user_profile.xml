@@ -36,7 +36,7 @@
             android:fontFamily="sans-serif-black"
             android:text="LVL"
             android:textColor="@color/black"
-            android:textSize="28dp"
+            android:textSize="28sp"
             android:textStyle="italic" />
 
     </RelativeLayout>
@@ -51,7 +51,7 @@
         android:fontFamily="sans-serif-black"
         android:text="USERNAME"
         android:textColor="@color/black"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="italic" />
 
     <androidx.recyclerview.widget.RecyclerView

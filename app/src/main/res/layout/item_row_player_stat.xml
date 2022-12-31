@@ -11,7 +11,7 @@
         android:fontFamily="sans-serif-black"
         android:text="STAT NAME"
         android:textColor="@color/black"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/txtStatValue_playerStatsItemRow"
@@ -21,15 +21,15 @@
         android:fontFamily="sans-serif-black"
         android:text="0"
         android:textColor="@color/black"
-        android:textSize="22dp" />
+        android:textSize="22sp" />
 
     <ImageView
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="-4dp"
         android:layout_below="@+id/txtStatName_playerStatsItemRow"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="-4dp"
         android:src="@color/black" />
 
 </RelativeLayout>
