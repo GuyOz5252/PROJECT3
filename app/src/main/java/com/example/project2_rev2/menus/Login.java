@@ -12,14 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project2_rev2.PendingVerification;
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -96,7 +92,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                         DocumentReference userDocument = db.collection("users").document(firebaseAuth.getCurrentUser().getUid());
                         User.getInstance().createUserData(userDocument, username);
                         Toast.makeText(Login.this, "user registered, pending verification", Toast.LENGTH_SHORT).show();
-                        firebaseAuth.getCurrentUser().sendEmailVerification();
                         startActivity(new Intent(Login.this, PendingVerification.class));
                         Login.this.finish();
                     }

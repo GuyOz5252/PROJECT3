@@ -1,25 +1,20 @@
 package com.example.project2_rev2.menus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
-import com.example.project2_rev2.PendingVerification;
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.data.SaveData;
 import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
             db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     User.getInstance().setUserData(task.getResult());
-                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
-                        startActivity(new Intent(this, MainMenu.class));
-                    } else {
-                        startActivity(new Intent(this, MainMenu.class));
-                    }
+                    firebaseAuth.getCurrentUser().reload().addOnCompleteListener(task1 -> {
+                        if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                            startActivity(new Intent(MainActivity.this, MainMenu.class));
+                        } else {
+                            startActivity(new Intent(MainActivity.this, PendingVerification.class));
+                        }
+                    });
                 } else {
                     startActivity(new Intent(this, Login.class));
                 }

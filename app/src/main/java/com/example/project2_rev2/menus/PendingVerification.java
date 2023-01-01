@@ -1,6 +1,5 @@
-package com.example.project2_rev2;
+package com.example.project2_rev2.menus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -14,11 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.menus.Login;
-import com.example.project2_rev2.menus.MainMenu;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,6 +37,8 @@ public class PendingVerification extends AppCompatActivity implements View.OnTou
         setContentView(R.layout.activity_pending_verification);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.getCurrentUser().sendEmailVerification();
 
         isSentEmail = false;
 
