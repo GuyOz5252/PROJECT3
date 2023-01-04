@@ -30,25 +30,25 @@ import com.google.firebase.firestore.CollectionReference;
 
 public abstract class Tower extends BitmapObject {
 
-    private TowerBar towerBar;
+    protected TowerBar towerBar;
     protected WaveManager waveManager;
-    private ProjectileManager projectileManager;
+    protected ProjectileManager projectileManager;
     protected TowerType towerType;
-    private Rect collider;
+    protected Rect collider;
     protected boolean isActive;
 
     protected int range;
     protected Projectile.ProjectileType projectileType;
-    private Paint rangeCirclePaint;
-    private Paint rangeBorderPaint;
+    protected Paint rangeCirclePaint;
+    protected Paint rangeBorderPaint;
     protected int cooldown;
     protected int currentTick;
 
     protected Bitmap originalBitmap;
     protected int icon;
 
-    private Rect towerRect;
-    private boolean isSelected;
+    protected Rect towerRect;
+    protected boolean isSelected;
 
     protected TowerUpgradeUI towerUpgradeUI;
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;

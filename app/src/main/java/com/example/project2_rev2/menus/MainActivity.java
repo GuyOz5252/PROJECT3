@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     Handler handler;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     User.getInstance().setUserData(task.getResult());
                     firebaseAuth.getCurrentUser().reload().addOnCompleteListener(task1 -> {
-                        if (firebaseAuth.getCurrentUser().isEmailVerified()) {
-                            startActivity(new Intent(MainActivity.this, MainMenu.class));
-                        } else {
-                            startActivity(new Intent(MainActivity.this, PendingVerification.class));
-                        }
+                        startActivity(new Intent(
+                                MainActivity.this,
+                                firebaseAuth.getCurrentUser().isEmailVerified() ? MainMenu.class : PendingVerification.class)
+                        );
+                        this.finish();
                     });
                 } else {
                     startActivity(new Intent(this, Login.class));
+                    this.finish();
                 }
-                this.finish();
             });
         } else {
             startActivity(new Intent(this, Login.class));

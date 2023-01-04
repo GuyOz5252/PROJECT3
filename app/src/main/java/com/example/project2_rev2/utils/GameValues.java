@@ -73,10 +73,14 @@ public class GameValues {
 
     public static void init(Activity activity, Display display) {
         GameValues.display.size.width = display.size.width;
-        GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         GameValues.display.size.height = display.size.height;
-        xOffset = (GameValues.display.size.width - gameDisplay.size.width)/2;
-        yOffset = (GameValues.display.size.height - gameDisplay.size.height)/2;
+        if (getNavbarMode(activity) == 2) {
+            GameValues.display.size.height += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_height", "dimen", "android"));
+        } else {
+            GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
+        }
+        xOffset = (int)(GameValues.display.size.width - gameDisplay.size.width) >> 1;
+        yOffset = (int)(GameValues.display.size.height - gameDisplay.size.height) >> 1;
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;
@@ -85,5 +89,10 @@ public class GameValues {
         colliderArrayList.clear();
         coinsChangeListenerArrayList.clear();
         healthChangeListenerArrayList.clear();
+    }
+
+    public static int getNavbarMode(Context context) {
+        int resourceId = context.getResources().getIdentifier("config_navBarInteractionMode", "integer", "android");
+        return resourceId > 0 ? context.getResources().getInteger(resourceId) : 0;
     }
 }
