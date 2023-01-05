@@ -129,7 +129,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
         );
-        textViewParams.setMargins(0, 0, 0, 5);
+        textViewParams.setMargins(0, 0, 0, 8);
         upgradeNameTextView.setLayoutParams(textViewParams);
         upgradeNameTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeNameTextView.setTextSize(20);
@@ -142,7 +142,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         upgradeInfoTextView.setLayoutParams(textViewParams);
         upgradeInfoTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeInfoTextView.setTextSize(16);
-        upgradeInfoTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        upgradeInfoTextView.setGravity(Gravity.CENTER);
         if (upgradeIndex < upgradeInfoArrayList[pathIndex].size()) {
             upgradeInfoTextView.setText(upgradeInfoArrayList[pathIndex].get(upgradeIndex));
         }

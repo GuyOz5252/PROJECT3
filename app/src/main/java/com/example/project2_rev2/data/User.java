@@ -22,6 +22,13 @@ public class User {
 
     private User() {}
 
+    public static User getInstance() {
+        if (user == null) {
+            user = new User();
+        }
+        return user;
+    }
+
     public void createUserData(DocumentReference userDocument, String username) {
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("user_name", username);
@@ -100,13 +107,6 @@ public class User {
                 .set(getInstance().getSaveData(), SetOptions.merge());
         userDocument.collection("data_segment").document("player_stats")
                 .set(getInstance().getPlayerStats(), SetOptions.merge());
-    }
-
-    public static User getInstance() {
-        if (user == null) {
-            user = new User();
-        }
-        return user;
     }
 
     public String getUsername() {
