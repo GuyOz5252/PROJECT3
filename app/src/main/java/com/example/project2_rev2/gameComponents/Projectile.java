@@ -24,7 +24,7 @@ public class Projectile extends GameObject {
 
     protected Tower originTower;
 
-    public Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
+    private Projectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
         super(x, y);
         this.velocityX = velocityX;
         this.velocityY = velocityY;
@@ -72,8 +72,11 @@ public class Projectile extends GameObject {
         canvas.drawCircle((float)position.x, (float)position.y, (float)radius, paint);
     }
 
-    public static Projectile createNewProjectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
-        return new Projectile(x, y, velocityX, velocityY, projectileType, originTower, context);
+    public static class ProjectileFactory {
+
+        public Projectile createProjectile(double x, double y, int velocityX, int velocityY, ProjectileType projectileType, Tower originTower, Context context) {
+            return new Projectile(x, y, velocityX, velocityY, projectileType, originTower, context);
+        }
     }
 
     public enum ProjectileType {

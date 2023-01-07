@@ -36,6 +36,7 @@ public abstract class Tower extends BitmapObject {
     protected TowerType towerType;
     protected Rect collider;
     protected boolean isActive;
+    protected boolean isSelected;
 
     protected int range;
     protected Projectile.ProjectileType projectileType;
@@ -47,15 +48,13 @@ public abstract class Tower extends BitmapObject {
     protected Bitmap originalBitmap;
     protected int icon;
 
-    protected Rect towerRect;
-    protected boolean isSelected;
-
     protected TowerUpgradeUI towerUpgradeUI;
     protected TowerType.TowerUpgradePath[] towerUpgradePaths;
     protected int[] pathLevels;
     protected int moneySpent;
 
     protected boolean isDoubleShot;
+    protected boolean isCamoDetecting;
 
     public Tower(double x, double y, Rect collider, TowerType towerType, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x-towerType.size.width/2, y-towerType.size.height/2, towerType.bitmap, towerType.size, context);
@@ -77,12 +76,6 @@ public abstract class Tower extends BitmapObject {
         this.currentTick = cooldown;
         this.originalBitmap = bitmap;
         this.icon = towerType.icon;
-        this.towerRect = new Rect(
-                (int)(x-towerType.size.width/2),
-                (int)(y-towerType.size.height/2),
-                (int)(x+towerType.size.width/2),
-                (int)(y+towerType.size.height/2)
-        );
         this.isSelected = false;
         this.towerUpgradePaths = new TowerType.TowerUpgradePath[] {
                 towerType.towerUpgradePathOne,
@@ -92,6 +85,7 @@ public abstract class Tower extends BitmapObject {
         this.moneySpent = towerType.value;
         this.towerUpgradeUI = new TowerUpgradeUI(this, context);
         this.isDoubleShot = false;
+        this.isCamoDetecting = false;
     }
 
     public abstract boolean upgrade(int upgradePathIndex);
@@ -159,9 +153,11 @@ public abstract class Tower extends BitmapObject {
     public void attack(Enemy enemy) {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
-                float angle = projectileManager.createNewProjectile(this, enemy);
-                handleTowerRotation(angle);
-                currentTick = 0;
+                if (!enemy.getIsCamo() || isCamoDetecting) {
+                    float angle = projectileManager.createNewProjectile(this, enemy);
+                    handleTowerRotation(angle);
+                    currentTick = 0;
+                }
             }
         }
     }
@@ -200,7 +196,7 @@ public abstract class Tower extends BitmapObject {
     }
 
     public boolean isPressed(MotionEvent motionEvent) {
-        return towerRect.contains((int)motionEvent.getX(), (int)motionEvent.getY());
+        return collider.contains((int)motionEvent.getX(), (int)motionEvent.getY());
     }
 
     @Override

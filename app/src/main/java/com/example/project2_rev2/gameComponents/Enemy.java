@@ -8,6 +8,7 @@ import com.example.project2_rev2.data.EnemyType;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.gameComponents.enemyTypes.CamoDemoEnemy;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 import com.example.project2_rev2.utils.GameValues;
 import com.example.project2_rev2.utils.Position;
@@ -15,7 +16,7 @@ import com.example.project2_rev2.utils.Size;
 
 import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
-public class Enemy extends BitmapObject implements OnHealthChangeListener {
+public class Enemy extends BitmapObject {
 
     private final EnemyPath enemyPath;
     private int nextPathDestinationIndex;
@@ -43,7 +44,7 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     private int damageOverTimeInterval;
     private Tower damageOverTimeOriginTower;
 
-    public Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
+    protected Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(
                 enemyPath.getPositionArrayList().get(0).x-enemyType.size.width/2,
                 enemyPath.getPositionArrayList().get(0).y-enemyType.size.height/2,
@@ -69,6 +70,10 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         this.damageOverTimeDuration = 0;
         this.damageOverTimeInterval = 0;
         this.damageOverTimeOriginTower = null;
+    }
+
+    public boolean getIsCamo() {
+        return false;
     }
 
     public boolean getIsAlive() {
@@ -206,11 +211,6 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
     }
 
     @Override
-    public void onHealthChange() {
-
-    }
-
-    @Override
     public void update() {
         super.update();
         if (isAlive) {
@@ -227,5 +227,25 @@ public class Enemy extends BitmapObject implements OnHealthChangeListener {
         LEFT,
         UP,
         DOWN
+    }
+
+    public static class EnemyFactory {
+
+        private Context context;
+        private EnemyPath enemyPath;
+
+        public EnemyFactory(EnemyPath enemyPath, Context context) {
+            this.context = context;
+            this.enemyPath = enemyPath;
+        }
+
+        public Enemy createEnemy(EnemyType enemyType) {
+            switch (enemyType) {
+                case CAMO_DEMO_ENEMY:
+                    return new CamoDemoEnemy(enemyType, enemyPath, context);
+                default:
+                    return new Enemy(enemyType, enemyPath, context);
+            }
+        }
     }
 }

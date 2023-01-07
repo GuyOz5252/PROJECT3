@@ -14,13 +14,16 @@ public class ProjectileManager {
     private Context context;
     private WaveManager waveManager;
 
+    private Projectile.ProjectileFactory projectileFactory;
+
     private ArrayList<Projectile> projectileArrayList;
     private Projectile.ProjectileType projectileType;
 
     public ProjectileManager(WaveManager waveManager, Context context) {
+        this.context = context;
         this.projectileArrayList = new ArrayList<>();
         this.waveManager = waveManager;
-        this.context = context;
+        this.projectileFactory = new Projectile.ProjectileFactory();
     }
 
     // https://www.youtube.com/watch?v=_HhIvNIlEqM
@@ -53,14 +56,14 @@ public class ProjectileManager {
 
         if (tower.getIsDoubleShot()) {
             if (yDistance < 0) {
-                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
-                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(projectileFactory.createProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(projectileFactory.createProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
             } else {
-                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
-                projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(projectileFactory.createProjectile(tower.getCenterPosition().x+10, tower.getCenterPosition().y-10, (int)velocityX, (int)velocityY, projectileType, tower, context));
+                projectileArrayList.add(projectileFactory.createProjectile(tower.getCenterPosition().x-10, tower.getCenterPosition().y+10, (int)velocityX, (int)velocityY, projectileType, tower, context));
             }
         } else {
-            projectileArrayList.add(Projectile.createNewProjectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
+            projectileArrayList.add(projectileFactory.createProjectile(tower.getCenterPosition().x, tower.getCenterPosition().y, (int)velocityX, (int)velocityY, projectileType, tower, context));
         }
 
         return rotate;

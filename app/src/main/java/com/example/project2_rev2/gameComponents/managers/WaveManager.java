@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameComponents.managers;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Pair;
 
 import com.example.project2_rev2.data.EnemyType;
 import com.example.project2_rev2.utils.Action;
@@ -128,23 +129,23 @@ public class WaveManager {
         aliveList.removeIf(enemy -> !enemy.getIsAlive());
     }
 
-    /**********************************************************************************************/
-
     public static class Wave {
 
+        private Enemy.EnemyFactory enemyFactory;
         private ArrayList<Enemy> enemyArrayList;
         private int updatesBetweenSpawn;
 
-        public Wave(HashMap<EnemyType, Integer> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
+        public Wave(ArrayList<Pair<EnemyType, Integer>> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
+            this.enemyFactory = new Enemy.EnemyFactory(enemyPath, context);
             this.enemyArrayList = new ArrayList<>();
             this.updatesBetweenSpawn = updatesBetweenSpawn;
-            convertCodeToUnit(enemyMap, enemyPath, context);
+            convertCodeToUnit(enemyMap);
         }
 
-        public void convertCodeToUnit(HashMap<EnemyType, Integer> enemyMap, EnemyPath enemyPath, Context context) {
-            enemyMap.forEach((enemyType, enemyTypeNumber) -> {
-                for (int i = 0; i < enemyTypeNumber; i++) {
-                    enemyArrayList.add(new Enemy(enemyType, enemyPath, context));
+        public void convertCodeToUnit(ArrayList<Pair<EnemyType, Integer>> enemyMap) {
+            enemyMap.forEach(enemyTypeIntegerPair -> {
+                for (int i = 0; i < enemyTypeIntegerPair.second; i++) {
+                    enemyArrayList.add(enemyFactory.createEnemy(enemyTypeIntegerPair.first));
                 }
             });
         }
