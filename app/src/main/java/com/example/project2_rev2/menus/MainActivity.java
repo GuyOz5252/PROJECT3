@@ -1,19 +1,19 @@
 package com.example.project2_rev2.menus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,8 +24,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        handler = new Handler();
-        handler.postDelayed(this::start, 500);
+        final String developerUID = "fbwBdNU80PgfjQZWVwynJtmUJPx2";
+        final double version = 0.5;
+        FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(developerUID).get().addOnCompleteListener(task -> {
+                    if ((double)(task.getResult().get("version")) <= version) {
+                        handler = new Handler();
+                        handler.postDelayed(this::start, 500);
+                    } else {
+                        Toast.makeText(MainActivity.this, "update!, ask for updated APK", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
     }
 
     public void start() {
