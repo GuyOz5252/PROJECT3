@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".menus.Settings">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="sans-serif-black"
+        android:text="V0.5"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <ImageButton
         android:id="@+id/btnBack_settings"
         android:layout_width="wrap_content"

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         final String developerUID = "fbwBdNU80PgfjQZWVwynJtmUJPx2";
         final double version = 0.5;
