@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.utils.Action;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,31 +21,23 @@ public class MainActivity extends AppCompatActivity {
 
     Handler handler;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String developerUID = "fbwBdNU80PgfjQZWVwynJtmUJPx2";
-        final double version = 0.5;
-        FirebaseFirestore.getInstance()
-                .collection("users")
-                .document(developerUID).get().addOnCompleteListener(task -> {
-                    if ((double)(task.getResult().get("version")) <= version) {
-                        handler = new Handler();
-                        handler.postDelayed(this::start, 500);
-                    } else {
-                        Toast.makeText(MainActivity.this, "update!, ask for updated APK", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                });
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        handler = new Handler();
+        handler.postDelayed(this::start, 500);
     }
 
     public void start() {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
-            setContentView(R.layout.activity_main);
             db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     User.getInstance().setUserData(task.getResult());

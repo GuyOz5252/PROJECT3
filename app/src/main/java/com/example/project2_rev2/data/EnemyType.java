@@ -5,7 +5,7 @@ import com.example.project2_rev2.utils.Size;
 
 public enum EnemyType {
     DEMO_ENEMY(R.drawable.ic_bug, 4, new Size(100, 100), 30, 10, 7),
-    CAMO_DEMO_ENEMY(R.drawable.ic_camo_bug, 4, new Size(100, 100), 30, 10, 7),
+    CAMO_DEMO_ENEMY(R.drawable.ic_camo_bug, 8, new Size(100, 100), 30, 10, 7),
     DEMO_BOSS(R.drawable.ic_bug, 2, new Size(250, 250), 3100, 200, 100);
 
     public int resourceId;
