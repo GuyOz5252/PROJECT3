@@ -30,12 +30,12 @@ public class FireSpreader extends Tower {
 
     public FireSpreader(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(x, y, collider, TowerType.FIRE_SPREADER, towerBar, waveManager, projectileManager, context);
-        initFiringBitmapArr(range);
         this.animationTick = 0;
         this.animationIndex = 0;
         this.damage = 8;
         this.duration = 300;
         this.interval = 3;
+        initFiringBitmapArr(range);
     }
 
     public void initFiringBitmapArr(int range) {
@@ -150,8 +150,10 @@ public class FireSpreader extends Tower {
         areEnemiesInRange = false;
         for (Enemy enemy : waveManager.getAliveList()) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
-                areEnemiesInRange = true;
-                break;
+                if (!enemy.getIsCamo() || isCamoDetecting) {
+                    areEnemiesInRange = true;
+                    break;
+                }
             }
         }
     }
@@ -161,8 +163,10 @@ public class FireSpreader extends Tower {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
                 if (!enemy.getIsOnFire()) {
-                    enemy.setOnFire(damage, duration, interval, this);
-                    currentTick = 0;
+                    if (!enemy.getIsCamo() || isCamoDetecting) {
+                        enemy.setOnFire(damage, duration, interval, this);
+                        currentTick = 0;
+                    }
                 }
             }
         }

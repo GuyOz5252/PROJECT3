@@ -182,23 +182,13 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     public void handleLevelIndicator() {
         double xPosition = position.x-10;
         for (int i = 0; i < tower.getTowerUpgradePaths()[upgradePathIndex].name.length; i++) {
-            if (i < tower.getPathLevels()[upgradePathIndex]) {
-                levelIndicator[i] = new BitmapObject(
-                        xPosition,
-                        position.y+110,
-                        R.drawable.ic_square_green,
-                        new Size(80, 50),
-                        context
-                ) {};
-            } else {
-                levelIndicator[i] = new BitmapObject(
-                        xPosition,
-                        position.y+110,
-                        R.drawable.ic_square_gray,
-                        new Size(80, 50),
-                        context
-                ) {};
-            }
+            levelIndicator[i] = new BitmapObject(
+                    xPosition,
+                    position.y+110,
+                    (i < tower.getPathLevels()[upgradePathIndex]) ? R.drawable.ic_square_green : R.drawable.ic_square_gray,
+                    new Size(80, 50),
+                    context
+            ) {};
             xPosition += 50;
         }
     }

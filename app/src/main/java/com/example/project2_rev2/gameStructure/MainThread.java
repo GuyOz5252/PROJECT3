@@ -8,7 +8,7 @@ import com.example.project2_rev2.utils.GameValues;
 public class MainThread extends Thread {
 
     public static final int MAX_FPS = 60;
-    private double AVG_FPS;
+    private double avgFPS;
     private final SurfaceHolder surfaceHolder;
     private final GameView gameView;
     private boolean isRunning;
@@ -21,7 +21,7 @@ public class MainThread extends Thread {
     }
 
     public double getFPS() {
-        return AVG_FPS;
+        return avgFPS;
     }
 
     public void startThread() {
@@ -80,10 +80,10 @@ public class MainThread extends Thread {
                 totalTime += System.nanoTime() - startTime;
                 frameCount++;
                 if (frameCount == MAX_FPS) {
-                    AVG_FPS = 1000 / ((totalTime / frameCount) / 1000000);
+                    avgFPS = 1000 / ((totalTime / frameCount) / 1000000);
                     frameCount = 0;
                     totalTime = 0;
-                    System.out.println("FPS: " + AVG_FPS);
+                    System.out.println("FPS: " + avgFPS);
                 }
             }
         }
