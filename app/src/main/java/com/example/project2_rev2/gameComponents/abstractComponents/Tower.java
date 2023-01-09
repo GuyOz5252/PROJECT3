@@ -20,6 +20,9 @@ import com.example.project2_rev2.gameComponents.managers.ProjectileManager;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.TowerUpgradeUI;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
+import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
+import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
+import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
 import com.google.firebase.firestore.CollectionReference;
 
@@ -214,9 +217,7 @@ public abstract class Tower extends BitmapObject {
 
         currentTick++;
 
-        for (Enemy enemy : waveManager.getAliveList()) {
-            attack(enemy);
-        }
+        waveManager.getAliveList().forEach(this::attack);
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {
@@ -229,6 +230,71 @@ public abstract class Tower extends BitmapObject {
                 if (!towerBar.getTowerBarRect().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                     isSelected = false;
                 }
+            }
+        }
+    }
+
+    public static class TowerFactory {
+
+        private Context context;
+        private TowerBar towerBar;
+        private WaveManager waveManager;
+        private ProjectileManager projectileManager;
+
+        public TowerFactory(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+            this.context = context;
+            this.towerBar = towerBar;
+            this.waveManager = waveManager;
+            this.projectileManager = projectileManager;
+        }
+
+        public Tower createTower(TowerType towerType, double x, double y) {
+            Rect collider = new Rect(
+                    (int)(x-towerType.size.width/2),
+                    (int)(y-towerType.size.height/2),
+                    (int)(x+towerType.size.width/2),
+                    (int)(y+towerType.size.height/2)
+            );
+            switch (towerType) {
+                case DEMO_TOWER:
+                    GameValues.colliderArrayList.add(collider);
+                    return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case TURRET:
+                    collider = new Rect(
+                            (int)(x-towerType.size.width/2)+35,
+                            (int)(y-towerType.size.height/2)+30,
+                            (int)(x+towerType.size.width/2)-25,
+                            (int)(y+towerType.size.height/2)-30
+                    );
+                    GameValues.colliderArrayList.add(collider);
+                    return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case FIRE_SPREADER:
+                    GameValues.colliderArrayList.add(collider);
+                    return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
+
+        public Tower createTower(TowerType towerType, double x, double y, Rect collider) {
+            switch (towerType) {
+                case DEMO_TOWER:
+                    GameValues.colliderArrayList.add(collider);
+                    return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case TURRET:
+                    collider = new Rect(
+                            (int)(x-towerType.size.width/2)+35,
+                            (int)(y-towerType.size.height/2)+30,
+                            (int)(x+towerType.size.width/2)-25,
+                            (int)(y+towerType.size.height/2)-30
+                    );
+                    GameValues.colliderArrayList.add(collider);
+                    return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case FIRE_SPREADER:
+                    GameValues.colliderArrayList.add(collider);
+                    return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
+                default:
+                    throw new IllegalArgumentException();
             }
         }
     }

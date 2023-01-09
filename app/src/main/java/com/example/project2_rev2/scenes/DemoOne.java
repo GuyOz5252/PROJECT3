@@ -51,14 +51,14 @@ public class DemoOne extends Scene {
         this.enemyPath.calculateColliders();
 
         ArrayList<Pair<EnemyType, Integer>> waveMap = new ArrayList<>();
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
-        this.waveManager.addWave(new WaveManager.Wave(
-                waveMap,
-                enemyPath,
-                20,
-                context
-        ));
-        waveMap.clear();
+        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        //this.waveManager.addWave(new WaveManager.Wave(
+        //        waveMap,
+        //        enemyPath,
+        //        20,
+        //        context
+        //));
+        //waveMap.clear();
         waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 5));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
