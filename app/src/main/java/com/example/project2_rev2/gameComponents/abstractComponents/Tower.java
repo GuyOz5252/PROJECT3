@@ -89,6 +89,7 @@ public abstract class Tower extends BitmapObject {
         this.towerUpgradeUI = new TowerUpgradeUI(this, context);
         this.isDoubleShot = false;
         this.isCamoDetecting = false;
+        GameValues.colliderArrayList.add(collider);
     }
 
     public abstract boolean upgrade(int upgradePathIndex);
@@ -257,7 +258,6 @@ public abstract class Tower extends BitmapObject {
             );
             switch (towerType) {
                 case DEMO_TOWER:
-                    GameValues.colliderArrayList.add(collider);
                     return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case TURRET:
                     collider = new Rect(
@@ -266,10 +266,8 @@ public abstract class Tower extends BitmapObject {
                             (int)(x+towerType.size.width/2)-25,
                             (int)(y+towerType.size.height/2)-30
                     );
-                    GameValues.colliderArrayList.add(collider);
                     return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case FIRE_SPREADER:
-                    GameValues.colliderArrayList.add(collider);
                     return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
                 default:
                     throw new IllegalArgumentException();
@@ -279,19 +277,10 @@ public abstract class Tower extends BitmapObject {
         public Tower createTower(TowerType towerType, double x, double y, Rect collider) {
             switch (towerType) {
                 case DEMO_TOWER:
-                    GameValues.colliderArrayList.add(collider);
                     return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case TURRET:
-                    collider = new Rect(
-                            (int)(x-towerType.size.width/2)+35,
-                            (int)(y-towerType.size.height/2)+30,
-                            (int)(x+towerType.size.width/2)-25,
-                            (int)(y+towerType.size.height/2)-30
-                    );
-                    GameValues.colliderArrayList.add(collider);
                     return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case FIRE_SPREADER:
-                    GameValues.colliderArrayList.add(collider);
                     return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
                 default:
                     throw new IllegalArgumentException();

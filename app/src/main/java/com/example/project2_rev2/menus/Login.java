@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     // login dialog elements
     Dialog login;
-    Button btnLoginLoginDialog, btnGoogleLoginDialog;
+    Button btnLoginLoginDialog;
     EditText edtEmailLoginDialog, edtPasswordLoginDialog;
     TextView txtResetPasswordLoginDialog;
 
@@ -123,13 +123,11 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         login.setTitle("Login");
 
         btnLoginLoginDialog = login.findViewById(R.id.btnLogin_loginDialog);
-        btnGoogleLoginDialog = login.findViewById(R.id.btnGoogle_loginDialog);
         edtEmailLoginDialog = login.findViewById(R.id.edtMail_loginDialog);
         edtPasswordLoginDialog = login.findViewById(R.id.edtPassword_loginDialog);
         txtResetPasswordLoginDialog = login.findViewById(R.id.txtResetPassword_loginDialog);
 
         btnLoginLoginDialog.setOnTouchListener(this);
-        btnGoogleLoginDialog.setOnTouchListener(this);
         txtResetPasswordLoginDialog.setOnTouchListener(this);
 
         login.show();
@@ -173,23 +171,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void clickLogin(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickLogin();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-
-    public void clickGoogle() {
-        // login with google
-
-        login.dismiss();
-    }
-
-    public void clickGoogle(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickGoogle();
             view.setScaleX(1);
             view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -373,9 +354,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             //=login dialog=//
             case R.id.btnLogin_loginDialog:
                 clickLogin(view, motionEvent);
-                break;
-            case R.id.btnGoogle_loginDialog:
-                clickGoogle(view, motionEvent);
                 break;
             case R.id.txtResetPassword_loginDialog:
                 clickedResetPassword(view, motionEvent);

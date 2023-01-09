@@ -25,7 +25,6 @@ import java.util.concurrent.atomic.AtomicReference;
 public class TowerManager {
 
     private ArrayList<Tower> towerArrayList;
-    //private AtomicReference<ArrayList<Tower>> atomicTowerArrayList;
     private boolean isAnyTowerSelected;
     private Tower selectedTower;
     private Tower.TowerFactory towerFactory;
@@ -51,7 +50,6 @@ public class TowerManager {
             atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider));
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
-            GameValues.colliderArrayList.add(collider);
         });
     }
 

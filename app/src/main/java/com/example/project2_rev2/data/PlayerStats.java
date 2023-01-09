@@ -1,87 +1,102 @@
 package com.example.project2_rev2.data;
 
+import android.util.Pair;
+
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
 
 public class PlayerStats {
 
-    private double gamesPlayed;
-    private double gamesWon;
-    private double gamesLost;
-    private double towersPlaced;
-    private double enemiesKilled;
-    private double moneyEarned;
-    private double xpEarned;
+    private int gamesPlayed;
+    private int gamesWon;
+    private int gamesLost;
+    private int towersPlaced;
+    private int enemiesKilled;
+    private int moneyEarned;
+    private int xpEarned;
 
     public PlayerStats() {} // firestore object mapper
 
+    //@Exclude
+    //public ArrayList<Object[]> getAllStats() {
+    //    ArrayList<Object[]> playerStatsArrayList = new ArrayList<>();
+    //    playerStatsArrayList.add(new Object[]{"Games Played", gamesPlayed});
+    //    playerStatsArrayList.add(new Object[]{"Games Won", gamesWon});
+    //    playerStatsArrayList.add(new Object[]{"Games Lost", gamesLost});
+    //    playerStatsArrayList.add(new Object[]{"Towers Placed", towersPlaced});
+    //    playerStatsArrayList.add(new Object[]{"Enemies Killed", enemiesKilled});
+    //    playerStatsArrayList.add(new Object[]{"Money Earned", moneyEarned});
+    //    playerStatsArrayList.add(new Object[]{"XP Earned", xpEarned});
+    //    return playerStatsArrayList;
+    //}
+
     @Exclude
-    public ArrayList<Object[]> getAllStats() {
-        ArrayList<Object[]> playerStatsArrayList = new ArrayList<>();
-        playerStatsArrayList.add(new Object[]{"Games Played", gamesPlayed});
-        playerStatsArrayList.add(new Object[]{"Games Won", gamesWon});
-        playerStatsArrayList.add(new Object[]{"Games Lost", gamesLost});
-        playerStatsArrayList.add(new Object[]{"Towers Placed", towersPlaced});
-        playerStatsArrayList.add(new Object[]{"Enemies Killed", enemiesKilled});
-        playerStatsArrayList.add(new Object[]{"Money Earned", moneyEarned});
-        playerStatsArrayList.add(new Object[]{"XP Earned", xpEarned});
+    public ArrayList<Pair<String, Integer>> getAllStats() {
+        ArrayList<Pair<String, Integer>> playerStatsArrayList = new ArrayList<>();
+        playerStatsArrayList.add(new Pair<>("Games Played", gamesPlayed));
+        playerStatsArrayList.add(new Pair<>("Games Won", gamesWon));
+        playerStatsArrayList.add(new Pair<>("Games Lost", gamesLost));
+        playerStatsArrayList.add(new Pair<>("Towers Placed", towersPlaced));
+        playerStatsArrayList.add(new Pair<>("Enemies Killed", enemiesKilled));
+        playerStatsArrayList.add(new Pair<>("Money Earned", moneyEarned));
+        playerStatsArrayList.add(new Pair<>("XP Earned", xpEarned));
         return playerStatsArrayList;
     }
 
-    public double getGamesPlayed() {
+    public int getGamesPlayed() {
         return gamesPlayed;
     }
 
-    public void setGamesPlayed(double gamesPlayed) {
+    public void setGamesPlayed(int gamesPlayed) {
         this.gamesPlayed = gamesPlayed;
     }
 
-    public double getGamesWon() {
+    public int getGamesWon() {
         return gamesWon;
     }
 
-    public void setGamesWon(double gamesWon) {
+    public void setGamesWon(int gamesWon) {
         this.gamesWon = gamesWon;
     }
 
-    public double getGamesLost() {
+    public int getGamesLost() {
         return gamesLost;
     }
 
-    public void setGamesLost(double gamesLost) {
+    public void setGamesLost(int gamesLost) {
         this.gamesLost = gamesLost;
     }
 
-    public double getTowersPlaced() {
+    public int getTowersPlaced() {
         return towersPlaced;
     }
 
-    public void setTowersPlaced(double towersPlaced) {
+    public void setTowersPlaced(int towersPlaced) {
         this.towersPlaced = towersPlaced;
     }
 
-    public double getEnemiesKilled() {
+    public int getEnemiesKilled() {
         return enemiesKilled;
     }
 
-    public void setEnemiesKilled(double enemiesKilled) {
+    public void setEnemiesKilled(int enemiesKilled) {
         this.enemiesKilled = enemiesKilled;
     }
 
-    public double getMoneyEarned() {
+    public int getMoneyEarned() {
         return moneyEarned;
     }
 
-    public void setMoneyEarned(double moneyEarned) {
+    public void setMoneyEarned(int moneyEarned) {
         this.moneyEarned = moneyEarned;
     }
 
-    public double getXpEarned() {
+    public int getXpEarned() {
         return xpEarned;
     }
 
-    public void setXpEarned(double xpEarned) {
+    public void setXpEarned(int xpEarned) {
         this.xpEarned = xpEarned;
     }
 }

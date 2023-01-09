@@ -1,6 +1,7 @@
 package com.example.project2_rev2.adapters;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project2_rev2.R;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PlayerStatsAdapter extends RecyclerView.Adapter<PlayerStatsAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Object[]> playerStatsDataModel;
+    private ArrayList<Pair<String, Integer>> playerStatsDataModel;
 
-    public PlayerStatsAdapter(Context context, ArrayList<Object[]> playerStatsDataModel) {
+    public PlayerStatsAdapter(Context context, ArrayList<Pair<String, Integer>> playerStatsDataModel) {
         this.context = context;
         this.playerStatsDataModel = playerStatsDataModel;
     }
@@ -35,8 +33,8 @@ public class PlayerStatsAdapter extends RecyclerView.Adapter<PlayerStatsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PlayerStatsAdapter.ViewHolder holder, int position) {
-        holder.txtStatName.setText(String.valueOf((playerStatsDataModel.get(position)[0])));
-        holder.txtStatValue.setText(String.valueOf(((Double)playerStatsDataModel.get(position)[1]).intValue()));
+        holder.txtStatName.setText(String.valueOf((playerStatsDataModel.get(position).first)));
+        holder.txtStatValue.setText(String.valueOf(playerStatsDataModel.get(position).second));
     }
 
     @Override
