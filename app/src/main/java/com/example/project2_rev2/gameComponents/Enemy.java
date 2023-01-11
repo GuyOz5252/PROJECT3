@@ -242,7 +242,13 @@ public class Enemy extends BitmapObject {
         public Enemy createEnemy(EnemyType enemyType) {
             switch (enemyType) {
                 case CAMO_DEMO_ENEMY:
-                    return new CamoDemoEnemy(enemyType, enemyPath, context);
+                    //return new CamoDemoEnemy(enemyType, enemyPath, context);
+                    return new Enemy(enemyType, enemyPath, context) {
+                        @Override
+                        public boolean getIsCamo() {
+                            return true;
+                        }
+                    };
                 default:
                     return new Enemy(enemyType, enemyPath, context);
             }

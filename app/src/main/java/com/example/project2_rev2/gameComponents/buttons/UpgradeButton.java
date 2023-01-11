@@ -162,6 +162,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     }
 
     public void handlePriceColor() {
+        if (coinTextUI == null) return;
         if (tower.getPathLevels()[upgradePathIndex] < tower.getTowerUpgradePaths()[upgradePathIndex].name.length) {
             if (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]) {
                 coinTextUI.changeColor(R.color.white);

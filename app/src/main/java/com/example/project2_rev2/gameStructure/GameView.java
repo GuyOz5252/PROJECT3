@@ -29,6 +29,7 @@ import com.example.project2_rev2.gameStructure.sceneManagement.SceneManager;
 import com.example.project2_rev2.menus.MainMenu;
 import com.example.project2_rev2.utils.Display;
 import com.example.project2_rev2.utils.GameValues;
+import com.example.project2_rev2.xmlElements.TypeWriter;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class GameView extends AppCompatActivity implements View.OnTouchListener {
@@ -283,6 +284,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         xpProgressBar.setProgress((int)percentage, true);
         txtPlayerLevel.setText(String.valueOf(level));
 
+        ((TypeWriter)victoryDialog.findViewById(R.id.txtVictory_victoryDialog)).animate("victory!");
+
         victoryDialog.show();
     }
 
@@ -329,6 +332,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         deathDialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         deathDialog.setContentView(R.layout.dialog_death);
         deathDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
+        deathDialog.setCancelable(false);
         deathDialog.setTitle("death");
 
         btnExitDeath = deathDialog.findViewById(R.id.btnHome_deathDialog);
@@ -342,7 +346,8 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         }
         User.getInstance().updateFirestoreUserData();
 
-        deathDialog.setCancelable(false);
+        ((TypeWriter)deathDialog.findViewById(R.id.txtDeath_deathDialog)).animate("you died");
+
         deathDialog.show();
     }
 
