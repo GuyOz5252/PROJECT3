@@ -57,7 +57,7 @@
 
         <LinearLayout
             android:id="@+id/towerUpgradeCard_curr"
-            android:layout_width="wrap_content"
+            android:layout_width="210dp"
             android:layout_height="240dp"
             android:gravity="center"
             android:orientation="vertical">

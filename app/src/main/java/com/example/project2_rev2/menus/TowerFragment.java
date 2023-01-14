@@ -55,7 +55,8 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         btnPrevTower.setOnTouchListener(this);
         btnNextTower.setOnTouchListener(this);
 
-        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), R.drawable.tower_background), 260, 260, false);
+        float scale = this.getResources().getDisplayMetrics().densityDpi;
+        this.towerBackground = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), R.drawable.tower_background), (int)(105*(scale/160)), (int)(105*(scale/160)), false);
 
         this.towerArrayList = new ArrayList<>(Arrays.asList(TowerType.values()));
         this.currentTowerIndex = 0;
@@ -113,7 +114,8 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         towerImageViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         ImageView imageView = new ImageView(getContext());
         imageView.setLayoutParams(towerImageViewParams);
-        Bitmap newBitmap = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), towerArrayList.get(towerIndex).icon), 250, 250, false);
+        float scale = this.getResources().getDisplayMetrics().densityDpi;
+        Bitmap newBitmap = Bitmap.createScaledBitmap(getBitmapFromPicture(getContext(), towerArrayList.get(towerIndex).icon), (int)(100*(scale/160)), (int)(100*(scale/160)), false);
         imageView.setImageBitmap(newBitmap);
 
         relativeLayout.addView(towerBackgroundImageView);

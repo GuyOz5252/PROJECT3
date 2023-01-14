@@ -113,12 +113,11 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
 
     public LinearLayout createTowerUpgradePathInfo(int pathIndex, int upgradeIndex) {
         LinearLayout linearLayout = new LinearLayout(this);
-
-        float scale = this.getResources().getDisplayMetrics().density;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)(210 * scale + 0.5f), (int)(117 * scale + 0.5f));
+        float scale = this.getResources().getDisplayMetrics().densityDpi;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)(210*(scale/160)), (int)(117*(scale/160)));
         params.setMargins(0, 0, 0, 10);
         linearLayout.setLayoutParams(params);
-        linearLayout.setPadding(30, 0, 30, 0);
+        linearLayout.setPadding((int)(15*(scale/160)), 0, (int)(15*(scale/160)), 0);
         linearLayout.setGravity(Gravity.CENTER|Gravity.TOP);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundResource(R.drawable.rounded_corners);
@@ -129,7 +128,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
         );
-        textViewParams.setMargins(0, 0, 0, 8);
+        textViewParams.setMargins(0, 0, 0, (int)(3*(scale/160)));
         upgradeNameTextView.setLayoutParams(textViewParams);
         upgradeNameTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
         upgradeNameTextView.setTextSize(20);
