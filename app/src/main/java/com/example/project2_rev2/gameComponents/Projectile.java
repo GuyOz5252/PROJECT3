@@ -80,24 +80,26 @@ public class Projectile extends GameObject {
     }
 
     public enum ProjectileType {
-        DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f, 10),
+        DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f, 10, false),
 
-        TURRET_BULLETS(R.color.black, 120, 2, 35f, 5),
-        TURRET_BULLETS_V2(R.color.black, 120, 4, 35f, 5),
-        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8);
+        TURRET_BULLETS(R.color.black, 120, 2, 35f, 5, false),
+        TURRET_BULLETS_V2(R.color.black, 120, 4, 35f, 5, false),
+        TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8, false);
 
         public int color;
         public int speed;
         public int damage;
         public float range;
         public int radius;
+        public boolean isArmorPenetrating;
 
-        ProjectileType(int color, int speed, int damage, float range, int radius) {
+        ProjectileType(int color, int speed, int damage, float range, int radius, boolean isArmorPenetrating) {
             this.color = color;
             this.speed = speed;
             this.damage = damage;
             this.range = range;
             this.radius = radius;
+            this.isArmorPenetrating = isArmorPenetrating;
         }
     }
 }

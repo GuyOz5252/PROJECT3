@@ -8,6 +8,7 @@ import com.example.project2_rev2.data.EnemyType;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.abstractComponents.BitmapObject;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.gameComponents.enemyTypes.ArmorDemoEnemy;
 import com.example.project2_rev2.gameComponents.enemyTypes.CamoDemoEnemy;
 import com.example.project2_rev2.listeners.OnHealthChangeListener;
 import com.example.project2_rev2.utils.GameValues;
@@ -18,31 +19,31 @@ import static com.example.project2_rev2.utils.HelperMethods.rotateBitmap;
 
 public class Enemy extends BitmapObject {
 
-    private final EnemyPath enemyPath;
-    private int nextPathDestinationIndex;
-    private Position nextPathDestination;
+    protected final EnemyPath enemyPath;
+    protected int nextPathDestinationIndex;
+    protected Position nextPathDestination;
 
-    private boolean isMoving;
-    private MovementDirection movementDirection;
+    protected boolean isMoving;
+    protected MovementDirection movementDirection;
 
-    private final int SPEED;
+    protected final int SPEED;
 
-    private boolean isAlive;
-    private boolean needRotation;
+    protected boolean isAlive;
+    protected boolean needRotation;
 
-    private final Bitmap originalBitmap;
+    protected Bitmap originalBitmap;
 
-    private int health;
-    private int damage;
-    private int value;
+    protected int health;
+    protected int damage;
+    protected int value;
 
-    private boolean isOnFire;
-    private int damageOverTimeDurationTick;
-    private int damageOverTimeTick;
-    private int damageOverTimeDamage;
-    private int damageOverTimeDuration;
-    private int damageOverTimeInterval;
-    private Tower damageOverTimeOriginTower;
+    protected boolean isOnFire;
+    protected int damageOverTimeDurationTick;
+    protected int damageOverTimeTick;
+    protected int damageOverTimeDamage;
+    protected int damageOverTimeDuration;
+    protected int damageOverTimeInterval;
+    protected Tower damageOverTimeOriginTower;
 
     protected Enemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(
@@ -242,13 +243,9 @@ public class Enemy extends BitmapObject {
         public Enemy createEnemy(EnemyType enemyType) {
             switch (enemyType) {
                 case CAMO_DEMO_ENEMY:
-                    //return new CamoDemoEnemy(enemyType, enemyPath, context);
-                    return new Enemy(enemyType, enemyPath, context) {
-                        @Override
-                        public boolean getIsCamo() {
-                            return true;
-                        }
-                    };
+                    return new CamoDemoEnemy(enemyType, enemyPath, context);
+                case ARMOR_DEMO_ENEMY:
+                    return new ArmorDemoEnemy(enemyType, enemyPath, context);
                 default:
                     return new Enemy(enemyType, enemyPath, context);
             }
