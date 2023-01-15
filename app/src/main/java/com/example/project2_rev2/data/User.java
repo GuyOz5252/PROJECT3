@@ -22,7 +22,7 @@ public class User {
 
     private User() {}
 
-    public static User getInstance() {
+    public synchronized static User getInstance() {
         if (user == null) {
             user = new User();
         }
@@ -37,7 +37,7 @@ public class User {
 
         HashMap<String, Object> towerXPMap = new HashMap<>();
         for (TowerType towerType : TowerType.values()) {
-            towerXPMap.put(towerType.name().toLowerCase(), 0);
+            towerXPMap.put(towerType.name().toLowerCase(), 0L);
         }
         userData.put("tower_xp", towerXPMap);
 
@@ -77,6 +77,18 @@ public class User {
         userLevel = ((Long)documentSnapshot.get("user_level")).intValue();
         userXP = ((Long)documentSnapshot.get("user_xp")).intValue();
         towerXP = (Map<String, Object>) documentSnapshot.get("tower_xp");
+        if (towerXP.size() != TowerType.values().length) {
+            HashMap<String, Object> towerXPMap = new HashMap<>();
+            for (TowerType towerType : TowerType.values()) {
+                towerXPMap.put(towerType.name().toLowerCase(), towerXP.get(towerType.name().toLowerCase())!=null ? towerXP.get(towerType.name().toLowerCase()) : 0L);
+            }
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("tower_xp", towerXPMap);
+            FirebaseFirestore.getInstance().collection("users")
+                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .set(map, SetOptions.merge());
+            towerXP = towerXPMap;
+        }
         documentSnapshot.getReference()
                 .collection("data_segment")
                 .document("save_data")
@@ -131,15 +143,11 @@ public class User {
     }
 
     public int getTowerXP(TowerType towerType) {
-        if (towerXP.get(towerType.name().toLowerCase()).getClass().equals(Long.class)) {
-            return ((Long) towerXP.get(towerType.name().toLowerCase())).intValue();
-        } else {
-            return (int) towerXP.get(towerType.name().toLowerCase());
-        }
+        return ((Long)towerXP.get(towerType.name().toLowerCase())).intValue();
     }
 
     public void setTowerXP(TowerType towerType, int xp) {
-        towerXP.replace(towerType.name().toLowerCase(), xp);
+        towerXP.replace(towerType.name().toLowerCase(), ((Integer)xp).longValue());
     }
 
     public SaveData getSaveData() {

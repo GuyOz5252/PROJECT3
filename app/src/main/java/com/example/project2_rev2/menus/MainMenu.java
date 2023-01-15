@@ -40,6 +40,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // version control
         FirebaseFirestore.getInstance().collection("users").document(getResources().getString(R.string.developerUID)).get().addOnCompleteListener(task -> {
             if (!((double)task.getResult().get("version") <= Double.parseDouble(getResources().getString(R.string.version)))) {
                 Toast.makeText(this, "update!, ask for updated APK", Toast.LENGTH_LONG).show();

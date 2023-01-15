@@ -22,6 +22,7 @@ import com.example.project2_rev2.gameComponents.TowerUpgradeUI;
 import com.example.project2_rev2.gameComponents.managers.WaveManager;
 import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
 import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
+import com.example.project2_rev2.gameComponents.towerTypes.Tank;
 import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
 import com.google.firebase.firestore.CollectionReference;
@@ -269,6 +270,8 @@ public abstract class Tower extends BitmapObject {
                     return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case FIRE_SPREADER:
                     return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case TANK:
+                    return new Tank(x, y, collider, towerBar, waveManager, projectileManager, context);
                 default:
                     throw new IllegalArgumentException();
             }
@@ -282,6 +285,8 @@ public abstract class Tower extends BitmapObject {
                     return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case FIRE_SPREADER:
                     return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case TANK:
+                    return new Tank(x, y, collider, towerBar, waveManager, projectileManager, context);
                 default:
                     throw new IllegalArgumentException();
             }

@@ -5,6 +5,7 @@ import com.example.project2_rev2.gameComponents.Projectile;
 import com.example.project2_rev2.utils.Size;
 
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -98,6 +99,28 @@ public enum TowerType implements Serializable {
                             "burn even more enemies in the fire's range and increase damage done by the fire",
                             "increase the fire's reach to its limit, and burn every enemy in it's path"
                     }
+            )
+    ),
+    TANK(
+            "Tank/Canon",
+            R.drawable.common_google_signin_btn_icon_dark_normal_background,
+            R.drawable.common_google_signin_btn_icon_dark_normal_background,
+            230,
+            35,
+            250,
+            new Size(120, 120),
+            Projectile.ProjectileType.TANK_PROJECTILE,
+            new TowerUpgradePath(
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
+            ),
+            new TowerUpgradePath(
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
             )
     );
 
