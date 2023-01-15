@@ -68,23 +68,17 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public boolean onItemItemSelected(@NonNull MenuItem item) {
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        params.addRule(RelativeLayout.ABOVE, navbar.getId());
         switch (item.getItemId()) {
             case R.id.profile_mainMenuNavbar:
                 replaceFragment(userProfileFragment);
-                params.addRule(RelativeLayout.ABOVE, navbar.getId());
                 break;
             case R.id.home_mainMenuNavbar:
                 replaceFragment(mainMenuFragment);
-                params.removeRule(RelativeLayout.ABOVE);
                 break;
             case R.id.towers_mainMenuNavbar:
                 replaceFragment(towerFragment);
-                params.removeRule(RelativeLayout.ABOVE);
                 break;
         }
-        findViewById(R.id.frameLayout_mainMenu).setLayoutParams(params);
         return true;
     }
 
