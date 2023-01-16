@@ -10,16 +10,14 @@ public class TowerSaveData {
     private Position position;
     private int pathOneLevel;
     private int pathTwoLevel;
-    private Rect collider;
 
     public TowerSaveData() {} // firestore object mapper
 
-    public TowerSaveData(String type, Position position, int pathOneLevel, int pathTwoLevel, Rect collider) {
+    public TowerSaveData(String type, Position position, int pathOneLevel, int pathTwoLevel) {
         this.type = type;
         this.position = position;
         this.pathOneLevel = pathOneLevel;
         this.pathTwoLevel = pathTwoLevel;
-        this.collider = collider;
     }
 
     public String getType() {
@@ -36,9 +34,5 @@ public class TowerSaveData {
 
     public int getPathTwoLevel() {
         return pathTwoLevel;
-    }
-
-    public Rect getCollider() {
-        return collider;
     }
 }

@@ -2,11 +2,9 @@ package com.example.project2_rev2.gameComponents.managers;
 
 import static com.example.project2_rev2.utils.GameValues.xCoordinate;
 import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-import static com.example.project2_rev2.utils.HelperMethods.getGameCoordinatesRect;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.project2_rev2.data.TowerSaveData;
@@ -14,10 +12,6 @@ import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
-import com.example.project2_rev2.gameComponents.towerTypes.DemoTower;
-import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
-import com.example.project2_rev2.gameComponents.towerTypes.Turret;
-import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
@@ -46,8 +40,7 @@ public class TowerManager {
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
         AtomicReference<ArrayList<Tower>> atomicTowerArrayList = new AtomicReference<>(towerArrayList);
         towerSaveDataArrayList.forEach(towerSaveData -> {
-            Rect collider = getGameCoordinatesRect(towerSaveData.getCollider());
-            atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y), collider));
+            atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y)));
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
         });

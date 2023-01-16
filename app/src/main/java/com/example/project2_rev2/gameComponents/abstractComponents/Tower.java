@@ -276,20 +276,5 @@ public abstract class Tower extends BitmapObject {
                     throw new IllegalArgumentException();
             }
         }
-
-        public Tower createTower(TowerType towerType, double x, double y, Rect collider) {
-            switch (towerType) {
-                case DEMO_TOWER:
-                    return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
-                case TURRET:
-                    return new Turret(x, y, collider, towerBar, waveManager, projectileManager, context);
-                case FIRE_SPREADER:
-                    return new FireSpreader(x, y, collider, towerBar, waveManager, projectileManager, context);
-                case TANK:
-                    return new Tank(x, y, collider, towerBar, waveManager, projectileManager, context);
-                default:
-                    throw new IllegalArgumentException();
-            }
-        }
     }
 }

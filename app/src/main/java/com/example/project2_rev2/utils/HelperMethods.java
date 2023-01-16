@@ -31,24 +31,6 @@ public class HelperMethods {
         return BitmapFactory.decodeResource(context.getResources(), resourceId);
     }
 
-    public static Rect getGameCoordinatesRect(Rect rect) {
-        return new Rect(
-                (int)(rect.left + GameValues.xOffset),
-                (int)(rect.top + GameValues.yOffset),
-                (int)(rect.right + GameValues.xOffset),
-                (int)(rect.bottom + GameValues.yOffset)
-        );
-    }
-
-    public static Rect getDisplayCoordinatesRect(Rect rect) {
-        return new Rect(
-                (int)(rect.left - GameValues.xOffset),
-                (int)(rect.top - GameValues.yOffset),
-                (int)(rect.right - GameValues.xOffset),
-                (int)(rect.bottom - GameValues.yOffset)
-        );
-    }
-
     public static Bitmap rotateBitmap(Bitmap bitmap, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
