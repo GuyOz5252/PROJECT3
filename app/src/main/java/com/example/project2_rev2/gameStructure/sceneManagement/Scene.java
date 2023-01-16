@@ -175,11 +175,11 @@ public abstract class Scene {
         DEMO_1("DEMO 1", R.drawable.demo_one);
 
         public String name;
-        public int thumbnail;
+        public int background;
 
-        Levels(String name, @DrawableRes int thumbnail) {
+        Levels(String name, @DrawableRes int background) {
             this.name = name;
-            this.thumbnail = thumbnail;
+            this.background = background;
         }
     }
 }

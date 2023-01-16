@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/transparent"
-        android:src="@drawable/ic_cancel" />
+        android:src="@drawable/ic_back_arrow" />
 
     <TextView
         android:id="@+id/levelName_levelSelectDialog"

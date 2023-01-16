@@ -2,10 +2,7 @@ package com.example.project2_rev2.menus;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -19,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
@@ -47,6 +43,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     Dialog startGame;
     Button btnNewGame, btnLoadGame;
     ImageButton btnBack;
+    String state;
 
     // level select dialog elements
     TextView txtLevelName;
@@ -118,7 +115,22 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     //==========start game dialog===========//
     public void createStartGameDialog() {
         btnPlay.setVisibility(View.INVISIBLE);
-        startGame = new Dialog(getContext());
+        startGame = new Dialog(getContext()) {
+            @Override
+            public void onBackPressed() {
+                clickBack();
+            }
+        };
+
+        bindStartGame();
+
+        startGame.show();
+
+        startGame.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
+    }
+
+    public void bindStartGame() {
+        state = "START_GAME";
         startGame.setContentView(R.layout.dialog_start_game);
         startGame.setCancelable(false);
         startGame.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
@@ -138,14 +150,10 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         btnNewGame.setOnTouchListener(this);
         btnBack.setOnTouchListener(this);
-
-        startGame.show();
-
-        startGame.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
     }
 
     public void clickNewGame() {
-        createLevelSelectDialog();
+        bindLevelSelect();
     }
 
     public void clickNewGame(View view, MotionEvent motionEvent) {
@@ -181,7 +189,11 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickBack() {
-        startGame.dismiss();
+        if (state.equals("START_GAME")) {
+            startGame.dismiss();
+        } else {
+            bindStartGame();
+        }
     }
 
     public void clickBack(View view, MotionEvent motionEvent) {
@@ -195,9 +207,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         }
     }
 
-    public void createLevelSelectDialog() {
+    public void bindLevelSelect() {
+        state = "LEVEL_SELECT";
         startGame.setContentView(R.layout.dialog_level_select);
-
         txtLevelName = startGame.findViewById(R.id.levelName_levelSelectDialog);
         levelThumbnail = startGame.findViewById(R.id.levelThumbnail_levelSelectDialog);
         btnPrevLevel = startGame.findViewById(R.id.btnPrevLevel);
@@ -220,17 +232,17 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         if (currentLevelIndex == 0) {
             btnPrevLevel.setAlpha(0.5f);
             txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(1f);
         } else if (currentLevelIndex == levelArrayList.size()-1) {
             btnPrevLevel.setAlpha(1f);
             txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(0.5f);
         } else {
             btnPrevLevel.setAlpha(1f);
             txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).thumbnail);
+            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(1f);
         }
     }
