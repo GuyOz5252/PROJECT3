@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.utils.HelperMethods;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -283,36 +284,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
         deleteAccount.show();
     }
 
-    public void deleteUserDocAndUser() {
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .delete().addOnCompleteListener(task -> FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        Toast.makeText(context, "user deleted", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }));
-    }
-
-    public void deleteData() {
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("data_segment")
-                .document("save_data")
-                .delete().addOnCompleteListener(task -> FirebaseFirestore.getInstance().collection("users")
-                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .collection("data_segment")
-                        .document("player_stats")
-                        .delete().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                deleteUserDocAndUser();
-                            } else {
-                                Toast.makeText(context, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }));
-    }
-
     public void clickDeleteAccountDialog() {
         if (edtUsernameConfirm.getText().toString().isEmpty()) {
             edtUsernameConfirm.setError("enter username to confirm");
@@ -320,7 +291,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
             return;
         }
         if (edtUsernameConfirm.getText().toString().equals(User.getInstance().getUsername())) {
-            deleteData();
+            HelperMethods.deleteUser(context);
             context.startActivity(new Intent(context, Login.class));
             ((Activity)context).finish();
         } else {

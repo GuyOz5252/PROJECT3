@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.User;
+import com.example.project2_rev2.utils.HelperMethods;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -130,36 +131,6 @@ public class PendingVerification extends AppCompatActivity implements View.OnTou
         deleteAccount.show();
     }
 
-    public void deleteUserDocAndUser() {
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .delete().addOnCompleteListener(task -> FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        Toast.makeText(this, "user deleted", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }));
-    }
-
-    public void deleteData() {
-        FirebaseFirestore.getInstance().collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("data_segment")
-                .document("save_data")
-                .delete().addOnCompleteListener(task -> FirebaseFirestore.getInstance().collection("users")
-                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .collection("data_segment")
-                        .document("player_stats")
-                        .delete().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                deleteUserDocAndUser();
-                            } else {
-                                Toast.makeText(this, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }));
-    }
-
     public void clickDeleteAccountDialog() {
         if (edtUsernameConfirm.getText().toString().isEmpty()) {
             edtUsernameConfirm.setError("enter username to confirm");
@@ -167,7 +138,7 @@ public class PendingVerification extends AppCompatActivity implements View.OnTou
             return;
         }
         if (edtUsernameConfirm.getText().toString().equals(User.getInstance().getUsername())) {
-            deleteData();
+            HelperMethods.deleteUser(this);
             this.startActivity(new Intent(this, Login.class));
             this.finish();
         } else {
