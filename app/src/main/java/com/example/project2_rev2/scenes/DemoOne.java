@@ -94,11 +94,11 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 70));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                20,
+                10,
                 context
         ));
         waveMap.clear();

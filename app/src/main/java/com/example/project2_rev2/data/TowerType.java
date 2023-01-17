@@ -50,22 +50,24 @@ public enum TowerType implements Serializable {
             new Size(150, 150),
             Projectile.ProjectileType.TURRET_BULLETS,
             new TowerUpgradePath(
-                    new String[] {"Double DMG", "Bigger Bullets", "Double Barrel"},
-                    new int[] {180, 200, 320},
-                    new int[] {0, 400, 950},
+                    new String[] {"Double DMG", "Bigger Bullets", "Double Barrel", "Breaking All"},
+                    new int[] {180, 200, 320, 700},
+                    new int[] {0, 400, 950, 1700},
                     new String[] {
                             "bullets do double the damage",
                             "bullets are now bigger, they hurt more",
-                            "add an additional barrel to the turret, doubling the bullets shot"
+                            "add an additional barrel to the turret, doubling the bullets shot",
+                            "the turret's bullets are now armor penetrating"
                     }
             ),
             new TowerUpgradePath(
-                    new String[] {"Range", "ATK Speed"},
-                    new int[] {150, 230},
-                    new int[] {200, 800},
+                    new String[] {"Range", "ATK Speed", "Rapid Fire"},
+                    new int[] {150, 230, 600},
+                    new int[] {200, 800, 1200},
                     new String[] {
                             "increase the turret's range",
-                            "increase the turret's attack speed, shoot faster"
+                            "increase the turret's attack speed, shoot faster",
+                            "shoot significantly faster"
                     }
             )
     ),
