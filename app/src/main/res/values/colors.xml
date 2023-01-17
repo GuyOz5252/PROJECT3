@@ -30,6 +30,7 @@
     <color name="textBackground">#BF000000</color>
 
     <color name="bulletProjectile">#CD7F32</color>
+    <color name="tankProjectile">#6F5343</color>
 
     <color name="devRed">#FF0000</color>
 </resources>

@@ -155,6 +155,10 @@ public abstract class Tower extends BitmapObject {
         return Math.hypot(Math.abs(towerX-enemyX), Math.abs(towerY-enemyY));
     }
 
+    public void lookForEnemies() {
+        waveManager.getAliveList().forEach(this::attack);
+    }
+
     public void attack(Enemy enemy) {
         if (currentTick >= cooldown) {
             if (getHypoDistance(centerPosition.x, centerPosition.y, enemy.getCenterPosition().x, enemy.getCenterPosition().y) < range) {
@@ -219,7 +223,7 @@ public abstract class Tower extends BitmapObject {
 
         currentTick++;
 
-        waveManager.getAliveList().forEach(this::attack);
+        lookForEnemies();
     }
 
     public void onTouchEvent(MotionEvent motionEvent) {

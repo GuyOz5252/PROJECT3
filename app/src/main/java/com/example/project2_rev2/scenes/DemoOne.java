@@ -82,7 +82,7 @@ public class DemoOne extends Scene {
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                30,
+                12,
                 context
         ));
         waveMap.clear();
