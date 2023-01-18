@@ -7,7 +7,7 @@ public class Position {
     public double x;
     public double y;
 
-    public Position() {}
+    public Position() {} // firebase object mapper
 
     public Position(double x, double y) {
         this.x = x;
@@ -18,11 +18,5 @@ public class Position {
     public boolean equals(@Nullable Object obj) {
         Position position = (Position)obj;
         return this.x == position.x && this.y == position.y;
-    }
-
-    public Position toDisplayCoordinates() {
-        this.x -= GameValues.xOffset;
-        this.y -= GameValues.yOffset;
-        return this;
     }
 }

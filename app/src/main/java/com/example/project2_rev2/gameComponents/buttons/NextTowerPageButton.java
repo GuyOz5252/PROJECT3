@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents.buttons;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.view.MotionEvent;
 
@@ -16,7 +13,7 @@ public class NextTowerPageButton extends Button {
     private DragAndDropUI dragAndDropUI;
 
     public NextTowerPageButton(DragAndDropUI dragAndDropUI, Context context) {
-        super(xCoordinate(180), yCoordinate(750), R.drawable.ic_tower_page_right_arrow, new Size(120, 120), context);
+        super(180, 750, R.drawable.ic_tower_page_right_arrow, new Size(120, 120), context);
         this.dragAndDropUI = dragAndDropUI;
     }
 

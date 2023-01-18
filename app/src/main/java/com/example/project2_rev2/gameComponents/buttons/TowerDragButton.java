@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents.buttons;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -40,7 +37,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     private Paint priceTextBackgroundPaint;
 
     public TowerDragButton(int resourceId, TowerManager towerManager, TowerType towerType, Size size, Context context) {
-        super(xCoordinate(80), 0, resourceId, size, context);
+        super(80, 0, resourceId, size, context);
         GameValues.coinsChangeListenerArrayList.add(this);
         this.towerManager = towerManager;
         this.towerType = towerType;
@@ -93,8 +90,8 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     }
 
     public void setY(int y) {
-        this.position.y = (int)yCoordinate(y);
-        this.buttonRect.set((int)xCoordinate(80), (int)yCoordinate(y), (int)xCoordinate(80+size.width), (int)yCoordinate(y+size.height));
+        this.position.y = y;
+        this.buttonRect.set(80, y, (int)(80+size.width), (int)(y+size.height));
         centerPosition.y = position.y+bitmap.getHeight()/2;
         pressedPosition.y = position.y+size.height/40;
         towerIcon.setPosition(centerPosition.x - (size.width-10)/2, centerPosition.y - (size.height-10)/2);

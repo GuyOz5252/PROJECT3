@@ -16,17 +16,7 @@ public class GameValues {
 
     public static Display display = new Display(0, 0);
 
-    public static double xOffset = 0;
-
-    public static double yOffset = 0;
-
-    public static double xCoordinate(double value) {
-        return value + xOffset;
-    }
-
-    public static double yCoordinate(double value) {
-        return value + yOffset;
-    }
+    public static float scaleFactor = 1;
 
     public static ArrayList<Rect> colliderArrayList = new ArrayList<>();
 
@@ -79,8 +69,7 @@ public class GameValues {
         } else {
             GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         }
-        xOffset = (int)(GameValues.display.size.width - gameDisplay.size.width) >> 1;
-        yOffset = (int)(GameValues.display.size.height - gameDisplay.size.height) >> 1;
+        scaleFactor = (float)((GameValues.display.size.height)/GameValues.gameDisplay.size.height);
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;

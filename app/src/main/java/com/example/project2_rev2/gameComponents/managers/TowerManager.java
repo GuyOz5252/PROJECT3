@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents.managers;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -40,7 +37,7 @@ public class TowerManager {
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
         AtomicReference<ArrayList<Tower>> atomicTowerArrayList = new AtomicReference<>(towerArrayList);
         towerSaveDataArrayList.forEach(towerSaveData -> {
-            atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), xCoordinate(towerSaveData.getPosition().x), yCoordinate(towerSaveData.getPosition().y)));
+            atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), towerSaveData.getPosition().x, towerSaveData.getPosition().y));
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
         });

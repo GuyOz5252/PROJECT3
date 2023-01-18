@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents.buttons;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -27,7 +24,7 @@ public class SellTowerButton extends Button {
     private CoinTextUI sellPriceTextUI;
 
     public SellTowerButton(Tower tower, Context context) {
-        super(xCoordinate(60), yCoordinate(790), R.drawable.sell_button_background, new Size(230, 60), context);
+        super(60, 790, R.drawable.sell_button_background, new Size(230, 60), context);
         this.tower = tower;
         this.currentPrice = (int)(tower.getMoneySpent()*0.75);
         this.sellPriceTextUI = new SellPriceTextUI(

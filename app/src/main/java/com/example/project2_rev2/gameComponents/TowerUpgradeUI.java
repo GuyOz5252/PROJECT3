@@ -1,7 +1,5 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture;
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromVectorDrawable;
 
@@ -39,15 +37,15 @@ public class TowerUpgradeUI {
 
     public TowerUpgradeUI(Tower tower, Context context) {
         this.context = context;
-        this.upgradeButtonPathOne = new UpgradeButton(yCoordinate(260), 0, tower, this, context);
-        this.upgradeButtonPathTwo = new UpgradeButton(yCoordinate(450), 1, tower, this, context);
+        this.upgradeButtonPathOne = new UpgradeButton(260, 0, tower, this, context);
+        this.upgradeButtonPathTwo = new UpgradeButton(450, 1, tower, this, context);
         this.tower = tower;
 
         this.sellTowerButton = new SellTowerButton(tower, context);
 
         this.towerNameText = new TextUI(
-                xCoordinate(175),
-                yCoordinate(235),
+                175,
+                235,
                 tower.getName(),
                 R.color.white,
                 50f,
@@ -63,10 +61,10 @@ public class TowerUpgradeUI {
 
         this.isTowerPressed = false;
         this.towerInfoButton = new Rect(
-                (int)xCoordinate(95),
-                (int)yCoordinate(25),
-                (int)xCoordinate(95+towerBackground.getWidth()),
-                (int)yCoordinate(25+towerBackground.getHeight())
+                95,
+                25,
+                95+towerBackground.getWidth(),
+                25+towerBackground.getHeight()
         );
     }
 
@@ -101,29 +99,29 @@ public class TowerUpgradeUI {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(
                 towerBackground,
-                (float)xCoordinate(95),
-                (float)yCoordinate(25),
+                95f,
+                25f,
                 null
         );
         if (isTowerPressed) {
             canvas.drawBitmap(
                     pressedTowerBitmap,
-                    (float)xCoordinate(105),
-                    (float)yCoordinate(35),
+                    105f,
+                    35f,
                     null
             );
         } else {
             canvas.drawBitmap(
                     towerBitmap,
-                    (float)xCoordinate(100),
-                    (float)yCoordinate(30),
+                    100f,
+                    30f,
                     null
             );
         }
         canvas.drawBitmap(
                 info,
-                (float)xCoordinate(95+towerBackground.getWidth()-info.getWidth()),
-                (float)yCoordinate(25+towerBackground.getHeight()-info.getHeight()),
+                (float)95+towerBackground.getWidth()-info.getWidth(),
+                (float)25+towerBackground.getHeight()-info.getHeight(),
                 null
         );
 

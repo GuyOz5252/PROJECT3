@@ -1,7 +1,5 @@
 package com.example.project2_rev2.gameComponents.buttons;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -57,7 +55,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
     private BitmapObject[] levelIndicator;
 
     public UpgradeButton(double y, int upgradePathIndex, Tower tower, TowerUpgradeUI towerUpgradeUI, Context context) {
-        super(xCoordinate(20), y, R.drawable.upgrade_button_bckground, new Size(310, 160), context);
+        super(20, y, R.drawable.upgrade_button_bckground, new Size(310, 160), context);
         GameValues.coinsChangeListenerArrayList.add(this);
         this.towerUpgradeUI = towerUpgradeUI;
         this.upgradePathIndex = upgradePathIndex;

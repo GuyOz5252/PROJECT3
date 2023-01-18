@@ -1,18 +1,10 @@
 package com.example.project2_rev2.gameStructure.sceneManagement;
 
-import static com.example.project2_rev2.utils.GameValues.display;
-import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import androidx.annotation.DrawableRes;
-import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.SaveData;
@@ -36,10 +28,6 @@ public abstract class Scene {
 
     protected Context context;
 
-    // scene components
-    protected Rect[] coverRect;
-    protected Paint coverPaint;
-
     // game components
     protected TowerBar towerBar;
     protected EnemyPath enemyPath;
@@ -57,35 +45,6 @@ public abstract class Scene {
     public Scene(Action[] actionsArray, boolean loadSave, Context context) {
 
         this.context = context;
-
-        this.coverRect = new Rect[] {
-                new Rect(
-                        (int)xCoordinate(gameDisplay.size.width),
-                        0,
-                        (int)display.size.width,
-                        (int)yCoordinate(display.size.height)
-                ),
-                new Rect(
-                        0,
-                        0,
-                        (int)xCoordinate(0),
-                        (int)display.size.height
-                ),
-                new Rect(
-                        (int)xCoordinate(0),
-                        0,
-                        (int)xCoordinate(gameDisplay.size.width),
-                        (int)yCoordinate(0)
-                ),
-                new Rect(
-                        (int)xCoordinate(0),
-                        (int)yCoordinate(gameDisplay.size.height),
-                        (int)xCoordinate(gameDisplay.size.width),
-                        (int)display.size.height
-                )
-        };
-        this.coverPaint = new Paint();
-        this.coverPaint.setColor(ContextCompat.getColor(context, R.color.black));
 
         this.enemyPath = new EnemyPath();
         this.waveManager = new WaveManager(actionsArray[1], context);
@@ -147,10 +106,6 @@ public abstract class Scene {
 
         if (!finishedLoading.get()) {
             loadingOverlay.draw(canvas);
-        }
-
-        for (Rect rect : coverRect) {
-            canvas.drawRect(rect, coverPaint);
         }
     }
 

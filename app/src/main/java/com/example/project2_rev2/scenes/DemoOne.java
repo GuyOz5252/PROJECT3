@@ -1,20 +1,12 @@
 package com.example.project2_rev2.scenes;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 import static com.example.project2_rev2.utils.HelperMethods.getBitmapFromPicture;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.util.Pair;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.project2_rev2.R;
 import com.example.project2_rev2.data.EnemyType;
@@ -24,7 +16,6 @@ import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.utils.Position;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * a class that includes all the components of a scene
@@ -41,13 +32,13 @@ public class DemoOne extends Scene {
 
         this.background = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.demo_one), 1566, 1080, false);
 
-        this.enemyPath.add(new Position(xCoordinate(330), yCoordinate(195)));
-        this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(195)));
-        this.enemyPath.add(new Position(xCoordinate(gameDisplay.size.width-300), yCoordinate(gameDisplay.size.height-290)));
-        this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(gameDisplay.size.height-290)));
-        this.enemyPath.add(new Position(xCoordinate(600), yCoordinate(500)));
-        this.enemyPath.add(new Position(xCoordinate(1230), yCoordinate(500)));
-        this.enemyPath.add(new Position(xCoordinate(1230), yCoordinate(gameDisplay.size.height+50)));
+        this.enemyPath.add(new Position(330, 195));
+        this.enemyPath.add(new Position(gameDisplay.size.width-300, 195));
+        this.enemyPath.add(new Position(gameDisplay.size.width-300, gameDisplay.size.height-290));
+        this.enemyPath.add(new Position(600, gameDisplay.size.height-290));
+        this.enemyPath.add(new Position(600, 500));
+        this.enemyPath.add(new Position(1230, 500));
+        this.enemyPath.add(new Position(1230, gameDisplay.size.height+50));
         this.enemyPath.calculateColliders();
 
         ArrayList<Pair<EnemyType, Integer>> waveMap = new ArrayList<>();
@@ -134,7 +125,7 @@ public class DemoOne extends Scene {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(background, (float)xCoordinate(350), (float)yCoordinate(0), null);
+        canvas.drawBitmap(background, 350f, 0f, null);
         super.draw(canvas);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.project2_rev2.gameComponents.buttons;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -28,7 +26,7 @@ public class StartWaveButton extends Button {
     private BitmapObject pressedStartWaveIconIcon;
 
     public StartWaveButton(WaveManager waveManager, Context context) {
-        super(xCoordinate(183), yCoordinate(gameDisplay.size.height-180), R.drawable.start_wave_button_background_active, new Size(150, 150), context);
+        super(183, gameDisplay.size.height-180, R.drawable.start_wave_button_background_active, new Size(150, 150), context);
         this.waveManager = waveManager;
         this.originalStartWaveIconIcon = new BitmapObject(
                 centerPosition.x-60,
