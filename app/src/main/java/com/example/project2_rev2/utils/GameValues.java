@@ -79,8 +79,8 @@ public class GameValues {
         } else {
             GameValues.display.size.width += activity.getResources().getDimensionPixelSize(activity.getResources().getIdentifier("navigation_bar_width", "dimen", "android"));
         }
-        //xOffset = (int)(GameValues.display.size.width - gameDisplay.size.width) >> 1;
-        //yOffset = (int)(GameValues.display.size.height - gameDisplay.size.height) >> 1;
+        xOffset = (int)(GameValues.display.size.width - gameDisplay.size.width) >> 1;
+        yOffset = (int)(GameValues.display.size.height - gameDisplay.size.height) >> 1;
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;
