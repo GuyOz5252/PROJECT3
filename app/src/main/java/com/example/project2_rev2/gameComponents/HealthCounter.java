@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -20,8 +17,8 @@ public class HealthCounter extends TextUI implements OnHealthChangeListener {
 
     public HealthCounter(Context context) {
         super(
-                xCoordinate(GameValues.gameDisplay.size.width-70),
-                yCoordinate(55),
+                GameValues.gameDisplay.size.width-70,
+                55,
                 String.valueOf(GameValues.getPlayerHealth()),
                 R.color.red,
                 55,

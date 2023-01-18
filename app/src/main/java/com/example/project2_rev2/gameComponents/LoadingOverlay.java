@@ -1,8 +1,6 @@
 package com.example.project2_rev2.gameComponents;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -20,8 +18,8 @@ public class LoadingOverlay {
     public LoadingOverlay(Context context) {
         this.context = context;
         this.loadingText = new TextUI(
-                xCoordinate(gameDisplay.size.width/2),
-                yCoordinate(gameDisplay.size.height/2),
+                gameDisplay.size.width/2,
+                gameDisplay.size.height/2,
                 "Loading Towers",
                 R.color.black,
                 80,

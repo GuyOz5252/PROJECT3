@@ -1,21 +1,14 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-
-import androidx.core.content.ContextCompat;
 
 import com.example.project2_rev2.R;
 
 public class WaveCounter extends TextUI {
 
     public WaveCounter(Context context) {
-        super(xCoordinate(460), yCoordinate(55), "", R.color.white, 50, Paint.Align.LEFT, context);
+        super(460, 55, "", R.color.white, 50, Paint.Align.LEFT, context);
         setBold();
         setShadow();
     }

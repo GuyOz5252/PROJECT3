@@ -1,8 +1,5 @@
 package com.example.project2_rev2.gameComponents;
 
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -42,8 +39,8 @@ public class DragAndDropUI {
         ));
         setStartTowerPageIndex(0);
         this.towerNameText = new TextUI(
-                xCoordinate(175),
-                yCoordinate(80),
+                175,
+                80,
                 "Towers",
                 R.color.white,
                 70f,

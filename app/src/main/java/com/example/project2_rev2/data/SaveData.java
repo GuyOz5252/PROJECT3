@@ -25,7 +25,7 @@ public class SaveData {
         for (Tower tower : towerList) {
             this.towerArrayList.add(new TowerSaveData(
                     tower.getTowerType().name(),
-                    tower.getCenterPosition().toDisplayCoordinates(),
+                    tower.getCenterPosition(),
                     tower.getPathLevels()[0],
                     tower.getPathLevels()[1]
             ));

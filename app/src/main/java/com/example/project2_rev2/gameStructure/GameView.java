@@ -3,6 +3,7 @@ package com.example.project2_rev2.gameStructure;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -64,6 +65,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     TextView txtBatteryLowWarning;
     Button btnContinueLowBattery, btnSaveAndExitLowBattery;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,9 +81,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         fpsCounter = new FPSCounter(this);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
-        float scaleFactor = (float)((GameValues.display.size.height)/GameValues.gameDisplay.size.height);
-        surfaceView.setScaleX(scaleFactor);
-        surfaceView.setScaleY(scaleFactor);
+        surfaceView.setOnTouchListener(this::onTouchEvent);
+        surfaceView.setScaleX(GameValues.scaleFactor);
+        surfaceView.setScaleY(GameValues.scaleFactor);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
@@ -102,10 +104,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         });
 
         this.gameCanvasRect = new Rect(
-                (int) GameValues.xCoordinate(0),
-                (int) GameValues.yCoordinate(0),
-                (int) GameValues.xCoordinate(GameValues.gameDisplay.size.width),
-                (int) GameValues.yCoordinate(GameValues.gameDisplay.size.height)
+                0,
+                0,
+                (int)GameValues.gameDisplay.size.width,
+                (int)GameValues.gameDisplay.size.height
         );
 
         Bundle bundle = getIntent().getExtras();
@@ -137,29 +139,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     public void draw(Canvas canvas) {
         // reset the canvas with background image
         // draw the scene
-
-        //float scaleFactor = (float)((GameValues.display.size.height)/GameValues.gameDisplay.size.height);
-        //System.out.println(scaleFactor);
-        //System.out.println(GameValues.display.size.width);
-        //System.out.println(GameValues.xOffset);
-        //GameValues.xOffset = 0;
-        //System.out.println(((int)(GameValues.display.size.width - GameValues.gameDisplay.size.width*scaleFactor) >> 1));
-        //canvas.scale(scaleFactor, scaleFactor);
-        //canvas.translate(
-        //        //-(float)(((int)(GameValues.display.size.width - GameValues.gameDisplay.size.width*scaleFactor) >> 1)+GameValues.xOffset),
-        //        //(-(float)GameValues.xOffset) + ((int)(GameValues.display.size.width - GameValues.gameDisplay.size.width*scaleFactor) >> 1),
-        //        ((int)(GameValues.display.size.width - GameValues.gameDisplay.size.width*scaleFactor) >> 1),
-        //        -(float)GameValues.yOffset
-        //);
-
         sceneManager.draw(canvas);
         if (false) { // TODO debug
             fpsCounter.draw(canvas);
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(View view, MotionEvent motionEvent) {
         if (gameCanvasRect.contains((int)motionEvent.getX(), (int)motionEvent.getY())) {
             sceneManager.onTouchEvent(motionEvent);
         }

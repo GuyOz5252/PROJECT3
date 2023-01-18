@@ -1,8 +1,6 @@
 package com.example.project2_rev2.gameComponents;
 
 import static com.example.project2_rev2.utils.GameValues.gameDisplay;
-import static com.example.project2_rev2.utils.GameValues.xCoordinate;
-import static com.example.project2_rev2.utils.GameValues.yCoordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -35,7 +33,7 @@ public class TowerBar extends RectObject {
     private FastForwardButton fastForwardButton;
 
     public TowerBar(WaveManager waveManager, Context context) {
-        super(xCoordinate(0), yCoordinate(0), new Size(350, gameDisplay.size.height), ContextCompat.getColor(context, R.color.towerBarBackground));
+        super(0, 0, new Size(350, gameDisplay.size.height), ContextCompat.getColor(context, R.color.towerBarBackground));
         this.context = context;
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);
@@ -65,19 +63,19 @@ public class TowerBar extends RectObject {
 
         canvas.drawRect(
                 new Rect(
-                        (int)xCoordinate(0),
-                        (int)yCoordinate(gameDisplay.size.height-210),
-                        (int)xCoordinate(350),
-                        (int)yCoordinate(gameDisplay.size.height)
+                        0,
+                        (int)gameDisplay.size.height-210,
+                        350,
+                        (int)gameDisplay.size.height
                 ),
                 paint
         );
 
         canvas.drawLine(
-                (float)xCoordinate(0),
-                (float)yCoordinate(gameDisplay.size.height-210),
-                (float)xCoordinate(350),
-                (float)yCoordinate(gameDisplay.size.height-210),
+                0f,
+                (float)gameDisplay.size.height-210,
+                350f,
+                (float)gameDisplay.size.height-210,
                 borderPaint
         );
 
