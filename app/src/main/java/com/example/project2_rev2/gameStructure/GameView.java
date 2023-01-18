@@ -79,6 +79,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         fpsCounter = new FPSCounter(this);
 
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
+        float scaleFactor = (float)((GameValues.display.size.height)/GameValues.gameDisplay.size.height);
+        surfaceView.setScaleX(scaleFactor);
+        surfaceView.setScaleY(scaleFactor);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
