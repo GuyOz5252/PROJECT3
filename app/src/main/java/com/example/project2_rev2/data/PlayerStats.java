@@ -18,19 +18,6 @@ public class PlayerStats {
 
     public PlayerStats() {} // firestore object mapper
 
-    //@Exclude
-    //public ArrayList<Object[]> getAllStats() {
-    //    ArrayList<Object[]> playerStatsArrayList = new ArrayList<>();
-    //    playerStatsArrayList.add(new Object[]{"Games Played", gamesPlayed});
-    //    playerStatsArrayList.add(new Object[]{"Games Won", gamesWon});
-    //    playerStatsArrayList.add(new Object[]{"Games Lost", gamesLost});
-    //    playerStatsArrayList.add(new Object[]{"Towers Placed", towersPlaced});
-    //    playerStatsArrayList.add(new Object[]{"Enemies Killed", enemiesKilled});
-    //    playerStatsArrayList.add(new Object[]{"Money Earned", moneyEarned});
-    //    playerStatsArrayList.add(new Object[]{"XP Earned", xpEarned});
-    //    return playerStatsArrayList;
-    //}
-
     @Exclude
     public ArrayList<Pair<String, Integer>> getAllStats() {
         ArrayList<Pair<String, Integer>> playerStatsArrayList = new ArrayList<>();

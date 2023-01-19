@@ -37,7 +37,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
     private Paint priceTextBackgroundPaint;
 
     public TowerDragButton(int resourceId, TowerManager towerManager, TowerType towerType, Size size, Context context) {
-        super(80, 0, resourceId, size, context);
+        super(80, -500, resourceId, size, context);
         GameValues.coinsChangeListenerArrayList.add(this);
         this.towerManager = towerManager;
         this.towerType = towerType;
@@ -86,7 +86,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
             }
         };
         this.isDragged = false;
-        setY(0);
+        setY(-500);
     }
 
     public void setY(int y) {
@@ -103,7 +103,7 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
                 centerPosition.x-textXOffset,
                 centerPosition.y+size.height/2+8,
                 String.valueOf(towerType.value),
-                R.color.white,
+                (GameValues.getPlayerCoins() > towerType.value) ? R.color.white : R.color.red,
                 35f,
                 context
         );
