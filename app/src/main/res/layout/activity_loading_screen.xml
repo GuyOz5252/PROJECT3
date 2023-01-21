@@ -4,19 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Loading..."
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif-black"
-        android:textStyle="italic"/>
+        style="@style/mainText"
+        android:layout_marginBottom="-20dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
+        android:indeterminateTint="@color/text_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"/>

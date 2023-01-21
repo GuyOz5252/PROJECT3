@@ -25,7 +25,6 @@ import com.example.project2_rev2.gameComponents.towerTypes.FireSpreader;
 import com.example.project2_rev2.gameComponents.towerTypes.Tank;
 import com.example.project2_rev2.gameComponents.towerTypes.Turret;
 import com.example.project2_rev2.utils.GameValues;
-import com.google.firebase.firestore.CollectionReference;
 
 /**
  * a class that includes all the fields of a tower
@@ -72,7 +71,7 @@ public abstract class Tower extends BitmapObject {
         this.range = towerType.range;
         this.cooldown = towerType.cooldown;
         this.rangeCirclePaint = new Paint();
-        this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
+        this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.range_circle));
         this.rangeBorderPaint = new Paint();
         this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
         this.rangeBorderPaint.setStyle(Paint.Style.STROKE);

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menus.TowerUpgradeInfo">
+    tools:context=".menus.TowerUpgradeInfo"
+    android:background="@color/background">
 
     <ImageButton
         android:id="@+id/btnBack_towerUpgradeInfo"
@@ -15,15 +16,10 @@
 
     <TextView
         android:id="@+id/towerName_towerUpgradeInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/mainText"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-black"
-        android:text="tower name"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:textStyle="italic" />
+        android:layout_marginTop="-20dp"
+        android:text="tower name" />
 
     <LinearLayout
         android:id="@+id/towerUpgradeCard_prev"
@@ -68,7 +64,6 @@
                 android:layout_height="117dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_corners"
-                android:backgroundTint="@color/black"
                 android:gravity="top|center"
                 android:orientation="vertical">
 
@@ -77,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="Upgrade Name"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_container_text_color"
                     android:textSize="20dp" />
 
                 <TextView
@@ -85,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="upgrade info"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_container_secondary_text_color"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -95,7 +90,6 @@
                 android:layout_width="210dp"
                 android:layout_height="117dp"
                 android:background="@drawable/rounded_corners"
-                android:backgroundTint="@color/black"
                 android:gravity="top|center"
                 android:orientation="vertical">
 
@@ -104,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="Upgrade Name"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_container_text_color"
                     android:textSize="20dp" />
 
                 <TextView
@@ -112,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="upgrade info"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_container_secondary_text_color"
                     android:textSize="16dp" />
 
             </LinearLayout>

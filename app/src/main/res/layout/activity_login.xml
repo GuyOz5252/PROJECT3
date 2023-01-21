@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menus.Login"
-    android:background="@color/secondaryColor">
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,16 +27,6 @@
             android:layout_below="@+id/btnLogin"
             android:layout_margin="5dp"
             android:text="register"
-            style="@style/button" />
-
-        <Button
-            android:id="@+id/btnDebugGame"
-            android:layout_width="200dp"
-            android:visibility="gone"
-            android:layout_below="@+id/btnRegister"
-            android:layout_margin="5dp"
-            android:backgroundTint="@android:color/holo_purple"
-            android:text="DEBUG GAME"
             style="@style/button" />
 
     </LinearLayout>

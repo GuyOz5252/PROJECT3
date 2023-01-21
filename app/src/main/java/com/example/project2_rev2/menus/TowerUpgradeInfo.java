@@ -1,6 +1,7 @@
 package com.example.project2_rev2.menus;
 
 import android.graphics.Typeface;
+import android.graphics.fonts.FontFamily;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -121,7 +122,6 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         linearLayout.setGravity(Gravity.CENTER|Gravity.TOP);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundResource(R.drawable.rounded_corners);
-        linearLayout.getBackground().setTint(ContextCompat.getColor(this, R.color.black));
 
         TextView upgradeNameTextView = new TextView(this);
         LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(
@@ -130,18 +130,19 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         );
         textViewParams.setMargins(0, 0, 0, (int)(3*(scale/160)));
         upgradeNameTextView.setLayoutParams(textViewParams);
-        upgradeNameTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
+        upgradeNameTextView.setTextColor(ContextCompat.getColor(this, R.color.on_container_text_color));
         upgradeNameTextView.setTextSize(20);
-        upgradeNameTextView.setTypeface(null, Typeface.BOLD);
+        upgradeNameTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
         if (upgradeIndex < upgradeNameArrayList[pathIndex].size()) {
             upgradeNameTextView.setText(upgradeNameArrayList[pathIndex].get(upgradeIndex));
         }
 
         TextView upgradeInfoTextView = new TextView(this);
         upgradeInfoTextView.setLayoutParams(textViewParams);
-        upgradeInfoTextView.setTextColor(ContextCompat.getColor(this, R.color.white));
+        upgradeInfoTextView.setTextColor(ContextCompat.getColor(this, R.color.on_container_secondary_text_color));
         upgradeInfoTextView.setTextSize(16);
         upgradeInfoTextView.setGravity(Gravity.CENTER);
+        upgradeInfoTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
         if (upgradeIndex < upgradeInfoArrayList[pathIndex].size()) {
             upgradeInfoTextView.setText(upgradeInfoArrayList[pathIndex].get(upgradeIndex));
         }

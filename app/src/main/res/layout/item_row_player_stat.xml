@@ -8,9 +8,8 @@
         android:id="@+id/txtStatName_playerStatsItemRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
         android:text="STAT NAME"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="22sp" />
 
     <TextView
@@ -18,9 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:fontFamily="sans-serif-black"
         android:text="0"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="22sp" />
 
     <ImageView
@@ -30,6 +28,6 @@
         android:layout_below="@+id/txtStatName_playerStatsItemRow"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-4dp"
-        android:src="@color/black" />
+        android:src="@color/text_color" />
 
 </RelativeLayout>

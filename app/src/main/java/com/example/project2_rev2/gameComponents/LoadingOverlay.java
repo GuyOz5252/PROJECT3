@@ -31,7 +31,7 @@ public class LoadingOverlay {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawColor(ContextCompat.getColor(context, R.color.transparentWhite));
+        canvas.drawColor(ContextCompat.getColor(context, R.color.transparent_white));
         loadingText.draw(canvas);
     }
 }

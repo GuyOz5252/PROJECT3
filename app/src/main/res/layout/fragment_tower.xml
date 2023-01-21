@@ -3,20 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".menus.TowerFragment">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/mainText"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-black"
-        android:text="towers"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:textStyle="italic" />
+        android:layout_marginTop="-20dp"
+        android:text="towers" />
 
     <LinearLayout
         android:id="@+id/towerCard_prev"
@@ -53,7 +47,6 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/black"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingVertical="15dp">
@@ -69,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="Tower Name"
-                android:textColor="@color/white"
+                android:textColor="@color/on_container_text_color"
                 android:textSize="30sp" />
 
             <LinearLayout

@@ -134,7 +134,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         startGame.setContentView(R.layout.dialog_start_game);
         startGame.setCancelable(false);
         startGame.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        startGame.getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
+        startGame.getWindow().setBackgroundDrawableResource(R.color.transparent_background);
         startGame.setTitle("start game");
 
         btnNewGame = startGame.findViewById(R.id.btnNewGame_startGameDialog);
@@ -142,8 +142,8 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         btnBack = startGame.findViewById(R.id.btnBack_startGameDialog);
 
         if (!User.getInstance().getSaveData().getIsActive()) {
-            btnLoadGame.setTextColor(ContextCompat.getColor(getContext(), R.color.transparentGray));
-            btnLoadGame.getCompoundDrawables()[1].setTint(ContextCompat.getColor(getContext(), R.color.transparentGray));
+            btnLoadGame.setTextColor(ContextCompat.getColor(getContext(), R.color.transparent_gray));
+            btnLoadGame.getCompoundDrawables()[1].setTint(ContextCompat.getColor(getContext(), R.color.transparent_gray));
         } else {
             btnLoadGame.setOnTouchListener(this);
         }

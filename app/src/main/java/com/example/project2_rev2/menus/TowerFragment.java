@@ -93,7 +93,6 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
 
     public void createTowerCard(LinearLayout linearLayout, int towerIndex) {
         linearLayout.removeAllViews();
-        linearLayout.getBackground().setTint(ContextCompat.getColor(getContext(), R.color.black));
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT,
@@ -126,7 +125,7 @@ public class TowerFragment extends Fragment implements View.OnTouchListener {
         textView.setTextSize(30);
         textView.setTypeface(null, Typeface.BOLD);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.on_container_text_color));
         textView.setLayoutParams(params);
 
         LinearLayout pathOne = new LinearLayout(getContext());

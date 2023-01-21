@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="30dp"
-    android:background="@color/dialogColor">
+    android:background="@color/container">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="Are you sure you want to"
             android:gravity="center"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/on_container_text_color"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -34,12 +34,12 @@
                 android:id="@+id/btnYes_confirm"
                 android:layout_marginEnd="20dp"
                 android:text="yes"
-                style="@style/button" />
+                style="@style/buttonInContainer" />
 
             <Button
                 android:id="@+id/btnNo_confirm"
                 android:text="no"
-                style="@style/button" />
+                style="@style/buttonInContainer" />
 
         </LinearLayout>
 

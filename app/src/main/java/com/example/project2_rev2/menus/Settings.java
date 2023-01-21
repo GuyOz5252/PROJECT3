@@ -58,7 +58,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
         }
         setCancelable(false);
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        getWindow().setBackgroundDrawableResource(R.color.transparentWhite);
+        getWindow().setBackgroundDrawableResource(R.color.transparent_background);
 
         bindSettings();
     }

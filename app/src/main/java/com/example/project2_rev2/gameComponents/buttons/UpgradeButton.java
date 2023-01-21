@@ -88,7 +88,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 position.x+15,
                 position.y+90,
                 "MAX LEVEL",
-                R.color.coin,
+                R.color.yellow,
                 52,
                 Paint.Align.LEFT,
                 context
@@ -124,7 +124,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 position.x+10,
                 position.y+70,
                 new Size(190, 30),
-                ContextCompat.getColor(context, R.color.upgradeLocked),
+                ContextCompat.getColor(context, R.color.gray),
                 ContextCompat.getColor(context, R.color.green),
                 context
         );

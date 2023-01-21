@@ -12,7 +12,7 @@
         android:layout_toStartOf="@+id/verNum"
         android:fontFamily="sans-serif-black"
         android:text="v"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="20sp" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/version"
         android:textAllCaps="true"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="20sp" />
 
     <ImageButton
@@ -34,15 +34,10 @@
         android:src="@drawable/ic_cancel" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/mainText"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-black"
-        android:text="settings"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:textStyle="italic" />
+        android:layout_marginTop="-20dp"
+        android:text="settings" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,9 +53,10 @@
             android:text="Account"
             android:textSize="25sp"
             android:textAllCaps="false"
+            android:drawableTint="@color/text_color"
+            android:textColor="@color/text_color"
             android:drawableTop="@drawable/ic_profile"
-            android:backgroundTint="@color/transparent"
-            style="@style/button"/>
+            android:backgroundTint="@color/transparent" />
 
     </LinearLayout>
 

@@ -2,7 +2,6 @@ package com.example.project2_rev2.gameComponents.buttons;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -49,13 +48,13 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
                 context
         ) {};
         this.rangeCirclePaint = new Paint();
-        this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
+        this.rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.range_circle));
         this.rangeBorderPaint = new Paint();
         this.rangeBorderPaint.setColor(ContextCompat.getColor(context, R.color.white));
         this.rangeBorderPaint.setStyle(Paint.Style.STROKE);
         this.rangeBorderPaint.setStrokeWidth(2);
         this.priceTextBackgroundPaint = new Paint();
-        this.priceTextBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.textBackground));
+        this.priceTextBackgroundPaint.setColor(ContextCompat.getColor(context, R.color.transparent_black));
         this.draggedTower = new BitmapObject(
                 0,
                 0,
@@ -194,9 +193,9 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
                         (int)(motionEvent.getY()+towerType.size.height/2)-30
                 );
                 if (isNotColliding(towerRect)) {
-                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.rangeCircle));
+                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.range_circle));
                 } else {
-                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.invalidRangeCircle));
+                    rangeCirclePaint.setColor(ContextCompat.getColor(context, R.color.invalid_range_circle));
                 }
             } else if (action == MotionEvent.ACTION_UP) {
 

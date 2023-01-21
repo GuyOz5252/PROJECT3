@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menus.MainMenu">
+    tools:context=".menus.MainMenu"
+    android:background="@color/background">
 
     <FrameLayout
         android:id="@+id/frameLayout_mainMenu"
@@ -18,11 +19,13 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/main_menu_navbar"
-        app:backgroundTint="@color/white"
-        app:itemRippleColor="@color/transparentGray"
+        app:backgroundTint="@color/background_dark"
+        app:itemRippleColor="@color/transparent_gray"
         app:labelVisibilityMode="selected"
         app:itemPaddingTop="5dp"
         app:itemPaddingBottom="8dp"
+        app:itemIconTint="@color/text_color"
+        app:itemTextColor="@color/header_text_color"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator" />
 
 </RelativeLayout>

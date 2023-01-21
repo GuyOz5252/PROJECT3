@@ -80,13 +80,13 @@ public class Projectile extends GameObject {
     }
 
     public enum ProjectileType {
-        DEMO_BULLET(R.color.bulletProjectile, 100, 3, 40f, 10, false),
+        DEMO_BULLET(R.color.bullet_projectile, 100, 3, 40f, 10, false),
 
         TURRET_BULLETS(R.color.black, 120, 2, 35f, 5, false),
         TURRET_BULLETS_V2(R.color.black, 120, 4, 35f, 5, false),
         TURRET_BULLETS_V3(R.color.black, 100, 6, 35f, 8, false),
         TURRET_BULLETS_V4(R.color.black, 100, 6, 35f, 8, true),
-        TANK_PROJECTILE(R.color.tankProjectile, 100, 20, 100f, 13, true);
+        TANK_PROJECTILE(R.color.tank_projectile, 100, 20, 100f, 13, true);
 
         public int color;
         public int speed;

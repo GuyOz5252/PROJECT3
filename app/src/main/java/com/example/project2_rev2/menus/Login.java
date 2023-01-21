@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     private FirebaseFirestore db;
 
     // menu elements
-    Button btnLogin, btnRegister, btnDebugGame;
+    Button btnLogin, btnRegister;
     ProgressBar loginProgressBar;
 
     // login dialog elements
@@ -55,12 +55,10 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
-        btnDebugGame = findViewById(R.id.btnDebugGame);
         loginProgressBar = findViewById(R.id.loginProgressBar);
 
         btnLogin.setOnTouchListener(this);
         btnRegister.setOnTouchListener(this);
-        btnDebugGame.setOnTouchListener(this);
     }
 
     public void loginUser(String email, String password) {
@@ -327,18 +325,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     }
     //====================================//
 
-    public void debugGame(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            startActivity(new Intent(this, MainMenu.class));
-            this.finish();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
@@ -347,9 +333,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                 break;
             case R.id.btnRegister:
                 createRegisterDialog(view, motionEvent);
-                break;
-            case R.id.btnDebugGame:
-                debugGame(view, motionEvent);
                 break;
             //=login dialog=//
             case R.id.btnLogin_loginDialog:

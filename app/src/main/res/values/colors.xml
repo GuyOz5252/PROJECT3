@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#ff9800</color>
-    <color name="primaryLightColor">#ffc947</color>
-    <color name="primaryDarkColor">#c66900</color>
-    <color name="secondaryColor">#001427</color>
-    <color name="secondaryLightColor">#002A52</color>
-    <color name="secondaryDarkColor">#000B14</color>
-    <color name="primaryTextColor">#000000</color>
-    <color name="secondaryTextColor">#ffffff</color>
-
-    <color name="transparent">#00FFFFFF</color>
+    <!--base colors-->
     <color name="white">#FFFFFFFF</color>
-    <color name="link">#4897EC</color>
-    <color name="dialogColor">#001427</color>
-    <color name="transparentBlue">#800081FF</color>
-    <color name="transparentWhite">#BFFFFFFF</color>
-    <color name="transparentGray">#80292929</color>
-
     <color name="black">#000000</color>
-    <color name="background">#8BC34A</color>
-<!--    <color name="towerBarBackground">#1C140D</color>-->
-    <color name="towerBarBackground">#33251B</color>
-    <color name="rangeCircle">#40292929</color>
-    <color name="invalidRangeCircle">#40FF0000</color>
-    <color name="coin">#FFC107</color>
+    <color name="gray">#3A3A3A</color>
     <color name="green">#47FD4E</color>
     <color name="red">#FD4747</color>
-    <color name="upgradeLocked">#3A3A3A</color>
-    <color name="textBackground">#BF000000</color>
+    <color name="blue">#4897EC</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent_white">#BFFFFFFF</color>
+    <color name="transparent_black">#BF000000</color>
+    <color name="transparent_gray">#80292929</color>
+    <color name="transparent_blue">#800081FF</color>
 
-    <color name="bulletProjectile">#CD7F32</color>
-    <color name="tankProjectile">#6F5343</color>
+    <!--game specific colors-->
+    <color name="coin">#FFC107</color>
+    <color name="towerBarBackground">#33251B</color>//
+    <color name="range_circle">#40292929</color>
+    <color name="invalid_range_circle">#40FF0000</color>
 
+    <!--projectile colors-->
+    <color name="bullet_projectile">#CD7F32</color>
+    <color name="tank_projectile">#6F5343</color>
+
+    <!--color palette-->
+    <color name="background">#748e54</color>
+    <color name="transparent_background">#B388A268</color>
+    <color name="background_dark">#617748</color>
+    <color name="container">#1C140D</color>
+    <color name="header_text_color">#B67436</color>
+    <color name="text_color">#271C13</color>
+    <color name="on_container_text_color">#B67436</color>
+    <color name="on_container_secondary_text_color">#FFFFFFFF</color>
+
+    <color name="yellow">#9c914f</color>
+    <color name="bluePalate">#5e747f</color>
+
+    <!--dev-->
     <color name="devRed">#FF0000</color>
 </resources>

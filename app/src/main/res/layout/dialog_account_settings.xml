@@ -12,7 +12,7 @@
         android:layout_toStartOf="@+id/verNum"
         android:fontFamily="sans-serif-black"
         android:text="v"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="20sp" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/version"
         android:textAllCaps="true"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="20sp" />
 
     <ImageButton
@@ -34,15 +34,10 @@
         android:src="@drawable/ic_back_arrow" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/mainText"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-black"
-        android:text="settings"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="50sp"
-        android:textStyle="italic" />
+        android:layout_marginTop="-20dp"
+        android:text="settings" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,8 +48,6 @@
         <Button
             android:id="@+id/btnLogout_accountSettings"
             android:layout_width="190dp"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/white"
             android:text="logout"
             android:textSize="14dp"
             style="@style/button" />
@@ -62,8 +55,6 @@
         <Button
             android:id="@+id/btnChangePassword_accountSettings"
             android:layout_width="190dp"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/white"
             android:text="change password"
             android:textSize="14dp"
             style="@style/button" />
@@ -71,8 +62,6 @@
         <Button
             android:id="@+id/btnDeleteAccount_accountSettings"
             android:layout_width="190dp"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/white"
             android:text="delete account"
             android:textSize="14dp"
             style="@style/button" />

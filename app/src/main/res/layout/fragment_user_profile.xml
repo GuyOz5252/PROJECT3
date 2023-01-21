@@ -24,7 +24,7 @@
             android:padding="3dp"
             android:progress="35"
             app:indicatorColor="@color/green"
-            app:trackColor="@color/upgradeLocked"
+            app:trackColor="@color/gray"
             app:trackThickness="30dp" />
 
         <TextView
@@ -43,23 +43,21 @@
 
     <TextView
         android:id="@+id/txtUsername_userProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/mainText"
         android:layout_below="@+id/rl"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="-10dp"
-        android:fontFamily="sans-serif-black"
+        android:layout_marginStart="-5dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="-20dp"
         android:text="USERNAME"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="italic" />
+        android:textAllCaps="false"
+        android:textSize="40sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playerStatsRecyclerView"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txtUsername_userProfile"
         android:layout_above="@+id/navbar_buffer"
+        android:layout_below="@+id/txtUsername_userProfile"
         android:layout_marginStart="15dp"
         android:layout_marginTop="0dp" />
 

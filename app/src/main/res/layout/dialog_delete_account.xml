@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/dialogColor">
+    android:background="@color/container">
 
     <RelativeLayout
         android:layout_width="500dp"
@@ -19,7 +19,7 @@
             android:layout_marginBottom="12dp"
             android:text="Type your username to confirm"
             android:textAlignment="center"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/on_container_text_color"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -39,19 +39,20 @@
             android:paddingVertical="8dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:textColor="@color/secondaryTextColor"
-            android:textColorHint="@color/secondaryTextColor" />
+            android:textColor="@color/on_container_text_color"
+            android:textColorHint="@color/on_container_text_color" />
 
         <Button
             android:id="@+id/btnDeleteAccount_deleteAccountDialog"
+            style="@style/buttonInContainer"
             android:layout_width="300dp"
             android:layout_below="@+id/edtUsernameConfirm_deleteAccountDialog"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/red"
-            android:text="delete account"
-            style="@style/button" />
+            android:textColor="@color/black"
+            android:text="delete account" />
 
     </RelativeLayout>
 
