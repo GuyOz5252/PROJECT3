@@ -82,7 +82,8 @@ public class Turret extends Tower {
                             isDoubleShot = true;
                             break;
                         case 3:
-
+                            // breaking all
+                            projectileType = Projectile.ProjectileType.TURRET_BULLETS_V4;
                             break;
                     }
                 } else {

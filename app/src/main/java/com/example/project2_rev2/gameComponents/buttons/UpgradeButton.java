@@ -88,7 +88,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                 position.x+15,
                 position.y+90,
                 "MAX LEVEL",
-                R.color.yellow,
+                R.color.coin,
                 52,
                 Paint.Align.LEFT,
                 context

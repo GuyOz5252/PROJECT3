@@ -9,6 +9,8 @@ import com.example.project2_rev2.data.TowerType;
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.TowerBar;
 import com.example.project2_rev2.gameComponents.abstractComponents.Tower;
+import com.example.project2_rev2.listeners.OnCoinsChangeListener;
+import com.example.project2_rev2.utils.GameValues;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
@@ -41,6 +43,7 @@ public class TowerManager {
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
             atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
         });
+        GameValues.coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
     }
 
     public void addTower(TowerType towerType, double x, double y) {
