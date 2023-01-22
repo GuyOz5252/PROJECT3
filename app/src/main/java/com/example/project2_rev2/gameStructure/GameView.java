@@ -38,7 +38,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     private MainThread mainThread;
     private SceneManager sceneManager;
 
-    private Display display;
     private Rect gameCanvasRect;
 
     private BroadcastReceiver batteryReceiver;
@@ -65,7 +64,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     TextView txtBatteryLowWarning;
     Button btnContinueLowBattery, btnSaveAndExitLowBattery;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +72,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        display = new Display(displayMetrics);
-
-        GameValues.init(this, display);
+        GameValues.init(this, new Display(displayMetrics));
 
         fpsCounter = new FPSCounter(this);
 

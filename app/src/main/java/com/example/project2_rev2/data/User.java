@@ -9,6 +9,13 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * a class that represents the user of the application
+ * the class holds all necessary info about the user
+ * interacts with the clout to get and post user data
+ * implements the singleton design pattern
+ */
+
 public class User {
 
     private static User user;
