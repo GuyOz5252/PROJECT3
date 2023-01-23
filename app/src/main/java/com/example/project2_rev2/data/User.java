@@ -150,11 +150,18 @@ public class User {
     }
 
     public int getTowerXP(TowerType towerType) {
-        return ((Long)towerXP.get(towerType.name().toLowerCase())).intValue();
+        try {
+            return ((Long)towerXP.get(towerType.name().toLowerCase())).intValue();
+        } catch (Exception exception) {
+            return Integer.MAX_VALUE;
+        }
+        //return ((Long)towerXP.get(towerType.name().toLowerCase())).intValue();
     }
 
     public void setTowerXP(TowerType towerType, int xp) {
-        towerXP.replace(towerType.name().toLowerCase(), ((Integer)xp).longValue());
+        try {
+            towerXP.replace(towerType.name().toLowerCase(), ((Integer)xp).longValue());
+        } catch (Exception ignored) {}
     }
 
     public SaveData getSaveData() {

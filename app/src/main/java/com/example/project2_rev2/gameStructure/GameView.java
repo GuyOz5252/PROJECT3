@@ -3,7 +3,6 @@ package com.example.project2_rev2.gameStructure;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.FPSCounter;
+import com.example.project2_rev2.menus.Login;
 import com.example.project2_rev2.menus.Settings;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -234,8 +234,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickExit() {
-        User.getInstance().updateFirestoreUserData();
-        startActivity(new Intent(this, MainMenu.class));
+        pauseMenu.dismiss();
+        if (!getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            User.getInstance().updateFirestoreUserData();
+            startActivity(new Intent(this, MainMenu.class));
+        } else {
+            startActivity(new Intent(this, Login.class));
+        }
         this.finish();
     }
 
@@ -272,17 +277,23 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         btnExitVictory.setOnTouchListener(this);
         btnContinue.setOnTouchListener(this);
 
-        User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
-        User.getInstance().getPlayerStats().setGamesWon(User.getInstance().getPlayerStats().getGamesWon() + 1);
-        User.getInstance().addUserXP(1500);
-        User.getInstance().updateFirestoreUserData();
+        if (!getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
+            User.getInstance().getPlayerStats().setGamesWon(User.getInstance().getPlayerStats().getGamesWon() + 1);
+            User.getInstance().addUserXP(1500);
+            User.getInstance().updateFirestoreUserData();
 
-        int level = User.getInstance().getUserLevel();
-        double xp = User.getInstance().getUserXP();
-        double max = level*1800;
-        double percentage = (xp/max)*100;
-        xpProgressBar.setProgress((int)percentage, true);
-        txtPlayerLevel.setText(String.valueOf(level));
+            int level = User.getInstance().getUserLevel();
+            double xp = User.getInstance().getUserXP();
+            double max = level*1800;
+            double percentage = (xp/max)*100;
+            xpProgressBar.setProgress((int)percentage, true);
+            txtPlayerLevel.setText(String.valueOf(level));
+        } else {
+            xpProgressBar.setVisibility(View.INVISIBLE);
+            txtPlayerLevel.setVisibility(View.INVISIBLE);
+            getSharedPreferences("sp", Context.MODE_PRIVATE).edit().putBoolean("isGuest", false).apply();
+        }
 
         ((TypeWriter)victoryDialog.findViewById(R.id.txtVictory_victoryDialog)).animate("victory!");
 
@@ -291,15 +302,19 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public Action victory = this::createVictoryDialog;
 
-    public void clickHomeVictory() {
-        victoryDialog.dismiss();
-        startActivity(new Intent(this, MainMenu.class));
+    public void clickHome(Dialog dialog) {
+        dialog.dismiss();
+        if (!getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            startActivity(new Intent(this, MainMenu.class));
+        } else {
+            startActivity(new Intent(this, Login.class));
+        }
         this.finish();
     }
 
     public void clickHomeVictory(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickHomeVictory();
+            clickHome(victoryDialog);
             view.setScaleX(1f);
             view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -339,12 +354,14 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         btnExitDeath.setOnTouchListener(this);
 
-        User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
-        User.getInstance().getPlayerStats().setGamesLost(User.getInstance().getPlayerStats().getGamesLost() + 1);
-        if (getIntent().getBooleanExtra("loadSave", false)) {
-            User.getInstance().getSaveData().setIsActive(false);
+        if (!getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            User.getInstance().getPlayerStats().setGamesPlayed(User.getInstance().getPlayerStats().getGamesPlayed() + 1);
+            User.getInstance().getPlayerStats().setGamesLost(User.getInstance().getPlayerStats().getGamesLost() + 1);
+            if (getIntent().getBooleanExtra("loadSave", false)) {
+                User.getInstance().getSaveData().setIsActive(false);
+            }
+            User.getInstance().updateFirestoreUserData();
         }
-        User.getInstance().updateFirestoreUserData();
 
         ((TypeWriter)deathDialog.findViewById(R.id.txtDeath_deathDialog)).animate("you died");
 
@@ -353,15 +370,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public Action death = this::createDeathDialog;
 
-    public void clickHomeDeath() {
-        deathDialog.dismiss();
-        startActivity(new Intent(this, MainMenu.class));
-        this.finish();
-    }
-
     public void clickHomeDeath(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickHomeDeath();
+            clickHome(deathDialog);
             view.setScaleX(1f);
             view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {

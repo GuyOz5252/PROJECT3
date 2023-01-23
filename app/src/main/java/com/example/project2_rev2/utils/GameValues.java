@@ -43,7 +43,9 @@ public class GameValues {
 
     public static void setPlayerCoins(int playerCoins) {
         if (playerCoins > GameValues.playerCoins) {
-            User.getInstance().getPlayerStats().setMoneyEarned(User.getInstance().getPlayerStats().getMoneyEarned() + playerCoins-GameValues.getPlayerCoins());
+            try {
+                User.getInstance().getPlayerStats().setMoneyEarned(User.getInstance().getPlayerStats().getMoneyEarned() + playerCoins-GameValues.getPlayerCoins());
+            } catch (Exception ignored) {}
         }
         GameValues.playerCoins = playerCoins;
         coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
