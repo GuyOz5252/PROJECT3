@@ -24,7 +24,7 @@ public class FastForwardButton extends Button {
     private BitmapObject pressedFastForwardIcon;
 
     public FastForwardButton(Context context) {
-        super(18, gameDisplay.size.height-180, R.drawable.fast_forward_button_background, new Size(150, 150), context);
+        super(18, gameDisplay.size.height-180, R.drawable.yellow_button_background, new Size(150, 150), context);
         this.originalFastForwardIcon = new BitmapObject(
                 centerPosition.x-60,
                 centerPosition.y-60,

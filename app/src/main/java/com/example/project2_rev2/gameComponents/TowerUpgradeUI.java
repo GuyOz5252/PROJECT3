@@ -47,7 +47,7 @@ public class TowerUpgradeUI {
                 175,
                 235,
                 tower.getName(),
-                R.color.white,
+                R.color.on_container_text_color,
                 50f,
                 Paint.Align.CENTER,
                 context

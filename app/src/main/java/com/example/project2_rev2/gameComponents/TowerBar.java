@@ -4,6 +4,7 @@ import static com.example.project2_rev2.utils.GameValues.gameDisplay;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -33,7 +34,7 @@ public class TowerBar extends RectObject {
     private FastForwardButton fastForwardButton;
 
     public TowerBar(WaveManager waveManager, Context context) {
-        super(0, 0, new Size(350, gameDisplay.size.height), ContextCompat.getColor(context, R.color.towerBarBackground));
+        super(0, 0, new Size(350, gameDisplay.size.height), ContextCompat.getColor(context, R.color.tower_bar_background));
         this.context = context;
         this.borderPaint = new Paint();
         this.borderPaint.setStyle(Paint.Style.STROKE);

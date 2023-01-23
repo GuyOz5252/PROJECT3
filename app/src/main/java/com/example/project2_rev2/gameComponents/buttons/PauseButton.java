@@ -23,7 +23,7 @@ public class PauseButton extends Button {
     private BitmapObject pressedPauseBitmap;
 
     public PauseButton(Action pause, Context context) {
-        super(360, 5, R.drawable.start_wave_button_background_active, new Size(90, 90), context);
+        super(360, 5, R.drawable.blue_button_background, new Size(90, 90), context);
         this.originalPauseBitmap = new BitmapObject(
                 centerPosition.x-35,
                 centerPosition.y-35,

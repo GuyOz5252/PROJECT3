@@ -14,8 +14,8 @@
     <color name="transparent_blue">#800081FF</color>
 
     <!--game specific colors-->
+    <color name="tower_bar_background">#1C140D</color>
     <color name="coin">#FFC107</color>
-    <color name="towerBarBackground">#33251B</color>//
     <color name="range_circle">#40292929</color>
     <color name="invalid_range_circle">#40FF0000</color>
 
@@ -34,6 +34,7 @@
     <color name="on_container_secondary_text_color">#FFFFFFFF</color>
 
     <color name="yellow">#9c914f</color>
+    <color name="yellowV2">#CAB431</color>
     <color name="bluePalate">#5e747f</color>
 
     <!--dev-->

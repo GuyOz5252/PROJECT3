@@ -42,7 +42,7 @@ public class DragAndDropUI {
                 175,
                 80,
                 "Towers",
-                R.color.white,
+                R.color.on_container_text_color,
                 70f,
                 Paint.Align.CENTER,
                 context
