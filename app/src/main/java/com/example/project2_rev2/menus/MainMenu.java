@@ -1,13 +1,20 @@
 package com.example.project2_rev2.menus;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.view.Menu;
@@ -35,6 +42,7 @@ public class MainMenu extends AppCompatActivity {
 
     BottomNavigationView navbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +51,14 @@ public class MainMenu extends AppCompatActivity {
         // version control
         FirebaseFirestore.getInstance().collection("users").document(getResources().getString(R.string.developerUID)).get().addOnCompleteListener(task -> {
             if (!((double)task.getResult().get("version") <= Double.parseDouble(getResources().getString(R.string.version)))) {
-                Toast.makeText(this, "update!, ask for updated APK", Toast.LENGTH_LONG).show();
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(new NotificationChannel("", "Warnings", NotificationManager.IMPORTANCE_DEFAULT));
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "")
+                        .setSmallIcon(R.drawable.ic_bug)
+                        .setContentTitle("Update!")
+                        .setContentText("ask for updated APK")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                NotificationManagerCompat.from(this).notify(0, builder.build());
                 finish();
             }
         });
