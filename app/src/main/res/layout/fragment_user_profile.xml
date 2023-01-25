@@ -19,13 +19,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/black"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="@color/black"
             android:max="100"
             android:padding="3dp"
             android:progress="35"
             app:indicatorColor="@color/green"
             app:trackColor="@color/gray"
-            app:trackThickness="30dp" />
+            app:trackThickness="30dp"
+            app:trackCornerRadius="12dp" />
 
         <TextView
             android:id="@+id/txtLevel_userProfile"

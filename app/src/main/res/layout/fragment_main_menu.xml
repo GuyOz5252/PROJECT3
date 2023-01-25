@@ -20,13 +20,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/black"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="@color/black"
         android:max="100"
         android:padding="3dp"
         android:progress="35"
         app:indicatorColor="@color/green"
         app:trackColor="@color/gray"
-        app:trackThickness="15dp" />
+        app:trackThickness="15dp"
+        app:trackCornerRadius="12dp"/>
 
     <TextView
         android:id="@+id/txtLevel_mainMenuFragment"
