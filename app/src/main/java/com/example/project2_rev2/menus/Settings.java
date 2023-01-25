@@ -50,6 +50,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     public Settings(boolean accountSettings, @NonNull Context context) {
         super(context);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.dialog_settings);
         this.context = context;
         this.accountSettings = accountSettings;
@@ -170,6 +171,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //===========confirm dialog============//
     public void createConfirmDialog(String messege) {
         confirmDialog = new Dialog(context);
+        confirmDialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         confirmDialog.setContentView(R.layout.dialog_confirm);
         confirmDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         confirmDialog.setTitle("confirm dialog");
@@ -224,6 +226,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //=======reset password dialog=========//
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(context);
+        resetPassword.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");
@@ -272,6 +275,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
     //========delete account dialog=======//
     public void createDeleteAccountDialog() {
         deleteAccount = new Dialog(context);
+        deleteAccount.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         deleteAccount.setContentView(R.layout.dialog_delete_account);
         deleteAccount.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         deleteAccount.setTitle("delete account");

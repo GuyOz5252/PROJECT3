@@ -131,6 +131,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
     public void bindStartGame() {
         state = "START_GAME";
+        startGame.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         startGame.setContentView(R.layout.dialog_start_game);
         startGame.setCancelable(false);
         startGame.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);

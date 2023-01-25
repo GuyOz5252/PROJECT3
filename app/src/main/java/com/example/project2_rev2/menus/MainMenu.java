@@ -12,6 +12,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.project2_rev2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +30,7 @@ public class MainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_main_menu);
 
         // version control

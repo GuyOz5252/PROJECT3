@@ -41,10 +41,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getIntent().getExtras();
-        if (!bundle.getBoolean("hasNavbar", false)) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_tower_upgrade_info);
 
         currentUpgradeCard = findViewById(R.id.towerUpgradeCard_curr);
@@ -59,6 +56,7 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
         btnNextUpgrade.setOnTouchListener(this);
         btnBack.setOnTouchListener(this);
 
+        Bundle bundle = getIntent().getExtras();
         TowerType towerType = (TowerType) bundle.getSerializable("towerType");
         this.towerType = towerType;
         tvTowerName.setText(towerType.towerName);

@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -116,6 +117,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //============login dialog=============//
     public void createLoginDialog() {
         login = new Dialog(this);
+        login.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         login.setContentView(R.layout.dialog_login);
         login.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         login.setTitle("Login");
@@ -197,6 +199,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //==========register dialog============//
     public void createRegisterDialog() {
         register = new Dialog(this);
+        register.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         register.setContentView(R.layout.dialog_register);
         register.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         register.setTitle("Register");
@@ -280,6 +283,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //=======reset password dialog=======//
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(this);
+        resetPassword.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");

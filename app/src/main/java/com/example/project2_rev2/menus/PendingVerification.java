@@ -35,6 +35,7 @@ public class PendingVerification extends AppCompatActivity implements View.OnTou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_pending_verification);
 
         firebaseAuth = FirebaseAuth.getInstance();
