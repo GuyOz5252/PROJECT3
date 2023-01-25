@@ -5,32 +5,15 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.utils.Action;
-import com.example.project2_rev2.utils.GameValues;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -72,11 +55,18 @@ public class MainMenu extends AppCompatActivity {
         navbar.setSelectedItemId(R.id.home_mainMenuNavbar);
     }
 
-    public void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment, String dir) {
+        if (dir.equals("calc")) {
+            if (navbar.getSelectedItemId() == R.id.profile_mainMenuNavbar) {
+                dir = "left";
+            } else {
+                dir = "right";
+            }
+        }
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(
-                        R.anim.slide_left,
-                        R.anim.slide_right
+                        dir.equals("right") ? R.anim.slide_in_right : R.anim.slide_in_left,
+                        dir.equals("right") ? R.anim.slide_out_right : R.anim.slide_out_left
                 )
                 .replace(R.id.frameLayout_mainMenu, fragment)
                 .addToBackStack(null)
@@ -86,13 +76,13 @@ public class MainMenu extends AppCompatActivity {
     public boolean onItemItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.profile_mainMenuNavbar:
-                replaceFragment(userProfileFragment);
+                replaceFragment(userProfileFragment, "right");
                 break;
             case R.id.home_mainMenuNavbar:
-                replaceFragment(mainMenuFragment);
+                replaceFragment(mainMenuFragment, "calc");
                 break;
             case R.id.towers_mainMenuNavbar:
-                replaceFragment(towerFragment);
+                replaceFragment(towerFragment, "left");
                 break;
         }
         return true;
