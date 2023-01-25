@@ -26,6 +26,7 @@
         app:itemPaddingBottom="8dp"
         app:itemIconTint="@color/text_color"
         app:itemTextColor="@color/header_text_color"
+        app:itemTextAppearanceActive="@style/text_style"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator" />
 
 </RelativeLayout>
