@@ -17,6 +17,9 @@ public class SceneManager {
             case 0:
                 this.currentScene = new DemoOne(actionsArray, loadSave, context);
                 this.levelName = Scene.Levels.values()[currentSceneIdx].name;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + currentSceneIdx);
         }
     }
 

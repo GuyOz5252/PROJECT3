@@ -162,9 +162,11 @@ public class TowerUpgradeInfo extends AppCompatActivity implements View.OnTouchL
             imageViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(imageViewParams);
-            imageView.setImageResource(R.drawable.ic_lock_unfocused);
-            imageView.setScaleX(3);
-            imageView.setScaleY(3);
+            imageView.setImageResource(R.drawable.ic_lock);
+            imageView.setMaxWidth((int)(72*(scale/160)));
+            imageView.setMaxHeight((int)(72*(scale/160)));
+            imageView.setAdjustViewBounds(true);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             relativeLayout.addView(imageView);
             finalLinearLayout.addView(relativeLayout);
         } else {

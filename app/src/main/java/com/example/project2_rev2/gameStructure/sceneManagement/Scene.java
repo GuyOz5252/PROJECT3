@@ -127,14 +127,16 @@ public abstract class Scene {
     }
 
     public enum Levels {
-        DEMO_1("DEMO 1", R.drawable.demo_one);
+        DEMO_1("DEMO 1", R.drawable.demo_one, 0);
 
         public String name;
         public int background;
+        public int levelReq;
 
-        Levels(String name, @DrawableRes int background) {
+        Levels(String name, @DrawableRes int background, int levelReq) {
             this.name = name;
             this.background = background;
+            this.levelReq = levelReq;
         }
     }
 }

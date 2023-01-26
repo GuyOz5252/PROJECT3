@@ -16,6 +16,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project2_rev2.R;
@@ -49,6 +51,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     TextView txtLevelName;
     ImageView btnPrevLevel, btnNextLevel;
     ImageView levelThumbnail;
+    LinearLayout levelReqLock;
     ImageButton btnBackLevelSelect;
     ArrayList<Scene.Levels> levelArrayList;
     int currentLevelIndex;
@@ -213,6 +216,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
         startGame.setContentView(R.layout.dialog_level_select);
         txtLevelName = startGame.findViewById(R.id.levelName_levelSelectDialog);
         levelThumbnail = startGame.findViewById(R.id.levelThumbnail_levelSelectDialog);
+        levelReqLock = startGame.findViewById(R.id.levelReqLock);
         btnPrevLevel = startGame.findViewById(R.id.btnPrevLevel);
         btnNextLevel = startGame.findViewById(R.id.btnNextLevel);
         btnBackLevelSelect = startGame.findViewById(R.id.btnBack_startGameDialog);
@@ -230,20 +234,24 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void cycleLevels() {
+        if (levelArrayList.get(currentLevelIndex).levelReq > User.getInstance().getUserLevel()) {
+            levelThumbnail.setAlpha(0.7f);
+            levelReqLock.setVisibility(View.VISIBLE);
+            ((TextView)levelReqLock.getChildAt(1)).setText("level " + levelArrayList.get(currentLevelIndex).levelReq + " required");
+        } else {
+            levelThumbnail.setAlpha(1f);
+            levelReqLock.setVisibility(View.INVISIBLE);
+        }
+        txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
+        levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
         if (currentLevelIndex == 0) {
             btnPrevLevel.setAlpha(0.5f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(1f);
         } else if (currentLevelIndex == levelArrayList.size()-1) {
             btnPrevLevel.setAlpha(1f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(0.5f);
         } else {
             btnPrevLevel.setAlpha(1f);
-            txtLevelName.setText(levelArrayList.get(currentLevelIndex).name);
-            levelThumbnail.setImageResource(levelArrayList.get(currentLevelIndex).background);
             btnNextLevel.setAlpha(1f);
         }
     }
@@ -259,6 +267,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickLevelThumbnail(View view, MotionEvent motionEvent) {
+        if (levelArrayList.get(currentLevelIndex).levelReq > User.getInstance().getUserLevel()) {
+            return;
+        }
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickLevelThumbnail();
             view.setScaleX(1);
