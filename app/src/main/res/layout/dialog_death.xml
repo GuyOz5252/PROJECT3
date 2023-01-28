@@ -6,7 +6,7 @@
     android:background="@color/container"
     android:padding="30dp">
 
-    <com.example.project2_rev2.xmlElements.TypeWriter
+    <com.android.project3.xmlElements.TypeWriter
         android:id="@+id/txtDeath_deathDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

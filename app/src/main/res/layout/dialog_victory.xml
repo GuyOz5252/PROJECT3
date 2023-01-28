@@ -13,7 +13,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <com.example.project2_rev2.xmlElements.TypeWriter
+        <com.android.project3.xmlElements.TypeWriter
             android:id="@+id/txtVictory_victoryDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

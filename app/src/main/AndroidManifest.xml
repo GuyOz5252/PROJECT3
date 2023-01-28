@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.project2_rev2">
+    package="com.android.project3">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,27 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.Project2rev2">
         <activity
-            android:name=".menus.PendingVerification"
+            android:name="com.android.project3.menus.PendingVerification"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".menus.TowerUpgradeInfo"
+            android:name="com.android.project3.menus.TowerUpgradeInfo"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".menus.MainMenu"
+            android:name="com.android.project3.menus.MainMenu"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".gameStructure.GameView"
+            android:name="com.android.project3.gameStructure.GameView"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".menus.Login"
+            android:name="com.android.project3.menus.Login"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".menus.MainActivity"
+            android:name="com.android.project3.menus.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>
