@@ -43,11 +43,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
     EditText edtEmailResetPassword;
     Button btnSendResetEmail;
 
-    // delete account dialog elements
-    Dialog deleteAccount;
-    EditText edtUsernameConfirm;
-    Button btnDeleteAccountDialog;
-
     public Settings(boolean accountSettings, @NonNull Context context) {
         super(context);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
@@ -274,45 +269,8 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     //========delete account dialog=======//
     public void createDeleteAccountDialog() {
-        deleteAccount = new Dialog(context);
-        deleteAccount.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        deleteAccount.setContentView(R.layout.dialog_delete_account);
-        deleteAccount.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        deleteAccount.setTitle("delete account");
-
-        edtUsernameConfirm = deleteAccount.findViewById(R.id.edtUsernameConfirm_deleteAccountDialog);
-        btnDeleteAccountDialog = deleteAccount.findViewById(R.id.btnDeleteAccount_deleteAccountDialog);
-
-        btnDeleteAccountDialog.setOnTouchListener(this);
-
-        deleteAccount.show();
-    }
-
-    public void clickDeleteAccountDialog() {
-        if (edtUsernameConfirm.getText().toString().isEmpty()) {
-            edtUsernameConfirm.setError("enter username to confirm");
-            edtUsernameConfirm.requestFocus();
-            return;
-        }
-        if (edtUsernameConfirm.getText().toString().equals(User.getInstance().getUsername())) {
-            HelperMethods.deleteUser(context);
-            context.startActivity(new Intent(context, Login.class));
-            ((Activity)context).finish();
-        } else {
-            edtUsernameConfirm.setError("incorrect username");
-            edtUsernameConfirm.requestFocus();
-        }
-    }
-
-    public void clickDeleteAccountDialog(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickDeleteAccountDialog();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
+        DeleteAccountDialog deleteAccountDialog = new DeleteAccountDialog(context);
+        deleteAccountDialog.show();
     }
     //====================================//
 
@@ -345,10 +303,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
             //=confirm dialog=//
             case R.id.btnSendMail_resetPasswordDialog:
                 clickResetPassword(view, motionEvent);
-                break;
-            //=delete account dialog=//
-            case R.id.btnDeleteAccount_deleteAccountDialog:
-                clickDeleteAccountDialog(view, motionEvent);
                 break;
         }
         return true;
