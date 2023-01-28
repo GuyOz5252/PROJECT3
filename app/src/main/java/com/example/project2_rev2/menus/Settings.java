@@ -1,6 +1,5 @@
 package com.example.project2_rev2.menus;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,17 +10,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.project2_rev2.R;
-import com.example.project2_rev2.data.User;
-import com.example.project2_rev2.utils.HelperMethods;
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.example.project2_rev2.utils.Action;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Settings extends Dialog implements View.OnTouchListener {
 
@@ -32,11 +27,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     ImageButton btnBack;
     Button btnAccountSettings, btnLogout, btnChangePassword, btnDeleteAccount;
-
-    // confirm dialog elements
-    Dialog confirmDialog;
-    TextView txtConfirmMessege;
-    Button btnYes, btnNo;
 
     // reset password dialog elements
     Dialog resetPassword;
@@ -118,7 +108,16 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     //============account settings=========//
     public void clickLogout() {
-        createConfirmDialog(" logout?");
+        CustomAlertDialog customAlertDialog = new CustomAlertDialog(
+                context,
+                "Are you sure you want to logout?",
+                () -> {
+                    FirebaseAuth.getInstance().signOut();
+                    context.startActivity(new Intent(context, Login.class));
+                },
+                () -> {}
+        );
+        customAlertDialog.show();
     }
 
     public void clickLogout(View view, MotionEvent motionEvent) {
@@ -154,61 +153,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
     public void clickDeleteAccount(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
             clickDeleteAccount();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-    //=====================================//
-
-    //===========confirm dialog============//
-    public void createConfirmDialog(String messege) {
-        confirmDialog = new Dialog(context);
-        confirmDialog.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        confirmDialog.setContentView(R.layout.dialog_confirm);
-        confirmDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        confirmDialog.setTitle("confirm dialog");
-
-        txtConfirmMessege = confirmDialog.findViewById(R.id.txtConfirmMessege_confirm);
-        btnYes = confirmDialog.findViewById(R.id.btnYes_confirm);
-        btnNo = confirmDialog.findViewById(R.id.btnNo_confirm);
-
-        btnYes.setOnTouchListener(this);
-        btnNo.setOnTouchListener(this);
-
-        txtConfirmMessege.setText(txtConfirmMessege.getText() + messege);
-
-        confirmDialog.show();
-    }
-
-    public void clickYes() {
-        if (txtConfirmMessege.getText().toString().equals("Are you sure you want to logout?")) {
-            FirebaseAuth.getInstance().signOut();
-            context.startActivity(new Intent(context, Login.class));
-            ((Activity)context).finish();
-        }
-    }
-
-    public void clickYes(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickYes();
-            view.setScaleX(1);
-            view.setScaleY(1);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-
-    public void clickNo() {
-        confirmDialog.dismiss();
-    }
-
-    public void clickNo(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickNo();
             view.setScaleX(1);
             view.setScaleY(1);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -292,13 +236,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
                 break;
             case R.id.btnDeleteAccount_accountSettings:
                 clickDeleteAccount(view, motionEvent);
-                break;
-            //=confirm dialog=//
-            case R.id.btnYes_confirm:
-                clickYes(view, motionEvent);
-                break;
-            case R.id.btnNo_confirm:
-                clickNo(view, motionEvent);
                 break;
             //=confirm dialog=//
             case R.id.btnSendMail_resetPasswordDialog:

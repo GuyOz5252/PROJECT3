@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.project2_rev2.data.User;
 import com.example.project2_rev2.gameComponents.FPSCounter;
+import com.example.project2_rev2.menus.CustomAlertDialog;
 import com.example.project2_rev2.menus.Settings;
 import com.example.project2_rev2.utils.Action;
 import com.example.project2_rev2.R;
@@ -371,49 +372,17 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
     /*****/
 
-    /***battery low dialog***/
+    //=======battery low dialog===========//
     public void createBatteryLowDialog() {
-        batteryLow = new Dialog(this);
-        batteryLow.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        batteryLow.setContentView(R.layout.dialog_confirm);
-        batteryLow.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        batteryLow.setTitle("battery low");
-
-        txtBatteryLowWarning = batteryLow.findViewById(R.id.txtConfirmMessege_confirm);
-        btnContinueLowBattery = batteryLow.findViewById(R.id.btnYes_confirm);
-        btnSaveAndExitLowBattery = batteryLow.findViewById(R.id.btnNo_confirm);
-
-        txtBatteryLowWarning.setText("BATTERY LOW!\nAre you sure you want to continue?");
-        btnContinueLowBattery.setText("continue");
-        btnSaveAndExitLowBattery.setText("save and exit");
-        btnContinueLowBattery.setOnTouchListener(this);
-        btnSaveAndExitLowBattery.setOnTouchListener(this);
-
-        batteryLow.show();
+        CustomAlertDialog customAlertDialog = new CustomAlertDialog(
+                this,
+                "BATTERY LOW!\nAre you sure you want to continue?",
+                () -> {},
+                this::clickSaveAndExit
+        );
+        customAlertDialog.show();
     }
-
-    public void clickContinueLowBattery(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            batteryLow.dismiss();
-            view.setScaleX(1f);
-            view.setScaleY(1f);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-
-    public void clickSaveAndExitLowBattery(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickSaveAndExit();
-            view.setScaleX(1f);
-            view.setScaleY(1f);
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.setScaleX(0.9f);
-            view.setScaleY(0.9f);
-        }
-    }
-    /*****/
+    //====================================//
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -441,13 +410,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             //=death dialog=//
             case R.id.btnHome_deathDialog:
                 clickHomeDeath(view, motionEvent);
-                break;
-            //=battery low=//
-            case R.id.btnYes_confirm:
-                clickContinueLowBattery(view, motionEvent);
-                break;
-            case R.id.btnNo_confirm:
-                clickSaveAndExitLowBattery(view, motionEvent);
                 break;
         }
         return true;
