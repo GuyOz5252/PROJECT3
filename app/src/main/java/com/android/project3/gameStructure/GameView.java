@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.android.project3.data.User;
 import com.android.project3.gameComponents.FPSCounter;
 import com.android.project3.menus.CustomAlertDialog;
+import com.android.project3.menus.Login;
 import com.android.project3.menus.Settings;
 import com.android.project3.utils.Action;
 import com.android.project3.R;
