@@ -18,15 +18,20 @@
             android:layout_width="200dp"
             android:layout_margin="5dp"
             android:text="login"
-            android:textSize="20dp"
             style="@style/button" />
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="200dp"
-            android:layout_below="@+id/btnLogin"
             android:layout_margin="5dp"
             android:text="register"
+            style="@style/button" />
+
+        <Button
+            android:id="@+id/btnGuest"
+            android:layout_width="200dp"
+            android:layout_margin="5dp"
+            android:text="guest"
             style="@style/button" />
 
     </LinearLayout>

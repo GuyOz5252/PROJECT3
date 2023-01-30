@@ -1,6 +1,7 @@
 package com.android.project3.gameComponents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 
 import com.android.project3.R;
@@ -164,8 +165,10 @@ public class Enemy extends BitmapObject {
     public void die(Tower tower) {
         isAlive = false;
         tower.setXP(tower.getXP() + value);
-        User.getInstance().getPlayerStats().setEnemiesKilled(User.getInstance().getPlayerStats().getEnemiesKilled() + 1);
-        User.getInstance().addUserXP(value/2);
+        if (!context.getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            User.getInstance().getPlayerStats().setEnemiesKilled(User.getInstance().getPlayerStats().getEnemiesKilled() + 1);
+            User.getInstance().addUserXP(value/2);
+        }
         GameValues.setPlayerCoins(GameValues.getPlayerCoins() + value);
     }
 

@@ -17,12 +17,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class TowerManager {
 
+    private Context context;
+
     private ArrayList<Tower> towerArrayList;
     private boolean isAnyTowerSelected;
     private Tower selectedTower;
     private Tower.TowerFactory towerFactory;
 
     public TowerManager(TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+        this.context = context;
         this.towerArrayList = new ArrayList<>();
         this.isAnyTowerSelected = false;
         this.towerFactory = new Tower.TowerFactory(towerBar, waveManager, projectileManager, context);
@@ -48,7 +51,9 @@ public class TowerManager {
 
     public void addTower(TowerType towerType, double x, double y) {
         towerArrayList.add(towerFactory.createTower(towerType, x, y));
-        User.getInstance().getPlayerStats().setTowersPlaced(User.getInstance().getPlayerStats().getTowersPlaced() + 1);
+        if (!context.getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            User.getInstance().getPlayerStats().setTowersPlaced(User.getInstance().getPlayerStats().getTowersPlaced() + 1);
+        }
     }
 
     public void drawTowerUpgradeUI(Canvas canvas) {

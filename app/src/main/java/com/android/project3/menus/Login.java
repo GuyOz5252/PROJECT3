@@ -27,6 +27,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
 
     // menu elements
     Button btnLogin, btnRegister;
+    Button btnGuest;
     ProgressBar loginProgressBar;
 
     // login dialog elements
@@ -54,12 +55,16 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        getSharedPreferences("sp", MODE_PRIVATE).edit().putBoolean("isGuest", false).apply();
+
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
+        btnGuest = findViewById(R.id.btnGuest);
         loginProgressBar = findViewById(R.id.loginProgressBar);
 
         btnLogin.setOnTouchListener(this);
         btnRegister.setOnTouchListener(this);
+        btnGuest.setOnTouchListener(this);
     }
 
     public void loginUser(String email, String password) {
@@ -111,6 +116,25 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             loginProgressBar.setVisibility(View.INVISIBLE);
             btnLogin.setVisibility(View.VISIBLE);
             btnRegister.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void clickGuest() {
+        getSharedPreferences("sp", MODE_PRIVATE).edit().putBoolean("isGuest", true).apply();
+        Intent intent = new Intent(this, GameView.class);
+        intent.putExtra("loadSave", false);
+        startActivity(intent);
+        this.finish();
+    }
+
+    public void clickGuest(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            clickGuest();
+            view.setScaleX(1);
+            view.setScaleY(1);
+        } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            view.setScaleX(0.9f);
+            view.setScaleY(0.9f);
         }
     }
 
@@ -283,7 +307,6 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     //=======reset password dialog=======//
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(this);
-        resetPassword.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("Forgot Password");
@@ -337,6 +360,9 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
                 break;
             case R.id.btnRegister:
                 createRegisterDialog(view, motionEvent);
+                break;
+            case R.id.btnGuest:
+                clickGuest(view, motionEvent);
                 break;
             //=login dialog=//
             case R.id.btnLogin_loginDialog:
