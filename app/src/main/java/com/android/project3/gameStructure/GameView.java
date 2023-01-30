@@ -291,15 +291,15 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public Action victory = this::createVictoryDialog;
 
-    public void clickHomeVictory() {
-        victoryDialog.dismiss();
+    public void clickHome(Dialog dialog) {
+        dialog.dismiss();
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
     }
 
     public void clickHomeVictory(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickHomeVictory();
+            clickHome(victoryDialog);
             view.setScaleX(1f);
             view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -353,15 +353,9 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     public Action death = this::createDeathDialog;
 
-    public void clickHomeDeath() {
-        deathDialog.dismiss();
-        startActivity(new Intent(this, MainMenu.class));
-        this.finish();
-    }
-
     public void clickHomeDeath(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            clickHomeDeath();
+            clickHome(deathDialog);
             view.setScaleX(1f);
             view.setScaleY(1f);
         } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
