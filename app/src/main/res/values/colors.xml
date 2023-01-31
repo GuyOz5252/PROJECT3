@@ -38,5 +38,5 @@
     <color name="bluePalate">#5e747f</color>
 
     <!--dev-->
-    <color name="devRed">#FF0000</color>
+    <color name="dev_red">#FF0000</color>
 </resources>

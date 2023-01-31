@@ -128,8 +128,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         sceneManager.update();
         if (GameValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
-            sceneManager.update();
-            sceneManager.update();
         }
         fpsCounter.update();
     }
