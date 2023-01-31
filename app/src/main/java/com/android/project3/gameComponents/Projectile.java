@@ -80,8 +80,7 @@ public class Projectile extends GameObject {
     }
 
     public enum ProjectileType {
-        DEMO_BULLET(R.color.bullet_projectile, 100, 3, 40f, 10, false),
-
+        GUN_BULLET(R.color.bullet_projectile, 100, 3, 40f, 10, false),
         TURRET_BULLETS(R.color.black, 120, 3, 35f, 5, false),
         TURRET_BULLETS_V2(R.color.black, 120, 6, 35f, 5, false),
         TURRET_BULLETS_V3(R.color.black, 100, 7, 35f, 8, false),

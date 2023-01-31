@@ -18,7 +18,7 @@ public class DemoTower extends Tower {
                 x,
                 y,
                 collider,
-                TowerType.DEMO_TOWER,
+                TowerType.FOOT_SOLIDER,
                 towerBar,
                 waveManager,
                 projectileManager,

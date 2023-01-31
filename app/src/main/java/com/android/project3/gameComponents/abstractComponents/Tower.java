@@ -261,7 +261,7 @@ public abstract class Tower extends BitmapObject {
                     (int)(y+towerType.size.height/2)
             );
             switch (towerType) {
-                case DEMO_TOWER:
+                case FOOT_SOLIDER:
                     return new DemoTower(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case TURRET:
                     collider = new Rect(

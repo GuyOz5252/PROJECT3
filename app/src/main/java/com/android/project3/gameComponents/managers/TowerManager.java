@@ -37,11 +37,10 @@ public class TowerManager {
     }
 
     public void setTowerArrayList(ArrayList<TowerSaveData> towerSaveDataArrayList) {
-        AtomicReference<ArrayList<Tower>> atomicTowerArrayList = new AtomicReference<>(towerArrayList);
         towerSaveDataArrayList.forEach(towerSaveData -> {
-            atomicTowerArrayList.get().add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), towerSaveData.getPosition().x, towerSaveData.getPosition().y));
-            atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
-            atomicTowerArrayList.get().get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
+            towerArrayList.add(towerFactory.createTower(TowerType.valueOf(towerSaveData.getType()), towerSaveData.getPosition().x, towerSaveData.getPosition().y));
+            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(0, towerSaveData.getPathOneLevel());
+            towerArrayList.get(towerArrayList.size()-1).loadUpgrades(1, towerSaveData.getPathTwoLevel());
         });
         GameValues.coinsChangeListenerArrayList.forEach(OnCoinsChangeListener::onCoinsChange);
     }
@@ -64,7 +63,8 @@ public class TowerManager {
     }
 
     public void draw(Canvas canvas) {
-        towerArrayList.forEach(tower -> tower.draw(canvas));
+        ArrayList<Tower> protectiveTowerArrayList = new ArrayList<>(towerArrayList); // to avoid ConcurrentModificationException, make a copy of a list that doesn't change
+        protectiveTowerArrayList.forEach(tower -> tower.draw(canvas));
     }
 
     public void update() {

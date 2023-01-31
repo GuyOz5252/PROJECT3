@@ -66,6 +66,22 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                18,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                15,
+                context
+        ));
+        waveMap.clear();
         waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
         waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
         waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
@@ -141,7 +157,7 @@ public class DemoOne extends Scene {
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                30,
+                140,
                 context
         ));
         waveMap.clear();
