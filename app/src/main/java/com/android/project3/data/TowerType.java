@@ -23,16 +23,16 @@ public enum TowerType implements Serializable {
             new Size(65, 65),
             Projectile.ProjectileType.GUN_BULLET,
             new TowerUpgradePath(
-                    new String[] {"Range", "Range", "Range"},
-                    new int[] {100, 200, 350},
-                    new int[] {0, 0, 0},
-                    new String[] {"", "", ""}
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
             ),
             new TowerUpgradePath(
-                    new String[] {"ATK Speed", "ATK Speed", "ATK Speed"},
-                    new int[] {100, 200, 300},
-                    new int[] {0, 0, 0},
-                    new String[] {"", "", ""}
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
             )
 
     ),
