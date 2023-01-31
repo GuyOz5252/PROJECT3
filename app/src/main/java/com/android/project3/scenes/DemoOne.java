@@ -50,34 +50,7 @@ public class DemoOne extends Scene {
         //        context
         //));
         //waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 5));
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 3));
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 5));
-        this.waveManager.addWave(new WaveManager.Wave(
-                waveMap,
-                enemyPath,
-                30,
-                context
-        ));
-        waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
-        this.waveManager.addWave(new WaveManager.Wave(
-                waveMap,
-                enemyPath,
-                30,
-                context
-        ));
-        waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
-        this.waveManager.addWave(new WaveManager.Wave(
-                waveMap,
-                enemyPath,
-                12,
-                context
-        ));
-        waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
@@ -85,7 +58,53 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 70));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                20,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                20,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 80));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                15,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                15,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
@@ -93,20 +112,32 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 200));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
         waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 120));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                28,
+                7,
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 5));
-        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 15));
-        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                20,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 5));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
@@ -114,11 +145,20 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 5));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 20));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,
                 enemyPath,
-                0,
+                140,
+                context
+        ));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
+        this.waveManager.addWave(new WaveManager.Wave(
+                waveMap,
+                enemyPath,
+                140,
                 context
         ));
     }
