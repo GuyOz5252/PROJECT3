@@ -13,30 +13,29 @@ import java.io.Serializable;
  */
 
 public enum TowerType implements Serializable {
-    DEMO_TOWER(
-            "Demo Tower",
+    FOOT_SOLIDER(
+            "Foot Solider",
             R.drawable.level_thumbnail_placeholder,
             R.drawable.level_thumbnail_placeholder,
             300,
             30,
             70,
-            new Size(85, 85),
-            Projectile.ProjectileType.DEMO_BULLET,
+            new Size(65, 65),
+            Projectile.ProjectileType.GUN_BULLET,
             new TowerUpgradePath(
-                    new String[] {"Range", "Range", "Range"},
-                    new int[] {100, 200, 350},
-                    new int[] {0, 0, 0},
-                    new String[] {"", "", ""}
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
             ),
             new TowerUpgradePath(
-                    new String[] {"ATK Speed", "ATK Speed", "ATK Speed"},
-                    new int[] {100, 200, 300},
-                    new int[] {0, 0, 0},
-                    new String[] {"", "", ""}
+                    new String[] {""},
+                    new int[] {0},
+                    new int[] {0},
+                    new String[] {""}
             )
 
     ),
-
     TURRET(
             "Turret",
             R.drawable.turret_head_1,
@@ -101,7 +100,7 @@ public enum TowerType implements Serializable {
             )
     ),
     TANK(
-            "Tank/Canon",
+            "Tank",
             R.drawable.common_google_signin_btn_icon_dark_normal_background,
             R.drawable.common_google_signin_btn_icon_dark_normal_background,
             350,

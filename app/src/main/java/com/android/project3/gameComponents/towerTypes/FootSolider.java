@@ -11,14 +11,14 @@ import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.gameComponents.managers.WaveManager;
 import com.android.project3.utils.GameValues;
 
-public class DemoTower extends Tower {
+public class FootSolider extends Tower {
 
-    public DemoTower(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+    public FootSolider(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(
                 x,
                 y,
                 collider,
-                TowerType.DEMO_TOWER,
+                TowerType.FOOT_SOLIDER,
                 towerBar,
                 waveManager,
                 projectileManager,
@@ -35,25 +35,19 @@ public class DemoTower extends Tower {
                 if (upgradePathIndex == 0) {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
-                            range = 350;
                             break;
                         case 1:
-                            range = 400;
                             break;
                         case 2:
-                            range = 500;
                             break;
                     }
                 } else {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
-                            cooldown = 25;
                             break;
                         case 1:
-                            cooldown = 23;
                             break;
                         case 2:
-                            cooldown = 18;
                             break;
                     }
                 }
@@ -73,13 +67,10 @@ public class DemoTower extends Tower {
             if (upgradePathIndex == 0) {
                 switch (i) {
                     case 0:
-                        range = 350;
                         break;
                     case 1:
-                        range = 400;
                         break;
                     case 2:
-                        range = 500;
                         break;
                 }
                 moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
@@ -88,13 +79,10 @@ public class DemoTower extends Tower {
             } else {
                 switch (i) {
                     case 0:
-                        cooldown = 25;
                         break;
                     case 1:
-                        cooldown = 23;
                         break;
                     case 2:
-                        cooldown = 18;
                         break;
                 }
                 moneySpent += towerUpgradePaths[upgradePathIndex].cost[pathLevels[upgradePathIndex]];
