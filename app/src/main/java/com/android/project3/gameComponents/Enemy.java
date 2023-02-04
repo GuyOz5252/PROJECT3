@@ -3,14 +3,13 @@ package com.android.project3.gameComponents;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.android.project3.R;
 import com.android.project3.data.EnemyType;
 import com.android.project3.data.User;
 import com.android.project3.gameComponents.abstractComponents.BitmapObject;
 import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.gameComponents.enemyTypes.ArmorDemoEnemy;
 import com.android.project3.gameComponents.enemyTypes.CamoDemoEnemy;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Position;
 
 import static com.android.project3.utils.HelperMethods.rotateBitmap;

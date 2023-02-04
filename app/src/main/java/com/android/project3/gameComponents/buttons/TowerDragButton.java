@@ -15,7 +15,7 @@ import com.android.project3.gameComponents.abstractComponents.BitmapObject;
 import com.android.project3.gameComponents.abstractComponents.Button;
 import com.android.project3.gameComponents.managers.TowerManager;
 import com.android.project3.listeners.OnCoinsChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Size;
 
 /**

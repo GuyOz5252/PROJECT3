@@ -10,10 +10,9 @@ import com.android.project3.data.User;
 import com.android.project3.gameComponents.TowerBar;
 import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.listeners.OnCoinsChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class TowerManager {
 

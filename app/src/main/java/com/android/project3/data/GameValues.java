@@ -1,12 +1,12 @@
-package com.android.project3.utils;
+package com.android.project3.data;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 
-import com.android.project3.data.User;
 import com.android.project3.listeners.OnCoinsChangeListener;
 import com.android.project3.listeners.OnHealthChangeListener;
+import com.android.project3.utils.Display;
 
 import java.util.ArrayList;
 

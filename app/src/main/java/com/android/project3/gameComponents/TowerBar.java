@@ -1,6 +1,6 @@
 package com.android.project3.gameComponents;
 
-import static com.android.project3.utils.GameValues.gameDisplay;
+import static com.android.project3.data.GameValues.gameDisplay;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,7 +16,7 @@ import com.android.project3.gameComponents.buttons.FastForwardButton;
 import com.android.project3.gameComponents.buttons.StartWaveButton;
 import com.android.project3.gameComponents.managers.TowerManager;
 import com.android.project3.gameComponents.managers.WaveManager;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Size;
 
 public class TowerBar extends RectObject {

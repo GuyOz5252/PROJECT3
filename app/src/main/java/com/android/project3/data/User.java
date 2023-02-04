@@ -143,8 +143,8 @@ public class User {
     public void addUserXP(int xp) {
         userXP += xp;
         getPlayerStats().setXpEarned(getPlayerStats().getXpEarned() + xp);
-        if (userXP >= userLevel*1800) {
-            userXP -= userLevel*1800;
+        if (userXP >= userLevel * Constants.LEVELING_FACTOR) {
+            userXP -= userLevel * Constants.LEVELING_FACTOR;
             userLevel++;
         }
     }

@@ -9,7 +9,7 @@ import com.android.project3.gameComponents.CoinTextUI;
 import com.android.project3.gameComponents.SellPriceTextUI;
 import com.android.project3.gameComponents.abstractComponents.Button;
 import com.android.project3.gameComponents.abstractComponents.Tower;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Size;
 
 /**

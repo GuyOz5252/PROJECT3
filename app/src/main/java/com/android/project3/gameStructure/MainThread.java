@@ -3,7 +3,7 @@ package com.android.project3.gameStructure;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 public class MainThread extends Thread {
 

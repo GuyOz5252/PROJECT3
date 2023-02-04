@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.project3.R;
+import com.android.project3.data.Constants;
 import com.android.project3.data.User;
 import com.android.project3.gameStructure.GameView;
 import com.android.project3.gameStructure.sceneManagement.Scene;
@@ -77,7 +78,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     public void setPlayerLevel() {
         int level = User.getInstance().getUserLevel();
         double xp = User.getInstance().getUserXP();
-        double max = level*1800;
+        double max = level * Constants.LEVELING_FACTOR;
         double percentage = (xp/max)*100;
         xpProgressBar.setProgress((int)percentage, true);
         txtPlayerLevel.setText(String.valueOf(level));

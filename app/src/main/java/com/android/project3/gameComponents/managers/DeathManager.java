@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.android.project3.utils.Action;
 import com.android.project3.listeners.OnHealthChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 public class DeathManager implements OnHealthChangeListener {
 

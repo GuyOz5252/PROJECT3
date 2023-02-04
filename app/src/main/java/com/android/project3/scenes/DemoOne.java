@@ -1,6 +1,6 @@
 package com.android.project3.scenes;
 
-import static com.android.project3.utils.GameValues.gameDisplay;
+import static com.android.project3.data.GameValues.gameDisplay;
 import static com.android.project3.utils.HelperMethods.getBitmapFromPicture;
 
 import android.content.Context;

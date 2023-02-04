@@ -20,7 +20,7 @@ import com.android.project3.gameComponents.managers.ProjectileManager;
 import com.android.project3.gameComponents.managers.TowerManager;
 import com.android.project3.gameComponents.managers.WaveManager;
 import com.android.project3.utils.Action;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

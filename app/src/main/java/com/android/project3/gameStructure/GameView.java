@@ -29,7 +29,7 @@ import com.android.project3.R;
 import com.android.project3.gameStructure.sceneManagement.SceneManager;
 import com.android.project3.menus.MainMenu;
 import com.android.project3.utils.Display;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.xmlElements.TypeWriter;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 

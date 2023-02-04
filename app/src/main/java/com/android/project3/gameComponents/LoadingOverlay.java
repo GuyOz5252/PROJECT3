@@ -1,6 +1,6 @@
 package com.android.project3.gameComponents;
 
-import static com.android.project3.utils.GameValues.gameDisplay;
+import static com.android.project3.data.GameValues.gameDisplay;
 
 import android.content.Context;
 import android.graphics.Canvas;
