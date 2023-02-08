@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.project3.data.Constants;
 import com.android.project3.data.User;
 import com.android.project3.gameComponents.FPSCounter;
 import com.android.project3.menus.CustomAlertDialog;
@@ -58,11 +59,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     // death dialog elements
     Dialog deathDialog;
     RelativeLayout btnExitDeath;
-
-    // battery low dialog
-    Dialog batteryLow;
-    TextView txtBatteryLowWarning;
-    Button btnContinueLowBattery, btnSaveAndExitLowBattery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,7 +275,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         int level = User.getInstance().getUserLevel();
         double xp = User.getInstance().getUserXP();
-        double max = level*1800;
+        double max = level * Constants.LEVELING_FACTOR;
         double percentage = (xp/max)*100;
         xpProgressBar.setProgress((int)percentage, true);
         txtPlayerLevel.setText(String.valueOf(level));

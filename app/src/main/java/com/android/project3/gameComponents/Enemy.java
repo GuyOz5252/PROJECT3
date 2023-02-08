@@ -164,7 +164,7 @@ public class Enemy extends BitmapObject {
         isAlive = false;
         tower.setXP(tower.getXP() + value);
         User.getInstance().getPlayerStats().setEnemiesKilled(User.getInstance().getPlayerStats().getEnemiesKilled() + 1);
-        User.getInstance().addUserXP(value/2);
+        User.getInstance().addUserXP(value/3);
         GameValues.setPlayerCoins(GameValues.getPlayerCoins() + value);
     }
 

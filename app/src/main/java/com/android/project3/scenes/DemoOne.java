@@ -197,9 +197,9 @@ public class DemoOne extends Scene {
                 context
         ));
         waveMap.clear();
-        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
         waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
-        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
         waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
         this.waveManager.addWave(new WaveManager.Wave(
                 waveMap,

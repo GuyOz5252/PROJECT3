@@ -11,27 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.Project3">
         <activity
-            android:name="com.android.project3.menus.PendingVerification"
+            android:name=".menus.PendingVerification"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.android.project3.menus.TowerUpgradeInfo"
+            android:name=".menus.TowerUpgradeInfo"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.android.project3.menus.MainMenu"
+            android:name=".menus.MainMenu"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.android.project3.gameStructure.GameView"
+            android:name=".gameStructure.GameView"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.android.project3.menus.Login"
+            android:name=".menus.Login"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name="com.android.project3.menus.MainActivity"
+            android:name=".menus.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>

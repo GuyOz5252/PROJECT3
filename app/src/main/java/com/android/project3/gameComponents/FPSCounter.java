@@ -11,7 +11,6 @@ public class FPSCounter extends TextUI {
     private MainThread thread;
 
     public FPSCounter(Context context) {
-        //super(460, 100, "FPS: 0", R.color.devRed, 50, Paint.Align.LEFT, context);
         super(10, 50, "FPS: 0", R.color.dev_red, 50, Paint.Align.LEFT, context);
     }
 
