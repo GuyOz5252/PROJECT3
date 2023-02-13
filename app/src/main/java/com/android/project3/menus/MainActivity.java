@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
                     firebaseAuth.getCurrentUser().reload().addOnCompleteListener(task1 -> {
                         startActivity(new Intent(
                                 MainActivity.this,
-                                firebaseAuth.getCurrentUser().isEmailVerified() ? MainMenu.class : PendingVerification.class)
-                        );
+                                firebaseAuth.getCurrentUser().isEmailVerified() ? MainMenu.class : PendingVerification.class
+                        ));
                         this.finish();
                     });
                 } else {

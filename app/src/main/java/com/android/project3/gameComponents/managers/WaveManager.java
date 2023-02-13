@@ -91,9 +91,7 @@ public class WaveManager {
     }
 
     public void draw(Canvas canvas) {
-        for (Enemy enemy : aliveList) {
-            enemy.draw(canvas);
-        }
+        aliveList.forEach(enemy -> enemy.draw(canvas));
     }
 
     public void update() {
@@ -115,7 +113,6 @@ public class WaveManager {
                 if (!startWaveButton.getIsActive()) {
                     startWaveButton.setIsActive(true);
                 }
-
 
                 if (currentWaveIndex == waveArrayList.size() && !GameValues.isFinished) {
                     GameValues.isFinished = true;
