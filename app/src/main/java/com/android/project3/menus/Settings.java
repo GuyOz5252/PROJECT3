@@ -2,6 +2,7 @@ package com.android.project3.menus;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Patterns;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.android.project3.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Settings extends Dialog implements View.OnTouchListener {
 
     private Context context;
+
+    public static boolean isShown;
 
     private String state;
     private Boolean accountSettings;
@@ -34,6 +38,7 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     public Settings(boolean accountSettings, @NonNull Context context) {
         super(context);
+        isShown = true;
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.dialog_settings);
         this.context = context;
