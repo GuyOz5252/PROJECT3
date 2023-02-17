@@ -23,8 +23,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     private Context context;
 
-    public static boolean isShown;
-
     private String state;
     private Boolean accountSettings;
 
@@ -38,7 +36,6 @@ public class Settings extends Dialog implements View.OnTouchListener {
 
     public Settings(boolean accountSettings, @NonNull Context context) {
         super(context);
-        isShown = true;
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.dialog_settings);
         this.context = context;

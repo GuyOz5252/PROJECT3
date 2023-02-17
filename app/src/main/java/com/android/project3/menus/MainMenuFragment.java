@@ -85,13 +85,9 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     }
 
     public void clickSettings() {
-        if (Settings.isShown) return;
         btnPlay.setVisibility(View.INVISIBLE);
         Settings settings = new Settings(true, getContext());
-        settings.setOnDismissListener(dialogInterface -> {
-            Settings.isShown = false;
-            btnPlay.setVisibility(View.VISIBLE);
-        });
+        settings.setOnDismissListener(dialogInterface -> btnPlay.setVisibility(View.VISIBLE));
         settings.show();
     }
 
