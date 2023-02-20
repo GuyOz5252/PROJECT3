@@ -62,7 +62,8 @@ public class TowerManager {
     }
 
     public void draw(Canvas canvas) {
-        ArrayList<Tower> protectiveTowerArrayList = new ArrayList<>(towerArrayList); // to avoid ConcurrentModificationException, make a copy of a list that doesn't change
+        // to avoid ConcurrentModificationException, make a copy of a list that doesn't change
+        ArrayList<Tower> protectiveTowerArrayList = new ArrayList<>(towerArrayList);
         protectiveTowerArrayList.forEach(tower -> tower.draw(canvas));
     }
 
