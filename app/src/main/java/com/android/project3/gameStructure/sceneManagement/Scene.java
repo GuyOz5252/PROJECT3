@@ -47,7 +47,7 @@ public abstract class Scene {
         this.context = context;
 
         this.enemyPath = new EnemyPath();
-        this.waveManager = new WaveManager(actionsArray[1], context);
+        this.waveManager = new WaveManager(actionsArray[1], enemyPath, context);
         this.projectileManager = new ProjectileManager(waveManager, context);
         this.towerBar = new TowerBar(waveManager, context);
         this.towerManager = new TowerManager(towerBar, waveManager, projectileManager, context);

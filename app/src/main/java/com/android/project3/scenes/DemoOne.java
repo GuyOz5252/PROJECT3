@@ -43,170 +43,95 @@ public class DemoOne extends Scene {
 
         ArrayList<Pair<EnemyType, Integer>> waveMap = new ArrayList<>();
         waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
-        this.waveManager.addWave(new WaveManager.Wave(
-                waveMap,
-                enemyPath,
-                28,
-                context
-        ));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 10));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        20,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 25));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        18,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 40));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 5));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        15,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        20,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 80));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        15,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 100));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
-        //waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 50));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        15,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
-        //waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 100));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 100));
-        //waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 20));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        10,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 200));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
-        //waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 150));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 120));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        7,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        20,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 5));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        140,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 2));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 2));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        80,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 1));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 25));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        70,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 50));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 20));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        50,
-        //        context
-        //));
-        //waveMap.clear();
-        //waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
-        //waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
-        //waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
-        //this.waveManager.addWave(new WaveManager.Wave(
-        //        waveMap,
-        //        enemyPath,
-        //        70,
-        //        context
-        //));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 28));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 10));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 20));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 18));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 40));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 5));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 15));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 55));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 10));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 20));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 30));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 70));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 80));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 15));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 15));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 15));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 100));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 20));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 130));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 10));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 200));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.ARMOR_DEMO_ENEMY, 150));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 120));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 50));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 7));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY, 25));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap,20));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 5));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap,140));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 2));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.CAMO_DEMO_ENEMY, 2));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 2));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap,80));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 1));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 25));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 70));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 50));
+        waveMap.add(new Pair<>(EnemyType.DEMO_ENEMY_V2, 20));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap, 50));
+        waveMap.clear();
+        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 10));
+        waveMap.add(new Pair<>(EnemyType.POWER_DEMO_ENEMY, 10));
+        waveMap.add(new Pair<>(EnemyType.DEMO_BOSS, 1));
+        this.waveManager.addWave(new WaveManager.Wave(waveMap,70));
     }
 
     @Override
