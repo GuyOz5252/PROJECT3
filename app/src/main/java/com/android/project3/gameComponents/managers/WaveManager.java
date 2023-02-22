@@ -145,13 +145,5 @@ public class WaveManager {
             this.enemyMap = new ArrayList<>(enemyMap);
             this.updatesBetweenSpawn = updatesBetweenSpawn;
         }
-
-//        public void convertCodeToUnit(ArrayList<Pair<EnemyType, Integer>> enemyMap) {
-//            enemyMap.forEach(enemyTypeIntegerPair -> {
-//                for (int i = 0; i < enemyTypeIntegerPair.second; i++) {
-//                    enemyArrayList.add(enemyFactory.createEnemy(enemyTypeIntegerPair.first));
-//                }
-//            });
-//        }
     }
 }
