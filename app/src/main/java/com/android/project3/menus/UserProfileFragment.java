@@ -53,11 +53,6 @@ public class UserProfileFragment extends Fragment {
     public void setPlayerStats() {
         PlayerStatsAdapter adapter = new PlayerStatsAdapter(getContext(), User.getInstance().getPlayerStats().getAllStats());
         rvPlayerStats.setAdapter(adapter);
-        rvPlayerStats.setLayoutManager(new LinearLayoutManager(getContext()) {
-            @Override
-            public boolean canScrollVertically() {
-                return true;
-            }
-        });
+        rvPlayerStats.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
