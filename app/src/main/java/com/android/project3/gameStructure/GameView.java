@@ -175,6 +175,10 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
         txtLevelName.setText(sceneManager.getLevelName());
 
+        if (getSharedPreferences("sp", Context.MODE_PRIVATE).getBoolean("isGuest", false)) {
+            btnSaveAndExit.setVisibility(View.GONE);
+        }
+
         pauseMenu.show();
 
         pauseMenu.setOnDismissListener(dialogInterface -> resume());

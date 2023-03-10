@@ -113,10 +113,12 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
             loginProgressBar.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.INVISIBLE);
             btnRegister.setVisibility(View.INVISIBLE);
+            btnGuest.setVisibility(View.INVISIBLE);
         } else {
             loginProgressBar.setVisibility(View.INVISIBLE);
             btnLogin.setVisibility(View.VISIBLE);
             btnRegister.setVisibility(View.VISIBLE);
+            btnGuest.setVisibility(View.VISIBLE);
         }
     }
 
