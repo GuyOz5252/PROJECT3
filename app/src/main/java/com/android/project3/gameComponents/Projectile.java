@@ -49,6 +49,7 @@ public class Projectile extends GameObject {
 
     public void hitEnemy(ArrayList<Enemy> enemyArrayList) {
         for (Enemy enemy : enemyArrayList) {
+            if (enemy == null) continue;
             float range = projectileType.range;
             float xDistance = (float) (position.x - enemy.getCenterPosition().x);
             float yDistance = (float) (position.y - enemy.getCenterPosition().y);

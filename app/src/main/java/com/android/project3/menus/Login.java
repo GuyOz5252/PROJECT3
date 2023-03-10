@@ -310,7 +310,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
         resetPassword = new Dialog(this);
         resetPassword.setContentView(R.layout.dialog_reset_password);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
-        resetPassword.setTitle("Forgot Password");
+        resetPassword.setTitle("forgot password");
 
         edtEmailResetPassword = resetPassword.findViewById(R.id.edtMail_resetPasswordDialog);
         btnSendResetEmail = resetPassword.findViewById(R.id.btnSendMail_resetPasswordDialog);

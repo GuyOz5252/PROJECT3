@@ -48,7 +48,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Double DMG", "Bigger Bullets", "Double Barrel", "Breaking All"},
                     new int[] {180, 200, 320, 700},
-                    new int[] {0, 400, 950, 1700},
+                    new int[] {0, 4000, 9500, 17000},
                     new String[] {
                             "bullets do double the damage",
                             "bullets are now bigger, they hurt more",
@@ -59,7 +59,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Range", "ATK Speed", "Rapid Fire"},
                     new int[] {150, 230, 600},
-                    new int[] {200, 800, 1200},
+                    new int[] {2000, 8000, 12000},
                     new String[] {
                             "increase the turret's range",
                             "increase the turret's attack speed, shoot faster",
@@ -79,7 +79,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Longer Burn", "Hot Flames", "Violent Fire", "Agidyne"},
                     new int[] {270, 300, 420, 500},
-                    new int[] {0, 250, 1200, 2200},
+                    new int[] {0, 2500, 12000, 22000},
                     new String[] {
                             "enemies burn for longer, dealing more damage over more time",
                             "damage received by flames increased",
@@ -90,7 +90,7 @@ public enum TowerType implements Serializable {
             new TowerUpgradePath(
                     new String[] {"Range", "Multi Burn", "Hotter", "Carmen"},
                     new int[] {300, 360, 480, 600},
-                    new int[] {100, 950, 1800, 2800},
+                    new int[] {1000, 9500, 18000, 28000},
                     new String[] {
                             "increase the flame's reach",
                             "burn more enemies in the fire's range",

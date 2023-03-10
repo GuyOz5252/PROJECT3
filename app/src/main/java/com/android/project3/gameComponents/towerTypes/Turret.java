@@ -15,7 +15,7 @@ import com.android.project3.gameComponents.TowerBar;
 import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.gameComponents.managers.ProjectileManager;
 import com.android.project3.gameComponents.managers.WaveManager;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 /**
  * a class that inherits Tower

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.project3.R;
 import com.android.project3.adapters.PlayerStatsAdapter;
+import com.android.project3.data.Constants;
 import com.android.project3.data.User;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -43,7 +44,7 @@ public class UserProfileFragment extends Fragment {
     public void setPlayerLevel() {
         int level = User.getInstance().getUserLevel();
         double xp = User.getInstance().getUserXP();
-        double max = level*1800;
+        double max = level * Constants.LEVELING_FACTOR;
         double percentage = (xp/max)*100;
         xpProgressBar.setProgress((int)percentage, true);
         txtPlayerLevel.setText(String.valueOf(level));
@@ -52,11 +53,6 @@ public class UserProfileFragment extends Fragment {
     public void setPlayerStats() {
         PlayerStatsAdapter adapter = new PlayerStatsAdapter(getContext(), User.getInstance().getPlayerStats().getAllStats());
         rvPlayerStats.setAdapter(adapter);
-        rvPlayerStats.setLayoutManager(new LinearLayoutManager(getContext()) {
-            @Override
-            public boolean canScrollVertically() {
-                return true;
-            }
-        });
+        rvPlayerStats.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

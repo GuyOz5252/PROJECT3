@@ -24,7 +24,7 @@ import com.android.project3.gameComponents.towerTypes.FootSolider;
 import com.android.project3.gameComponents.towerTypes.FireSpreader;
 import com.android.project3.gameComponents.towerTypes.Tank;
 import com.android.project3.gameComponents.towerTypes.Turret;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 /**
  * a class that includes all the fields of a tower

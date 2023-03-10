@@ -1,6 +1,6 @@
 package com.android.project3.gameComponents.buttons;
 
-import static com.android.project3.utils.GameValues.gameDisplay;
+import static com.android.project3.data.GameValues.gameDisplay;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import com.android.project3.R;
 import com.android.project3.gameComponents.abstractComponents.BitmapObject;
 import com.android.project3.gameComponents.abstractComponents.Button;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Size;
 
 /**

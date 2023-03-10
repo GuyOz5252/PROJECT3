@@ -2,6 +2,7 @@ package com.android.project3.menus;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Patterns;
 import android.view.MotionEvent;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.android.project3.R;
 import com.google.firebase.auth.FirebaseAuth;

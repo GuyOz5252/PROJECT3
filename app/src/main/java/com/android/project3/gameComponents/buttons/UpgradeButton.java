@@ -19,7 +19,7 @@ import com.android.project3.gameComponents.TextUI;
 import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.gameComponents.TowerUpgradeUI;
 import com.android.project3.listeners.OnCoinsChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Position;
 import com.android.project3.utils.Size;
 

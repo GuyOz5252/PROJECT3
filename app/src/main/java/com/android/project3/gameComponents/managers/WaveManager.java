@@ -3,6 +3,7 @@ package com.android.project3.gameComponents.managers;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Handler;
 import android.util.Pair;
 
 import com.android.project3.data.EnemyType;
@@ -11,7 +12,7 @@ import com.android.project3.gameComponents.Enemy;
 import com.android.project3.gameComponents.EnemyPath;
 import com.android.project3.gameComponents.WaveCounter;
 import com.android.project3.gameComponents.buttons.StartWaveButton;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 import java.util.ArrayList;
 
@@ -19,13 +20,15 @@ public class WaveManager {
 
     private Context context;
 
+    private Enemy.EnemyFactory enemyFactory;
+
     private WaveCounter waveCounter;
     private StartWaveButton startWaveButton;
 
     private Action victory;
 
     private int currentWaveIndex;
-    private ArrayList<Enemy> enemyArrayList;
+    private Wave currentWave;
     private int enemyIndexInWave;
 
     private ArrayList<Wave> waveArrayList;
@@ -35,7 +38,8 @@ public class WaveManager {
     private int updatesToNextSpawn;
     private int updatesBetweenSpawn;
 
-    public WaveManager(Action victory, Context context) {
+    public WaveManager(Action victory, EnemyPath enemyPath, Context context) {
+        this.enemyFactory = new Enemy.EnemyFactory(enemyPath, context);
         this.waveCounter = new WaveCounter(context);
         this.waveArrayList = new ArrayList<>();
         this.aliveList = new ArrayList<>();
@@ -60,7 +64,7 @@ public class WaveManager {
     }
 
     public ArrayList<Enemy> getAliveList() {
-        return aliveList;
+        return new ArrayList<>(aliveList);
     }
 
     public void setStartWaveButton(StartWaveButton startWaveButton) {
@@ -73,7 +77,7 @@ public class WaveManager {
     }
 
     public void startWave() {
-        enemyArrayList = waveArrayList.get(currentWaveIndex).enemyArrayList;
+        currentWave = waveArrayList.get(currentWaveIndex);
         isSpawning = true;
         startWaveButton.setIsActive(false);
         updatesBetweenSpawn = waveArrayList.get(currentWaveIndex).updatesBetweenSpawn;
@@ -82,8 +86,13 @@ public class WaveManager {
     }
 
     public void spawnEnemy() {
-        aliveList.add(enemyArrayList.get(enemyIndexInWave));
-        enemyIndexInWave++;
+        Pair<EnemyType, Integer> enemyMap = currentWave.enemyMap.get(enemyIndexInWave);
+        if (enemyMap.second > 0) {
+            new Thread(() -> aliveList.add(enemyFactory.createEnemy(currentWave.enemyMap.get(enemyIndexInWave).first))).start();
+            currentWave.enemyMap.set(enemyIndexInWave, new Pair<>(enemyMap.first, enemyMap.second - 1));
+        } else {
+            enemyIndexInWave++;
+        }
     }
 
     public void drawWaveCounter(Canvas canvas) {
@@ -91,15 +100,15 @@ public class WaveManager {
     }
 
     public void draw(Canvas canvas) {
-        for (Enemy enemy : aliveList) {
-            enemy.draw(canvas);
-        }
+        // to avoid ConcurrentModificationException, make a copy of a list that doesn't change
+        ArrayList<Enemy> protectiveAliveList = new ArrayList<>(aliveList);
+        protectiveAliveList.forEach(enemy -> enemy.draw(canvas));
     }
 
     public void update() {
         if (isSpawning) {
             if (updatesToNextSpawn >= updatesBetweenSpawn) {
-                if (enemyIndexInWave < enemyArrayList.size()) {
+                if (enemyIndexInWave < currentWave.enemyMap.size()) {
                     spawnEnemy();
                     updatesToNextSpawn = 0;
                 } else {
@@ -116,7 +125,6 @@ public class WaveManager {
                     startWaveButton.setIsActive(true);
                 }
 
-
                 if (currentWaveIndex == waveArrayList.size() && !GameValues.isFinished) {
                     GameValues.isFinished = true;
                     ((Activity)context).runOnUiThread(() -> victory.action());
@@ -130,23 +138,12 @@ public class WaveManager {
 
     public static class Wave {
 
-        private Enemy.EnemyFactory enemyFactory;
-        private ArrayList<Enemy> enemyArrayList;
+        private ArrayList<Pair<EnemyType, Integer>> enemyMap;
         private int updatesBetweenSpawn;
 
-        public Wave(ArrayList<Pair<EnemyType, Integer>> enemyMap, EnemyPath enemyPath, int updatesBetweenSpawn, Context context) {
-            this.enemyFactory = new Enemy.EnemyFactory(enemyPath, context);
-            this.enemyArrayList = new ArrayList<>();
+        public Wave(ArrayList<Pair<EnemyType, Integer>> enemyMap, int updatesBetweenSpawn) {
+            this.enemyMap = new ArrayList<>(enemyMap);
             this.updatesBetweenSpawn = updatesBetweenSpawn;
-            convertCodeToUnit(enemyMap);
-        }
-
-        public void convertCodeToUnit(ArrayList<Pair<EnemyType, Integer>> enemyMap) {
-            enemyMap.forEach(enemyTypeIntegerPair -> {
-                for (int i = 0; i < enemyTypeIntegerPair.second; i++) {
-                    enemyArrayList.add(enemyFactory.createEnemy(enemyTypeIntegerPair.first));
-                }
-            });
         }
     }
 }

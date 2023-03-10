@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import com.android.project3.R;
 import com.android.project3.gameComponents.abstractComponents.BitmapObject;
 import com.android.project3.listeners.OnHealthChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 import com.android.project3.utils.Size;
 
 public class HealthCounter extends TextUI implements OnHealthChangeListener {

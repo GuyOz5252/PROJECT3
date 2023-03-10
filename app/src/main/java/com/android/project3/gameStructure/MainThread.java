@@ -3,11 +3,11 @@ package com.android.project3.gameStructure;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.Constants;
+import com.android.project3.data.GameValues;
 
 public class MainThread extends Thread {
 
-    public static final int MAX_FPS = 60;
     private double avgFPS;
     private final SurfaceHolder surfaceHolder;
     private final GameView gameView;
@@ -41,11 +41,11 @@ public class MainThread extends Thread {
     @Override
     public void run() {
         long startTime;
-        long timeMillis = 1000 / MAX_FPS;
+        long timeMillis = 1000 / Constants.MAX_FPS;
         long waitTime;
         long frameCount = 0;
         long totalTime = 0;
-        long targetTime = 1000 / MAX_FPS;
+        long targetTime = 1000 / Constants.MAX_FPS;
 
         while (isRunning) {
             if (!GameValues.isPaused) {
@@ -79,7 +79,7 @@ public class MainThread extends Thread {
                 }
                 totalTime += System.nanoTime() - startTime;
                 frameCount++;
-                if (frameCount == MAX_FPS) {
+                if (frameCount == Constants.MAX_FPS) {
                     avgFPS = 1000 / ((totalTime / frameCount) / 1000000);
                     frameCount = 0;
                     totalTime = 0;

@@ -1,12 +1,12 @@
-package com.android.project3.utils;
+package com.android.project3.data;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 
-import com.android.project3.data.User;
 import com.android.project3.listeners.OnCoinsChangeListener;
 import com.android.project3.listeners.OnHealthChangeListener;
+import com.android.project3.utils.Display;
 
 import java.util.ArrayList;
 
@@ -26,13 +26,9 @@ public class GameValues {
 
     public static boolean isFinished = false;
 
-    public final static int START_COINS = 650;
+    private static int playerCoins = Constants.START_COINS;
 
-    private static int playerCoins = START_COINS;
-
-    public final static int START_HEALTH = 150;
-
-    private static int playerHealth = START_HEALTH;
+    private static int playerHealth = Constants.START_HEALTH;
 
     /**player coins**/
     public static ArrayList<OnCoinsChangeListener> coinsChangeListenerArrayList = new ArrayList<>();
@@ -75,8 +71,8 @@ public class GameValues {
         isPaused = false;
         isFastForwarded = false;
         isFinished = false;
-        playerCoins = START_COINS;
-        playerHealth = START_HEALTH;
+        playerCoins = Constants.START_COINS;
+        playerHealth = Constants.START_HEALTH;
         colliderArrayList.clear();
         coinsChangeListenerArrayList.clear();
         healthChangeListenerArrayList.clear();

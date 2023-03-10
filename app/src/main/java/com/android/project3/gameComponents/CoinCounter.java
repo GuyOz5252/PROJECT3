@@ -1,13 +1,13 @@
 package com.android.project3.gameComponents;
 
-import static com.android.project3.utils.GameValues.gameDisplay;
+import static com.android.project3.data.GameValues.gameDisplay;
 
 import android.content.Context;
 import android.graphics.Paint;
 
 import com.android.project3.R;
 import com.android.project3.listeners.OnCoinsChangeListener;
-import com.android.project3.utils.GameValues;
+import com.android.project3.data.GameValues;
 
 public class CoinCounter extends CoinTextUI implements OnCoinsChangeListener {
 
