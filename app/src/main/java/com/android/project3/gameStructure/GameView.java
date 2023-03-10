@@ -213,13 +213,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickSaveAndExit() {
+        pauseMenu.dismiss();
         sceneManager.saveGame();
         clickExit();
     }
 
     public void clickSaveAndExit(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            pauseMenu.dismiss();
             clickSaveAndExit();
             view.setScaleX(1);
             view.setScaleY(1);
@@ -230,6 +230,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickExit() {
+        pauseMenu.dismiss();
         User.getInstance().updateFirestoreUserData();
         startActivity(new Intent(this, MainMenu.class));
         this.finish();
