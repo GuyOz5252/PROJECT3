@@ -11,7 +11,8 @@
     <TextView
         style="@style/mainText"
         android:layout_centerInParent="true"
-        android:text="@string/app_name"
+        android:text="PROJECT3\nDEMO"
+        android:gravity="center"
         android:textStyle="" />
 
 </RelativeLayout>
