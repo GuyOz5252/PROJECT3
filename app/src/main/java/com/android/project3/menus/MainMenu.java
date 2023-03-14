@@ -32,21 +32,6 @@ public class MainMenu extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_main_menu);
 
-        // version control
-        FirebaseFirestore.getInstance().collection("users").document(getResources().getString(R.string.developerUID)).get().addOnCompleteListener(task -> {
-            if (!((double)task.getResult().get("version") <= Double.parseDouble(getResources().getString(R.string.version)))) {
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(new NotificationChannel("", "Warnings", NotificationManager.IMPORTANCE_DEFAULT));
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "")
-                        .setSmallIcon(R.drawable.ic_bug)
-                        .setContentTitle("Update!")
-                        .setContentText("ask for updated APK")
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                NotificationManagerCompat.from(this).notify(0, builder.build());
-                finish();
-            }
-        });
-
         userProfileFragment = new UserProfileFragment();
         mainMenuFragment = new MainMenuFragment();
         towerFragment = new TowerFragment();
