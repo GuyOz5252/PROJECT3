@@ -15,17 +15,17 @@ import com.android.project3.utils.Action;
 public class CustomAlertDialog extends Dialog implements View.OnTouchListener {
 
     private Context context;
-    private String messege;
+    private String message;
     private Action action;
     private Action noAction;
 
-    TextView txtMessege;
+    TextView txtMessage;
     Button btnYes, btnNo;
 
-    public CustomAlertDialog(@NonNull Context context, String messege, Action action, Action noAction) {
+    public CustomAlertDialog(@NonNull Context context, String message, Action action, Action noAction) {
         super(context);
         this.context = context;
-        this.messege = messege;
+        this.message = message;
         this.action = action;
         this.noAction = noAction;
 
@@ -34,14 +34,14 @@ public class CustomAlertDialog extends Dialog implements View.OnTouchListener {
         getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         setTitle("confirm dialog");
 
-        txtMessege = findViewById(R.id.txtConfirmMessege_confirm);
+        txtMessage = findViewById(R.id.txtConfirmMessege_confirm);
         btnYes = findViewById(R.id.btnYes_confirm);
         btnNo = findViewById(R.id.btnNo_confirm);
 
         btnYes.setOnTouchListener(this);
         btnNo.setOnTouchListener(this);
 
-        txtMessege.setText(messege);
+        txtMessage.setText(message);
     }
 
     public void clickYes() {
