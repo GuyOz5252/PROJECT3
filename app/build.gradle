@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation fileTree(dir: 'C:\\Users\\Guy Oz\\AppData\\Local\\Android\\Sdk\\platforms\\android-32', include: ['*.aar', '*.jar'], exclude: [])
 }
