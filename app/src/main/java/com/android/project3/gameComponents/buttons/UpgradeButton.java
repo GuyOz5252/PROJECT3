@@ -264,6 +264,11 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         }
     }
 
+    public boolean canUpgrade(MotionEvent motionEvent) {
+        return motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY &&
+                (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]]);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isPressed(motionEvent)) {
@@ -273,8 +278,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
                     postUpgrade();
                     return true;
                 }
-            } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && upgradeButtonState == UpgradeButtonState.UPGRADE_READY &&
-                    (GameValues.getPlayerCoins() >= tower.getTowerUpgradePaths()[upgradePathIndex].cost[tower.getPathLevels()[upgradePathIndex]])) {
+            } else if (canUpgrade(motionEvent)) {
                 setPressEffect(true);
             }
         } else {
@@ -283,7 +287,7 @@ public class UpgradeButton extends Button implements OnCoinsChangeListener {
         return false;
     }
 
-    public enum UpgradeButtonState {
+    private enum UpgradeButtonState {
         XP_REQ,
         UPGRADE_READY,
         MAX_LEVEL
