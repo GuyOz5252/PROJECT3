@@ -44,8 +44,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
 
     private BroadcastReceiver batteryReceiver;
 
-    private FPSCounter fpsCounter;
-
     // pause menu dialog elements
     Dialog pauseMenu;
     Button btnResume, btnSettings, btnSaveAndExit, btnExitPauseMenu;
@@ -71,8 +69,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         GameValues.init(this, new Display(displayMetrics));
 
-        fpsCounter = new FPSCounter(this);
-
         SurfaceView surfaceView = findViewById(R.id.gameSurface);
         surfaceView.setOnTouchListener(this::onTouchEvent);
         surfaceView.setScaleX(GameValues.scaleFactor);
@@ -82,7 +78,6 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
                 mainThread = new MainThread(surfaceHolder, GameView.this);
                 mainThread.startThread();
-                fpsCounter.setThread(mainThread);
             }
 
             @Override
@@ -126,16 +121,12 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         if (GameValues.isFastForwarded) { // if game is fast forwarded than update the game twice every cycle instead of once
             sceneManager.update();
         }
-        fpsCounter.update();
     }
 
     public void draw(Canvas canvas) {
         // reset the canvas with background image
         // draw the scene
         sceneManager.draw(canvas);
-        if (false) { // TODO debug
-            fpsCounter.draw(canvas);
-        }
     }
 
     public boolean onTouchEvent(View view, MotionEvent motionEvent) {
