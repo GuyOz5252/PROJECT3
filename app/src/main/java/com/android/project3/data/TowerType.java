@@ -13,8 +13,8 @@ import java.io.Serializable;
  */
 
 public enum TowerType implements Serializable {
-    FOOT_SOLIDER(
-            "Foot Solider",
+    FOOT_SOLDIER(
+            "Foot Soldier",
             R.drawable.level_thumbnail_placeholder,
             R.drawable.level_thumbnail_placeholder,
             300,

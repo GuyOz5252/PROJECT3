@@ -11,14 +11,14 @@ import com.android.project3.gameComponents.abstractComponents.Tower;
 import com.android.project3.gameComponents.managers.WaveManager;
 import com.android.project3.data.GameValues;
 
-public class FootSolider extends Tower {
+public class FootSoldier extends Tower {
 
-    public FootSolider(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
+    public FootSoldier(double x, double y, Rect collider, TowerBar towerBar, WaveManager waveManager, ProjectileManager projectileManager, Context context) {
         super(
                 x,
                 y,
                 collider,
-                TowerType.FOOT_SOLIDER,
+                TowerType.FOOT_SOLDIER,
                 towerBar,
                 waveManager,
                 projectileManager,

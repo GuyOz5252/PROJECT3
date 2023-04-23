@@ -208,13 +208,13 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
     }
 
     public void clickSaveAndExit() {
+        pauseMenu.dismiss();
         sceneManager.saveGame();
         clickExit();
     }
 
     public void clickSaveAndExit(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            pauseMenu.dismiss();
             clickSaveAndExit();
             view.setScaleX(1);
             view.setScaleY(1);

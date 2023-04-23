@@ -54,7 +54,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     LinearLayout levelReqLock;
     ImageButton btnBackLevelSelect;
     ArrayList<Scene.Levels> levelArrayList;
-    int currentLevelIndex;
+    private int currentLevelIndex;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

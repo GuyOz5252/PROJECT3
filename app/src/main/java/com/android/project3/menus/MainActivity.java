@@ -14,10 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    Handler handler;
+    private Handler handler;
 
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore db;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

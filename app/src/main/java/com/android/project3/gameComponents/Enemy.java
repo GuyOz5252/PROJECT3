@@ -7,8 +7,8 @@ import com.android.project3.data.EnemyType;
 import com.android.project3.data.User;
 import com.android.project3.gameComponents.abstractComponents.BitmapObject;
 import com.android.project3.gameComponents.abstractComponents.Tower;
-import com.android.project3.gameComponents.enemyTypes.ArmorDemoEnemy;
-import com.android.project3.gameComponents.enemyTypes.CamoDemoEnemy;
+import com.android.project3.gameComponents.enemyTypes.ArmorEnemy;
+import com.android.project3.gameComponents.enemyTypes.CamoEnemy;
 import com.android.project3.data.GameValues;
 import com.android.project3.utils.Position;
 
@@ -241,10 +241,10 @@ public class Enemy extends BitmapObject {
 
         public Enemy createEnemy(EnemyType enemyType) {
             switch (enemyType) {
-                case CAMO_DEMO_ENEMY:
-                    return new CamoDemoEnemy(enemyType, enemyPath, context);
-                case ARMOR_DEMO_ENEMY:
-                    return new ArmorDemoEnemy(enemyType, enemyPath, context);
+                case CAMO_ENEMY:
+                    return new CamoEnemy(enemyType, enemyPath, context);
+                case ARMOR_ENEMY:
+                    return new ArmorEnemy(enemyType, enemyPath, context);
                 default:
                     return new Enemy(enemyType, enemyPath, context);
             }

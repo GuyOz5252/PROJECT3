@@ -20,7 +20,7 @@ import com.android.project3.gameComponents.managers.ProjectileManager;
 import com.android.project3.gameComponents.TowerBar;
 import com.android.project3.gameComponents.TowerUpgradeUI;
 import com.android.project3.gameComponents.managers.WaveManager;
-import com.android.project3.gameComponents.towerTypes.FootSolider;
+import com.android.project3.gameComponents.towerTypes.FootSoldier;
 import com.android.project3.gameComponents.towerTypes.FireSpreader;
 import com.android.project3.gameComponents.towerTypes.Tank;
 import com.android.project3.gameComponents.towerTypes.Turret;
@@ -261,8 +261,8 @@ public abstract class Tower extends BitmapObject {
                     (int)(y+towerType.size.height/2)
             );
             switch (towerType) {
-                case FOOT_SOLIDER:
-                    return new FootSolider(x, y, collider, towerBar, waveManager, projectileManager, context);
+                case FOOT_SOLDIER:
+                    return new FootSoldier(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case TURRET:
                     collider = new Rect(
                             (int)(x-towerType.size.width/2)+35,
