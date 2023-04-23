@@ -8,11 +8,11 @@ import com.android.project3.gameComponents.Enemy;
 import com.android.project3.gameComponents.EnemyPath;
 import com.android.project3.gameComponents.abstractComponents.Tower;
 
-public class ArmorDemoEnemy extends Enemy {
+public class ArmorEnemy extends Enemy {
 
     private boolean isArmored;
 
-    public ArmorDemoEnemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
+    public ArmorEnemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(enemyType, enemyPath, context);
         this.isArmored = true;
     }

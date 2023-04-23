@@ -6,9 +6,9 @@ import com.android.project3.data.EnemyType;
 import com.android.project3.gameComponents.Enemy;
 import com.android.project3.gameComponents.EnemyPath;
 
-public class CamoDemoEnemy extends Enemy {
+public class CamoEnemy extends Enemy {
 
-    public CamoDemoEnemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
+    public CamoEnemy(EnemyType enemyType, EnemyPath enemyPath, Context context) {
         super(enemyType, enemyPath, context);
     }
 
