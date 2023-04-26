@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 
 public class TypeWriter extends androidx.appcompat.widget.AppCompatTextView {
 
-    // https://www.youtube.com/watch?v=4JUWmX1lK4o&t=222s
-
     private CharSequence text;
     private int index;
     private long delay;

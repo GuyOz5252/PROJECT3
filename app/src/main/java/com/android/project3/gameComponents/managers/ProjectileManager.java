@@ -26,7 +26,6 @@ public class ProjectileManager {
         this.projectileFactory = new Projectile.ProjectileFactory();
     }
 
-    // https://www.youtube.com/watch?v=_HhIvNIlEqM
     public float createNewProjectile(Tower tower, Enemy enemy) {
         projectileType = tower.getProjectileType();
 
