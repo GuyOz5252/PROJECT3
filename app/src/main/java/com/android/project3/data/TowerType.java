@@ -15,8 +15,8 @@ import java.io.Serializable;
 public enum TowerType implements Serializable {
     FOOT_SOLDIER(
             "Foot Soldier",
-            R.drawable.level_thumbnail_placeholder,
-            R.drawable.level_thumbnail_placeholder,
+            R.drawable.yellow_button_background,
+            R.drawable.yellow_button_background,
             300,
             30,
             70,
