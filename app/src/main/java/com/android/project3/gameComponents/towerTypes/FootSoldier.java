@@ -35,19 +35,31 @@ public class FootSoldier extends Tower {
                 if (upgradePathIndex == 0) {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // TODO add upgrade
                             break;
                         case 1:
+                            // TODO add upgrade
                             break;
                         case 2:
+                            // TODO add upgrade
+                            break;
+                        case 3:
+                            // TODO add upgrade
                             break;
                     }
                 } else {
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // TODO add upgrade
                             break;
                         case 1:
+                            // TODO add upgrade
                             break;
                         case 2:
+                            // TODO add upgrade
+                            break;
+                        case 3:
+                            // TODO add upgrade
                             break;
                     }
                 }
