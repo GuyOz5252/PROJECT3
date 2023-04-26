@@ -12,7 +12,7 @@ import com.android.project3.data.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity {
 
     private Handler handler;
 
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash_screen);
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     User.getInstance().setUserData(task.getResult());
                     firebaseAuth.getCurrentUser().reload().addOnCompleteListener(task1 -> {
                         startActivity(new Intent(
-                                MainActivity.this,
+                                SplashScreen.this,
                                 firebaseAuth.getCurrentUser().isEmailVerified() ? MainMenu.class : PendingVerification.class
                         ));
                         this.finish();
