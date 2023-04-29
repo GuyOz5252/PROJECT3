@@ -30,7 +30,7 @@ public class CustomAlertDialog extends Dialog implements View.OnTouchListener {
         this.noAction = noAction;
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        setContentView(R.layout.dialog_confirm);
+        setContentView(R.layout.dialog_alert);
         getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         setTitle("confirm dialog");
 
