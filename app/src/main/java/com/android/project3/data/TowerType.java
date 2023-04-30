@@ -15,12 +15,12 @@ import java.io.Serializable;
 public enum TowerType implements Serializable {
     FOOT_SOLDIER(
             "Foot Soldier",
-            R.drawable.yellow_button_background,
-            R.drawable.yellow_button_background,
+            R.drawable.foot_soldier_base,
+            R.drawable.foot_soldier_base,
             300,
             30,
             70,
-            new Size(65, 65),
+            new Size(130, 130),
             Projectile.ProjectileType.GUN_BULLET,
             new TowerUpgradePath(
                     new String[] {""},
