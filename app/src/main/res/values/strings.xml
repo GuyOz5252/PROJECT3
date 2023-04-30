@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PROJECT3</string>
+    <string name="app_name">Debugger TD</string>
 
     <string name="forgot_password">Forgot your password?</string>
     <string name="reset_password">Click here to reset</string>

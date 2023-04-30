@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat;
 
 public class HelperMethods {
 
-    // https://www.geeksforgeeks.org/how-to-convert-a-vector-to-bitmap-in-android/
     public static Bitmap getBitmapFromVectorDrawable(Context context,@DrawableRes int resourceId) {
         Drawable drawable = ContextCompat.getDrawable(context, resourceId);
         Bitmap bitmap = Bitmap.createBitmap(

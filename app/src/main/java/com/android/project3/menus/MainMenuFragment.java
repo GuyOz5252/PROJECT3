@@ -53,7 +53,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
     ImageView levelThumbnail;
     LinearLayout levelReqLock;
     ImageButton btnBackLevelSelect;
-    ArrayList<Scene.Levels> levelArrayList;
+    ArrayList<Scene.Scenes> levelArrayList;
     private int currentLevelIndex;
 
     @Override
@@ -228,7 +228,7 @@ public class MainMenuFragment extends Fragment implements View.OnTouchListener {
 
         currentLevelIndex = 0;
 
-        levelArrayList = new ArrayList<>(Arrays.asList(Scene.Levels.values()));
+        levelArrayList = new ArrayList<>(Arrays.asList(Scene.Scenes.values()));
 
         cycleLevels();
     }

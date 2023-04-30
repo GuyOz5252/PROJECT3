@@ -8,20 +8,10 @@ import androidx.annotation.NonNull;
 
 public class TypeWriter extends androidx.appcompat.widget.AppCompatTextView {
 
-    // https://www.youtube.com/watch?v=4JUWmX1lK4o&t=222s
-
     private CharSequence text;
     private int index;
     private long delay;
     private boolean isRunning;
-
-    public TypeWriter(@NonNull Context context) {
-        super(context);
-    }
-
-    public TypeWriter(@NonNull Context context, @NonNull AttributeSet attrSet) {
-        super(context, attrSet);
-    }
 
     private Handler handler = new Handler();
 
@@ -36,6 +26,14 @@ public class TypeWriter extends androidx.appcompat.widget.AppCompatTextView {
             }
         }
     };
+
+    public TypeWriter(@NonNull Context context) {
+        super(context);
+    }
+
+    public TypeWriter(@NonNull Context context, @NonNull AttributeSet attrSet) {
+        super(context, attrSet);
+    }
 
     public void animate(CharSequence text) {
         isRunning = true;

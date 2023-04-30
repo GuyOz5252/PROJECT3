@@ -262,6 +262,12 @@ public abstract class Tower extends BitmapObject {
             );
             switch (towerType) {
                 case FOOT_SOLDIER:
+                    collider = new Rect(
+                            (int)(x-towerType.size.width/2)+35,
+                            (int)(y-towerType.size.height/2)+40,
+                            (int)(x+towerType.size.width/2)-55,
+                            (int)(y+towerType.size.height/2)-40
+                    );
                     return new FootSoldier(x, y, collider, towerBar, waveManager, projectileManager, context);
                 case TURRET:
                     collider = new Rect(

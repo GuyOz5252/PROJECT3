@@ -29,24 +29,32 @@ public class Tank extends Tower {
                     // path one
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // TODO add upgrade
                             break;
                         case 1:
+                            // TODO add upgrade
                             break;
                         case 2:
+                            // TODO add upgrade
                             break;
                         case 3:
+                            // TODO add upgrade
                             break;
                     }
                 } else {
                     // path two
                     switch (pathLevels[upgradePathIndex]) {
                         case 0:
+                            // TODO add upgrade
                             break;
                         case 1:
+                            // TODO add upgrade
                             break;
                         case 2:
+                            // TODO add upgrade
                             break;
                         case 3:
+                            // TODO add upgrade
                             break;
                     }
                 }

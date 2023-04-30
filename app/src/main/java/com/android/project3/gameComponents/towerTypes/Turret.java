@@ -97,8 +97,11 @@ public class Turret extends Tower {
                             cooldown = 4;
                             break;
                         case 2:
+                            // rapid fire
+                            cooldown = 1;
                             break;
                         case 3:
+                            // TODO add upgrade
                             break;
                     }
                 }
@@ -152,6 +155,7 @@ public class Turret extends Tower {
                         cooldown = 4;
                         break;
                     case 2:
+                        // rapid fire
                         cooldown = 1;
                         break;
                     case 3:

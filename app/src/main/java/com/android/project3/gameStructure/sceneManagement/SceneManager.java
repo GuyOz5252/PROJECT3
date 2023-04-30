@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import com.android.project3.scenes.DemoTwo;
 import com.android.project3.utils.Action;
 import com.android.project3.scenes.DemoOne;
 
@@ -16,7 +17,11 @@ public class SceneManager {
         switch (currentSceneIdx) {
             case 0:
                 this.currentScene = new DemoOne(actionsArray, loadSave, context);
-                this.levelName = Scene.Levels.values()[currentSceneIdx].name;
+                this.levelName = Scene.Scenes.values()[currentSceneIdx].name;
+                break;
+            case 1:
+                this.currentScene = new DemoTwo(actionsArray, loadSave, context);
+                this.levelName = Scene.Scenes.values()[currentSceneIdx].name;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + currentSceneIdx);
