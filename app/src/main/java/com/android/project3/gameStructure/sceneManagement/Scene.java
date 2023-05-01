@@ -128,7 +128,7 @@ public abstract class Scene {
 
     public enum Scenes {
         DEMO_1("DEMO 1", R.drawable.demo_one, 0),
-        DEMO_2("PCB", R.drawable.pcb, 1);
+        PCB("PCB", R.drawable.pcb, 1);
 
         public String name;
         public int background;

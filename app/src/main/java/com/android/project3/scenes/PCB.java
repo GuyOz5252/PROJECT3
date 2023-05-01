@@ -6,8 +6,6 @@ import static com.android.project3.utils.HelperMethods.getBitmapFromPicture;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Pair;
 
@@ -15,23 +13,22 @@ import com.android.project3.R;
 import com.android.project3.data.EnemyType;
 import com.android.project3.data.GameValues;
 import com.android.project3.gameComponents.managers.WaveManager;
-import com.android.project3.gameStructure.GameView;
 import com.android.project3.gameStructure.sceneManagement.Scene;
 import com.android.project3.utils.Action;
 import com.android.project3.utils.Position;
 
 import java.util.ArrayList;
 
-public class DemoTwo extends Scene {
+public class PCB extends Scene {
 
     private Bitmap background;
     private Rect chip1;
     private Rect chip2;
 
-    public DemoTwo(Action[] actionsArray, boolean loadSave, Context context) {
+    public PCB(Action[] actionsArray, boolean loadSave, Context context) {
         super(actionsArray, loadSave, context);
 
-        this.background = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.pcbv2), 1566, 1080, false);
+        this.background = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.pcb), 1566, 1080, false);
 
         this.enemyPath.add(new Position(gameDisplay.size.width-180, 340));
         this.enemyPath.add(new Position(gameDisplay.size.width-180, gameDisplay.size.height-140));
