@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.android.project3.scenes.DemoTwo;
+import com.android.project3.scenes.PCB;
 import com.android.project3.utils.Action;
 import com.android.project3.scenes.DemoOne;
 
@@ -20,7 +20,7 @@ public class SceneManager {
                 this.levelName = Scene.Scenes.values()[currentSceneIdx].name;
                 break;
             case 1:
-                this.currentScene = new DemoTwo(actionsArray, loadSave, context);
+                this.currentScene = new PCB(actionsArray, loadSave, context);
                 this.levelName = Scene.Scenes.values()[currentSceneIdx].name;
                 break;
             default:
