@@ -6,11 +6,16 @@ import static com.android.project3.utils.HelperMethods.getBitmapFromPicture;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Pair;
 
 import com.android.project3.R;
 import com.android.project3.data.EnemyType;
+import com.android.project3.data.GameValues;
 import com.android.project3.gameComponents.managers.WaveManager;
+import com.android.project3.gameStructure.GameView;
 import com.android.project3.gameStructure.sceneManagement.Scene;
 import com.android.project3.utils.Action;
 import com.android.project3.utils.Position;
@@ -20,20 +25,45 @@ import java.util.ArrayList;
 public class DemoTwo extends Scene {
 
     private Bitmap background;
+    private Rect chip1;
+    private Rect chip2;
 
     public DemoTwo(Action[] actionsArray, boolean loadSave, Context context) {
         super(actionsArray, loadSave, context);
 
-        this.background = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.demo_one), 1566, 1080, false);
+        this.background = Bitmap.createScaledBitmap(getBitmapFromPicture(context, R.drawable.pcbv2), 1566, 1080, false);
 
-        this.enemyPath.add(new Position(330, 195));
-        this.enemyPath.add(new Position(gameDisplay.size.width-300, 195));
-        this.enemyPath.add(new Position(gameDisplay.size.width-300, gameDisplay.size.height-290));
-        this.enemyPath.add(new Position(600, gameDisplay.size.height-290));
-        this.enemyPath.add(new Position(600, 500));
-        this.enemyPath.add(new Position(1230, 500));
-        this.enemyPath.add(new Position(1230, gameDisplay.size.height+50));
+        this.enemyPath.add(new Position(gameDisplay.size.width-180, 340));
+        this.enemyPath.add(new Position(gameDisplay.size.width-180, gameDisplay.size.height-140));
+        this.enemyPath.add(new Position(gameDisplay.size.width-420, gameDisplay.size.height-140));
+        this.enemyPath.add(new Position(gameDisplay.size.width-420, gameDisplay.size.height-420));
+        this.enemyPath.add(new Position(gameDisplay.size.width-735, gameDisplay.size.height-420));
+        this.enemyPath.add(new Position(gameDisplay.size.width-735, gameDisplay.size.height-140));
+        this.enemyPath.add(new Position(1010, gameDisplay.size.height-140));
+        this.enemyPath.add(new Position(1010, gameDisplay.size.height-425));
+        this.enemyPath.add(new Position(725, gameDisplay.size.height-425));
+        this.enemyPath.add(new Position(725, gameDisplay.size.height-145));
+        this.enemyPath.add(new Position(490, gameDisplay.size.height-145));
+        this.enemyPath.add(new Position(490, 100));
+        this.enemyPath.add(new Position(gameDisplay.size.width-795, 100));
+        this.enemyPath.add(new Position(gameDisplay.size.width-795, 215));
+        this.enemyPath.add(new Position(gameDisplay.size.width-300, 215));
         this.enemyPath.calculateColliders();
+
+        this.chip1 = new Rect(
+                690,
+                277,
+                1005,
+                452
+        );
+        this.chip2 = new Rect(
+                1630,
+                68,
+                1870,
+                300
+        );
+        GameValues.colliderArrayList.add(chip1);
+        GameValues.colliderArrayList.add(chip2);
 
         ArrayList<Pair<EnemyType, Integer>> waveMap = new ArrayList<>();
         waveMap.add(new Pair<>(EnemyType.ENEMY, 10));
