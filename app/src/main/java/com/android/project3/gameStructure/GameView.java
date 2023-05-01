@@ -132,7 +132,7 @@ public class GameView extends AppCompatActivity implements View.OnTouchListener 
         // reset the canvas with background image
         // draw the scene
         sceneManager.draw(canvas);
-        if (true) { // TODO debug
+        if (false) { // TODO debug
             fpsCounter.draw(canvas);
         }
     }
