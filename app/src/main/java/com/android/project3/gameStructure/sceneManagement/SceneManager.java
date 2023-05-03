@@ -12,8 +12,10 @@ public class SceneManager {
 
     private Scene currentScene;
     private String levelName;
+    private int currentSceneIndex;
 
     public SceneManager(int currentSceneIdx, Action[] actionsArray, boolean loadSave, Context context) { // receive index of requested scene and init that scene
+        this.currentSceneIndex = currentSceneIdx;
         switch (currentSceneIdx) {
             case 0:
                 this.currentScene = new DemoOne(actionsArray, loadSave, context);
@@ -29,7 +31,7 @@ public class SceneManager {
     }
 
     public void saveGame() {
-        currentScene.saveGame();
+        currentScene.saveGame(currentSceneIndex);
     }
 
     public void update() {

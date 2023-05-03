@@ -67,9 +67,9 @@ public abstract class Scene {
         }
     }
 
-    public void saveGame() {
+    public void saveGame(int currentSceneIndex) {
         User.getInstance().setSaveData(new SaveData(
-                0,
+                currentSceneIndex,
                 (waveManager.getAliveList().isEmpty() || waveManager.getIsSpawning()) ? waveManager.getCurrentWave() : waveManager.getCurrentWave()-1,
                 GameValues.getPlayerCoins(),
                 GameValues.getPlayerHealth(),
