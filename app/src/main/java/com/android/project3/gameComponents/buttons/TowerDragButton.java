@@ -186,6 +186,12 @@ public class TowerDragButton extends Button implements OnCoinsChangeListener {
                         (int)(motionEvent.getX()+towerType.size.width/2),
                         (int)(motionEvent.getY()+towerType.size.height/2)
                 );
+                if (towerType.equals(TowerType.FOOT_SOLDIER)) towerRect = new Rect(
+                        (int)(motionEvent.getX()-towerType.size.width/2)+35,
+                        (int)(motionEvent.getY()-towerType.size.height/2)+40,
+                        (int)(motionEvent.getX()+towerType.size.width/2)-55,
+                        (int)(motionEvent.getY()+towerType.size.height/2)-40
+                );
                 if (towerType.equals(TowerType.TURRET)) towerRect = new Rect(
                         (int)(motionEvent.getX()-towerType.size.width/2)+35,
                         (int)(motionEvent.getY()-towerType.size.height/2)+30,
