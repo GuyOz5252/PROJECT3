@@ -311,6 +311,7 @@ public class Login extends AppCompatActivity implements View.OnTouchListener {
     public void createResetPasswordDialog() {
         resetPassword = new Dialog(this);
         resetPassword.setContentView(R.layout.dialog_reset_password);
+        resetPassword.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         resetPassword.getWindow().setBackgroundDrawableResource(R.drawable.rounded_corners);
         resetPassword.setTitle("forgot password");
 
